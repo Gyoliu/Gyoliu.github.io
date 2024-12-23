@@ -6,7 +6,7 @@
 title: Gyo
 subtitle: ''
 description: 'Gyo的博客'
-keywords: "Gyo,gyo,genesisx,genesis,Genesisx,Genesis,gyo博客,Gyo博客"
+keywords:
 author: Gyo
 language: en
 timezone: ''
@@ -46,12 +46,14 @@ future: true
 #syntax_highlighter: highlight.js
 syntax_highlighter: prismjs
 highlight:
+  #enable: false
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
 prismjs:
+  #enable: false
   preprocess: true
   line_number: true
   line_threshold: 0
@@ -107,19 +109,18 @@ deploy:
   repository: git@github.com:Gyoliu/Gyoliu.github.io.git
   branch: main
 
-
+# search service
 algolia:
-  appId: 你的
-  apiKey: 你的
-  adminApiKey: 你的
-  SearchOnlyAPIKey: 你的
+  # appId: yourAlgoliaAppId
+  # apiKey: yourAlgoliaApiKey
+  # adminApiKey: yourAlgoliaAdminApiKey
+  # SearchOnlyAPIKey: yourAlgoliaSearchOnlyAPIKey
   chunkSize: 5000
-  indexName: 你的algolia的index
+  indexName: hex-blog
   fields:
     - content
-    - excerpt:strip
     - categories
-    - title
+    - date
     - permalink
     - slug
     - tags
