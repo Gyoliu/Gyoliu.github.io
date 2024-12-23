@@ -1,1 +1,0 @@
-(()=>{"use strict";document.addEventListener("DOMContentLoaded",(function(){setTimeout((()=>{var e;null===(e=document.querySelector(".slogan"))||void 0===e||e.classList.add("fin")}),250)}))})();
