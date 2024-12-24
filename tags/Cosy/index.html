@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    cosy-preference
+    Gyo
   </title>
   <meta name="description" content="Gyo的博客">
   <meta name="keywords" content="Gyo,gyo,genesisx,genesis,Genesisx,Genesis,gyo博客,Gyo博客">
   <meta name="author" content="Gyo">
-  <link rel="canonical" href="https://blog.genesisx.cn/cosy-preference/index.html">
+  <link rel="canonical" href="https://blog.genesisx.cn">
   
   
   <link rel="icon" type="image/svg" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10l7.383 7.418c.823.82.823 2.148 0 2.967a2.11 2.11 0 0 1-2.976 0L10 13"></path><path d="M6.293 15.293l-2.586-2.586a1 1 0 0 1 0-1.414l7.586-7.586a1 1 0 0 1 1.414 0l2.586 2.586a1 1 0 0 1 0 1.414l-7.586 7.586a1 1 0 0 1-1.414 0z"></path></g></svg>'>
@@ -127,90 +127,43 @@
   </aside>
   <main>
     
-<link rel="stylesheet" href="/css/3c11e750.css">
+<link rel="stylesheet" href="/css/480d1cae.css">
 
-<div class="preference cosy-scrollbar">
-  <main>
-    <h1>Preference</h1>
-    <p>Manage your preferences</p>
-    <h2>Appearance</h2>
-    <section>
-      <div>
-        <h3>Font Size</h3>
-        <p>Global font size</p>
-      </div>
-      <cosy-button id="dd-button-font-size">
-        <svg slot="suffix" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
-          <g fill="none">
-            <path d="M15.854 7.646a.5.5 0 0 1 .001.707l-5.465 5.484a.55.55 0 0 1-.78 0L4.147 8.353a.5.5 0 1 1 .708-.706L10 12.812l5.147-5.165a.5.5 0 0 1 .707-.001z" fill="currentColor"></path>
-          </g>
-        </svg>
-        <span slot="content">13px</span>
-      </cosy-button>
-    </section>
-    <section>
-      <div>
-        <h3>Language</h3>
-        <p>Global interface display language</p>
-      </div>
-      <cosy-label size="large" color="green" bordered>
-        <span>English</span>
-      </cosy-label>
-    </section>
-    <cosy-divider></cosy-divider>
-    <h2>Theme</h2>
-    <section>
-      <div>
-        <h3>Theme Style</h3>
-        <p>Choose the style of the website theme</p>
-      </div>
-      <cosy-button id="dd-button-theme">
-        <svg slot="suffix" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
-          <g fill="none">
-            <path d="M15.854 7.646a.5.5 0 0 1 .001.707l-5.465 5.484a.55.55 0 0 1-.78 0L4.147 8.353a.5.5 0 1 1 .708-.706L10 12.812l5.147-5.165a.5.5 0 0 1 .707-.001z" fill="currentColor"></path>
-          </g>
-        </svg>
-        <span slot="content">Dark</span>
-      </cosy-button>
-    </section>
-    <section>
-      <div>
-        <h3>Theme color</h3>
-        <p>
-          <cosy-label color="red">_config.yml->color</cosy-label> parameters are used to control the global theme color
-        </p>
-      </div>
-      <cosy-tooltip placement="left" id="theme-color-tip">
-        <span slot="content"></span>
-        <cosy-label bordered>
-          <span id="theme-color"></span>
-        </cosy-label>
-      </cosy-tooltip>
-    </section>
-    <cosy-divider></cosy-divider>
-    <h2>Community</h2>
-    <section>
-      <div>
-        <h3>Feedback</h3>
-        <p>I am very fortunate to have been discovered by you. If you have any suggestions or feedback on the topic, please feel free to raise an issue.</p>
-      </div>
-      <cosy-tooltip placement="left">
-        <span slot="content">Github Issue</span>
-        <cosy-icon blank href="https://github.com/17px/hexo-theme-cosy/issues">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="1"></circle>
-              <circle cx="12" cy="12" r="9"></circle>
-            </g>
-          </svg>
-        </cosy-icon>
-      </cosy-tooltip>
-    </section>
 
-  </main>
+<div class="tags-container cosy-scrollbar">
+  <div class="content">
+    <h2>
+      <cosy-label color="red">Cosy</cosy-label>
+    </h2>
+    <ul class="timeline">
+      
+      <li>
+        <a class="timeline-item" href="/2024/12/24/Cosy%E5%85%A5%E9%97%A8/">
+          <div class="timeline-info">
+            
+            <span>12-24 00:38:11</span>
+          </div>
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-title ellipsis">
+              <span>Cosy入门</span>
+            </div>
+            <p>纯粹的折腾 💡Cosy 主题入门配置💡
+增加 footer 配置 🦢# Footer info
+footer:
+    enable: true
+    since: 2024
+    # Cu...</p>
+          </div>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
 </div>
 
-<script src="/js/d1f5cbb0.js"></script>
+
+<script src="/js/31d6cfe0.js"></script>
 
   </main>
 </body>

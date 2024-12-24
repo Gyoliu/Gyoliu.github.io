@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Gyo • All posts by \"cosy\" tag",
+    "description": "Gyo的博客",
+    "home_page_url": "https://blog.genesisx.cn",
+    "items": [
+        {
+            "id": "https://blog.genesisx.cn/2024/12/24/Cosy%E5%85%A5%E9%97%A8/",
+            "url": "https://blog.genesisx.cn/2024/12/24/Cosy%E5%85%A5%E9%97%A8/",
+            "title": "Cosy入门",
+            "date_published": "2024-12-23T16:38:11.000Z",
+            "content_html": "<h3 id=\"纯粹的折腾-💡\"><a href=\"#纯粹的折腾-💡\" class=\"headerlink\" title=\"纯粹的折腾 💡\"></a>纯粹的折腾 💡</h3><p><a href=\"https://hexo.maxshader.com/posts/59577/\">Cosy 主题入门配置💡</a></p>\n<h3 id=\"增加-footer-配置-🦢\"><a href=\"#增加-footer-配置-🦢\" class=\"headerlink\" title=\"增加 footer 配置 🦢\"></a>增加 footer 配置 🦢</h3><pre class=\"line-numbers language-yaml\" data-language=\"yaml\"><code class=\"language-yaml\"><span class=\"token comment\"># Footer info</span>\n<span class=\"token key atrule\">footer</span><span class=\"token punctuation\">:</span>\n    <span class=\"token key atrule\">enable</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>\n    <span class=\"token key atrule\">since</span><span class=\"token punctuation\">:</span> <span class=\"token number\">2024</span>\n    <span class=\"token comment\"># Customize the server domain name ICP</span>\n    <span class=\"token key atrule\">ICP</span><span class=\"token punctuation\">:</span>\n        <span class=\"token key atrule\">enable</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>\n        <span class=\"token key atrule\">code</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"粤ICP备18155512号-1\"</span>\n        <span class=\"token key atrule\">link</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://beian.miit.gov.cn/\"</span><span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>\n\n<h3 id=\"增加中间动态欢迎语-👋\"><a href=\"#增加中间动态欢迎语-👋\" class=\"headerlink\" title=\"增加中间动态欢迎语 👋\"></a>增加中间动态欢迎语 👋</h3><p><a href=\"https://gyoliu.github.io/\" title=\"效果博客👋\">效果博客</a><br><img src=\"/img/home.png\"></p>\n",
+            "tags": [
+                "Cosy"
+            ]
+        }
+    ]
+}

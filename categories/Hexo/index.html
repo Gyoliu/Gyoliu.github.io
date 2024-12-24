@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    cosy-preference
+    Gyo
   </title>
   <meta name="description" content="Gyo的博客">
   <meta name="keywords" content="Gyo,gyo,genesisx,genesis,Genesisx,Genesis,gyo博客,Gyo博客">
   <meta name="author" content="Gyo">
-  <link rel="canonical" href="https://blog.genesisx.cn/cosy-preference/index.html">
+  <link rel="canonical" href="https://blog.genesisx.cn">
   
   
   <link rel="icon" type="image/svg" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10l7.383 7.418c.823.82.823 2.148 0 2.967a2.11 2.11 0 0 1-2.976 0L10 13"></path><path d="M6.293 15.293l-2.586-2.586a1 1 0 0 1 0-1.414l7.586-7.586a1 1 0 0 1 1.414 0l2.586 2.586a1 1 0 0 1 0 1.414l-7.586 7.586a1 1 0 0 1-1.414 0z"></path></g></svg>'>
@@ -94,7 +94,7 @@
           <div class="ellipsis">Resume</div>
         </a>
       </li></ul>
-  <ul><li class="">
+  <ul><li class="active">
         <a href="/categories/Hexo/">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><path d="M9 16h6v2H9zm4-7h-2v2H9v2h2v2h2v-2h2v-2h-2z" fill="currentColor"></path><path d="M12 2c-5.33 4.55-8 8.48-8 11.8c0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2c0-2.34 1.95-5.44 6-9.14c4.05 3.7 6 6.79 6 9.14c0 3.63-2.65 6.2-6 6.2z" fill="currentColor"></path></svg>
           <div class="ellipsis">
@@ -127,90 +127,98 @@
   </aside>
   <main>
     
-<link rel="stylesheet" href="/css/3c11e750.css">
+<link rel="stylesheet" href="/css/32fa10f2.css">
 
-<div class="preference cosy-scrollbar">
-  <main>
-    <h1>Preference</h1>
-    <p>Manage your preferences</p>
-    <h2>Appearance</h2>
-    <section>
-      <div>
-        <h3>Font Size</h3>
-        <p>Global font size</p>
-      </div>
-      <cosy-button id="dd-button-font-size">
-        <svg slot="suffix" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+
+
+
+<div class="category">
+  <header>
+    <div class="left">
+      
+<link rel="stylesheet" href="/css/7d333f9e.css">
+
+<nav class="breadcrumb">
+  <section>
+    <cosy-tooltip placement="bottom-left">
+      <span slot="content"><span>Home</span>
+        <cosy-short-key>⌘</cosy-short-key>
+        <cosy-short-key>H</cosy-short-key>
+      </span>
+      <cosy-icon href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
           <g fill="none">
-            <path d="M15.854 7.646a.5.5 0 0 1 .001.707l-5.465 5.484a.55.55 0 0 1-.78 0L4.147 8.353a.5.5 0 1 1 .708-.706L10 12.812l5.147-5.165a.5.5 0 0 1 .707-.001z" fill="currentColor"></path>
+            <path d="M8.998 2.388a1.5 1.5 0 0 1 2.005 0l5.5 4.942A1.5 1.5 0 0 1 17 8.445V15.5a1.5 1.5 0 0 1-1.5 1.5H13a1.5 1.5 0 0 1-1.5-1.5V12a.5.5 0 0 0-.5-.5H9a.5.5 0 0 0-.5.5v3.5A1.5 1.5 0 0 1 7 17H4.5A1.5 1.5 0 0 1 3 15.5V8.445c0-.425.18-.83.498-1.115l5.5-4.942zm1.336.744a.5.5 0 0 0-.668 0l-5.5 4.942A.5.5 0 0 0 4 8.445V15.5a.5.5 0 0 0 .5.5H7a.5.5 0 0 0 .5-.5V12A1.5 1.5 0 0 1 9 10.5h2a1.5 1.5 0 0 1 1.5 1.5v3.5a.5.5 0 0 0 .5.5h2.5a.5.5 0 0 0 .5-.5V8.445a.5.5 0 0 0-.166-.371l-5.5-4.942z" fill="currentColor"></path>
           </g>
         </svg>
-        <span slot="content">13px</span>
-      </cosy-button>
-    </section>
-    <section>
-      <div>
-        <h3>Language</h3>
-        <p>Global interface display language</p>
-      </div>
-      <cosy-label size="large" color="green" bordered>
-        <span>English</span>
-      </cosy-label>
-    </section>
-    <cosy-divider></cosy-divider>
-    <h2>Theme</h2>
-    <section>
-      <div>
-        <h3>Theme Style</h3>
-        <p>Choose the style of the website theme</p>
-      </div>
-      <cosy-button id="dd-button-theme">
-        <svg slot="suffix" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+      </cosy-icon>
+    </cosy-tooltip>
+    
+    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+      <g fill="none">
+        <path d="M7.733 4.207a.75.75 0 0 1 1.06.026l5.001 5.25a.75.75 0 0 1 0 1.035l-5 5.25a.75.75 0 1 1-1.087-1.034L12.216 10l-4.51-4.734a.75.75 0 0 1 .027-1.06z" fill="currentColor"></path>
+      </g>
+    </svg>
+    <span class="ellipsis">
+      Hexo
+    </span>
+    
+    
+  </section>
+</nav>
+
+
+<script src="/js/31d6cfe0.js"></script>
+
+      <!-- 筛选 -->
+      <cosy-button type="dashed" id="filter-button">
+        <svg slot="prefix" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
           <g fill="none">
-            <path d="M15.854 7.646a.5.5 0 0 1 .001.707l-5.465 5.484a.55.55 0 0 1-.78 0L4.147 8.353a.5.5 0 1 1 .708-.706L10 12.812l5.147-5.165a.5.5 0 0 1 .707-.001z" fill="currentColor"></path>
+            <path d="M7.5 13h5a.5.5 0 0 1 .09.992L12.5 14h-5a.5.5 0 0 1-.09-.992L7.5 13h5h-5zm-2-4h9a.5.5 0 0 1 .09.992L14.5 10h-9a.5.5 0 0 1-.09-.992L5.5 9h9h-9zm-2-4h13a.5.5 0 0 1 .09.992L16.5 6h-13a.5.5 0 0 1-.09-.992L3.5 5h13h-13z" fill="currentColor"></path>
           </g>
         </svg>
-        <span slot="content">Dark</span>
+        <span slot="content">Filter</span>
       </cosy-button>
-    </section>
-    <section>
-      <div>
-        <h3>Theme color</h3>
-        <p>
-          <cosy-label color="red">_config.yml->color</cosy-label> parameters are used to control the global theme color
+    </div>
+    <div class="center">
+      <!-- 分页代码 -->
+      
+    </div>
+  </header>
+
+  <!-- 分类文章列表 -->
+  <ul class="post-list cosy-scrollbar">
+    
+    <li data-status="">
+      <a href="/2024/12/24/Cosy%E5%85%A5%E9%97%A8/">
+        
+        <p class="ellipsis">
+          <span>Cosy入门</span>
+          <!-- <cosy-tooltip placement="bottom-left" max-width="250px">
+            <span slot="content">纯粹的折腾 💡Cosy 主题入门配置💡
+增加 footer 配置 🦢# Footer info
+footer:
+ </span>
+            <span></span>
+          </cosy-tooltip> -->
+
         </p>
-      </div>
-      <cosy-tooltip placement="left" id="theme-color-tip">
-        <span slot="content"></span>
-        <cosy-label bordered>
-          <span id="theme-color"></span>
-        </cosy-label>
-      </cosy-tooltip>
-    </section>
-    <cosy-divider></cosy-divider>
-    <h2>Community</h2>
-    <section>
-      <div>
-        <h3>Feedback</h3>
-        <p>I am very fortunate to have been discovered by you. If you have any suggestions or feedback on the topic, please feel free to raise an issue.</p>
-      </div>
-      <cosy-tooltip placement="left">
-        <span slot="content">Github Issue</span>
-        <cosy-icon blank href="https://github.com/17px/hexo-theme-cosy/issues">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
-            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="1"></circle>
-              <circle cx="12" cy="12" r="9"></circle>
-            </g>
-          </svg>
-        </cosy-icon>
-      </cosy-tooltip>
-    </section>
+        <span class="post-date">
+          
+          <cosy-tooltip placement="left">
+            <span slot="content">Created: 2024-12-24 00:38:11</span>
+            Dec 24
+          </cosy-tooltip>
+        </span>
+      </a>
+    </li>
+    
+  </ul>
 
-  </main>
 </div>
 
-<script src="/js/d1f5cbb0.js"></script>
+
+<script src="/js/eaf89be7.js"></script>
 
   </main>
 </body>
