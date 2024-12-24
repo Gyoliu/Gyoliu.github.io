@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.genesisx.cn</id>
+    <id>https://gyoliu.github.io</id>
     <title>Gyo • Posts by &#34;hexo&#34; category</title>
-    <link href="https://blog.genesisx.cn" />
+    <link href="https://gyoliu.github.io" />
     <updated>2024-12-23T16:38:11.000Z</updated>
     <category term="Cosy" />
     <entry>
-        <id>https://blog.genesisx.cn/2024/12/24/Cosy%E5%85%A5%E9%97%A8/</id>
+        <id>https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/</id>
         <title>Cosy入门</title>
-        <link rel="alternate" href="https://blog.genesisx.cn/2024/12/24/Cosy%E5%85%A5%E9%97%A8/"/>
+        <link rel="alternate" href="https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/"/>
         <content type="html">&lt;h3 id=&#34;纯粹的折腾-💡&#34;&gt;&lt;a href=&#34;#纯粹的折腾-💡&#34; class=&#34;headerlink&#34; title=&#34;纯粹的折腾 💡&#34;&gt;&lt;/a&gt;纯粹的折腾 💡&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;https://hexo.maxshader.com/posts/59577/&#34;&gt;Cosy 主题入门配置💡&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以这个开源 Theme 为基础增加了以下&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;增加-footer-配置-🦢&#34;&gt;&lt;a href=&#34;#增加-footer-配置-🦢&#34; class=&#34;headerlink&#34; title=&#34;增加 footer 配置 🦢&#34;&gt;&lt;/a&gt;增加 footer 配置 🦢&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# Footer info&lt;/span&gt;
 &lt;span class=&#34;token key atrule&#34;&gt;footer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
     &lt;span class=&#34;token key atrule&#34;&gt;enable&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt;
