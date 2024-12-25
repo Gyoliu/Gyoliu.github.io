@@ -8,19 +8,19 @@
         <pubDate>Thu, 17 Aug 2023 13:09:02 +0800</pubDate>
         <lastBuildDate>Thu, 17 Aug 2023 13:09:02 +0800</lastBuildDate>
         <category>Cosy</category>
+        <category>Java</category>
         <category>Linux</category>
         <category>Default</category>
         <category>PaddleSpeech</category>
-        <category>Java</category>
         <category>elasticsearch</category>
         <category>hibernate</category>
         <category>JVM</category>
+        <category>mysql</category>
         <category>证书</category>
         <category>nginx</category>
-        <category>mysql</category>
         <category>openssl</category>
-        <category>Spring Cloud</category>
         <category>spring</category>
+        <category>Spring Cloud</category>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2023/08/17/spring-cloud-properties/</guid>
             <title>spring cloud 性能优化</title>

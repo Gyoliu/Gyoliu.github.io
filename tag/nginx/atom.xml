@@ -5,19 +5,19 @@
     <link href="https://gyoliu.github.io" />
     <updated>2024-08-29T05:23:54.000Z</updated>
     <category term="Cosy" />
+    <category term="Java" />
     <category term="Linux" />
     <category term="Default" />
     <category term="PaddleSpeech" />
-    <category term="Java" />
     <category term="elasticsearch" />
     <category term="hibernate" />
     <category term="JVM" />
+    <category term="mysql" />
     <category term="证书" />
     <category term="nginx" />
-    <category term="mysql" />
     <category term="openssl" />
-    <category term="Spring Cloud" />
     <category term="spring" />
+    <category term="Spring Cloud" />
     <entry>
         <id>https://gyoliu.github.io/2024/08/29/nginx-proxy/</id>
         <title>nginx 正向代理配置 https 支持</title>

@@ -5,19 +5,19 @@
     <link href="https://gyoliu.github.io" />
     <updated>2024-12-23T16:38:11.000Z</updated>
     <category term="Cosy" />
+    <category term="Java" />
     <category term="Linux" />
     <category term="Default" />
     <category term="PaddleSpeech" />
-    <category term="Java" />
     <category term="elasticsearch" />
     <category term="hibernate" />
     <category term="JVM" />
+    <category term="mysql" />
     <category term="证书" />
     <category term="nginx" />
-    <category term="mysql" />
     <category term="openssl" />
-    <category term="Spring Cloud" />
     <category term="spring" />
+    <category term="Spring Cloud" />
     <entry>
         <id>https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/</id>
         <title>Cosy入门</title>
@@ -37,6 +37,17 @@
         &lt;span class=&#34;token key atrule&#34;&gt;link&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;https://beian.miit.gov.cn/&#34;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;增加中间动态欢迎语-👋&#34;&gt;&lt;a href=&#34;#增加中间动态欢迎语-👋&#34; class=&#34;headerlink&#34; title=&#34;增加中间动态欢迎语 👋&#34;&gt;&lt;/a&gt;增加中间动态欢迎语 👋&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;https://gyoliu.github.io/&#34; title=&#34;效果博客👋&#34;&gt;效果博客&lt;/a&gt;&lt;br&gt;&lt;img src=&#34;/img/home.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;INFO-Error-has-occurred-during-indexing-posts-object-Object&#34;&gt;&lt;a href=&#34;#INFO-Error-has-occurred-during-indexing-posts-object-Object&#34; class=&#34;headerlink&#34; title=&#34;INFO  Error has occurred during indexing posts : [object Object]&#34;&gt;&lt;/a&gt;INFO  Error has occurred during indexing posts : [object Object]&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;https://yfzhu.cn/posts/1011/&#34;&gt;解决方案&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;#algolia Configuration&lt;/span&gt;
+&lt;span class=&#34;token key atrule&#34;&gt;algolia&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;token punctuation&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;...&lt;/span&gt;
+  &lt;span class=&#34;token key atrule&#34;&gt;chunkSize&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;5000&lt;/span&gt;
+  &lt;span class=&#34;token punctuation&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;...&lt;/span&gt;
+  &lt;span class=&#34;token key atrule&#34;&gt;fields&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; content&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;strip&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;truncate&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5000&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+
 </content>
         <category term="Cosy" />
         <updated>2024-12-23T16:38:11.000Z</updated>
