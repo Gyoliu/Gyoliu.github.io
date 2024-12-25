@@ -14,6 +14,8 @@ tip-catalog-visible: 显示 / 隐藏 文章目录
 # text
 text-preference: 偏好
 text-archives: 归档
+text-blog-collection: 收藏
+text-opensource-project: 开源项目
 text-cosy-roadmap: 路线图
 text-cosy-resume: 简历
 text-category: 分类
@@ -28,6 +30,8 @@ text-post-count-next: 下一页
 text-post-top: 置顶
 text-post-create: 创建于
 text-post-last-update: 上次更新
+text-post-word-count: 字数统计
+text-post-read-time: 阅读时间
 text-catalog: 目录
 text-preference-1: 管理您的首选项
 text-preference-2: 外观

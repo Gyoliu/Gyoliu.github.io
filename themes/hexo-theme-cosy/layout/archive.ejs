@@ -5,11 +5,13 @@
    var year = post.date.year();
    if (!archive[year]) archive[year] = []
    archive[year].push(post);
-}); %>
+}); 
+var sortedKeys = Object.keys(archive).sort().reverse();
+%>
 
 <div class="archive cosy-scrollbar">
   <ul>
-    <% for(var key in archive) { %>
+    <% sortedKeys.forEach((key) => { %>
     <li>
       <h2><%= key %></h2>
       <ul class="timeline">
@@ -28,14 +30,14 @@
 
                 <span><%= post.title %></span>
               </div>
-              <p><%= generate_excerpt(post.content, 100) %>...</p>
+              <p><%= generate_excerpt(post.content, 180) %>...</p>
             </div>
           </a>
         </li>
         <% }) %>
       </ul>
     </li>
-    <% } %>
+    <% }) %>
   </ul>
 </div>
 

@@ -14,6 +14,8 @@ tip-catalog-visible: Show / Hide Table of Contents
 # text
 text-preference: Preference
 text-archives: Archives
+text-opensource-project: Open Source
+text-blog-collection: Collection
 text-cosy-roadmap: Roadmap
 text-cosy-resume: Resume
 text-category: Category
@@ -28,6 +30,8 @@ text-post-count-next: Next Page
 text-post-top: Top
 text-post-create: Created
 text-post-last-update: Last updated
+text-post-word-count: Word count
+text-post-read-time: Reading Time
 text-catalog: Catalog
 text-preference-1: Manage your preferences
 text-preference-2: Appearance

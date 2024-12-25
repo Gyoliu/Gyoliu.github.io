@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://blog.genesisx.cn
+url: https://gyoliu.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -67,7 +67,7 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: Default
 category_map:
 tag_map:
 
@@ -107,14 +107,14 @@ deploy:
   repository: git@github.com:Gyoliu/Gyoliu.github.io.git
   branch: main
 
-
+# algolia 搜索
 algolia:
-  appId: 你的
-  apiKey: 你的
-  adminApiKey: 你的
-  SearchOnlyAPIKey: 你的
+  appId: MHFSDMJY4N
+  apiKey: 810bea122960ed1f081aa4ac54d2b321
+  adminApiKey: 3457954bbacbae81545ad5e124779730
+  SearchOnlyAPIKey: 810bea122960ed1f081aa4ac54d2b321
   chunkSize: 5000
-  indexName: 你的algolia的index
+  indexName: hexo
   fields:
     - content
     - excerpt:strip
@@ -124,3 +124,22 @@ algolia:
     - slug
     - tags
     - title
+
+# RSS 
+feed:
+    limit: 0
+    order_by: "-date"
+    tag_dir: "tag"
+    category_dir: "category"
+    rss:
+        enable: true
+        #template: "themes/theme/layout/_alternate/rss.ejs"
+        output: "rss.xml"
+    atom:
+        enable: true
+        #template: "themes/theme/layout/_alternate/atom.ejs"
+        output: "atom.xml"
+    jsonFeed:
+        enable: true
+        #template: "themes/theme/layout/_alternate/json.ejs"
+        output: "feed.json"

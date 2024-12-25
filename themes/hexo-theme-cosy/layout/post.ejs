@@ -1,4 +1,4 @@
-<%- css("/css/4dbc8f91.css")%>
+<%- css("/css/e1d1c5bf.css")%>
 
 <div class="post-container">
   <header>
@@ -34,6 +34,10 @@
           <h1 class="post-title"><%- page.title %></h1>
           <div class="last-updated">
             <%- __('text-post-last-update') %>: <%- page.updated.format('YYYY-MM-DD HH:mm:ss') %>
+            <span class="post-meta-item-text"><%- __('text-post-word-count') %>:</span>
+            <span class="post-count"><%= wordcount(page.content) %></span>
+            <span class="post-meta-item-text"><%- __('text-post-read-time') %>:</span>
+            <span class="post-count"><%= min2read(page.content) %> min</span>
           </div>
           <!-- 文章 -->
           <%- page.content %>
@@ -54,7 +58,7 @@
     </main>
     <!-- toc -->
     <% if (!!toc(page.content)) { %>
-      <cosy-drag-box id="toc-drag-box" trigger="left" min-width="220" uid="toc-box">
+      <cosy-drag-box id="toc-drag-box" trigger="left" min-width="100" uid="toc-box">
         <div class="meta-container">
           <div class="toc-wrapper cosy-scrollbar">
             <cosy-tooltip placement="right">

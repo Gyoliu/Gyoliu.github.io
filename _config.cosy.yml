@@ -1,0 +1,17 @@
+# algolia 搜索
+algolia:
+  appId: MHFSDMJY4N
+  apiKey: 810bea122960ed1f081aa4ac54d2b321
+  adminApiKey: 3457954bbacbae81545ad5e124779730
+  SearchOnlyAPIKey: 810bea122960ed1f081aa4ac54d2b321
+  chunkSize: 5000
+  indexName: hexo
+  fields:
+    - content
+    - excerpt:strip
+    - categories
+    - title
+    - permalink
+    - slug
+    - tags
+    - title
