@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Gyo • All posts by \"openssl\" tag",
+    "description": "Gyo的博客",
+    "home_page_url": "https://gyoliu.github.io",
+    "items": [
+        {
+            "id": "https://gyoliu.github.io/2022/09/20/openssl-install/",
+            "url": "https://gyoliu.github.io/2022/09/20/openssl-install/",
+            "title": "openssl 编译安装",
+            "date_published": "2022-09-20T04:53:56.000Z",
+            "content_html": "<h2 id=\"1-官方下载地址\"><a href=\"#1-官方下载地址\" class=\"headerlink\" title=\"1. 官方下载地址\"></a>1. 官方下载地址</h2><p><a href=\"https://www.openssl.org/source/\">https://www.openssl.org/source/</a></p>\n<h2 id=\"2-依赖安装\"><a href=\"#2-依赖安装\" class=\"headerlink\" title=\"2. 依赖安装\"></a>2. 依赖安装</h2><pre class=\"line-numbers language-bash\" data-language=\"bash\"><code class=\"language-bash\">yum <span class=\"token function\">install</span> gcc libffi-devel zlib* openssl-devel<span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span></span></code></pre>\n\n<h2 id=\"3-编译\"><a href=\"#3-编译\" class=\"headerlink\" title=\"3. 编译\"></a>3. 编译</h2><pre class=\"line-numbers language-bash\" data-language=\"bash\"><code class=\"language-bash\">./config <span class=\"token parameter variable\">--prefix</span><span class=\"token operator\">=</span>/usr/local/openssl shared zlib\n其中 <span class=\"token parameter variable\">--prefix</span><span class=\"token operator\">=</span>/usr/local/openssl  指定编译到那个目录下\n<span class=\"token function\">make</span> <span class=\"token operator\">&amp;&amp;</span> <span class=\"token function\">make</span> <span class=\"token function\">install</span><span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span><span></span></span></code></pre>\n\n<h2 id=\"4-备份\"><a href=\"#4-备份\" class=\"headerlink\" title=\"4. 备份\"></a>4. 备份</h2><pre class=\"line-numbers language-bash\" data-language=\"bash\"><code class=\"language-bash\"><span class=\"token function\">which</span> openssl  或  <span class=\"token function\">find</span> / <span class=\"token parameter variable\">-name</span> openssl\n <span class=\"token function\">mv</span> /usr/bin/openssl /usr/bin/openssl.1.0.1e\n <span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span><span></span></span></code></pre>\n\n<h2 id=\"5-建立软连接\"><a href=\"#5-建立软连接\" class=\"headerlink\" title=\"5. 建立软连接\"></a>5. 建立软连接</h2><pre class=\"line-numbers language-bash\" data-language=\"bash\"><code class=\"language-bash\"><span class=\"token function\">ln</span> <span class=\"token parameter variable\">-s</span> /usr/local/openssl/bin/openssl /usr/bin/openssl\n<span class=\"token function\">ln</span> <span class=\"token parameter variable\">-s</span> /usr/local/openssl/include/openssl /usr/include/openssl<span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span></span></code></pre>\n\n<h2 id=\"6-设定动态链接库\"><a href=\"#6-设定动态链接库\" class=\"headerlink\" title=\"6. 设定动态链接库\"></a>6. 设定动态链接库</h2><pre class=\"line-numbers language-bash\" data-language=\"bash\"><code class=\"language-bash\"><span class=\"token builtin class-name\">echo</span> <span class=\"token string\">\"/usr/local/openssl/lib\"</span> <span class=\"token operator\">>></span> /etc/ld.so.conf\nldconfig <span class=\"token parameter variable\">-v</span><span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span></span></code></pre>\n\n<h2 id=\"7-验证\"><a href=\"#7-验证\" class=\"headerlink\" title=\"7. 验证\"></a>7. 验证</h2><pre class=\"line-numbers language-bash\" data-language=\"bash\"><code class=\"language-bash\">openssl version <span class=\"token parameter variable\">-a</span><span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span></span></code></pre>\n",
+            "tags": [
+                "Linux",
+                "openssl"
+            ]
+        }
+    ]
+}

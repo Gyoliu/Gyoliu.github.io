@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Gyo • Posts by &#34;default&#34; tag</title>
+        <link>https://gyoliu.github.io</link>
+        <description>Gyo的博客</description>
+        <language>en</language>
+        <pubDate>Thu, 29 Aug 2024 13:23:54 +0800</pubDate>
+        <lastBuildDate>Thu, 29 Aug 2024 13:23:54 +0800</lastBuildDate>
+        <category>Cosy</category>
+        <category>Linux</category>
+        <category>Default</category>
+        <category>PaddleSpeech</category>
+        <category>Java</category>
+        <category>elasticsearch</category>
+        <category>hibernate</category>
+        <category>JVM</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>mysql</category>
+        <category>openssl</category>
+        <category>Spring Cloud</category>
+        <category>spring</category>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2024/08/29/nginx-proxy/</guid>
+            <title>nginx 正向代理配置 https 支持</title>
+            <link>https://gyoliu.github.io/2024/08/29/nginx-proxy/</link>
+            <category>Default</category>
+            <category>nginx</category>
+            <pubDate>Thu, 29 Aug 2024 13:23:54 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;nginx-正向代理配置-https-支持&#34;&gt;&lt;a href=&#34;#nginx-正向代理配置-https-支持&#34; class=&#34;headerlink&#34; title=&#34;nginx 正向代理配置 https 支持&#34;&gt;&lt;/a&gt;nginx 正向代理配置 https 支持&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt; -- 遇到很多需要的包安装下来就好
+
+yum &lt;span class=&#34;token parameter variable&#34;&gt;-y&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; perl perl-ExtUtils-Embed gperftools geoip-devel
+
+&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; https://github.com/chobits/ngx_http_proxy_connect_module/archive/refs/heads/master.zip
+&lt;span class=&#34;token function&#34;&gt;unzip&lt;/span&gt; master.zip
+&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; https://nginx.org/download/nginx-1.20.2.tar.gz
+&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; xzvf nginx-1.20.2.tar.gz
+
+&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; nginx-1.20.2
+
+patch &lt;span class=&#34;token parameter variable&#34;&gt;-p1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;/ngx_http_proxy_connect_module_master/patch/proxy_connect_rewrite_1018.patch
+
+./configure &lt;span class=&#34;token parameter variable&#34;&gt;--prefix&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/usr/share/nginx --sbin-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/usr/sbin/nginx --modules-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/usr/lib64/nginx/modules --conf-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/etc/nginx/nginx.conf --error-log-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/var/log/nginx/error.log --http-log-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/var/log/nginx/access.log --http-client-body-temp-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/var/lib/nginx/tmp/client_body --http-proxy-temp-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/var/lib/nginx/tmp/proxy --http-fastcgi-temp-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/var/lib/nginx/tmp/fastcgi --http-uwsgi-temp-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/var/lib/nginx/tmp/uwsgi --http-scgi-temp-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/var/lib/nginx/tmp/scgi --pid-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/run/nginx.pid --lock-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/run/lock/subsys/nginx &lt;span class=&#34;token parameter variable&#34;&gt;--user&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;nginx &lt;span class=&#34;token parameter variable&#34;&gt;--group&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;nginx --with-compat --with-debug --with-file-aio --with-google_perftools_module --with-http_addition_module --with-http_auth_request_module --with-http_dav_module --with-http_degradation_module --with-http_flv_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_image_filter_module&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;dynamic --with-http_mp4_module --with-http_perl_module&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;dynamic --with-http_random_index_module --with-http_realip_module --with-http_secure_link_module --with-http_slice_module --add-module&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;/ngx_http_proxy_connect_module-master --with-http_ssl_module --with-http_stub_status_module --with-http_sub_module --with-http_v2_module --with-http_xslt_module&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;dynamic --with-mail&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;dynamic --with-mail_ssl_module --with-pcre --with-pcre-jit --with-stream&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;dynamic --with-stream_ssl_module --with-stream_ssl_preread_module --with-threads
+
+&lt;span class=&#34;token function&#34;&gt;make&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;make&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt;
+
+systemctl restart nginx
+
+-- 测试代理
+&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-x&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;117.72&lt;/span&gt;.44.94:81 https://www.qq.com --proxy-insecure &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;nginx-配置&#34;&gt;&lt;a href=&#34;#nginx-配置&#34; class=&#34;headerlink&#34; title=&#34;nginx 配置&#34;&gt;&lt;/a&gt;nginx 配置&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;server &amp;#123;
+        listen                         81;
+
+        # dns resolver used by forward proxying
+        resolver                       8.8.8.8;
+
+        # forward proxy for CONNECT requests
+        proxy_connect;
+        proxy_connect_allow            all;
+        proxy_connect_connect_timeout  100s;
+        proxy_connect_data_timeout     100s;
+
+        # defined by yourself for non-CONNECT requests
+        # Example: reverse proxy for non-CONNECT requests
+
+        location &amp;#x2F; &amp;#123;
+            proxy_pass http:&amp;#x2F;&amp;#x2F;$http_host$request_uri;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        &amp;#125;
+
+    &amp;#125;
+
+server &amp;#123;
+        listen 443 default;
+        # self signed certificate generated via openssl command
+        ssl_certificate_key            &amp;#x2F;root&amp;#x2F;ssl&amp;#x2F;server.key;
+        ssl_certificate                &amp;#x2F;root&amp;#x2F;ssl&amp;#x2F;server.crt;
+        ssl_session_cache              shared:SSL:1m;
+
+        # dns resolver used by forward proxying
+        resolver                       8.8.8.8 8.8.4.4;
+
+        # forward proxy for CONNECT request
+        proxy_connect;
+        proxy_connect_allow            all;
+        proxy_connect_connect_timeout  100s;
+        proxy_connect_data_timeout     100s;
+
+        # defined by yourself for non-CONNECT request
+        # Example: reverse proxy for non-CONNECT requests
+        location &amp;#x2F; &amp;#123;
+            proxy_pass http:&amp;#x2F;&amp;#x2F;$http_host$request_uri;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        &amp;#125;
+&amp;#125;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2024/07/29/PaddleSpeech/</guid>
+            <title>基于百度飞浆平台语音识别PaddleSpeech</title>
+            <link>https://gyoliu.github.io/2024/07/29/PaddleSpeech/</link>
+            <category>Default</category>
+            <category>PaddleSpeech</category>
+            <pubDate>Mon, 29 Jul 2024 13:20:51 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;PaddleSpeech-是基于飞桨-PaddlePaddle-的语音方向的开源模型库&#34;&gt;&lt;a href=&#34;#PaddleSpeech-是基于飞桨-PaddlePaddle-的语音方向的开源模型库&#34; class=&#34;headerlink&#34; title=&#34;PaddleSpeech 是基于飞桨 PaddlePaddle 的语音方向的开源模型库&#34;&gt;&lt;/a&gt;&lt;strong&gt;PaddleSpeech&lt;/strong&gt; 是基于飞桨 &lt;a href=&#34;https://gitee.com/link?target=https://github.com/PaddlePaddle/Paddle&#34;&gt;PaddlePaddle&lt;/a&gt; 的语音方向的开源模型库&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSpeech&#34;&gt;https://github.com/PaddlePaddle/PaddleSpeech&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;文本介绍-Docker-部署方式&#34;&gt;&lt;a href=&#34;#文本介绍-Docker-部署方式&#34; class=&#34;headerlink&#34; title=&#34;文本介绍 Docker 部署方式&#34;&gt;&lt;/a&gt;文本介绍 Docker 部署方式&lt;/h2&gt;&lt;p&gt;依赖环境介绍,docker 环境就不用担心这些：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;gcc &amp;gt;&amp;#x3D; 4.8.5&lt;/li&gt;
+&lt;li&gt;paddlepaddle &amp;lt;&amp;#x3D; 2.5.1 桨桨 &amp;lt;&amp;#x3D; 2.5.1&lt;/li&gt;
+&lt;li&gt;python &amp;gt;&amp;#x3D; 3.8 &lt;br&gt;自 2024 年 6 月以来 Docker Hub 访问不了，国内开源厂商镜像如清华等都宣布下架。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;// 设置 &lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; mirrors
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt;  /etc/docker/daemon.json
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+    &lt;span class=&#34;token string&#34;&gt;&#34;registry-mirrors&#34;&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;
+        &lt;span class=&#34;token string&#34;&gt;&#34;https://registry.docker-cn.com&#34;&lt;/span&gt;,
+        &lt;span class=&#34;token string&#34;&gt;&#34;https://docker.mirrors.ustc.edu.cn&#34;&lt;/span&gt;,
+        &lt;span class=&#34;token string&#34;&gt;&#34;https://hub-mirror.c.163.com&#34;&lt;/span&gt;,
+        &lt;span class=&#34;token string&#34;&gt;&#34;https://mirror.baidubce.com&#34;&lt;/span&gt;,
+        &lt;span class=&#34;token string&#34;&gt;&#34;https://ccr.ccs.tencentyun.com&#34;&lt;/span&gt;,
+        &lt;span class=&#34;token string&#34;&gt;&#34;https://dockerhub.icu/&#34;&lt;/span&gt;
+    &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# GPU版本&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; pull paddlecloud/paddlespeech:develop-gpu-cuda10.2-cudnn7-latest
+&lt;span class=&#34;token comment&#34;&gt;# CPU版本&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; pull paddlecloud/paddlespeech:develop-cpu-latest
+&lt;span class=&#34;token comment&#34;&gt;# 或者使用 docker search paddlespeech 搜索相关的镜像版本&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 启动服务&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; run &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; dev &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt; &lt;span class=&#34;token environment constant&#34;&gt;$PWD&lt;/span&gt;:/mnt &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;8888&lt;/span&gt;:8888 &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;8090&lt;/span&gt;:8090 &lt;span class=&#34;token parameter variable&#34;&gt;-it&lt;/span&gt; paddlecloud/paddlespeech:develop-cpu-latest  /bin/bash
+
+&lt;span class=&#34;token comment&#34;&gt;# 自然语言处理工具库NLTK安装&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; 镜像内的目录是 /root/nltk_data/
+可以将下载好的传输到服务器上复制到这个目录下如：cp &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; /mnt/nltk_data-gh-pages/packages/ /root/nltk_data/
+NLTK 数据下载： https://github.com/nltk/nltk_data/archive/refs/heads/gh-pages.zip&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;// 设置 python pip 
+pip &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; xxx &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; https://mirror.baidu.com/pypi/simple
+or 
+pip config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; global.index-url https://pypi.tuna.tsinghua.edu.cn/simple&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;测试数据下载：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; https://paddlespeech.bj.bcebos.com/PaddleAudio/zh.wav
+&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; https://paddlespeech.bj.bcebos.com/PaddleAudio/en.wav&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动 WEB 服务&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;paddlespeech_server start &lt;span class=&#34;token parameter variable&#34;&gt;--config_file&lt;/span&gt; ./demos/speech_server/conf/application.yaml&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;识别语音命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;paddlespeech asr &lt;span class=&#34;token parameter variable&#34;&gt;--lang&lt;/span&gt; zh &lt;span class=&#34;token parameter variable&#34;&gt;--input&lt;/span&gt; zh.wav&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;文字转语音命令：&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;paddlespeech tts &lt;span class=&#34;token parameter variable&#34;&gt;--input&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;你好，欢迎使用百度飞桨深度学习框架！&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--output&lt;/span&gt; output.wav&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其他命令请参考开源：&lt;br&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSpeech&#34;&gt;https://github.com/PaddlePaddle/PaddleSpeech&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;docker 命令回顾&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# 查看正在运行的 docker hub&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;ps&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 进入一个正在运行的 docker hub&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; attach 36e3553f6bb3
+or 
+&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; run &lt;span class=&#34;token parameter variable&#34;&gt;-it&lt;/span&gt; xxx /bin/bash&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2024/07/08/nginx-config-https/</guid>
+            <title>https 证书自动续期，永久免费</title>
+            <link>https://gyoliu.github.io/2024/07/08/nginx-config-https/</link>
+            <category>Default</category>
+            <category>证书</category>
+            <category>nginx</category>
+            <pubDate>Mon, 08 Jul 2024 13:15:44 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;https-证书自动续期，永久免费&#34;&gt;&lt;a href=&#34;#https-证书自动续期，永久免费&#34; class=&#34;headerlink&#34; title=&#34;https 证书自动续期，永久免费&#34;&gt;&lt;/a&gt;https 证书自动续期，永久免费&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;开源组织的免费证书：&lt;a href=&#34;https://letsencrypt.org/zh-cn/&#34;&gt;https://letsencrypt.org/zh-cn/&lt;/a&gt;&lt;br&gt;Let’s Encrypt 和 &lt;a href=&#34;https://tools.ietf.org/html/rfc8555&#34;&gt;ACME 协议&lt;/a&gt;的目标是实现可信数字证书的自动获取，从而简化 HTTPS 服务器部署中的人工操作。 这一目标是由 Web 服务器上的证书管理软件完成的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;入门指南&#34;&gt;&lt;a href=&#34;#入门指南&#34; class=&#34;headerlink&#34; title=&#34;入门指南&#34;&gt;&lt;/a&gt;入门指南&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;为了在您的网站上启用 HTTPS，您需要从证书颁发机构（CA）获取证书（一种文件）。 Let’s Encrypt 正是其中一家证书颁发机构。 要从 Let’s Encrypt 获取您网站域名的证书，您必须证明您对域名的实际控制权。 这一过程通常由 Web 主机上运行的 &lt;a href=&#34;https://tools.ietf.org/html/rfc8555&#34;&gt;ACME 协议&lt;/a&gt;客户端完成。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;申请证书的最佳方式取决于您是否具备服务器的&lt;a href=&#34;https://en.wikipedia.org/wiki/Shell_account&#34;&gt;命令行访问权限&lt;/a&gt;（也称为 SSH 权限）。 如果您仅使用控制面板（例如 &lt;a href=&#34;https://cpanel.net/&#34;&gt;cPanel&lt;/a&gt;、&lt;a href=&#34;https://www.plesk.com/&#34;&gt;Plesk&lt;/a&gt; 或 &lt;a href=&#34;https://wordpress.org/&#34;&gt;WordPress&lt;/a&gt;）管理您的网站，您很有可能没有命令行访问权限。 您可以联系您的托管服务提供商确认。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;拥有命令行访问权限&#34;&gt;&lt;a href=&#34;#拥有命令行访问权限&#34; class=&#34;headerlink&#34; title=&#34;拥有命令行访问权限&#34;&gt;&lt;/a&gt;拥有命令行访问权限&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;我们建议大多数具有命令行访问权限的人使用 &lt;a href=&#34;https://certbot.eff.org/&#34;&gt;Certbot&lt;/a&gt; ACME 客户端。 它可以在不下线您的服务器的前提下自动执行证书颁发和安装。 对于不需要自动配置的用户，Certbot 还提供专家模式。 它易于使用，适用于许多操作系统，并且具有出色的（注：英文）文档。 前往 &lt;a href=&#34;https://certbot.eff.org/&#34;&gt;Certbot 官网&lt;/a&gt;即可获取针对各类操作系统与服务器软件的使用说明。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果 &lt;a href=&#34;https://certbot.eff.org/&#34;&gt;Certbot&lt;/a&gt; 不能满足您的需求，或者您想尝试别的客户端，还有&lt;a href=&#34;https://letsencrypt.org/zh-cn/docs/client-options/&#34;&gt;更多 ACME 客户端&lt;/a&gt;可供选择。 选定 ACME 客户端软件后，请参阅该客户端的文档。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果您正在尝试不同的 ACME 客户端，请使用我们的&lt;a href=&#34;https://letsencrypt.org/zh-cn/docs/staging-environment/&#34;&gt;临时环境&lt;/a&gt;以避免遭到&lt;a href=&#34;https://letsencrypt.org/zh-cn/docs/rate-limits/&#34;&gt;速率限制&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;实现了-ACME-协议的客户端，官方推荐如下：&#34;&gt;&lt;a href=&#34;#实现了-ACME-协议的客户端，官方推荐如下：&#34; class=&#34;headerlink&#34; title=&#34;实现了 ACME 协议的客户端，官方推荐如下：&#34;&gt;&lt;/a&gt;实现了 ACME 协议的客户端，官方推荐如下：&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;https:&amp;#x2F;&amp;#x2F;certbot.eff.org&amp;#x2F;instructions?ws&amp;#x3D;nginx&amp;amp;os&amp;#x3D;centosrhel7&amp;amp;tab&amp;#x3D;wildcard&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;阿里云-Centos-7-实现如下：&#34;&gt;&lt;a href=&#34;#阿里云-Centos-7-实现如下：&#34; class=&#34;headerlink&#34; title=&#34;阿里云 Centos 7 实现如下：&#34;&gt;&lt;/a&gt;阿里云 Centos 7 实现如下：&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;必备条件：
+&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;. 安装阿里云 CLI 命令行工具，参考如下：
+https://help.aliyun.com/zh/cli/install-cli-on-linux?spm&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;a2c4g.11186623.0.0.5fd7606ftkgvZH
+&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;. 安装证书生成 ACME 客户端 
+yum &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; epel-release &lt;span class=&#34;token parameter variable&#34;&gt;-y&lt;/span&gt;
+yum &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; certbot &lt;span class=&#34;token parameter variable&#34;&gt;-y&lt;/span&gt;
+&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;. certbot 文档
+https://eff-certbot.readthedocs.io/en/latest/using.html&lt;span class=&#34;token comment&#34;&gt;#nginx&lt;/span&gt;
+&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;. 阿里云自动续期脚本
+https://github.com/justjavac/certbot-dns-aliyun?tab&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;readme-ov-file
+&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;. 成功后如下输出证书保存的路径，之后将 nginx 的证书配置指向该证书
+&lt;span class=&#34;token number&#34;&gt;6&lt;/span&gt;. 重要命令 - 申请证书
+certbot certonly &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; *.example.com &lt;span class=&#34;token parameter variable&#34;&gt;--manual&lt;/span&gt; --preferred-challenges dns --manual-auth-hook &lt;span class=&#34;token string&#34;&gt;&#34;alidns&#34;&lt;/span&gt; --manual-cleanup-hook &lt;span class=&#34;token string&#34;&gt;&#34;alidns clean&#34;&lt;/span&gt;
+&lt;span class=&#34;token number&#34;&gt;7&lt;/span&gt;. 重要命令 - 续期
+certbot renew &lt;span class=&#34;token parameter variable&#34;&gt;--manual&lt;/span&gt; --preferred-challenges dns --manual-auth-hook &lt;span class=&#34;token string&#34;&gt;&#34;alidns&#34;&lt;/span&gt; --manual-cleanup-hook &lt;span class=&#34;token string&#34;&gt;&#34;alidns clean&#34;&lt;/span&gt;
+&lt;span class=&#34;token number&#34;&gt;8&lt;/span&gt;. 重要命令 - 自动续期
+&lt;span class=&#34;token function&#34;&gt;crontab&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-e&lt;/span&gt;
+&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; */1 * * root certbot renew &lt;span class=&#34;token parameter variable&#34;&gt;--manual&lt;/span&gt; --preferred-challenges dns --manual-auth-hook &lt;span class=&#34;token string&#34;&gt;&#34;alidns&#34;&lt;/span&gt; --manual-cleanup-hook &lt;span class=&#34;token string&#34;&gt;&#34;alidns clean&#34;&lt;/span&gt; --deploy-hook &lt;span class=&#34;token string&#34;&gt;&#34;nginx -s reload&#34;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;alidns脚本如下，作用动态添加阿里云-DNS-解析用来验证：&#34;&gt;&lt;a href=&#34;#alidns脚本如下，作用动态添加阿里云-DNS-解析用来验证：&#34; class=&#34;headerlink&#34; title=&#34;alidns脚本如下，作用动态添加阿里云 DNS 解析用来验证：&#34;&gt;&lt;/a&gt;alidns&lt;strong&gt;脚本如下，作用动态添加阿里云 DNS 解析用来验证：&lt;/strong&gt;&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token shebang important&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;FLAG&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;(\.com\.cn|\.gov\.cn|\.net\.cn|\.org\.cn|\.ac\.cn|\.gd\.cn)$&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;command&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt; aliyun &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;/dev/null&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+	&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;错误: 你需要先安装 aliyun 命令行工具 https://help.aliyun.com/document_detail/121541.html。&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&lt;span class=&#34;token file-descriptor important&#34;&gt;1&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token file-descriptor important&#34;&gt;&amp;amp;2&lt;/span&gt;
+	&lt;span class=&#34;token builtin class-name&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+
+&lt;span class=&#34;token assign-left variable&#34;&gt;DOMAIN&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;expr&lt;/span&gt; match &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$CERTBOT_DOMAIN&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;.*\.\(.*\..*\)&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;SUB_DOMAIN&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;expr&lt;/span&gt; match &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$CERTBOT_DOMAIN&lt;/span&gt;&#34;&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;\(.*\)\..*\..*&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$CERTBOT_DOMAIN&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-E&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-q&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token variable&#34;&gt;$FLAG&lt;/span&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+
+  &lt;span class=&#34;token assign-left variable&#34;&gt;DOMAIN&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; $CERTBOT_DOMAIN &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-oP&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;(?&amp;lt;=)[^.]+(&#39;&lt;/span&gt;$FLAG&lt;span class=&#34;token string&#34;&gt;&#39;)&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&#34;token assign-left variable&#34;&gt;SUB_DOMAIN&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; $CERTBOT_DOMAIN &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-oP&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;.*(?=\.[^.]+(&#39;&lt;/span&gt;$FLAG&lt;span class=&#34;token string&#34;&gt;&#39;))&#39;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-z&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$DOMAIN&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+    &lt;span class=&#34;token assign-left variable&#34;&gt;DOMAIN&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$CERTBOT_DOMAIN&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-z&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$SUB_DOMAIN&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+    &lt;span class=&#34;token assign-left variable&#34;&gt;SUB_DOMAIN&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;.&lt;span class=&#34;token variable&#34;&gt;$SUB_DOMAIN&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$#&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-eq&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+	aliyun alidns AddDomainRecord &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--DomainName&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$DOMAIN&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--RR&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;_acme-challenge&#34;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$SUB_DOMAIN&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--Type&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;TXT&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--Value&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$CERTBOT_VALIDATION&lt;/span&gt;
+	/bin/sleep &lt;span class=&#34;token number&#34;&gt;20&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;
+	&lt;span class=&#34;token assign-left variable&#34;&gt;RecordId&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;aliyun alidns DescribeDomainRecords &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--DomainName&lt;/span&gt; $DOMAIN &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--RRKeyWord&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;_acme-challenge&#34;&lt;/span&gt;$SUB_DOMAIN &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--Type&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;TXT&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--ValueKeyWord&lt;/span&gt; $CERTBOT_VALIDATION &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;RecordId&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-Eo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;[0-9]+&#34;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+	aliyun alidns DeleteDomainRecord &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+		&lt;span class=&#34;token parameter variable&#34;&gt;--RecordId&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$RecordId&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2022/03/02/idea-plugin/</guid>
+            <title>idea常用插件</title>
+            <link>https://gyoliu.github.io/2022/03/02/idea-plugin/</link>
+            <category>Default</category>
+            <pubDate>Wed, 02 Mar 2022 12:36:04 +0800</pubDate>
+            <description><![CDATA[ &lt;ul&gt;
+&lt;li&gt;alibaba java coding guidelines 代码规范&lt;/li&gt;
+&lt;li&gt;git commit template git提交模板&lt;/li&gt;
+&lt;li&gt;ide eval reset&lt;/li&gt;
+&lt;li&gt;java bean to json&lt;/li&gt;
+&lt;li&gt;SequenceDiagram 代码时序图&lt;/li&gt;
+&lt;li&gt;SonarLint 代码规范&lt;/li&gt;
+&lt;li&gt;Translation 翻译&lt;/li&gt;
+&lt;li&gt;JRebel or XRebel 热部署&lt;/li&gt;
+&lt;li&gt;RESTfultoolkit&lt;/li&gt;
+&lt;li&gt;MyBatisCodeHelper-Pro&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2020/09/08/browser-cookies-SameSite-attribute/</guid>
+            <title>浏览器 SameSite 属性设置</title>
+            <link>https://gyoliu.github.io/2020/09/08/browser-cookies-SameSite-attribute/</link>
+            <category>Default</category>
+            <pubDate>Tue, 08 Sep 2020 16:58:59 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;1-起因&#34;&gt;&lt;a href=&#34;#1-起因&#34; class=&#34;headerlink&#34; title=&#34;1. 起因&#34;&gt;&lt;/a&gt;1. 起因&lt;/h3&gt;&lt;p&gt;Chrome 51 开始，浏览器的 Cookie 新增加了一个SameSite属性，用来防止 CSRF 攻击和用户追踪。&lt;br&gt;Chrome 浏览器版本从 80 版后 默认是将 Cookie 设置成 Lax&lt;/p&gt;
+&lt;h3 id=&#34;2-SameSite-属性值&#34;&gt;&lt;a href=&#34;#2-SameSite-属性值&#34; class=&#34;headerlink&#34; title=&#34;2. SameSite 属性值&#34;&gt;&lt;/a&gt;2. SameSite 属性值&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Strict&lt;/li&gt;
+&lt;li&gt;Lax&lt;/li&gt;
+&lt;li&gt;None&lt;blockquote&gt;
+&lt;p&gt;Strict最为严格，完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。换言之，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。Lax规则稍稍放宽，大多数情况也是不发送第三方 Cookie，但是导航到目标网址的 Get 请求除外。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;请求类型&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;th&gt;正常情况&lt;/th&gt;
+&lt;th&gt;Lax&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;链接&lt;/td&gt;
+&lt;td&gt;《a href&amp;#x3D;”…”&amp;gt;&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;预加载&lt;/td&gt;
+&lt;td&gt;《link rel&amp;#x3D;”prerender” href&amp;#x3D;”…”&amp;#x2F;&amp;gt;&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;GET 表单&lt;/td&gt;
+&lt;td&gt;《form method&amp;#x3D;”GET” action&amp;#x3D;”…”&amp;gt;&lt;/td&gt;
+&lt;td&gt;发送Cookie&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;POST 表单&lt;/td&gt;
+&lt;td&gt;《form method&amp;#x3D;”POST” action&amp;#x3D;”…”&amp;gt;&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;td&gt;不发送&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;iframe&lt;/td&gt;
+&lt;td&gt;《iframe src&amp;#x3D;”…”&amp;gt;&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;td&gt;不发送&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AJAX&lt;/td&gt;
+&lt;td&gt;$.get(“…”)&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;td&gt;不发送&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Image&lt;/td&gt;
+&lt;td&gt;《img src&amp;#x3D;”…”》&lt;/td&gt;
+&lt;td&gt;发送 Cookie&lt;/td&gt;
+&lt;td&gt;不发送&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;Chrome 计划将Lax变为默认设置。这时，网站可以选择显式关闭SameSite属性，&lt;strong&gt;将其设为None。不过，前提是必须同时设置Secure属性（Cookie 只能通过 HTTPS 协议发送），否则无效。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-language&#34; data-language=&#34;language&#34;&gt;&lt;code class=&#34;language-language&#34;&gt;下面的设置无效。
+Set-Cookie: widget_session&amp;#x3D;abc123; SameSite&amp;#x3D;None
+下面的设置有效。
+Set-Cookie: widget_session&amp;#x3D;abc123; SameSite&amp;#x3D;None; Secure&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-该用哪种模式？&#34;&gt;&lt;a href=&#34;#3-该用哪种模式？&#34; class=&#34;headerlink&#34; title=&#34;3. 该用哪种模式？&#34;&gt;&lt;/a&gt;3. 该用哪种模式？&lt;/h3&gt;&lt;p&gt;假如你的网站有用 iframe 形式嵌在别的网站里的需求，那么连 Lax 你也不能用，因为 iframe 请求也是一种异步请求。或者假如别的网站有使用你的网站的 JSONP 接口，那么同样 Lax 你也不能用，比如天猫就是通过淘宝的 JSONP 接口来判断用户是否登录的。&lt;/p&gt;
+&lt;p&gt;有时安全性和灵活性就是矛盾的，需要取舍。具体判断参照上面表格设置。&lt;/p&gt;
+&lt;h3 id=&#34;4-解决方案&#34;&gt;&lt;a href=&#34;#4-解决方案&#34; class=&#34;headerlink&#34; title=&#34;4. 解决方案&#34;&gt;&lt;/a&gt;4. 解决方案&lt;/h3&gt;&lt;h4 id=&#34;4-1-方案1&#34;&gt;&lt;a href=&#34;#4-1-方案1&#34; class=&#34;headerlink&#34; title=&#34;4.1 方案1&#34;&gt;&lt;/a&gt;4.1 方案1&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;在chrome浏览器地址栏输入&lt;a href=&#34;chrome://flags并回车&#34;&gt;chrome://flags并回车&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;在搜索栏中输入SameSite by default cookies搜索，并禁用如图中的两项设置，改为Disabled即可&lt;/li&gt;
+&lt;li&gt;重启浏览器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;4-2-方案2&#34;&gt;&lt;a href=&#34;#4-2-方案2&#34; class=&#34;headerlink&#34; title=&#34;4.2 方案2&#34;&gt;&lt;/a&gt;4.2 方案2&lt;/h4&gt;&lt;p&gt;如果使用的是 iframe 方式最好设置&lt;br&gt;X-Frame-OptionsHTTP 响应报头可以被用来指示一个浏览器是否应该被允许在一个以呈现页面《frame》，《iframe》或《object》标签。通过确保其内容未嵌入其他网站，网站可以使用此功能来避免 点击劫持 攻击。&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-language&#34; data-language=&#34;language&#34;&gt;&lt;code class=&#34;language-language&#34;&gt;apache 配置
+Header always append X-Frame-Options DENY
+Header set X-Frame-Options &amp;quot;ALLOW-FROM https:&amp;#x2F;&amp;#x2F;example.com&amp;#x2F;&amp;quot;
+
+Header always edit Set-Cookie &amp;quot;path&amp;#x3D;&amp;#x2F;&amp;quot; &amp;quot;path&amp;#x3D;&amp;#x2F;;  Secure; HttpOnly; SameSite&amp;#x3D;None;&amp;quot; 
+
+#apache2.4 官方文档
+#http:&amp;#x2F;&amp;#x2F;httpd.apache.org&amp;#x2F;docs&amp;#x2F;2.4&amp;#x2F;mod&amp;#x2F;mod_session_cookie.html
+#http:&amp;#x2F;&amp;#x2F;httpd.apache.org&amp;#x2F;docs&amp;#x2F;2.4&amp;#x2F;mod&amp;#x2F;mod_usertrack.html
+
+
+Nginx 配置
+add_header X-Frame-Options ALLOWALL; #允许所有域名iframe
+add_header X-Frame-Options DENY; #不允许任何域名iframe,包括相同的域名
+add_header X-Frame-Options SANEORIGIN; #允许相同域名iframe,如a.test.com允许b.test.com
+add_header X-Frame-Options ALLOW-FROM uri; #允许指定域名iframe 多个用逗号分隔
+# 只支持 proxy 模式下设置
+proxy_cookie_path &amp;#x2F; &amp;quot;&amp;#x2F;; httponly; secure; SameSite&amp;#x3D;None&amp;quot;;
+
+#http:&amp;#x2F;&amp;#x2F;nginx.org&amp;#x2F;en&amp;#x2F;docs&amp;#x2F;http&amp;#x2F;ngx_http_proxy_module.html#proxy_cookie_path&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; ]]></description>
+        </item>
+    </channel>
+</rss>

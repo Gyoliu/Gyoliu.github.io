@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://gyoliu.github.io</id>
+    <title>Gyo • Posts by &#34;spring cloud&#34; tag</title>
+    <link href="https://gyoliu.github.io" />
+    <updated>2023-08-17T05:09:02.000Z</updated>
+    <category term="Cosy" />
+    <category term="Linux" />
+    <category term="Default" />
+    <category term="PaddleSpeech" />
+    <category term="Java" />
+    <category term="elasticsearch" />
+    <category term="hibernate" />
+    <category term="JVM" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="mysql" />
+    <category term="openssl" />
+    <category term="Spring Cloud" />
+    <category term="spring" />
+    <entry>
+        <id>https://gyoliu.github.io/2023/08/17/spring-cloud-properties/</id>
+        <title>spring cloud 性能优化</title>
+        <link rel="alternate" href="https://gyoliu.github.io/2023/08/17/spring-cloud-properties/"/>
+        <content type="html">&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# undertow 服务器优化&lt;/span&gt;
+server.undertow.threads.io=8
+server.undertow.threads.worker=256
+server.undertow.buffer&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;size=2048
+server.undertow.direct&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;buffers=true
+
+&lt;span class=&#34;token comment&#34;&gt;# 开启HTTP GZIP压缩&lt;/span&gt;
+server.compression.enabled=true
+server.compression.min&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;response&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;size=1KB
+
+&lt;span class=&#34;token comment&#34;&gt;#开启Feign请求压缩 FeignContentGzipEncodingAutoConfiguration&lt;/span&gt;
+feign.compression.request.enabled=true
+feign.compression.request.mime&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;types=text/xml&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;application/xml&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;application/json
+feign.compression.request.min&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;request&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;size=2048
+&lt;span class=&#34;token comment&#34;&gt;# 开启响应压缩 FeignAcceptGzipEncodingAutoConfiguration DefaultGzipDecoderConfiguration DefaultGzipDecoder&lt;/span&gt;
+feign.compression.response.enabled=true
+feign.compression.response.useGzipDecoder=true&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+        <category term="Java" />
+        <category term="Spring Cloud" />
+        <updated>2023-08-17T05:09:02.000Z</updated>
+    </entry>
+</feed>

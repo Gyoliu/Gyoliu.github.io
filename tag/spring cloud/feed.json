@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Gyo • All posts by \"spring cloud\" tag",
+    "description": "Gyo的博客",
+    "home_page_url": "https://gyoliu.github.io",
+    "items": [
+        {
+            "id": "https://gyoliu.github.io/2023/08/17/spring-cloud-properties/",
+            "url": "https://gyoliu.github.io/2023/08/17/spring-cloud-properties/",
+            "title": "spring cloud 性能优化",
+            "date_published": "2023-08-17T05:09:02.000Z",
+            "content_html": "<pre class=\"line-numbers language-yaml\" data-language=\"yaml\"><code class=\"language-yaml\"><span class=\"token comment\"># undertow 服务器优化</span>\nserver.undertow.threads.io=8\nserver.undertow.threads.worker=256\nserver.undertow.buffer<span class=\"token punctuation\">-</span>size=2048\nserver.undertow.direct<span class=\"token punctuation\">-</span>buffers=true\n\n<span class=\"token comment\"># 开启HTTP GZIP压缩</span>\nserver.compression.enabled=true\nserver.compression.min<span class=\"token punctuation\">-</span>response<span class=\"token punctuation\">-</span>size=1KB\n\n<span class=\"token comment\">#开启Feign请求压缩 FeignContentGzipEncodingAutoConfiguration</span>\nfeign.compression.request.enabled=true\nfeign.compression.request.mime<span class=\"token punctuation\">-</span>types=text/xml<span class=\"token punctuation\">,</span>application/xml<span class=\"token punctuation\">,</span>application/json\nfeign.compression.request.min<span class=\"token punctuation\">-</span>request<span class=\"token punctuation\">-</span>size=2048\n<span class=\"token comment\"># 开启响应压缩 FeignAcceptGzipEncodingAutoConfiguration DefaultGzipDecoderConfiguration DefaultGzipDecoder</span>\nfeign.compression.response.enabled=true\nfeign.compression.response.useGzipDecoder=true<span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>\n",
+            "tags": [
+                "Java",
+                "Spring Cloud"
+            ]
+        }
+    ]
+}

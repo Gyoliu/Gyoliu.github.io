@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    webservice 的两种调用方式
+  </title>
+  <meta name="description" content="Gyo的博客">
+  <meta name="keywords" content="Gyo,gyo,genesisx,genesis,Genesisx,Genesis,gyo博客,Gyo博客">
+  <meta name="author" content="Gyo">
+  <link rel="canonical" href="https://gyoliu.github.io/2021/05/26/webservice-call/">
+  
+  
+  <link rel="icon" type="image/svg" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10l7.383 7.418c.823.82.823 2.148 0 2.967a2.11 2.11 0 0 1-2.976 0L10 13"></path><path d="M6.293 15.293l-2.586-2.586a1 1 0 0 1 0-1.414l7.586-7.586a1 1 0 0 1 1.414 0l2.586 2.586a1 1 0 0 1 0 1.414l-7.586 7.586a1 1 0 0 1-1.414 0z"></path></g></svg>'>
+  
+  
+  
+<link rel="stylesheet" href="/css/b4c95347.css">
+
+  <script>window.i18n = {"tip-status-done":"Done","tip-status-default":"All","tip-status-todo":"Todo","tip-status-doing":"Doing","tip-status-other":"Other","text-select":"Select","text-move":"Move","text-esc":"Exit","January":"January","February":"February","March":"March","April":"April","May":"May","June":"June","July":"July","August":"August","September":"September","October":"October","November":"November","December":"December"}</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body id="app">
+  <aside id="aside-box" class="left-aside">
+    <div class="header">
+      
+<link rel="stylesheet" href="/css/61875ce9.css">
+
+<div class="profile">
+  <a class="badge" href="/">
+    <span>Hi</span>
+    <span>Gyo</span>
+  </a>
+  <cosy-tooltip id="left-aside-button" placement="right">
+    <span slot="content">
+      <span>Show / Hide Left Navigation</span>
+      <cosy-short-key>[</cosy-short-key>
+    </span>
+    <cosy-icon>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+        <g fill="none">
+          <path d="M16 4c1.104-.019 2 .896 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12zm1 2a1 1 0 0 0-1-1h-2.995v10H16a1 1 0 0 0 1-1V6zm-4.995 9V5H4.001a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8.004z" fill="currentColor"></path>
+        </g>
+      </svg>
+    </cosy-icon>
+  </cosy-tooltip>
+</div>
+
+<script src="/js/69622cae.js"></script>
+
+      
+
+
+<cosy-search id="post-search" placeholder="Search">
+  <div slot="short-key">
+    <cosy-short-key>⌘</cosy-short-key>
+    <cosy-short-key>K</cosy-short-key>
+  </div>
+</cosy-search>
+
+
+<script>
+  window.algolia = {
+    appId: "MHFSDMJY4N",
+    SearchOnlyAPIKey: "810bea122960ed1f081aa4ac54d2b321",
+    indexName: "hexo"
+  }
+</script>
+
+
+<script src="/js/2fce06eb.js"></script>
+
+    </div>
+    <div class="aside-category">
+      
+<link rel="stylesheet" href="/css/db04a759.css">
+
+
+<nav class="category-nav cosy-scrollbar">
+  <ul><li data-path="archives">
+        <a href="/archives">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20"><g fill="none"><path d="M3.5 3A1.5 1.5 0 0 0 2 4.5v4A1.5 1.5 0 0 0 3.5 10h9A1.5 1.5 0 0 0 14 8.5v-4A1.5 1.5 0 0 0 12.5 3h-9zM3 4.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-4zm.5 6.5A1.5 1.5 0 0 0 2 12.5v4A1.5 1.5 0 0 0 3.5 18h9a1.5 1.5 0 0 0 1.5-1.5v-4a1.5 1.5 0 0 0-1.5-1.5h-9zM3 12.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-4zm14-.063a2.003 2.003 0 0 1-2.5-1.937A2 2 0 0 1 16 8.563a2.005 2.005 0 0 1 1 0a2 2 0 0 1 0 3.874zM16.5 3a.5.5 0 0 1 .5.5v4.041a3.02 3.02 0 0 0-1 0V3.5a.5.5 0 0 1 .5-.5zm0 10.5c-.17 0-.337-.014-.5-.041V17.5a.5.5 0 0 0 1 0v-4.041c-.163.027-.33.041-.5.041z" fill="currentColor"></path></g></svg>
+          <div class="ellipsis">Archives</div>
+        </a>
+      </li><li data-path="cosy-roadmap">
+        <a href="/cosy-roadmap">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20"><g fill="none"><path d="M9.384 2a1 1 0 0 0-.966.742L4.616 17H2.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1h-2.116L11.582 2.742A1 1 0 0 0 10.616 2H9.384zM5.651 17l.8-3H11.5a.5.5 0 0 0 0-1H6.717l.534-2H10.5a.5.5 0 0 0 0-1H7.517l1.867-7h1.232l3.733 14H5.651z" fill="currentColor"></path></g></svg>
+          <div class="ellipsis">Roadmap</div>
+        </a>
+      </li><li data-path="cosy-resume">
+        <a href="/cosy-resume">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20"><g fill="none"><path d="M8.5 4.498a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0zm1.5-2.5a2.5 2.5 0 0 0-2.43 3.086L5.471 4.15a1.761 1.761 0 0 0-2.317.88c-.4.882-.008 1.917.877 2.31L7 8.662v2.287l-1.877 4.645a1.75 1.75 0 0 0 3.245 1.311l1.556-3.849a.073.073 0 0 1 .028-.038a.086.086 0 0 1 .046-.012c.02 0 .035.005.046.012a.074.074 0 0 1 .028.038l1.555 3.849a1.75 1.75 0 0 0 3.245-1.311L13 10.96V8.662l2.968-1.322a1.74 1.74 0 0 0 .877-2.31a1.761 1.761 0 0 0-2.317-.88l-2.097.934a2.5 2.5 0 0 0-2.43-3.086zM4.065 5.444a.761.761 0 0 1 1-.38l3.918 1.744a2.5 2.5 0 0 0 2.034 0l3.918-1.744a.761.761 0 0 1 1 .38a.739.739 0 0 1-.373.983l-2.969 1.321a1 1 0 0 0-.593.914v2.298a1 1 0 0 0 .073.375l1.872 4.633a.75.75 0 0 1-1.39.562l-1.556-3.849c-.364-.9-1.639-.9-2.003 0l-1.555 3.85a.75.75 0 1 1-1.39-.562l1.876-4.646A1 1 0 0 0 8 10.95V8.662a1 1 0 0 0-.593-.914L4.438 6.427a.739.739 0 0 1-.373-.983z" fill="currentColor"></path></g></svg>
+          <div class="ellipsis">Resume</div>
+        </a>
+      </li><li data-path="blog-collection">
+        <a href="/blog-collection">
+          <svg t="1735094314306" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8557" width="200" height="200"><path d="M498.8928 512m-460.8 0a460.8 460.8 0 1 0 921.6 0 460.8 460.8 0 1 0-921.6 0Z" fill="#434341" p-id="8558"></path><path d="M540.4672 215.04l67.8912 137.5744a16.4864 16.4864 0 0 0 12.4416 9.0112l151.808 22.0672a46.3872 46.3872 0 0 1 25.6 79.1552l-109.824 107.0592a16.4864 16.4864 0 0 0-4.7616 14.592l25.9072 151.1936a46.3872 46.3872 0 0 1-67.2768 48.896l-135.68-71.4752a16.5888 16.5888 0 0 0-15.36 0l-135.7824 71.3728a46.3872 46.3872 0 0 1-67.328-48.896l25.9584-151.1936a16.4864 16.4864 0 0 0-4.7616-14.592L199.68 462.7456a46.4384 46.4384 0 0 1 25.6-79.1552l151.808-22.0672a16.4864 16.4864 0 0 0 12.4416-9.0112L457.2672 215.04a46.3872 46.3872 0 0 1 83.2 0z" fill="#FBD180" p-id="8559"></path></svg>
+          <div class="ellipsis">Collection</div>
+        </a>
+      </li><li data-path="opensource-project">
+        <a href="/opensource-project">
+          <svg t="1735097131518" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="22575" width="200" height="200"><path d="M512 0C229.283787 0 0.142041 234.942803 0.142041 524.867683c0 231.829001 146.647305 428.553077 350.068189 497.952484 25.592898 4.819996 34.976961-11.38884 34.976961-25.294314 0-12.45521-0.469203-45.470049-0.725133-89.276559-142.381822 31.735193-172.453477-70.380469-172.453477-70.380469-23.246882-60.569859-56.816233-76.693384-56.816234-76.693385-46.493765-32.58829 3.540351-31.948468 3.540351-31.948467 51.356415 3.71097 78.356923 54.086324 78.356923 54.086324 45.683323 80.19108 119.817417 57.072162 148.993321 43.593236 4.649376-33.91059 17.915029-57.029508 32.50298-70.167195-113.675122-13.222997-233.151301-58.223843-233.1513-259.341366 0-57.285437 19.919806-104.163095 52.678715-140.846248-5.246544-13.265652-22.820334-66.626844 4.990615-138.884127 0 0 42.996069-14.076094 140.760939 53.787741 40.863327-11.644769 84.627183-17.445825 128.177764-17.6591 43.465272 0.213274 87.271782 6.014331 128.135109 17.6591 97.679561-67.906489 140.59032-53.787741 140.59032-53.787741 27.938914 72.257282 10.407779 125.618474 5.118579 138.884127 32.844219 36.683154 52.593405 83.560812 52.593405 140.846248 0 201.586726-119.646798 245.990404-233.663158 258.957473 18.341577 16.208835 34.721032 48.199958 34.721032 97.210357 0 70.167195-0.639822 126.7275-0.639823 143.960051 0 14.033439 9.213443 30.370239 35.190235 25.209005 203.250265-69.527373 349.769606-266.123484 349.769605-497.867175C1023.857959 234.942803 794.673558 0 512 0" fill="#3E75C3" p-id="22576"></path></svg>
+          <div class="ellipsis">Open Source</div>
+        </a>
+      </li></ul>
+  <ul><li class="">
+        <a href="/categories/Default/">
+          <svg t="1735094470419" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="17180" width="200" height="200"><path d="M375.468943 915.918377a136.524156 39.819545 0 1 0 273.048312 0 136.524156 39.819545 0 1 0-273.048312 0Z" fill="#CACACA" opacity=".8" p-id="17181"></path><path d="M724.834258 608.101913a93.905865 93.905865 0 0 1-7.963909 6.223226c-1.240094 0.932915-2.51432 1.820322-3.765791 2.730483C532.06215 745.035641 513.642766 894.438576 512.072738 934.121597L511.993099 932.983896c-10.865047-161.348798-140.983945-271.91061-187.959632-306.747024a341.31039 341.31039 0 1 1 400.800791-18.134959zM511.993099 944.360909s-0.182032-3.674775 0.079639-10.239312C525.201811 1129.339763 511.993099 944.360909 511.993099 944.360909z" fill="#F30000" p-id="17182"></path><path d="M511.993099 0.068831a341.242128 341.242128 0 0 1 212.841159 608.033082 93.905865 93.905865 0 0 1-7.963909 6.223226c-1.240094 0.932915-2.51432 1.820322-3.765791 2.730483a634.404998 634.404998 0 0 0-33.994515 25.803066L274.031495 96.773441A340.104426 340.104426 0 0 1 511.993099 0.068831z" fill="#FFFFFF" opacity=".2" p-id="17183"></path></svg>
+          <div class="ellipsis">
+            <span>Default</span>
+          </div>
+        </a>
+      </li><li class="">
+        <a href="/categories/Hexo/">
+          <svg t="1735091174058" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4503" width="200" height="200"><path d="M512.8 51.6l-400 231-0.8 460.4 399.2 229.4 400-231 0.8-460.4L512.8 51.6zM698 709.2l-36.8 21.4-37.2-22V550H400v159.2l-36.8 21.4-37.2-22v-394l37-21.2 37 21.6V474h224v-159.2l37-21.2 37 21.6v394z" fill="#0E83CD" p-id="4504"></path></svg>
+          <div class="ellipsis">
+            <span>Hexo</span>
+          </div>
+        </a>
+      </li><li class="active">
+        <a href="/categories/Java/">
+          <svg t="1735091119770" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3506" width="200" height="200"><path d="M558.08 472.064c48.128 53.248-13.312 103.424-13.312 103.424s119.808-61.44 65.536-139.264c-51.2-71.68-91.136-107.52 122.88-232.448 0 1.024-335.872 86.016-175.104 268.288" fill="#FF0000" p-id="3507"></path><path d="M610.304 5.12s101.376 101.376-96.256 258.048C356.352 389.12 478.208 460.8 514.048 543.744 420.864 459.776 354.304 386.048 399.36 317.44 463.872 216.064 651.264 166.912 610.304 5.12" fill="#FF0000" p-id="3508"></path><path d="M720.896 757.76c183.296-95.232 98.304-188.416 39.936-175.104-15.36 3.072-21.504 5.12-21.504 5.12s5.12-8.192 16.384-11.264c117.76-40.96 207.872 120.832-37.888 186.368-1.024 0 2.048-3.072 3.072-5.12m-337.92 38.912s-37.888 21.504 26.624 29.696c76.8 8.192 117.76 8.192 202.752-8.192 0 0 23.552 15.36 53.248 26.624-191.488 80.896-433.152-5.12-282.624-48.128m-23.552-106.496s-43.008 31.744 23.552 37.888c82.944 8.192 149.504 10.24 261.12-13.312 0 0 16.384 16.384 40.96 24.576-231.424 68.608-490.496 5.12-325.632-49.152" fill="#6699FF" p-id="3509"></path><path d="M811.008 876.544s27.648 23.552-31.744 40.96c-111.616 34.816-460.8 45.056-558.08 2.048-34.816-15.36 31.744-35.84 51.2-40.96 21.504-5.12 34.816-3.072 34.816-3.072-38.912-28.672-251.904 52.224-107.52 75.776 390.144 62.464 712.704-28.672 611.328-74.752M400.384 578.56s-178.176 43.008-63.488 56.32c49.152 6.144 146.432 5.12 235.52-3.072 73.728-6.144 147.456-19.456 147.456-19.456s-26.624 11.264-45.056 24.576c-181.248 48.128-530.432 26.624-430.08-23.552 88.064-39.936 155.648-34.816 155.648-34.816" fill="#6699FF" p-id="3510"></path><path d="M418.816 1015.808c176.128 11.264 446.464-6.144 453.632-90.112 0 0-13.312 31.744-146.432 56.32-150.528 27.648-336.896 24.576-446.464 6.144 2.048 1.024 24.576 20.48 139.264 27.648" fill="#6699FF" p-id="3511"></path></svg>
+          <div class="ellipsis">
+            <span>Java</span>
+          </div>
+        </a>
+      </li><li class="">
+        <a href="/categories/Linux/">
+          <svg t="1735091071325" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2491" width="200" height="200"><path d="M13.1 512.1c0 275.2 223.1 498.3 498.3 498.3 275.2 0 498.3-223.1 498.3-498.3 0-275.2-223.1-498.3-498.3-498.3-275.2-0.1-498.3 223.1-498.3 498.3z m0 0" fill="#F5BD0C" p-id="2492"></path><path d="M592.8 758.6c-43.7 31.4-104.6 45.1-155.8 9.9-5.6-9.1-13.1-18.6-19.6-26.9 9.7 0 19.4-3 22.8-12.2 3.1-8.5 0-20.4-10.1-34.1-18.4-24.9-52.2-44.5-52.2-44.5-18.4-11.5-28.8-25.6-33.6-41-4.8-15.4-4.1-31.9-0.4-48.3 7.1-31.4 25.4-61.9 37.1-81.1 3.1-2.3 1.1 4.4-11.9 28.5-11.6 22.1-33.3 73-3.5 112.9 0.8-28.4 7.5-57.3 18.8-84.3C400.8 500 435.3 434.8 438 383c1.5 1.1 6.3 4.4 8.5 5.6 6.3 3.7 11 9.2 17.2 14.1 16.9 13.7 38.9 12.6 57.8 1.7 8.4-4.8 15.3-10.3 21.7-12.3 13.5-4.3 24.3-11.8 30.4-20.6 10.5 41.6 35 101.8 50.7 131.2 8.3 15.6 25 48.7 32.2 88.5 4.5-0.1 9.5 0.5 14.9 1.9 18.8-48.9-16-101.7-31.8-116.4-6.4-6.3-6.7-9.1-3.6-8.9 17.2 15.4 39.8 46.2 48 80.9 3.8 15.9 4.5 32.5 0.6 48.9 22.3 9.3 48.9 24.5 41.8 47.7-3-0.1-4.4 0-5.7 0 4.4-13.8-5.3-24.1-31.1-35.8-26.7-11.8-49.1-11.8-52.2 17.1-16.5 5.8-25 20.1-29.2 37.4-3.8 15.3-4.9 33.8-6 54.7-0.8 10.7-5.1 24.8-9.4 39.9z m-88.4-450c-1.5-10.1-0.1-20.5 3.9-29.9 13.4-30.4 46.6-29.9 60-0.5 8.9 19.5 4.9 42.4-5.9 55.4-5.6-2.6-11.3-4.8-17.2-6.7 1.5-1.7 4.2-3.7 5.3-6.3 6.5-16.2-0.3-37-12.4-37.4-10-0.7-19 14.8-16.1 31.5-5.5-2.6-11.5-4.6-17.6-6.1z m-62.9 25.8c-21.3-20-14.3-71.4 11.5-71.4 13.8 0 28.3 19.5 26 45.9-4.8 1.4-9.7 3.4-13.9 6.3 1.6-12.2-4.5-27.5-13.1-26.9-11.5 1-13.4 29.1-2.5 38.5 1.4 1.1 2.6-0.2-8 7.6z m0 0" fill="#FFFFFF" p-id="2493"></path><path d="M428.6 363c-1.9-6.7 0-12.3 5.7-16.9 8.4-6.3 18.5-13.7 19.2-14.4 6.4-6 18.4-19.5 38-19.5 9.7 0 21.3 3.2 35.3 12.2 8.6 5.6 15.4 6 30.8 12.7 11.4 4.8 18.7 13.3 14.3 25-3.6 9.7-15 19.7-31 24.8-15.2 4.9-27 21.9-52.1 20.4-4.5-0.2-8.9-1.2-13.1-2.9-10.9-4.8-16.7-14.2-27.3-20.6-11.5-6.4-17.7-14-19.8-20.8zM383 709.5c13 27.3 58.8 66.3 55.9 94.5-3.7 48.1-59.8 47.1-102.7 24.7-40.8-21.7-93.5-8.9-104.3-30-3.3-6.4-3.3-17.4 3.5-36.2v-0.3c3.3-10.4 0.8-21.9-0.8-32.7-1.6-10.7-2.4-20.6 1.2-27.4 4.8-9.2 11.6-12.5 20.2-15.5 14.1-5.1 16.1-4.7 26.7-13.6 7.5-7.8 13-17.7 19.5-24.7 6.9-7.5 13.6-11.1 24.1-9.5 11 1.7 20.6 9.3 29.9 21.9l26.8 48.8z m209.8 49.1c-43.7 31.4-104.6 45.1-155.8 9.9-5.6-9.1-13.1-18.6-19.6-26.9 9.7 0 19.4-3 22.8-12.2 3.1-8.5 0-20.4-10.1-34.1-18.4-24.9-52.2-44.5-52.2-44.5-18.4-11.5-28.8-25.6-33.6-41-4.8-15.4-4.1-31.9-0.4-48.3 7.1-31.4 25.4-61.9 37.1-81.1 3.1-2.3 1.1 4.4-11.9 28.5-11.6 22.1-33.3 73-3.5 112.9 0.8-28.4 7.5-57.3 18.8-84.3C400.8 500 435.3 434.8 438 383c1.5 1.1 6.3 4.4 8.5 5.6 6.3 3.7 11 9.2 17.2 14.1 16.9 13.7 38.9 12.6 57.8 1.7 8.4-4.8 15.3-10.3 21.7-12.3 13.5-4.3 24.3-11.8 30.4-20.6 10.5 41.6 35 101.8 50.7 131.2 8.3 15.6 25 48.7 32.2 88.5 4.5-0.1 9.5 0.5 14.9 1.9 18.8-48.9-16-101.7-31.8-116.4-6.4-6.3-6.7-9.1-3.6-8.9 17.2 15.4 39.8 46.2 48 80.9 3.8 15.9 4.5 32.5 0.6 48.9 22.3 9.3 48.9 24.5 41.8 47.7-3-0.1-4.4 0-5.7 0 4.4-13.8-5.3-24.1-31.1-35.8-26.7-11.8-49.1-11.8-52.2 17.1-16.5 5.8-25 20.1-29.2 37.4-3.8 15.3-4.9 33.8-6 54.7-0.8 10.7-5.1 24.8-9.4 39.9zM769.2 719c14.5 15.9 19.1 26.7 18.7 33.7-1.2 23-56.2 27.3-86.2 63.7-18 21.5-40.1 33.4-59.4 34.9-19.4 1.5-36.1-6.6-46-26.5-6.4-15.2-3.3-31.6 1.5-49.7 5-19.5 12.5-39.4 13.5-55.6 1.1-20.8 2.3-39 5.7-53 3.5-14.1 9-23.6 18.7-28.9 0.4-0.3 0.9-0.4 1.4-0.7 1.1 18.1 10 36.5 25.6 40.4 17.2 4.5 41.8-10.3 52.3-22.3 12.3-0.4 21.4-1.3 30.8 7 13.6 11.6 9.8 41.5 23.4 57z m0 0" fill="#FFFFFF" p-id="2494"></path><path d="M470.8 328.5c-0.3-1.9 2.6-3.2 4.4-4 2.3-1 5.3-1.4 7.5-0.1 0.6 0.3 1.1 1 0.8 1.5-0.5 1.7-3.3 1.4-4.8 2.2-1.3 0.7-2.5 2.3-4.1 2.3-1.4 0.2-3.7-0.5-3.8-1.9z m33.6-0.4c1.4 0.7 2.5 2.3 4.1 2.3 1.5 0 3.8-0.5 3.9-2.1 0.3-1.9-2.6-3.2-4.4-4-2.3-1-5.3-1.4-7.5-0.1-0.6 0.3-1.1 1-0.8 1.5 0.5 1.8 3.2 1.6 4.7 2.4z m292.7 425.1c-0.7 11.2-8.9 18.9-19 25.1-20.3 12.3-50.9 21.7-69.4 44.1l-3.5-3 3.5 3c-19.4 23.1-43.2 36.5-65.9 38.2-22.5 1.8-43.6-8.6-54.9-31.5v-0.1c-1.5-2.9-2.6-6-3.4-9.2-29.3 1.7-54.8-7.3-75.1-5.6-30 1.6-48.8 8.9-65.8 9-6.5 14.5-19.5 24.1-35.3 27.7-21.8 5.1-49.2 0-76.2-14.3l2.2-4.1-2.2 4.1c-25.2-13.4-57.3-12.2-80.9-17.1-11.8-2.5-22.2-6.8-27.4-16.9-5-10-4.1-23.7 3-43.4 2.3-7 0.5-17.4-1.1-28.5-1-5.4-1.5-10.8-1.7-16.2 0-5.9 1-11.6 3.8-17 6.1-11.6 16.1-16.6 25.2-19.9 9.1-3.3 17.4-5.5 23.2-11.4 7.1-7.5 13.8-19.7 22.6-27.7-3.6-23.6 0.3-48.5 8.5-73.1 17.2-51.9 53.4-101.7 79.2-132.5 22-31.4 28.4-56.6 30.7-88.7 1.5-43.6-33.4-185.6 106.2-185.3 110.3 0.1 104 117 103.3 180-0.4 41.3 22.2 69.2 45.5 98.7 20.7 24.7 47.8 60.7 63.4 101.9 12.7 33.7 17.6 71 5 108.4 4 1.6 7.8 3.8 11 6.7 9 7.7 11.8 19.6 14.3 30.7 2.6 11.1 4.9 21.5 9.8 27 15.4 17.2 22 29.7 21.4 40.9zM504.4 308.6c4.9 1.2 12.1 3.3 17.7 6-2.9-16.7 6.1-32.2 16.1-31.5 12.1 0.4 18.9 21.2 12.4 37.4-1.1 2.6-3.8 4.7-5.3 6.3 9.1 3.1 15 5.6 17.2 6.7 10.8-13 14.7-35.9 5.9-55.4-13.4-29.3-46.6-29.9-60 0.6-4.4 9.9-5.3 20.5-4 29.9z m-62.9 25.8c10.6-7.8 9.4-6.4 8-7.5-10.9-9.5-9-37.6 2.5-38.5 8.6-0.7 14.7 14.7 13.1 26.9 4.2-2.9 9.1-4.9 13.9-6.3 2.3-26.5-12.3-45.9-26-45.9-25.9-0.1-32.8 51.3-11.5 71.3zM428.6 363c2 6.7 8.3 14.4 20 21 10.6 6.3 16.4 15.8 27.3 20.6 3.5 1.5 7.8 2.6 13.1 2.9 25.1 1.5 37-15.5 52.1-20.4C557 382 568.5 372 572 362.3c4.4-11.6-2.9-20.1-14.3-25-15.4-6.7-22.2-7.1-30.8-12.7-14-9-25.6-12.2-35.3-12.2-19.6 0-31.6 13.4-38.1 19.5-0.7 0.7-10.8 8.1-19.2 14.4-5.7 4.4-7.6 10-5.7 16.7zM383 709.5l-26.7-48.8c-9.3-12.6-18.8-20.3-29.9-21.9-10.5-1.6-17.2 1.9-24.1 9.5-6.5 7-12 16.9-19.5 24.7-10.6 8.9-12.7 8.5-26.7 13.6-8.6 3-15.4 6.3-20.2 15.5-3.7 6.9-2.9 16.7-1.2 27.4 1.7 10.8 4.1 22.4 0.8 32.8v0.3c-6.8 18.8-6.8 29.8-3.5 36.2 10.8 21.1 63.5 8.4 104.3 30 42.8 22.5 99 23.4 102.7-24.7 2.7-28.3-43.1-67.3-56-94.6z m209.8 49.1c4.4-15.1 8.6-29.2 9.3-39.8 1.1-20.8 2.2-39.3 6-54.7 4.2-17.3 12.7-31.7 29.2-37.4 3.1-28.9 25.5-28.9 52.2-17.1 25.8 11.6 35.5 21.9 31.1 35.8 1.4 0 2.7-0.1 5.7 0 7.1-23.2-19.5-38.4-41.8-47.7 3.9-16.4 3.3-33-0.6-48.9-8.2-34.7-30.8-65.5-48-80.9-3.1-0.1-2.9 2.6 3.5 8.9 15.8 14.7 50.6 67.4 31.8 116.4-4.8-1.3-9.8-2-14.8-1.9-7.2-39.9-23.9-72.9-32.2-88.5-15.7-29.3-40.2-89.5-50.7-131.2-6.1 8.8-16.9 16.3-30.4 20.6-6.4 2.1-13.2 7.5-21.7 12.3-19 11-40.9 12-57.8-1.7-6.1-4.9-10.9-10.4-17.2-14.1-2.9-1.8-5.7-3.6-8.5-5.6-2.7 51.8-37.2 116.9-53.6 154.5-11.3 27-18 55.9-18.8 84.3-29.7-39.9-8.1-90.9 3.5-113 13-24.1 15-30.8 11.9-28.5-11.7 19.2-30 49.7-37.1 81.1-3.7 16.3-4.4 32.9 0.4 48.3 4.8 15.4 15.1 29.5 33.5 41 0 0 33.8 19.6 52.2 44.5 10.1 13.7 13.2 25.6 10.1 34.1-3.4 9.2-13.1 12.2-22.8 12.2 6.5 8.2 14 17.8 19.6 26.9 51.4 35.2 112.2 21.5 156-9.9zM769.2 719c-13.6-15.5-9.8-45.4-23.3-57-9.4-8.2-18.5-7.4-30.8-7-10.5 12.1-35.2 26.9-52.3 22.3-15.7-4-24.5-22.3-25.6-40.4-0.4 0.3-1 0.4-1.4 0.7-9.7 5.3-15.1 14.8-18.7 28.9-3.4 14-4.6 32.2-5.7 53-1 16.2-8.4 36.2-13.5 55.6-4.8 18.1-7.9 34.5-1.5 49.7 9.8 19.9 26.6 28 46 26.5s41.4-13.4 59.4-34.9c30-36.5 84.9-40.7 86.2-63.7 0.3-7-4.3-17.8-18.8-33.7zM439.7 362.9c2.7 2.6 6.4 6.2 10.9 9.8 9 7.1 21.5 14.5 37.2 14.5 15.8 0 30.7-8.1 43.4-14.8 6.7-3.6 14.9-9.6 20.2-14.2 5.3-4.7 8.1-8.6 4.2-9.1-3.8-0.4-3.6 3.6-8.2 7-6 4.4-13.2 10.1-19 13.4-10.1 5.8-26.6 14-40.8 14-14.2 0-25.5-6.6-33.9-13.3-4.2-3.4-7.8-6.8-10.5-9.5-2-1.9-2.6-6.3-5.9-6.7-1.8-0.1-2.4 5.1 2.4 8.9z m0 0" fill="#020202" p-id="2495"></path></svg>
+          <div class="ellipsis">
+            <span>Linux</span>
+          </div>
+        </a>
+      </li></ul>
+</nav>
+
+
+<script src="/js/066f8989.js"></script>
+
+    </div>
+    <div class="bottom">
+      <cosy-tooltip id="button-preference" placement="right">
+        <span slot="content">
+          <span>Preference</span>
+          <cosy-short-key>⌘</cosy-short-key>
+          <cosy-short-key>p</cosy-short-key>
+        </span>
+        <cosy-icon bordered id="button-about-cosy-theme">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16">
+            <g fill="none">
+              <path d="M8 6a2 2 0 1 0 0 4a2 2 0 0 0 0-4zM7 8a1 1 0 1 1 2 0a1 1 0 0 1-2 0zm3.618-3.602a.708.708 0 0 1-.824-.567l-.26-1.416a.354.354 0 0 0-.275-.282a6.072 6.072 0 0 0-2.519 0a.354.354 0 0 0-.275.282l-.259 1.416a.71.71 0 0 1-.936.538l-1.359-.484a.355.355 0 0 0-.382.095c-.569.627-1 1.367-1.262 2.173a.352.352 0 0 0 .108.378l1.102.931a.704.704 0 0 1 0 1.076l-1.102.931a.352.352 0 0 0-.108.378A5.986 5.986 0 0 0 3.53 12.02a.355.355 0 0 0 .382.095l1.36-.484a.708.708 0 0 1 .936.538l.258 1.416c.026.14.135.252.275.281a6.075 6.075 0 0 0 2.52 0a.353.353 0 0 0 .274-.281l.26-1.416a.71.71 0 0 1 .936-.538l1.359.484c.135.048.286.01.382-.095c.569-.627 1-1.367 1.262-2.173a.352.352 0 0 0-.108-.378l-1.102-.931a.703.703 0 0 1 0-1.076l1.102-.931a.352.352 0 0 0 .108-.378A5.985 5.985 0 0 0 12.47 3.98a.355.355 0 0 0-.382-.095l-1.36.484a.71.71 0 0 1-.111.03zm-6.62.58l.937.333a1.71 1.71 0 0 0 2.255-1.3l.177-.97a5.105 5.105 0 0 1 1.265 0l.178.97a1.708 1.708 0 0 0 2.255 1.3L12 4.977c.255.334.467.698.63 1.084l-.754.637a1.704 1.704 0 0 0 0 2.604l.755.637a4.99 4.99 0 0 1-.63 1.084l-.937-.334a1.71 1.71 0 0 0-2.255 1.3l-.178.97a5.099 5.099 0 0 1-1.265 0l-.177-.97a1.708 1.708 0 0 0-2.255-1.3L4 11.023a4.987 4.987 0 0 1-.63-1.084l.754-.638a1.704 1.704 0 0 0 0-2.603l-.755-.637c.164-.386.376-.75.63-1.084z" fill="currentColor"></path>
+            </g>
+          </svg>
+        </cosy-icon>
+      </cosy-tooltip>
+    </div>
+  </aside>
+  <main>
+    
+<link rel="stylesheet" href="/css/e1d1c5bf.css">
+
+
+<div class="post-container">
+  <header>
+    <div class="left">
+      
+<link rel="stylesheet" href="/css/7d333f9e.css">
+
+<nav class="breadcrumb">
+  <section>
+    <cosy-tooltip placement="bottom-left">
+      <span slot="content"><span>Home</span>
+        <cosy-short-key>⌘</cosy-short-key>
+        <cosy-short-key>H</cosy-short-key>
+      </span>
+      <cosy-icon href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+          <g fill="none">
+            <path d="M8.998 2.388a1.5 1.5 0 0 1 2.005 0l5.5 4.942A1.5 1.5 0 0 1 17 8.445V15.5a1.5 1.5 0 0 1-1.5 1.5H13a1.5 1.5 0 0 1-1.5-1.5V12a.5.5 0 0 0-.5-.5H9a.5.5 0 0 0-.5.5v3.5A1.5 1.5 0 0 1 7 17H4.5A1.5 1.5 0 0 1 3 15.5V8.445c0-.425.18-.83.498-1.115l5.5-4.942zm1.336.744a.5.5 0 0 0-.668 0l-5.5 4.942A.5.5 0 0 0 4 8.445V15.5a.5.5 0 0 0 .5.5H7a.5.5 0 0 0 .5-.5V12A1.5 1.5 0 0 1 9 10.5h2a1.5 1.5 0 0 1 1.5 1.5v3.5a.5.5 0 0 0 .5.5h2.5a.5.5 0 0 0 .5-.5V8.445a.5.5 0 0 0-.166-.371l-5.5-4.942z" fill="currentColor"></path>
+          </g>
+        </svg>
+      </cosy-icon>
+    </cosy-tooltip>
+    
+    
+    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+      <g fill="none">
+        <path d="M7.733 4.207a.75.75 0 0 1 1.06.026l5.001 5.25a.75.75 0 0 1 0 1.035l-5 5.25a.75.75 0 1 1-1.087-1.034L12.216 10l-4.51-4.734a.75.75 0 0 1 .027-1.06z" fill="currentColor"></path>
+      </g>
+    </svg>
+    <a class="ellipsis" href="/categories/Java/">
+      Java
+    </a>
+    
+    
+    
+    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+      <g fill="none">
+        <path d="M7.733 4.207a.75.75 0 0 1 1.06.026l5.001 5.25a.75.75 0 0 1 0 1.035l-5 5.25a.75.75 0 1 1-1.087-1.034L12.216 10l-4.51-4.734a.75.75 0 0 1 .027-1.06z" fill="currentColor"></path>
+      </g>
+    </svg>
+    <span class="ellipsis">
+      webservice 的两种调用方式
+    </span>
+    
+  </section>
+</nav>
+
+
+<script src="/js/31d6cfe0.js"></script>
+
+    </div>
+    <div class="right">
+      
+        <cosy-tooltip id="toc-show-button" placement="left">
+          <span slot="content">
+            <span>Show / Hide Table of Contents</span>
+            <cosy-short-key>]</cosy-short-key>
+          </span>
+          <cosy-icon>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+              <g fill="none">
+                <path
+                  d="M4 4c-1.104-.019-2 .896-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zM3 6a1 1 0 0 1 1-1h2.995v10H4a1 1 0 0 1-1-1V6zm4.995 9V5h8.004a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H7.995z"
+                  fill="currentColor"></path>
+              </g>
+            </svg>
+          </cosy-icon>
+        </cosy-tooltip>
+        
+    </div>
+  </header>
+  <div class="content">
+    <main class="cosy-scrollbar">
+      <div class="article-container">
+        <!-- 渲染文章内容 -->
+        <article>
+          <!-- 文章标题 -->
+          <h1 class="post-title">webservice 的两种调用方式</h1>
+          <div class="last-updated">
+            Last updated: 2021-05-26 11:04:29
+            <span class="post-meta-item-text">Word count:</span>
+            <span class="post-count">894</span>
+            <span class="post-meta-item-text">Reading Time:</span>
+            <span class="post-count">5 min</span>
+          </div>
+          <!-- 文章 -->
+          <h3 id="CXF"><a href="#CXF" class="headerlink" title="CXF"></a>CXF</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebserviceConfiguration</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> targetEndpointAddress<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> targetNameSpace<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> operationName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> soapActionURI<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> binding<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> useSOAPAction<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Integer</span> timeout<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">SOAPHeaderElement</span> soapHeaderElement<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">SOAPConstants</span> soapConstants<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Object</span> params<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> isObject<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> isArg0<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getTargetEndpointAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> targetEndpointAddress<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTargetEndpointAddress</span><span class="token punctuation">(</span><span class="token class-name">String</span> targetEndpointAddress<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>targetEndpointAddress <span class="token operator">=</span> targetEndpointAddress<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getTargetNameSpace</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> targetNameSpace<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTargetNameSpace</span><span class="token punctuation">(</span><span class="token class-name">String</span> targetNameSpace<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>targetNameSpace <span class="token operator">=</span> targetNameSpace<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getOperationName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> operationName<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setOperationName</span><span class="token punctuation">(</span><span class="token class-name">String</span> operationName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>operationName <span class="token operator">=</span> operationName<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getSoapActionURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> soapActionURI<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setSoapActionURI</span><span class="token punctuation">(</span><span class="token class-name">String</span> soapActionURI<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>soapActionURI <span class="token operator">=</span> soapActionURI<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">getUseSOAPAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> useSOAPAction<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUseSOAPAction</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> useSOAPAction<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>useSOAPAction <span class="token operator">=</span> useSOAPAction<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">SOAPHeaderElement</span> <span class="token function">getSoapHeaderElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> soapHeaderElement<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setSoapHeaderElement</span><span class="token punctuation">(</span><span class="token class-name">SOAPHeaderElement</span> soapHeaderElement<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>soapHeaderElement <span class="token operator">=</span> soapHeaderElement<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> params<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setParams</span><span class="token punctuation">(</span><span class="token class-name">Object</span> params<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>params <span class="token operator">=</span> params<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">SOAPConstants</span> <span class="token function">getSoapConstants</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> soapConstants<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setSoapConstants</span><span class="token punctuation">(</span><span class="token class-name">SOAPConstants</span> soapConstants<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>soapConstants <span class="token operator">=</span> soapConstants<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">getTimeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> timeout<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> timeout<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>timeout <span class="token operator">=</span> timeout<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getBinding</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> binding<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setBinding</span><span class="token punctuation">(</span><span class="token class-name">String</span> binding<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>binding <span class="token operator">=</span> binding<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> isObject<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setObject</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> object<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        isObject <span class="token operator">=</span> object<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isArg0</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> isArg0<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setArg0</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> arg0<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        isArg0 <span class="token operator">=</span> arg0<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span></span><span class="token class-name">JSON</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span>serializer<span class="token punctuation">.</span></span><span class="token class-name">JSONSerializer</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span>serializer<span class="token punctuation">.</span></span><span class="token class-name">SimplePropertyPreFilter</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">hk<span class="token punctuation">.</span>com<span class="token punctuation">.</span>cre<span class="token punctuation">.</span>process<span class="token punctuation">.</span>knowledge<span class="token punctuation">.</span>thirdapi<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span><span class="token class-name">WebserviceResultVo</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>cxf<span class="token punctuation">.</span>endpoint<span class="token punctuation">.</span></span><span class="token class-name">Client</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>cxf<span class="token punctuation">.</span>endpoint<span class="token punctuation">.</span></span><span class="token class-name">ClientImpl</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>cxf<span class="token punctuation">.</span>endpoint<span class="token punctuation">.</span></span><span class="token class-name">Endpoint</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>cxf<span class="token punctuation">.</span>jaxws<span class="token punctuation">.</span>endpoint<span class="token punctuation">.</span>dynamic<span class="token punctuation">.</span></span><span class="token class-name">JaxWsDynamicClientFactory</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>cxf<span class="token punctuation">.</span>service<span class="token punctuation">.</span>model<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Logger</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">LoggerFactory</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ObjectUtils</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>activation<span class="token punctuation">.</span></span><span class="token class-name">DataHandler</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>xml<span class="token punctuation">.</span>namespace<span class="token punctuation">.</span></span><span class="token class-name">QName</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>beans<span class="token punctuation">.</span></span><span class="token class-name">PropertyDescriptor</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">Field</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CxfWebserviceUtils</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Logger</span> log <span class="token operator">=</span> <span class="token class-name">LoggerFactory</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token class-name">CxfWebserviceUtils</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">SimplePropertyPreFilter</span> <span class="token constant">PROPERTY_PRE_FILTER</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimplePropertyPreFilter</span><span class="token punctuation">(</span><span class="token class-name">DataHandler</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">apply</span><span class="token punctuation">(</span><span class="token class-name">JSONSerializer</span> serializer<span class="token punctuation">,</span> <span class="token class-name">Object</span> source<span class="token punctuation">,</span> <span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getClazz</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getClazz</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isInstance</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+            <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>serializer<span class="token punctuation">,</span> source<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">WebserviceResultVo</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token class-name">WebserviceConfiguration</span> configuration<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"CxfWebserviceUtils parmas:&#123;&#125;"</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>configuration<span class="token punctuation">,</span><span class="token constant">PROPERTY_PRE_FILTER</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">JaxWsDynamicClientFactory</span> factory <span class="token operator">=</span> <span class="token class-name">JaxWsDynamicClientFactory</span><span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Client</span> client <span class="token operator">=</span> factory<span class="token punctuation">.</span><span class="token function">createClient</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">getTargetEndpointAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">QName</span> method <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QName</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">getTargetNameSpace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> configuration<span class="token punctuation">.</span><span class="token function">getOperationName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Object</span> returnData <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">isObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token class-name">ClientImpl</span> client1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">ClientImpl</span><span class="token punctuation">)</span> client<span class="token punctuation">;</span>
+                <span class="token class-name">Endpoint</span> endpoint <span class="token operator">=</span> client1<span class="token punctuation">.</span><span class="token function">getEndpoint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">ServiceInfo</span> serviceInfo <span class="token operator">=</span> endpoint<span class="token punctuation">.</span><span class="token function">getService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getServiceInfos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">QName</span> service <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QName</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">getTargetNameSpace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> configuration<span class="token punctuation">.</span><span class="token function">getBinding</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">BindingInfo</span> binding <span class="token operator">=</span> serviceInfo<span class="token punctuation">.</span><span class="token function">getBinding</span><span class="token punctuation">(</span>service<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">BindingOperationInfo</span> bindingOperation <span class="token operator">=</span> binding<span class="token punctuation">.</span><span class="token function">getOperation</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">BindingMessageInfo</span> input <span class="token operator">=</span> bindingOperation<span class="token punctuation">.</span><span class="token function">getInput</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">MessagePartInfo</span> messagePartInfo <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">getMessageParts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> typeClass <span class="token operator">=</span> messagePartInfo<span class="token punctuation">.</span><span class="token function">getTypeClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">isArg0</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    typeClass <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PropertyDescriptor</span><span class="token punctuation">(</span><span class="token string">"arg0"</span><span class="token punctuation">,</span> typeClass<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPropertyType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token class-name">Object</span> o <span class="token operator">=</span> typeClass<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">instanceof</span> <span class="token class-name">Map</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token class-name">Map</span> params <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token punctuation">)</span> configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Object</span> o1 <span class="token operator">:</span> params<span class="token punctuation">.</span><span class="token function">keySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                        <span class="token class-name">PropertyDescriptor</span> descriptor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PropertyDescriptor</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">,</span> typeClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        descriptor<span class="token punctuation">.</span><span class="token function">getWriteMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> params<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">instanceof</span> <span class="token class-name">List</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token class-name">List</span> params <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">List</span><span class="token punctuation">)</span> configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">Field</span><span class="token punctuation">[</span><span class="token punctuation">]</span> declaredFields <span class="token operator">=</span> typeClass<span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> declaredFields<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                        <span class="token class-name">PropertyDescriptor</span> descriptor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PropertyDescriptor</span><span class="token punctuation">(</span>declaredFields<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> typeClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        descriptor<span class="token punctuation">.</span><span class="token function">getWriteMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> params<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> invoke <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">ObjectUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>invoke<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    returnData <span class="token operator">=</span> invoke<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> o <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">instanceof</span> <span class="token class-name">Map</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    <span class="token class-name">Map</span> params <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token punctuation">)</span> configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    o <span class="token operator">=</span> params<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">instanceof</span> <span class="token class-name">List</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token class-name">List</span> params <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">List</span><span class="token punctuation">)</span> configuration<span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    o <span class="token operator">=</span> params<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> invoke <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">ObjectUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>invoke<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                    returnData <span class="token operator">=</span> invoke<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+<span class="token comment">//            Object[] invoke = client.invoke(method, ((List)configuration.getParams()).toArray());</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>returnData <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"CxfWebserviceUtils response:&#123;&#125;"</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>returnData<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token class-name">WebserviceResultVo</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>returnData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"CxfWebserviceUtils response is null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token class-name">WebserviceResultVo</span><span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"response is null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"CxfWebserviceUtils error!"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token class-name">WebserviceResultVo</span><span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Axis"><a href="#Axis" class="headerlink" title="Axis"></a>Axis</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token class-name">Call</span> call <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Call</span><span class="token punctuation">)</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>axis<span class="token punctuation">.</span>client<span class="token punctuation">.</span></span>Service</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">createCall</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//设置超时时间</span>
+<span class="token comment">//      call.setTimeout(new Integer(20000));</span>
+        <span class="token comment">//设置目标接口的地址</span>
+        call<span class="token punctuation">.</span><span class="token function">setTargetEndpointAddress</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>endpoint<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// </span>
+        call<span class="token punctuation">.</span><span class="token function">setSOAPActionURI</span><span class="token punctuation">(</span>soapActionURI<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//添加头部信息</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">ObjectUtils</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>authDto<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">SOAPHeaderElement</span> soapHeaderElement <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SOAPHeaderElement</span><span class="token punctuation">(</span>targetNameSpace<span class="token punctuation">,</span> <span class="token string">"AuthenticationInfo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//设置参数名称和值</span>
+            soapHeaderElement<span class="token punctuation">.</span><span class="token function">addChildElement</span><span class="token punctuation">(</span><span class="token string">"userName"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addTextNode</span><span class="token punctuation">(</span>authDto<span class="token punctuation">.</span><span class="token function">getUsername</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            soapHeaderElement<span class="token punctuation">.</span><span class="token function">addChildElement</span><span class="token punctuation">(</span><span class="token string">"password"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addTextNode</span><span class="token punctuation">(</span>authDto<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            soapHeaderElement<span class="token punctuation">.</span><span class="token function">addChildElement</span><span class="token punctuation">(</span><span class="token string">"authentication"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addTextNode</span><span class="token punctuation">(</span>authDto<span class="token punctuation">.</span><span class="token function">getAuthentication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            soapHeaderElement<span class="token punctuation">.</span><span class="token function">addChildElement</span><span class="token punctuation">(</span><span class="token string">"locale"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addTextNode</span><span class="token punctuation">(</span>authDto<span class="token punctuation">.</span><span class="token function">getLocale</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            soapHeaderElement<span class="token punctuation">.</span><span class="token function">addChildElement</span><span class="token punctuation">(</span><span class="token string">"timeZone"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addTextNode</span><span class="token punctuation">(</span>authDto<span class="token punctuation">.</span><span class="token function">getTimezone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            call<span class="token punctuation">.</span><span class="token function">addHeader</span><span class="token punctuation">(</span>soapHeaderElement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">//设置字符编码</span>
+        call<span class="token punctuation">.</span><span class="token function">setEncodingStyle</span><span class="token punctuation">(</span><span class="token class-name">CharEncoding</span><span class="token punctuation">.</span><span class="token constant">UTF_8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//设置返回值类型</span>
+        call<span class="token punctuation">.</span><span class="token function">setReturnClass</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        call<span class="token punctuation">.</span><span class="token function">setReturnType</span><span class="token punctuation">(</span><span class="token class-name">XMLType</span><span class="token punctuation">.</span><span class="token constant">XSD_STRING</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//        call.setReturnType(XMLType.SOAP_ARRAY);</span>
+        <span class="token comment">// 设置具体调用的方法名 // WSDL里面描述的接口名称</span>
+        call<span class="token punctuation">.</span><span class="token function">setOperationName</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">QName</span><span class="token punctuation">(</span>targetNameSpace<span class="token punctuation">,</span> methodName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        call<span class="token punctuation">.</span><span class="token function">setUseSOAPAction</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 文件流</span>
+call<span class="token punctuation">.</span><span class="token function">addParameter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">QName</span><span class="token punctuation">(</span>targetNameSpace<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">XMLType</span><span class="token punctuation">.</span><span class="token constant">SOAP_BASE64BINARY</span><span class="token punctuation">,</span> <span class="token class-name">ParameterMode</span><span class="token punctuation">.</span><span class="token constant">IN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+call<span class="token punctuation">.</span><span class="token function">addParameter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">QName</span><span class="token punctuation">(</span>targetNameSpace<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">XMLType</span><span class="token punctuation">.</span><span class="token constant">XSD_STRING</span><span class="token punctuation">,</span> <span class="token class-name">ParameterMode</span><span class="token punctuation">.</span><span class="token constant">IN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token class-name">Object</span> returnData <span class="token operator">=</span> call<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>paramValues<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+            <div class="post-tags">
+              <!-- 文章tags -->
+              
+                
+                  <cosy-label href="/tags/Java/" size="sm"># Java</cosy-label>
+                  
+                    
+            </div>
+            <p class="motto">重拾纯粹的写作</p>
+        </article>
+        <!-- 评论 -->
+        <div id="vcomments"></div>
+        <div id="tcomment"></div>
+      </div>
+    </main>
+    <!-- toc -->
+    
+      <cosy-drag-box id="toc-drag-box" trigger="left" min-width="100" uid="toc-box">
+        <div class="meta-container">
+          <div class="toc-wrapper cosy-scrollbar">
+            <cosy-tooltip placement="right">
+              <p class="catalog">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
+                  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 6h16"></path>
+                    <path d="M4 12h16"></path>
+                    <path d="M4 18h12"></path>
+                  </g>
+                </svg>
+                <span>Catalog</span>
+              </p>
+              <span slot="content">
+                <span>Hide Table of Contents</span>
+                <cosy-short-key>]</cosy-short-key>
+              </span>
+            </cosy-tooltip>
+            <!-- 文章toc -->
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#CXF"><span class="toc-number">1.</span> <span class="toc-text">CXF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Axis"><span class="toc-number">2.</span> <span class="toc-text">Axis</span></a></li></ol>
+          </div>
+        </div>
+      </cosy-drag-box>
+      
+  </div>
+
+</div>
+
+<script>
+  window.page = {
+    use: ''
+  }
+  window.katex = {
+    enable: "",
+    jsCdn: "//cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js",
+    cssCdn: "//cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css"
+  }
+  window.mermaid = {
+    enable: "",
+    theme: "",
+    cdn: "//cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js",
+  }
+  window.valine = {
+    enable: "false",
+    appId: 'yourValineAppId',
+    appKey: 'yourValineAppKey',
+    avatar: 'monsterid',
+    cdn: '//unpkg.com/valine@latest/dist/Valine.min.js',
+    serverURLs: ''
+  };
+  window.twikoo = {
+    enable: "false",
+    envId: "yourTwikooEnvId",
+    cdn: 'https://cdn.staticfile.org/twikoo/1.6.32/twikoo.all.min.js',
+    lang: 'zh-CN',
+  }
+</script>
+
+
+<script src="/js/8f5fa89f.js"></script>
+
+  </main>
+</body>
+
+<script>
+  window.theme = {
+    color: 'hsl(238,50%,56%)'
+  }
+</script>
+
+
+<script src="/js/e5a59732.js"></script>
+
+
+</html>

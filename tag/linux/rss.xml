@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Gyo • Posts by &#34;linux&#34; tag</title>
+        <link>https://gyoliu.github.io</link>
+        <description>Gyo的博客</description>
+        <language>en</language>
+        <pubDate>Mon, 29 Jan 2024 13:10:53 +0800</pubDate>
+        <lastBuildDate>Mon, 29 Jan 2024 13:10:53 +0800</lastBuildDate>
+        <category>Cosy</category>
+        <category>Linux</category>
+        <category>Default</category>
+        <category>PaddleSpeech</category>
+        <category>Java</category>
+        <category>elasticsearch</category>
+        <category>hibernate</category>
+        <category>JVM</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>mysql</category>
+        <category>openssl</category>
+        <category>Spring Cloud</category>
+        <category>spring</category>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2024/01/29/centos-disk/</guid>
+            <title>centos 磁盘挂载</title>
+            <link>https://gyoliu.github.io/2024/01/29/centos-disk/</link>
+            <category>Linux</category>
+            <pubDate>Mon, 29 Jan 2024 13:10:53 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;查看磁盘：&#34;&gt;&lt;a href=&#34;#查看磁盘：&#34; class=&#34;headerlink&#34; title=&#34;查看磁盘：&#34;&gt;&lt;/a&gt;查看磁盘：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;lsblk&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;格式化磁盘：&#34;&gt;&lt;a href=&#34;#格式化磁盘：&#34; class=&#34;headerlink&#34; title=&#34;格式化磁盘：&#34;&gt;&lt;/a&gt;格式化磁盘：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;fdisk &amp;#x2F;dev&amp;#x2F;sdb&lt;br&gt;n-&amp;gt;p-&amp;gt;1-&amp;gt;回车-&amp;gt;回车-&amp;gt;w&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;创建磁盘：&#34;&gt;&lt;a href=&#34;#创建磁盘：&#34; class=&#34;headerlink&#34; title=&#34;创建磁盘：&#34;&gt;&lt;/a&gt;创建磁盘：&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;shell&#34;&gt;mkfs.xfs /dev/sdb1
+mkdir /app
+echo &amp;quot;/dev/sdb1 /app xfs defaults 0 0&amp;quot; &amp;gt;&amp;gt; /etc/fstab
+mount -a
+df -h
+```yml
+&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2022/09/20/openssl-install/</guid>
+            <title>openssl 编译安装</title>
+            <link>https://gyoliu.github.io/2022/09/20/openssl-install/</link>
+            <category>Linux</category>
+            <category>openssl</category>
+            <pubDate>Tue, 20 Sep 2022 12:53:56 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;1-官方下载地址&#34;&gt;&lt;a href=&#34;#1-官方下载地址&#34; class=&#34;headerlink&#34; title=&#34;1. 官方下载地址&#34;&gt;&lt;/a&gt;1. 官方下载地址&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.openssl.org/source/&#34;&gt;https://www.openssl.org/source/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-依赖安装&#34;&gt;&lt;a href=&#34;#2-依赖安装&#34; class=&#34;headerlink&#34; title=&#34;2. 依赖安装&#34;&gt;&lt;/a&gt;2. 依赖安装&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;yum &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; gcc libffi-devel zlib* openssl-devel&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-编译&#34;&gt;&lt;a href=&#34;#3-编译&#34; class=&#34;headerlink&#34; title=&#34;3. 编译&#34;&gt;&lt;/a&gt;3. 编译&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;./config &lt;span class=&#34;token parameter variable&#34;&gt;--prefix&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/usr/local/openssl shared zlib
+其中 &lt;span class=&#34;token parameter variable&#34;&gt;--prefix&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/usr/local/openssl  指定编译到那个目录下
+&lt;span class=&#34;token function&#34;&gt;make&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;make&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-备份&#34;&gt;&lt;a href=&#34;#4-备份&#34; class=&#34;headerlink&#34; title=&#34;4. 备份&#34;&gt;&lt;/a&gt;4. 备份&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;which&lt;/span&gt; openssl  或  &lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; / &lt;span class=&#34;token parameter variable&#34;&gt;-name&lt;/span&gt; openssl
+ &lt;span class=&#34;token function&#34;&gt;mv&lt;/span&gt; /usr/bin/openssl /usr/bin/openssl.1.0.1e
+ &lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;5-建立软连接&#34;&gt;&lt;a href=&#34;#5-建立软连接&#34; class=&#34;headerlink&#34; title=&#34;5. 建立软连接&#34;&gt;&lt;/a&gt;5. 建立软连接&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;ln&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; /usr/local/openssl/bin/openssl /usr/bin/openssl
+&lt;span class=&#34;token function&#34;&gt;ln&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; /usr/local/openssl/include/openssl /usr/include/openssl&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;6-设定动态链接库&#34;&gt;&lt;a href=&#34;#6-设定动态链接库&#34; class=&#34;headerlink&#34; title=&#34;6. 设定动态链接库&#34;&gt;&lt;/a&gt;6. 设定动态链接库&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/usr/local/openssl/lib&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; /etc/ld.so.conf
+ldconfig &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;7-验证&#34;&gt;&lt;a href=&#34;#7-验证&#34; class=&#34;headerlink&#34; title=&#34;7. 验证&#34;&gt;&lt;/a&gt;7. 验证&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;openssl version &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2021/02/18/Linux-process-disappears/</guid>
+            <title>Linux服务器Java进程突然消失</title>
+            <link>https://gyoliu.github.io/2021/02/18/Linux-process-disappears/</link>
+            <category>Linux</category>
+            <pubDate>Thu, 18 Feb 2021 09:55:53 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;检查应用日志是否有异常日志&#34;&gt;&lt;a href=&#34;#检查应用日志是否有异常日志&#34; class=&#34;headerlink&#34; title=&#34;检查应用日志是否有异常日志&#34;&gt;&lt;/a&gt;检查应用日志是否有异常日志&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt; -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath&amp;#x3D;$&amp;#123;目录&amp;#125;。
+参数说明：
+（1）-XX:+HeapDumpOnOutOfMemoryError参数表示当JVM发生OOM时，自动生成DUMP文件。
+（2）-XX:HeapDumpPath&amp;#x3D;$&amp;#123;目录&amp;#125;参数表示生成DUMP文件的路径，也可以指定文件名称。
+例如：-XX:HeapDumpPath&amp;#x3D;$&amp;#123;目录&amp;#125;&amp;#x2F;java_heapdump.hprof。如果不指定文件名，默认为：java_&amp;lt;pid&amp;gt;_&amp;lt;date&amp;gt;_&amp;lt;time&amp;gt;_heapDump.hprof。
+**之后可以通过一些分析工具查看应用问题**&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;检查-JVM-是否异常&#34;&gt;&lt;a href=&#34;#检查-JVM-是否异常&#34; class=&#34;headerlink&#34; title=&#34;检查 JVM 是否异常&#34;&gt;&lt;/a&gt;检查 JVM 是否异常&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;启动应用时最好指：XX:ErrorFile&amp;#x3D;&amp;#x2F;var&amp;#x2F;log&amp;#x2F;hs_err_pid&amp;lt;pid&amp;gt;.log，没有指定是生成在工作目录下&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;被操作系统OOM-Killer&#34;&gt;&lt;a href=&#34;#被操作系统OOM-Killer&#34; class=&#34;headerlink&#34; title=&#34;被操作系统OOM-Killer&#34;&gt;&lt;/a&gt;被操作系统OOM-Killer&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;Linux 内核有个机制叫OOM killer（Out-Of-Memory killer），该机制会监控那些占用内存过大，尤其是瞬间很快消耗大量内存的进程，为了防止内存耗尽而内核会把该进程杀掉。
+因此，你发现java进程突然没了，首先要怀疑是不是被linux的OOM killer给干掉了！
+系统报错日志:&amp;#x2F;var&amp;#x2F;log&amp;#x2F;messages
+
+grep -i &amp;#39;killed process&amp;#39; &amp;#x2F;var&amp;#x2F;log&amp;#x2F;messages  
+-i 是忽略大小写
+或者
+grep &amp;#39;Out of memory&amp;#39; &amp;#x2F;var&amp;#x2F;log&amp;#x2F;messages
+
+dmesg -T| grep java
+#或者
+dmesg -T | grep &amp;#39;Out of memory&amp;#39;
+# -T 是显示时间戳&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;　检查了下监控，发现外网大量的流程导致操作系统 kill 了进程。 &lt;img src=&#34;/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%8720210218115721.png&#34; alt=&#34;微信图片20210218115721.png&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;解决方案-Linux-Swap-针对小内存服务器&#34;&gt;&lt;a href=&#34;#解决方案-Linux-Swap-针对小内存服务器&#34; class=&#34;headerlink&#34; title=&#34;解决方案 -&amp;gt; Linux Swap , 针对小内存服务器&#34;&gt;&lt;/a&gt;解决方案 -&amp;gt; Linux Swap , 针对小内存服务器&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;SWAP 概述 当系统的物理内存不够用的时候，就需要将物理内存中的一部分空间释放出来，以供当前运行的程序使用。那些被释放的空间可能来自一些很长时间没有什么操作的程序，这些被释放的空间被临时保存到Swap空间中，等到那些程序要运行时，再从Swap中恢复保存的数据到内存中。这样，系统总是在物理内存不够时，才进行Swap交换。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;swap 的大小设置一般是和内存大小一样或者设置为内存大小的2倍&lt;br&gt;实际上，并不是等所有的物理内存都消耗完毕之后，才去使用swap的空间，什么时候使用是由swappiness 参数值控制。 cat &amp;#x2F;proc&amp;#x2F;sys&amp;#x2F;vm&amp;#x2F;swappiness 60 该值默认值是60. swappiness&amp;#x3D;0的时候表示最大限度使用物理内存，然后才是 swap空间，&lt;br&gt;swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面。&lt;br&gt;永久修改： 在&amp;#x2F;etc&amp;#x2F;sysctl.conf 文件里添加如下参数： vm.swappiness&amp;#x3D;10&lt;br&gt;sysctl -p 生效&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;开启-Swap&#34;&gt;&lt;a href=&#34;#开启-Swap&#34; class=&#34;headerlink&#34; title=&#34;开启 Swap&#34;&gt;&lt;/a&gt;开启 Swap&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/ygm_linux/article/details/24532809&#34;&gt;https://blog.csdn.net/ygm_linux/article/details/24532809&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://www.cnblogs.com/williamjie/p/10271347.html&#34;&gt;https://www.cnblogs.com/williamjie/p/10271347.html&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2021/01/28/linux-delete-big-file/</guid>
+            <title>Linux 删除大文件内容</title>
+            <link>https://gyoliu.github.io/2021/01/28/linux-delete-big-file/</link>
+            <category>Linux</category>
+            <pubDate>Thu, 28 Jan 2021 09:49:12 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;查看当前目录下一级子文件和子目录占用的磁盘容量&#34;&gt;&lt;a href=&#34;#查看当前目录下一级子文件和子目录占用的磁盘容量&#34; class=&#34;headerlink&#34; title=&#34;查看当前目录下一级子文件和子目录占用的磁盘容量&#34;&gt;&lt;/a&gt;查看当前目录下一级子文件和子目录占用的磁盘容量&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;du&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-lh&lt;/span&gt; --max-depth&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-nr&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;du&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-m&lt;/span&gt; –max-depth&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-gr&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;查看根目录下前10大的文件夹&#34;&gt;&lt;a href=&#34;#查看根目录下前10大的文件夹&#34; class=&#34;headerlink&#34; title=&#34;查看根目录下前10大的文件夹&#34;&gt;&lt;/a&gt;查看根目录下前10大的文件夹&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;du&lt;/span&gt; / &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-nr&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;head&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-10&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;删除文件内容&#34;&gt;&lt;a href=&#34;#删除文件内容&#34; class=&#34;headerlink&#34; title=&#34;删除文件内容&#34;&gt;&lt;/a&gt;删除文件内容&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;删除文件到指定的大小 ， &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; 是指定的大小
+truncate &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; my_file
+删除文件内容
+&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; my_file
+
+删除my_file前面第1行到10000行 &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;这个比较耗时&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sed&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;1,10000d&#39;&lt;/span&gt; my_file
+
+用lsof检查后才发现原因是,有文件被删除,而进程还活着,因而造成还占用空间的现象
+
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@/&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# lsof |grep delete&lt;/span&gt;
+
+根据lsof列出的进程号,kill这些进程后,空间就释放出来了&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2020/11/20/linux-find-big-file/</guid>
+            <title>Linux 大文件查找</title>
+            <link>https://gyoliu.github.io/2020/11/20/linux-find-big-file/</link>
+            <category>Linux</category>
+            <pubDate>Fri, 20 Nov 2020 00:34:14 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;du-命令用于显示目录或文件的大小&#34;&gt;&lt;a href=&#34;#du-命令用于显示目录或文件的大小&#34; class=&#34;headerlink&#34; title=&#34;du 命令用于显示目录或文件的大小&#34;&gt;&lt;/a&gt;du 命令用于显示目录或文件的大小&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;-b 显示目录或文件大小时，以byte为单位。&lt;/li&gt;
+&lt;li&gt;-h 以K，M，G为单位，提高信息的可读性。 &lt;strong&gt;使用这个会导致排序问题&lt;/strong&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;##返回前十的大目录&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;du&lt;/span&gt; / &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-nr&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;head&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-10&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;##查找大文件&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; / &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; f &lt;span class=&#34;token parameter variable&#34;&gt;-size&lt;/span&gt; +800M  &lt;span class=&#34;token parameter variable&#34;&gt;-print0&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;xargs&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-0&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;ls&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;ls&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-lh&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
