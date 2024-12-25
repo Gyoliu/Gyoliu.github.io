@@ -25,3 +25,18 @@ footer:
 ### 增加中间动态欢迎语 👋
 [效果博客](https://gyoliu.github.io "效果博客👋")
 ![](/img/home.png)
+
+### INFO  Error has occurred during indexing posts : [object Object]
+[解决方案](https://yfzhu.cn/posts/1011/)
+```yml
+#algolia Configuration
+algolia:
+  ......
+  chunkSize: 5000
+  ......
+  fields:
+    - content:strip:truncate,0,5000
+```
+
+
+
