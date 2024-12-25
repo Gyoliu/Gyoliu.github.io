@@ -116,7 +116,7 @@ algolia:
   chunkSize: 5000
   indexName: hexo
   fields:
-    - content
+    - content:strip:truncate,0,5000
     - excerpt:strip
     - categories
     - title
