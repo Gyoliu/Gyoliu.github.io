@@ -5,8 +5,8 @@
         <link>https://gyoliu.github.io</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Thu, 29 Aug 2024 13:23:54 +0800</pubDate>
-        <lastBuildDate>Thu, 29 Aug 2024 13:23:54 +0800</lastBuildDate>
+        <pubDate>Thu, 26 Dec 2024 14:41:29 +0800</pubDate>
+        <lastBuildDate>Thu, 26 Dec 2024 14:41:29 +0800</lastBuildDate>
         <category>Cosy</category>
         <category>Linux</category>
         <category>Java</category>
@@ -21,6 +21,17 @@
         <category>openssl</category>
         <category>spring</category>
         <category>Spring Cloud</category>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2024/12/26/follow/</guid>
+            <title>follow</title>
+            <link>https://gyoliu.github.io/2024/12/26/follow/</link>
+            <category>Default</category>
+            <pubDate>Thu, 26 Dec 2024 14:41:29 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;This message is used to verify that this feed (feedId:94993712362846208) belongs to me (userId:569moaUVDrYGrgssS2Lwv). Join me in enjoying the next generation information browser &lt;a href=&#34;https://follow.is/&#34;&gt;https://follow.is&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2024/08/29/nginx-proxy/</guid>
             <title>nginx 正向代理配置 https 支持</title>
