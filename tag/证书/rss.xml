@@ -15,19 +15,19 @@
         <category>elasticsearch</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>nginx</category>
-        <category>证书</category>
         <category>mysql</category>
+        <category>证书</category>
+        <category>nginx</category>
         <category>openssl</category>
-        <category>spring</category>
         <category>Spring Cloud</category>
+        <category>spring</category>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2024/07/08/nginx-config-https/</guid>
             <title>https 证书自动续期，永久免费</title>
             <link>https://gyoliu.github.io/2024/07/08/nginx-config-https/</link>
             <category>Default</category>
-            <category>nginx</category>
             <category>证书</category>
+            <category>nginx</category>
             <pubDate>Mon, 08 Jul 2024 13:15:44 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;https-证书自动续期，永久免费&#34;&gt;&lt;a href=&#34;#https-证书自动续期，永久免费&#34; class=&#34;headerlink&#34; title=&#34;https 证书自动续期，永久免费&#34;&gt;&lt;/a&gt;https 证书自动续期，永久免费&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;开源组织的免费证书：&lt;a href=&#34;https://letsencrypt.org/zh-cn/&#34;&gt;https://letsencrypt.org/zh-cn/&lt;/a&gt;&lt;br&gt;Let’s Encrypt 和 &lt;a href=&#34;https://tools.ietf.org/html/rfc8555&#34;&gt;ACME 协议&lt;/a&gt;的目标是实现可信数字证书的自动获取，从而简化 HTTPS 服务器部署中的人工操作。 这一目标是由 Web 服务器上的证书管理软件完成的。&lt;/p&gt;

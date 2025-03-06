@@ -12,12 +12,12 @@
     <category term="elasticsearch" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="nginx" />
-    <category term="证书" />
     <category term="mysql" />
+    <category term="证书" />
+    <category term="nginx" />
     <category term="openssl" />
-    <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="spring" />
     <entry>
         <id>https://gyoliu.github.io/2022/06/29/elasticsearch-query/</id>
         <title>elasticsearch 查询</title>

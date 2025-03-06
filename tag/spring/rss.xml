@@ -15,12 +15,12 @@
         <category>elasticsearch</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>nginx</category>
-        <category>证书</category>
         <category>mysql</category>
+        <category>证书</category>
+        <category>nginx</category>
         <category>openssl</category>
-        <category>spring</category>
         <category>Spring Cloud</category>
+        <category>spring</category>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/</guid>
             <title>spring bean 扩展点记录</title>

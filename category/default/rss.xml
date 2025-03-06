@@ -5,8 +5,8 @@
         <link>https://gyoliu.github.io</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Thu, 26 Dec 2024 14:41:29 +0800</pubDate>
-        <lastBuildDate>Thu, 26 Dec 2024 14:41:29 +0800</lastBuildDate>
+        <pubDate>Thu, 06 Mar 2025 16:29:54 +0800</pubDate>
+        <lastBuildDate>Thu, 06 Mar 2025 16:29:54 +0800</lastBuildDate>
         <category>Cosy</category>
         <category>Linux</category>
         <category>Java</category>
@@ -15,12 +15,257 @@
         <category>elasticsearch</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>nginx</category>
-        <category>证书</category>
         <category>mysql</category>
+        <category>证书</category>
+        <category>nginx</category>
         <category>openssl</category>
-        <category>spring</category>
         <category>Spring Cloud</category>
+        <category>spring</category>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2025/03/06/XtraBackup-mysql-backup/</guid>
+            <title>XtraBackup mysql backup</title>
+            <link>https://gyoliu.github.io/2025/03/06/XtraBackup-mysql-backup/</link>
+            <category>Default</category>
+            <pubDate>Thu, 06 Mar 2025 16:29:54 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;1-安装-Percona-XtraBackup&#34;&gt;&lt;a href=&#34;#1-安装-Percona-XtraBackup&#34; class=&#34;headerlink&#34; title=&#34;1. 安装 Percona XtraBackup&#34;&gt;&lt;/a&gt;1. 安装 Percona XtraBackup&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# Ubuntu/Debian&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; https://repo.percona.com/apt/percona-release_latest.&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;lsb_release &lt;span class=&#34;token parameter variable&#34;&gt;-sc&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;_all.deb
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; dpkg &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; percona-release_latest.&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;lsb_release &lt;span class=&#34;token parameter variable&#34;&gt;-sc&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;_all.deb
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; update
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;apt&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; percona-xtrabackup-80
+
+&lt;span class=&#34;token comment&#34;&gt;# CentOS/RHEL&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; yum &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; yum &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; percona-xtrabackup-80&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;2-全量备份（Full-Backup）&#34;&gt;&lt;a href=&#34;#2-全量备份（Full-Backup）&#34; class=&#34;headerlink&#34; title=&#34;2. 全量备份（Full Backup）&#34;&gt;&lt;/a&gt;2. 全量备份（Full Backup）&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# 创建备份目录&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; /backup/mysql/full/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 执行全量备份（无锁表）&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--backup&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--user&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;root &lt;span class=&#34;token parameter variable&#34;&gt;--password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;YourPassword --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 压缩并上传至云存储（示例使用 AWS S3）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-czf&lt;/span&gt; /backup/mysql/full/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;.tar.gz /backup/mysql/full/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+aws s3 &lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; /backup/mysql/full/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;.tar.gz s3://your-bucket/mysql-backup/full/&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;3-增量备份（Incremental-Backup）&#34;&gt;&lt;a href=&#34;#3-增量备份（Incremental-Backup）&#34; class=&#34;headerlink&#34; title=&#34;3. 增量备份（Incremental Backup）&#34;&gt;&lt;/a&gt;3. 增量备份（Incremental Backup）&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# 假设最后一次全量备份路径：/backup/mysql/full/20231001&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 创建增量备份目录&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; /backup/mysql/inc/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 基于全量或上一次增量备份执行增量备份&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--backup&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;token parameter variable&#34;&gt;--user&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;root &lt;span class=&#34;token parameter variable&#34;&gt;--password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;YourPassword &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/inc/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  --incremental-basedir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/20231001  &lt;span class=&#34;token comment&#34;&gt;# 或上一次增量目录&lt;/span&gt;
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;1-恢复全量备份&#34;&gt;&lt;a href=&#34;#1-恢复全量备份&#34; class=&#34;headerlink&#34; title=&#34;1. 恢复全量备份&#34;&gt;&lt;/a&gt;1. 恢复全量备份&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# 停止 MySQL 服务&lt;/span&gt;
+systemctl stop mysql
+
+&lt;span class=&#34;token comment&#34;&gt;# 清空数据目录（谨慎操作！）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-rf&lt;/span&gt; /var/lib/mysql/*
+
+&lt;span class=&#34;token comment&#34;&gt;# 准备全量备份&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--prepare&lt;/span&gt; --apply-log-only --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/20231001
+
+&lt;span class=&#34;token comment&#34;&gt;# 复制数据文件到 MySQL 目录&lt;/span&gt;
+xtrabackup --copy-back --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/20231001
+
+&lt;span class=&#34;token comment&#34;&gt;# 修改权限并启动 MySQL&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;chown&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; mysql:mysql /var/lib/mysql
+systemctl start mysql&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;2-应用增量备份&#34;&gt;&lt;a href=&#34;#2-应用增量备份&#34; class=&#34;headerlink&#34; title=&#34;2. 应用增量备份&#34;&gt;&lt;/a&gt;2. 应用增量备份&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# 准备全量备份（必须步骤）&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--prepare&lt;/span&gt; --apply-log-only --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/20231001
+
+&lt;span class=&#34;token comment&#34;&gt;# 应用第一个增量备份&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--prepare&lt;/span&gt; --apply-log-only &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/20231001 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  --incremental-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/inc/20231002
+
+&lt;span class=&#34;token comment&#34;&gt;# 应用后续增量备份（按时间顺序）&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--prepare&lt;/span&gt; --apply-log-only &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/20231001 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+  --incremental-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/inc/20231003
+
+&lt;span class=&#34;token comment&#34;&gt;# 最后准备（确保一致性）&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--prepare&lt;/span&gt; --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/backup/mysql/full/20231001
+
+&lt;span class=&#34;token comment&#34;&gt;# 复制数据并启动 MySQL（同上）&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;3-通过-Binlog-恢复至最新状态&#34;&gt;&lt;a href=&#34;#3-通过-Binlog-恢复至最新状态&#34; class=&#34;headerlink&#34; title=&#34;3. 通过 Binlog 恢复至最新状态&#34;&gt;&lt;/a&gt;3. 通过 Binlog 恢复至最新状态&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# 解析增量备份后的 Binlog 位置&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;cat&lt;/span&gt; /backup/mysql/full/20231001/xtrabackup_binlog_info
+&lt;span class=&#34;token comment&#34;&gt;# 输出示例：mysql-bin.000007 154&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 使用 mysqlbinlog 导出 SQL（从指定位置到故障时间点）&lt;/span&gt;
+mysqlbinlog --start-position&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;154&lt;/span&gt; /var/lib/mysql/mysql-bin.000007 &lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;. &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; mysql &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; root &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;1-备份脚本示例（mysql-backup-sh）&#34;&gt;&lt;a href=&#34;#1-备份脚本示例（mysql-backup-sh）&#34; class=&#34;headerlink&#34; title=&#34;1. 备份脚本示例（mysql_backup.sh）&#34;&gt;&lt;/a&gt;1. 备份脚本示例（mysql_backup.sh）&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token shebang important&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 全量备份（每周日执行）&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%u&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-eq&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;7&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;then&lt;/span&gt;
+  &lt;span class=&#34;token assign-left variable&#34;&gt;BACKUP_DIR&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/backup/mysql/full/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt;
+  &lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;
+  xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--backup&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--user&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;root &lt;span class=&#34;token parameter variable&#34;&gt;--password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;YourPassword --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;
+  &lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-czf&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;.tar.gz &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;
+  aws s3 &lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;.tar.gz s3://your-bucket/mysql-backup/full/
+&lt;span class=&#34;token comment&#34;&gt;# 增量备份（其他日期）&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;
+  &lt;span class=&#34;token assign-left variable&#34;&gt;LAST_FULL&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;ls&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; /backup/mysql/full/* &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;tail&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-1&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&#34;token assign-left variable&#34;&gt;BACKUP_DIR&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/backup/mysql/inc/&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;date&lt;/span&gt; +%Y%m%d&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&#34;&lt;/span&gt;
+  &lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;
+  xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--backup&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--user&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;root &lt;span class=&#34;token parameter variable&#34;&gt;--password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;YourPassword --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt; --incremental-basedir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$LAST_FULL&lt;/span&gt;
+  &lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-czf&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;.tar.gz &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;
+  aws s3 &lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$BACKUP_DIR&lt;/span&gt;.tar.gz s3://your-bucket/mysql-backup/inc/
+&lt;span class=&#34;token keyword&#34;&gt;fi&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 清理旧备份（保留策略）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; /backup/mysql/full/ &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; d &lt;span class=&#34;token parameter variable&#34;&gt;-mtime&lt;/span&gt; +30 &lt;span class=&#34;token parameter variable&#34;&gt;-exec&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-rf&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; /backup/mysql/inc/ &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; d &lt;span class=&#34;token parameter variable&#34;&gt;-mtime&lt;/span&gt; +7 &lt;span class=&#34;token parameter variable&#34;&gt;-exec&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-rf&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+
+
+&lt;span class=&#34;token comment&#34;&gt;# 编辑 crontab&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;crontab&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-e&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 添加以下内容（每天凌晨3点执行）&lt;/span&gt;
+&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt; * * * /path/to/mysql_backup.sh&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;h1 id=&#34;命令参数&#34;&gt;&lt;a href=&#34;#命令参数&#34; class=&#34;headerlink&#34; title=&#34;命令参数&#34;&gt;&lt;/a&gt;命令参数&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;
+&lt;span class=&#34;token parameter variable&#34;&gt;--backup&lt;/span&gt; 模式，用于在目标目录中进行备份
+&lt;span class=&#34;token parameter variable&#34;&gt;--prepare&lt;/span&gt; 模式，用于从备份中恢复数据（在--backup模式下创建）
+--copy-back 模式，用于从备份中复制数据到原始数据所在的位置；若要移动数据而不是复制，请使用替代的--move-back模式。
+&lt;span class=&#34;token parameter variable&#34;&gt;--stats&lt;/span&gt; 模式，用于扫描指定的数据文件并打印出索引统计信息。
+
+xtrabackup &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;--defaults-file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#] --backup|--prepare|--copy-back|--stats [OPTIONS]&lt;/span&gt;
+xtrabackup &lt;span class=&#34;token parameter variable&#34;&gt;--prepare&lt;/span&gt; --target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/data/backup/mysql/
+
+
+参数值                                参数用途
+–print-defaults             输出mysql实例的参数配置信息
+–no-defaults                不从任何配置文件中读取参数信息，除了登录文件
+–defaults-file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#            仅从指定的配置文件读取参数&lt;/span&gt;
+–defaults-extra-file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#      读取额外的配置信息文件&lt;/span&gt;
+–defaults-group-suffix&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#    Also read groups with concat(group, suffix)&lt;/span&gt;
+–login-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#               读取登录文件的路径&lt;/span&gt;
+-v, &lt;span class=&#34;token parameter variable&#34;&gt;--version&lt;/span&gt;               打印 xtrabackup版本信息
+–target-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name            备份文件的目录，默认为当前目录xtrabackup_backupfiles/
+–backup                     备份操作,备份到target-dir指定的目录
+–stats                      计算datadir的统计信息&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;推荐mysqld离线&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; calc statistic of datadir &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;offline mysqld is recommended&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+–prepare                    指定备份的准备阶段 （准备一个在备份上启动mysql服务器的备份。）
+–export                     当在prepare阶段创建文件到另外的一个数据库 create files to &lt;span class=&#34;token function&#34;&gt;import&lt;/span&gt; to another database when prepare.
+–apply-log-only             一般情况下,在备份完成后，数据尚且不能用于恢复操作，因为备份的数据中可能会包含尚未提交的事务或已经提交但尚未同步至数据文件中的事务。
+                            因此，此时数据 文件仍处理不一致状态。
+–apply-log                  它的作用是通过回滚未提交的事务及同步已经提交的事务至数据文件使数据文件处于一致性状态。
+–print-param                输出mysqld copyback必须的参数  print parameter of mysqld needed &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; copyback.
+–use-memory&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;                备份的时候指定的内存，该选项表示和–apply-log选项一起使用，
+                            prepare 备份的时候，xtrabackup做crash recovery分配的内存大小，单位字节。也可&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;1MB,1M,1G,1GB&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;，推荐1G。用于替代buffer_pool_size
+–throttle&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#                 和–backup一起使用，指定每秒操作读写对的数量。&lt;/span&gt;
+–log&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;                 忽略MySQL选项兼容性的选项
+–log-copy-interval&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#        日志复制线程完成的检查之间的时间间隔（以毫秒为单位,默认为1秒）。&lt;/span&gt;
+–extra-lsndir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name          和–backup一起使用,在当前目录保存一份额外的xtrabackup_checkpoints文件
+–to-archived-lsn&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#          指定prepare备份时apply事务日志的LSN，只能和xtarbackup --prepare选项一起用。&lt;/span&gt;
+–tables&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name                通过正则表达式过滤表
+–tables-file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name           按文件中的精确的database.table名称列表进行筛选。
+–databases&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name             按照数据库进行过滤
+–databases-file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name        按照文件中的数据进行过滤
+–tables-exclude&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name        操作方式和–tables一样，但是匹配的表名将不备份，此参数的优先级高于–tables.
+–databases-exclude&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name     操作方式和–databases一样，但是匹配的库名将不被备份，优先级高于–databases.
+–create-ib-logfile          此参数当前不生效，无效参数
+–stream&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name                该选项表示流式备份的格式，backup完成之后以指定格式到STDOUT，目前只支持tar&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;8.0&lt;/span&gt;版本仅支持&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;和xbstream
+–decompress                 该选项表示解压–compress选项压缩的文件，解压.qp扩展文件。
+–compress&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;            压缩所有输出数据，包括事务日志文件和元数据文件，通过指定的压缩算法，
+                            目前唯一支持的算法是quicklz.结果文件是qpress归档格式，
+                            每个xtrabackup创建的*.qp文件都可以通过qpress程序提取或者解压缩
+–compress-threads&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;          &lt;span class=&#34;token comment&#34;&gt;# 备份压缩的并行线程，默认为1.并行压缩（‘compress-threads’）可以和并行文件拷贝(‘parallel’)一起使用。&lt;/span&gt;
+                            例如:’–parallel&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--compress&lt;/span&gt; --compress-threads&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;’会创建4个IO线程读取数据并通过管道传送给2个压缩线程。
+–compress-chunk-size&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#      压缩线程工作buffer的字节大小，默认是64K&lt;/span&gt;
+–encrypt&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name               该选项表示通过ENCRYPTION_ALGORITHM的算法加密innodb数据文件的备份，
+                            目前支持的算法有ASE128,AES192,AES256。
+–encrypt-key&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name           该选项使用合适长度加密key，因为会记录到命令行，所以不推荐使用。
+–encrypt-key-file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name      该选项表示文件必须是一个简单二进制或者文本文件，加密key可通过以下命令行命令生成：openssl rand &lt;span class=&#34;token parameter variable&#34;&gt;-base64&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;24&lt;/span&gt;。
+–encrypt-threads&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#          该选项表示并行加密的worker线程数量，默认为1.&lt;/span&gt;
+–encrypt-chunk-size&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#       该选项表示每个加密线程worker buffer的大小，单位是字节，默认是64K。&lt;/span&gt;
+–decrypt&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name               该选项表示解密通过–encrypt选项加密的.xbcrypt文件。
+–remove-original            当删除解密和解压完后删除 .qp and .xbcrypt 文件
+–rebuild_indexes            在apply事务日志之后重建innodb辅助索引，只有和–prepare一起才生效。
+–rebuild_threads&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#          在紧凑备份重建辅助索引的线程数，只有和–prepare和rebuild-index一起才生效。&lt;/span&gt;
+–close-files                该选项表示关闭不再访问的文件句柄，当xtrabackup打开表空间通常并不关闭文件句柄目的是正确的处理DDL操作。
+                            如果表空间数量巨大，这是一种可以关闭不再访问的文件句柄的方法。使用该选项有风险，会有产生不一致备份的可能。
+–core-file                  Write core on fatal signals
+–copy-back                  做数据恢复时将备份数据文件拷贝到MySQL服务器的datadir。
+–move-back                  这个选项与–copy-back相似，唯一的区别是它不拷贝文件，而是移动文件到目的地。
+                            这个选项移除backup文件，用时候必须小心。使用场景：没有足够的磁盘空间同事保留数据文件和Backup副本
+                            注意：
+                            &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;.datadir目录必须为空。除非指定innobackupex --force-non-empty-directorires选项指定，否则–copy-backup选项不会覆盖
+                            &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;.在restore之前,必须shutdown MySQL实例，你不能将一个运行中的实例restore到datadir目录中
+                            &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;.由于文件属性会被保留，大部分情况下你需要在启动实例之前将文件的属主改为mysql，这些文件将属于创建备份的用户
+
+–galera-info                该选项表示生成了包含创建备份时候本地节点状态的文件xtrabackup_galera_info文件，该选项只适用于备份PXC。
+–slave-info                 该选项表示对slave进行备份的时候使用，打印出master的名字和binlog pos，
+                            同样将这些信息以change master的命令写入xtrabackup_slave_info文件。可以通过基于这份备份启动一个从库。
+–no-lock                    该选项表示关闭FTWRL的表锁，只有在所有表都是Innodb表并且不关心backup的binlog pos点，
+                            如果有任何DDL语句正在执行或者非InnoDB正在更新时（包括mysql库下的表），都不应该使用这个选项，
+                            后果是导致备份数据不一致，如果考虑备份因为获得锁失败，可以考虑–safe-slave-backup立刻停止复制线程。
+–lock-ddl                   若mysql serve支持在备份支持发出LOCK TABLES FOR BACKUP指令阻止所有的DDL操作。
+–lock-ddl-timeout&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;          &lt;span class=&#34;token comment&#34;&gt;#若在指定时间内未返回值则终止备份。&lt;/span&gt;
+–lock-ddl-per-table         在xtrabackup开始复制之前锁定每个表的DDL直到备份完成
+–safe-slave-backup          该选项表示为保证一致性复制状态，这个选项停止SQL线程并且等到show status中的slave_open_temp_tables为0的时候开始备份，
+                            如果没有打开临时表，bakcup会立刻开始，否则SQL线程启动或者关闭知道没有打开的临时表。
+–safe-slave-backup-timeout  如果slave_open_temp_tables在–safe-slave-backup-timeount（默认300秒）秒之后不为0，从库sql线程会在备份完成的时候重启。
+–rsync                      该选项表示通过rsync工具优化本地传输，当指定这个选项，innobackupex使用rsync拷贝非Innodb文件而替换cp，当有很多DB和表的时候会快很多，不能–stream一起使用。
+–force-non-empty-directories指定该参数时候，使得 --copy-back或–move-back选项转移文件到非空目录，已存在的文件不会被覆盖。如果–copy-back和–move-back文件需要从备份目录拷贝一个在datadir已经存在的文件，会报错失败。
+–no-version-check           该选项关闭版本检查，当–version-check选项开启的时候。
+–tables-compatibility-check 此选项开启表存储引擎兼容性告警，默认开启。可使用–skip-tables-compatibility-check关闭。
+–no-backup-locks            该选项在backup阶段控制锁，替换FLUSH TABLES WITH READ LOCK命令。默认开启，关闭需使用参数–no-backup-locks。
+                            当mysql服务器不支持backup locks时候此参数无效。
+-u, &lt;span class=&#34;token parameter variable&#34;&gt;--user&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name             备份的用户名
+-H, &lt;span class=&#34;token parameter variable&#34;&gt;--host&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name             备份的IP地址
+-P, &lt;span class=&#34;token parameter variable&#34;&gt;--port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#                备份的端口&lt;/span&gt;
+-p, --password&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;       备份时用户的密码
+-S, &lt;span class=&#34;token parameter variable&#34;&gt;--socket&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name           备份时连接的unix操作系统的socket文件
+-h, &lt;span class=&#34;token parameter variable&#34;&gt;--datadir&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name          数据恢复时候的数据目录.从my.cnf中读取，或者命令行指定。
+-t, &lt;span class=&#34;token parameter variable&#34;&gt;--tmpdir&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name           当使用–print-param指定的时候打印出正确的tmpdir参数。用于存储临时文件的路径，在轮训模式下可以指定多个路径，使用英文的:分隔
+–parallel&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;                  指定备份时拷贝多个数据文件并发的进程数，默认值为1。
+–log-bin&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;             binlog的日志序列
+–incremental-lsn&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name       和–backup一起使用。
+–incremental-basedir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name   和–backup一起使用，仅拷贝.ibd中新增的数据到指定路径，增量备份.
+–incremental-dir&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name       和–prepare一起使用，将.delta文件和logfile保存在指定的路径.
+–incremental-force-scan     该选项表示创建一份增量备份时，强制扫描所有增量备份中的数据页
+–incremental-history-name   该选项表示存储在PERCONA_SCHEMA.xtrabackup_history基于增量备份的历史记录的名字。
+                            Percona Xtrabackup搜索历史表查找最近（innodb_to_lsn）成功备份并且将to_lsn值作为增量备份启动出事lsn.
+                            与innobackupex–incremental-history-uuid、–incremental-basedir、–incremental-lsn互斥。
+                            如果没有检测到有效的lsn，xtrabackup会返回error。
+                            和选项–incremental一起使用。
+                            –incremental-history-uuid   该选项表示存储在percona_schema.xtrabackup_history基于增量备份的特定历史记录的UUID。
+                            和选项–incremental一起使用。
+innobackupex遗留参数
+​
+参数值                                        参数用途
+–ftwrl-wait-query-type  该选项表示获得全局锁之前允许那种查询完成，默认是ALL，可选update。
+–ftwrl-wait-threshold   该选项表示检测到长查询，单位是秒，表示长查询的阈值。
+                        若–ftwrl-wait-timeout&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;此参数无效，默认值为60s。
+–ftwrl-wait-timeout&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;#   此选项指定innobackupex在运行之前应等待阻止FTWRL的查询的时间（以秒为单位）。&lt;/span&gt;
+                        如果超时到期时仍有此类查询，则innobackupex将终止并显示错误。
+                        默认值为0，在这种情况下，innobackupex不会等待查询完成并立即启动FTWRL。
+–kill-long-queries-timeout  该选项表示从开始执行FLUSH TABLES WITH READ LOCK到kill掉阻塞它的这些查询之间等待的秒数。默认值为0，不会kill任何查询，使用这个选项xtrabackup需要有Process和super权限。
+–kill-long-query-type       该选项表示kill的类型，默认是all，可选select。
+–history                    该选项表示percona server 的备份历史记录在percona_schema.xtrabackup_history表。
+–debug-sleep-before-unlock  仅用于xtrabackup测试套件的debug信息
+–check-privileges           在执行查询之前检查数据库用户的权限。
+
+安全备份的参数
+​
+参数值                               参数用途
+–server-public-key-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name    File path to the server public RSA key &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; PEM format.
+–server-public-key-path&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name    File path to the server public RSA key &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; PEM format.
+–get-server-public-key  Get server public key
+–ssl-mode&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name  SSL connection mode.
+–ssl-ca&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name    CA &lt;span class=&#34;token function&#34;&gt;file&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; PEM format.
+–ssl-capath&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name    CA directory.
+–ssl-cert&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name  X509 cert &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; PEM format.
+–ssl-cipher&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name    SSL cipher to use.
+–ssl-key&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name   X509 key &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; PEM &lt;span class=&#34;token function&#34;&gt;format&lt;/span&gt;
+–ssl-crl&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name   Certificate revocation list.
+–ssl-crlpath&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name   Certificate revocation list path.
+–tls-version&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name   TLS version to use, permitted values are: TLSv1, TLSv1.1,TLSv1.2
+–ssl-fips-mode&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name SL FIPS mode to use, permitted values are: OFF, ON,STRICT&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2024/12/26/follow/</guid>
             <title>follow</title>
@@ -185,8 +430,8 @@ or
             <title>https 证书自动续期，永久免费</title>
             <link>https://gyoliu.github.io/2024/07/08/nginx-config-https/</link>
             <category>Default</category>
-            <category>nginx</category>
             <category>证书</category>
+            <category>nginx</category>
             <pubDate>Mon, 08 Jul 2024 13:15:44 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;https-证书自动续期，永久免费&#34;&gt;&lt;a href=&#34;#https-证书自动续期，永久免费&#34; class=&#34;headerlink&#34; title=&#34;https 证书自动续期，永久免费&#34;&gt;&lt;/a&gt;https 证书自动续期，永久免费&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;开源组织的免费证书：&lt;a href=&#34;https://letsencrypt.org/zh-cn/&#34;&gt;https://letsencrypt.org/zh-cn/&lt;/a&gt;&lt;br&gt;Let’s Encrypt 和 &lt;a href=&#34;https://tools.ietf.org/html/rfc8555&#34;&gt;ACME 协议&lt;/a&gt;的目标是实现可信数字证书的自动获取，从而简化 HTTPS 服务器部署中的人工操作。 这一目标是由 Web 服务器上的证书管理软件完成的。&lt;/p&gt;
