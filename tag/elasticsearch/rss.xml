@@ -16,11 +16,11 @@
         <category>hibernate</category>
         <category>JVM</category>
         <category>mysql</category>
+        <category>openssl</category>
+        <category>spring</category>
+        <category>Spring Cloud</category>
         <category>证书</category>
         <category>nginx</category>
-        <category>openssl</category>
-        <category>Spring Cloud</category>
-        <category>spring</category>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2022/06/29/elasticsearch-query/</guid>
             <title>elasticsearch 查询</title>

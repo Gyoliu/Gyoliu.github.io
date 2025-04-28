@@ -133,6 +133,13 @@
             <span>Linux</span>
           </div>
         </a>
+      </li><li class="">
+        <a href="/categories/Default/mysql/">
+          
+          <div class="ellipsis">
+            <span>mysql</span>
+          </div>
+        </a>
       </li></ul>
 </nav>
 
@@ -171,6 +178,71 @@
     <li>
       <h2>2025</h2>
       <ul class="timeline">
+        
+        <li>
+          <a class="timeline-item" href="/2025/04/16/linux-performance-optimization/">
+            <div class="timeline-info">
+              
+              <span>04-16 23:06:58</span>
+            </div>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-title ellipsis">
+
+                <span>linux performance optimization</span>
+              </div>
+              <p>模拟一个 CPU 使用率 100% 的场景：stress --cpu 1 --timeout 600
+# 间隔 5 秒后输出一组数据
+pidstat -u 5 1
+模拟 I&amp;#x2F;O 压力，即不停地执行 sync：stress -i 1 --timeout 600
+# 间隔 5 秒后输出一组数据
+mpstat -P ALL 5 1
+
+# 间隔 5 秒后输...</p>
+            </div>
+          </a>
+        </li>
+        
+        <li>
+          <a class="timeline-item" href="/2025/04/10/java17jvm-params/">
+            <div class="timeline-info">
+              
+              <span>04-10 09:08:04</span>
+            </div>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-title ellipsis">
+
+                <span>java17jvm-params</span>
+              </div>
+              <p>–add-opens&amp;#x3D;java.base&amp;#x2F;java.lang&amp;#x3D;ALL-UNNAMED     -Xms1500m -Xmx1500m     -XX:ReservedCodeCacheSize&amp;#x3D;256m     -XX:InitialCodeCacheSize&amp;#x3D;256m \    -XX:+UnlockExp...</p>
+            </div>
+          </a>
+        </li>
+        
+        <li>
+          <a class="timeline-item" href="/2025/03/11/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/">
+            <div class="timeline-info">
+              
+              <span>03-11 09:16:40</span>
+            </div>
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-title ellipsis">
+
+                <span>mysql主从搭建</span>
+              </div>
+              <p>主服务器配置#服务器 id，随意，但要唯一
+server-id = 1  
+#二进制文件存放路径
+log-bin = mysql-bin 
+#参数用于排除自带的数据库。  
+binlog-ignore-db = mysql 
+binlog-ignore-db = information_schema
+binlog-ignore-db = performanc...</p>
+            </div>
+          </a>
+        </li>
         
         <li>
           <a class="timeline-item" href="/2025/03/06/XtraBackup-mysql-backup/">
@@ -343,7 +415,9 @@ fdisk &amp;#x2F;dev&amp;#x2F;sdbn-&amp;gt;p-&amp;gt;1-&amp;gt;回车-&amp;gt;回
 
 创建磁盘：mkfs.xfs /dev/sdb1
 mkdir /app
-echo &amp;quot;/dev/sdb1 /app xfs defaults 0 0&amp;quot; &amp;gt;&amp;gt; /etc/fst...</p>
+echo &#34;/dev/sdb1 /app xfs defaults 0 0&#34; &gt;&gt; /etc/fstab
+mount -a
+df -...</p>
             </div>
           </a>
         </li>

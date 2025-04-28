@@ -13,11 +13,11 @@
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
+    <category term="openssl" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
-    <category term="openssl" />
-    <category term="Spring Cloud" />
-    <category term="spring" />
     <entry>
         <id>https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/</id>
         <title>Cosy入门</title>

@@ -13,11 +13,11 @@
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
+    <category term="openssl" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
-    <category term="openssl" />
-    <category term="Spring Cloud" />
-    <category term="spring" />
     <entry>
         <id>https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/</id>
         <title>spring bean 扩展点记录</title>

@@ -13,11 +13,11 @@
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
+    <category term="openssl" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
-    <category term="openssl" />
-    <category term="Spring Cloud" />
-    <category term="spring" />
     <entry>
         <id>https://gyoliu.github.io/2022/09/20/openssl-install/</id>
         <title>openssl 编译安装</title>

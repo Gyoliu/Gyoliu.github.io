@@ -16,11 +16,11 @@
         <category>hibernate</category>
         <category>JVM</category>
         <category>mysql</category>
+        <category>openssl</category>
+        <category>spring</category>
+        <category>Spring Cloud</category>
         <category>证书</category>
         <category>nginx</category>
-        <category>openssl</category>
-        <category>Spring Cloud</category>
-        <category>spring</category>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/</guid>
             <title>Cosy入门</title>

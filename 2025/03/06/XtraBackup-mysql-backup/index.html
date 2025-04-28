@@ -133,6 +133,13 @@
             <span>Linux</span>
           </div>
         </a>
+      </li><li class="">
+        <a href="/categories/Default/mysql/">
+          
+          <div class="ellipsis">
+            <span>mysql</span>
+          </div>
+        </a>
       </li></ul>
 </nav>
 
@@ -242,9 +249,9 @@
           <div class="last-updated">
             Last updated: 2025-03-06 16:29:54
             <span class="post-meta-item-text">Word count:</span>
-            <span class="post-count">3.7k</span>
+            <span class="post-count">4.7k</span>
             <span class="post-meta-item-text">Reading Time:</span>
-            <span class="post-count">15 min</span>
+            <span class="post-count">19 min</span>
           </div>
           <!-- 文章 -->
           <h1 id="1-安装-Percona-XtraBackup"><a href="#1-安装-Percona-XtraBackup" class="headerlink" title="1. 安装 Percona XtraBackup"></a>1. 安装 Percona XtraBackup</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Ubuntu/Debian</span>
@@ -256,43 +263,114 @@
 <span class="token comment"># CentOS/RHEL</span>
 <span class="token function">sudo</span> yum <span class="token function">install</span> https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 <span class="token function">sudo</span> yum <span class="token function">install</span> percona-xtrabackup-80<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="2-全量备份（Full-Backup）"><a href="#2-全量备份（Full-Backup）" class="headerlink" title="2. 全量备份（Full Backup）"></a>2. 全量备份（Full Backup）</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建备份目录</span>
-<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /backup/mysql/full/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>
+<h1 id="备份需要的权限"><a href="#备份需要的权限" class="headerlink" title="备份需要的权限"></a>备份需要的权限</h1><pre class="line-numbers language-none"><code class="language-none">Xtrabackup 备份工具，备份时用户需要有以下权限。
+Reload：用于执行 FLUSH TABLES WITH REDO LOCK 和 FLUSH NO_WRITE_TO_BINLOG TABLES 是必需权限。
+Replication client：用于执行 SHOW MASTER STATUS 和 SHOW SLAVE STATUS 查看位点信息，是必需权限。
+BACKUP_ADMIN：用于执行 LOCK INSTANCE FOR BACKUP，是必需权限。
+Process：用于执行 SHOW ENGINE INNODB STATUS 和 SHOW PROCESSLIST 是必需权限。
+SYSTEM_VARIABLES_ADMIN：用于在增量备份时执行 SET GLOBAL mysqlbackup.backupid &#x3D; xxx 操作，是非必需权限。
+SUPER：在指定 –kill-long-queries-timeout 需要杀掉慢查询，和从库备份指定 –safe-slave-backup 需要重启复制，需要用到该权限。
+SHOW VIEW：确认是否有非 INNODB 引擎表。
+如果使用 Page Tracking 进行增量备份，还需要 mysql.component 表的查询权限。
+如果指定 –history 还需要 performance_schema.xtraback_history 的 SELECT、INSERT、CREATE、ALTER 权限。
+以下是 MySQL 8.0 以上版本的完整授权示例：
+CREATE USER &#39;backuser&#39;@&#39;localhost&#39;  IDENTIFIED WITH mysql_native_password BY &#39;BackUser@2025&#39;;
+GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO &#39;backuser&#39;@&#39;localhost&#39;;
+GRANT SELECT ON performance_schema.log_status TO &#39;backuser&#39;@&#39;localhost&#39;;
+GRANT SELECT ON performance_schema.keyring_component_status TO backuser@&#39;localhost&#39;;
+GRANT SELECT ON performance_schema.replication_group_members TO backuser@&#39;localhost&#39;;
+FLUSH PRIVILEGES;
+以下是 MySQL 5.7 版本的完整授权示例：
+CREATE USER &#39;bkpuser&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;s3cret&#39;;
+GRANT RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT ON *.* TO &#39;bkpuser&#39;@&#39;localhost&#39;;
+FLUSH PRIVILEGES;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="2-全量备份（Full-Backup）"><a href="#2-全量备份（Full-Backup）" class="headerlink" title="2. 全量备份（Full Backup）"></a>2. 全量备份（Full Backup）</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建全量备份目录</span>
+<span class="token assign-left variable">BACKUP_DIR</span><span class="token operator">=</span><span class="token string">"/backup/mysql/full/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>"</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token variable">$BACKUP_DIR</span>
 
-<span class="token comment"># 执行全量备份（无锁表）</span>
-xtrabackup <span class="token parameter variable">--backup</span> <span class="token parameter variable">--user</span><span class="token operator">=</span>root <span class="token parameter variable">--password</span><span class="token operator">=</span>YourPassword --target-dir<span class="token operator">=</span>/backup/mysql/full/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>
-
-<span class="token comment"># 压缩并上传至云存储（示例使用 AWS S3）</span>
-<span class="token function">tar</span> <span class="token parameter variable">-czf</span> /backup/mysql/full/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.tar.gz /backup/mysql/full/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>
-aws s3 <span class="token function">cp</span> /backup/mysql/full/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>.tar.gz s3://your-bucket/mysql-backup/full/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="3-增量备份（Incremental-Backup）"><a href="#3-增量备份（Incremental-Backup）" class="headerlink" title="3. 增量备份（Incremental Backup）"></a>3. 增量备份（Incremental Backup）</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 假设最后一次全量备份路径：/backup/mysql/full/20231001</span>
-<span class="token comment"># 创建增量备份目录</span>
-<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /backup/mysql/inc/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>
-
-<span class="token comment"># 基于全量或上一次增量备份执行增量备份</span>
+<span class="token comment"># 执行备份（无锁表）</span>
 xtrabackup <span class="token parameter variable">--backup</span> <span class="token punctuation">\</span>
-  <span class="token parameter variable">--user</span><span class="token operator">=</span>root <span class="token parameter variable">--password</span><span class="token operator">=</span>YourPassword <span class="token punctuation">\</span>
-  --target-dir<span class="token operator">=</span>/backup/mysql/inc/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span> <span class="token punctuation">\</span>
-  --incremental-basedir<span class="token operator">=</span>/backup/mysql/full/20231001  <span class="token comment"># 或上一次增量目录</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token parameter variable">--user</span><span class="token operator">=</span>backup_user <span class="token parameter variable">--password</span><span class="token operator">=</span>YourSecurePassword <span class="token parameter variable">-H</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-P3306</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--databases</span><span class="token operator">=</span><span class="token string">"xxx"</span> <span class="token punctuation">\</span>
+  --exclude-tables<span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;TARGET_DATABASE&#125;</span>.<span class="token variable">$&#123;EXCLUDE_TABLE&#125;</span>"</span> <span class="token punctuation">\</span>
+  --target-dir<span class="token operator">=</span><span class="token variable">$BACKUP_DIR</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--compress</span> <span class="token punctuation">\</span>
+  --slave-info <span class="token punctuation">\</span>
+  --compress-threads<span class="token operator">=</span><span class="token number">4</span> <span class="token operator">|</span> <span class="token function">gzip</span> - <span class="token operator">></span> xxx.tar.gz
+
+<span class="token comment"># 生成校验文件（可选）</span>
+sha256sum <span class="token variable">$BACKUP_DIR</span>/backup.xbstream <span class="token operator">|</span> <span class="token function">tee</span> <span class="token variable">$BACKUP_DIR</span>/checksum.sha256
+
+<span class="token comment"># 上传至云存储（AWS S3示例）</span>
+aws s3 <span class="token function">cp</span> <span class="token parameter variable">--sse</span> AES256 <span class="token variable">$BACKUP_DIR</span> s3://your-bucket/mysql/full/ <span class="token parameter variable">--recursive</span>
+
+关键参数介绍：
+–backup：发起全量备份。
+-u, -H, -P, -p：连接 mysql 实例，用户名、主机 IP、端口、密码。
+–slave-info：记录 slave 复制位点信息，一般备份从库需要指定该参数。
+–target-dir：备份文件的存放路径。
+–parallel：并发拷贝的线程数。
+<span class="token operator"><span class="token file-descriptor important">2</span>></span> /tmp/xtrabackup.log：将备份过程中的日志重定向到 /tmp/xtrabackup.log 文件中。
+
+备份出来的文件中，除了数据文件，还有以下额外的文件：
+backup-my.cnf：该文件不是 MySQL 参数文件的备份，只是记录了一些 Innodb 引擎的参数，会在 Prepare 阶段用到。
+xtrabackup_logfile：该文件用来保存拷贝的 redo log。
+xtrabackup_binlog_info：binlog 位点信息和 GTID 信息。使用该备份恢复后，需要从该 binlog 位点进行增量恢复。
+xtrabackup_slave_info：如果是对从库进行备份，指定 –slave-info 该文件会记录主节点的位点信息，取自 SHOW SLAVE STATUS 中的 Relay_Master_Log_File 和 Exec_Master_Log_Pos。如果是给主库备份，该文件为空。
+xtrabackup_checkpoints：该文件记录了备份类型和 LSN 信息。
+xtrabackup_info：该文件中，记录备份的详细信息。
+xtrabackup_tablespaces：记录备份集中表空间的信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="全量流式备份"><a href="#全量流式备份" class="headerlink" title="全量流式备份"></a>全量流式备份</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xtrabackup <span class="token parameter variable">--backup</span> --slave-info  <span class="token parameter variable">-u</span> root <span class="token parameter variable">-H</span> <span class="token number">127.0</span>.0.1 <span class="token parameter variable">-P3306</span> -p<span class="token string">'YouPassword'</span> <span class="token punctuation">\</span>
+ <span class="token parameter variable">--stream</span><span class="token operator">=</span>xbstream --target-dir<span class="token operator">=</span>/data/backup/bakup_<span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +<span class="token string">"%F_%H_%M_%S"</span><span class="token variable">`</span></span> <span class="token operator"><span class="token file-descriptor important">2</span>></span>/data/backup/xtrabackup.log  <span class="token punctuation">\</span>
+ <span class="token operator">|</span> <span class="token function">ssh</span> root@172.16.104.7 <span class="token function">gzip</span> -  <span class="token operator">></span> /data/backup/backup.gz
+
+ 远程恢复的时候，需要先使用 xbstream 命令进行解压：
+ xbstream <span class="token parameter variable">-x</span> <span class="token parameter variable">--parallel</span><span class="token operator">=</span><span class="token number">10</span> <span class="token parameter variable">-C</span> /data/backup/20231113 <span class="token operator">&lt;</span> ./backup.xbstream
+ xbstream 中的 <span class="token parameter variable">-x</span> 表示解压，–parallel 表示并行度，-C 指定解压的目录，最后一级目录必须存在。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="3-增量备份（Incremental-Backup）"><a href="#3-增量备份（Incremental-Backup）" class="headerlink" title="3. 增量备份（Incremental Backup）"></a>3. 增量备份（Incremental Backup）</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 假设最后一次全量备份路径：/backup/mysql/full/20231001</span>
+  <span class="token comment"># 获取上一次备份目录（全量或增量）</span>
+<span class="token assign-left variable">LAST_BACKUP</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">ls</span> <span class="token parameter variable">-d</span> /backup/mysql/*/* <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">|</span> <span class="token function">tail</span> <span class="token parameter variable">-1</span><span class="token variable">)</span></span>
+
+<span class="token comment"># 创建增量备份目录</span>
+<span class="token assign-left variable">INC_DIR</span><span class="token operator">=</span><span class="token string">"/backup/mysql/inc/<span class="token variable"><span class="token variable">$(</span><span class="token function">date</span> +%Y%m%d<span class="token variable">)</span></span>"</span>
+<span class="token function">mkdir</span> <span class="token parameter variable">-p</span> <span class="token variable">$INC_DIR</span>
+
+<span class="token comment"># 执行增量备份</span>
+xtrabackup <span class="token parameter variable">--backup</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--user</span><span class="token operator">=</span>backup_user <span class="token parameter variable">--password</span><span class="token operator">=</span>YourSecurePassword <span class="token punctuation">\</span>
+  --target-dir<span class="token operator">=</span><span class="token variable">$INC_DIR</span> <span class="token punctuation">\</span>
+  --incremental-basedir<span class="token operator">=</span><span class="token variable">$LAST_BACKUP</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">--compress</span> <span class="token punctuation">\</span>
+  --compress-threads<span class="token operator">=</span><span class="token number">4</span>
+
+<span class="token comment"># 上传至云存储</span>
+aws s3 <span class="token function">cp</span> <span class="token parameter variable">--sse</span> AES256 <span class="token variable">$INC_DIR</span> s3://your-bucket/mysql/inc/ <span class="token parameter variable">--recursive</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="3-Binlog-实时备份"><a href="#3-Binlog-实时备份" class="headerlink" title="3. Binlog 实时备份"></a>3. Binlog 实时备份</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 定时任务（每5分钟同步一次）</span>
+*/5 * * * * <span class="token function">rsync</span> <span class="token parameter variable">-avz</span> /var/lib/mysql/mysql-bin.* /backup/mysql/binlog/
+<span class="token comment"># 每日归档并清理旧文件</span>
+<span class="token number">0</span> <span class="token number">0</span> * * * <span class="token function">find</span> /backup/mysql/binlog/ <span class="token parameter variable">-name</span> <span class="token string">"mysql-bin.*"</span> <span class="token parameter variable">-mtime</span> +30 <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="1-恢复全量备份"><a href="#1-恢复全量备份" class="headerlink" title="1. 恢复全量备份"></a>1. 恢复全量备份</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 停止 MySQL 服务</span>
 systemctl stop mysql
 
-<span class="token comment"># 清空数据目录（谨慎操作！）</span>
+<span class="token comment"># 清空数据目录</span>
 <span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/lib/mysql/*
 
-<span class="token comment"># 准备全量备份</span>
+<span class="token comment"># 解压并准备备份</span>
+xtrabackup <span class="token parameter variable">--decompress</span> --target-dir<span class="token operator">=</span>/backup/mysql/full/20231001
 xtrabackup <span class="token parameter variable">--prepare</span> --apply-log-only --target-dir<span class="token operator">=</span>/backup/mysql/full/20231001
 
-<span class="token comment"># 复制数据文件到 MySQL 目录</span>
+<span class="token comment"># 复制数据文件</span>
 xtrabackup --copy-back --target-dir<span class="token operator">=</span>/backup/mysql/full/20231001
 
-<span class="token comment"># 修改权限并启动 MySQL</span>
+<span class="token comment"># 修改权限并启动</span>
 <span class="token function">chown</span> <span class="token parameter variable">-R</span> mysql:mysql /var/lib/mysql
-systemctl start mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+systemctl start mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="2-应用增量备份"><a href="#2-应用增量备份" class="headerlink" title="2. 应用增量备份"></a>2. 应用增量备份</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 准备全量备份（必须步骤）</span>
+<h1 id="2-应用增量备份"><a href="#2-应用增量备份" class="headerlink" title="2. 应用增量备份"></a>2. 应用增量备份</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 解压数据</span>
+xtrabackup <span class="token parameter variable">--decompress</span> --target-dir<span class="token operator">=</span>/backup/mysql/full/20231001
+<span class="token comment"># 准备全量备份（必须步骤）</span>
 xtrabackup <span class="token parameter variable">--prepare</span> --apply-log-only --target-dir<span class="token operator">=</span>/backup/mysql/full/20231001
 
 <span class="token comment"># 应用第一个增量备份</span>
@@ -308,7 +386,13 @@ xtrabackup <span class="token parameter variable">--prepare</span> --apply-log-o
 <span class="token comment"># 最后准备（确保一致性）</span>
 xtrabackup <span class="token parameter variable">--prepare</span> --target-dir<span class="token operator">=</span>/backup/mysql/full/20231001
 
-<span class="token comment"># 复制数据并启动 MySQL（同上）</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 复制数据并启动 MySQL（同上）</span>
+<span class="token comment"># 复制数据文件</span>
+xtrabackup --copy-back --target-dir<span class="token operator">=</span>/backup/mysql/full/20231001
+
+<span class="token comment"># 修改权限并启动</span>
+<span class="token function">chown</span> <span class="token parameter variable">-R</span> mysql:mysql /var/lib/mysql
+systemctl start mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="3-通过-Binlog-恢复至最新状态"><a href="#3-通过-Binlog-恢复至最新状态" class="headerlink" title="3. 通过 Binlog 恢复至最新状态"></a>3. 通过 Binlog 恢复至最新状态</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 解析增量备份后的 Binlog 位置</span>
 <span class="token function">cat</span> /backup/mysql/full/20231001/xtrabackup_binlog_info
@@ -334,17 +418,28 @@ mysqlbinlog --start-position<span class="token operator">=</span><span class="to
   aws s3 <span class="token function">cp</span> <span class="token variable">$BACKUP_DIR</span>.tar.gz s3://your-bucket/mysql-backup/inc/
 <span class="token keyword">fi</span>
 
-<span class="token comment"># 清理旧备份（保留策略）</span>
-<span class="token function">find</span> /backup/mysql/full/ <span class="token parameter variable">-type</span> d <span class="token parameter variable">-mtime</span> +30 <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
-<span class="token function">find</span> /backup/mysql/inc/ <span class="token parameter variable">-type</span> d <span class="token parameter variable">-mtime</span> +7 <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
 
+<span class="token comment"># 清理旧备份（每日 4:00 AM）</span>
+<span class="token number">0</span> <span class="token number">4</span> * * * <span class="token function">find</span> /backup/mysql/full/ <span class="token parameter variable">-mtime</span> +30 <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+<span class="token number">0</span> <span class="token number">4</span> * * * <span class="token function">find</span> /backup/mysql/inc/ <span class="token parameter variable">-mtime</span> +7 <span class="token parameter variable">-exec</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
 
+<span class="token comment"># 查看全部定时任务</span>
+<span class="token function">sudo</span> <span class="token function">crontab</span> <span class="token parameter variable">-l</span>
 <span class="token comment"># 编辑 crontab</span>
 <span class="token function">crontab</span> <span class="token parameter variable">-e</span>
+<span class="token comment"># 全量备份（每周日 2:00 AM）</span>
+<span class="token number">0</span> <span class="token number">2</span> * * <span class="token number">7</span> /scripts/full_backup.sh
+<span class="token comment"># 增量备份（每日 3:00 AM）</span>
+<span class="token number">0</span> <span class="token number">3</span> * * <span class="token number">1</span>-6 /scripts/inc_backup.sh
 
-<span class="token comment"># 添加以下内容（每天凌晨3点执行）</span>
-<span class="token number">0</span> <span class="token number">3</span> * * * /path/to/mysql_backup.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token number">0</span> <span class="token number">23</span> * * * /home/syscook/xtrabackup_backup.sh full
+<span class="token number">0</span> <span class="token number">13</span> * * * /home/syscook/xtrabackup_backup.sh inc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<pre class="line-numbers language-none"><code class="language-none">[生产MySQL] → [XtraBackup 全量&#x2F;增量] → [本地SSD] → [加密上传至S3]
+                          ↓
+                  [Binlog 实时同步] → [独立存储]
+                          ↓
+                   [监控告警] → [运维团队]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
 <span class="token parameter variable">--backup</span> 模式，用于在目标目录中进行备份
@@ -522,7 +617,7 @@ innobackupex遗留参数
               </span>
             </cosy-tooltip>
             <!-- 文章toc -->
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85-Percona-XtraBackup"><span class="toc-number">1.</span> <span class="toc-text">1. 安装 Percona XtraBackup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%85%A8%E9%87%8F%E5%A4%87%E4%BB%BD%EF%BC%88Full-Backup%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">2. 全量备份（Full Backup）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%EF%BC%88Incremental-Backup%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">3. 增量备份（Incremental Backup）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%81%A2%E5%A4%8D%E5%85%A8%E9%87%8F%E5%A4%87%E4%BB%BD"><span class="toc-number">4.</span> <span class="toc-text">1. 恢复全量备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%BA%94%E7%94%A8%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD"><span class="toc-number">5.</span> <span class="toc-text">2. 应用增量备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E9%80%9A%E8%BF%87-Binlog-%E6%81%A2%E5%A4%8D%E8%87%B3%E6%9C%80%E6%96%B0%E7%8A%B6%E6%80%81"><span class="toc-number">6.</span> <span class="toc-text">3. 通过 Binlog 恢复至最新状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B%EF%BC%88mysql-backup-sh%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">1. 备份脚本示例（mysql_backup.sh）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">命令参数</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85-Percona-XtraBackup"><span class="toc-number">1.</span> <span class="toc-text">1. 安装 Percona XtraBackup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">2.</span> <span class="toc-text">备份需要的权限</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%85%A8%E9%87%8F%E5%A4%87%E4%BB%BD%EF%BC%88Full-Backup%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">2. 全量备份（Full Backup）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A8%E9%87%8F%E6%B5%81%E5%BC%8F%E5%A4%87%E4%BB%BD"><span class="toc-number">4.</span> <span class="toc-text">全量流式备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%EF%BC%88Incremental-Backup%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">3. 增量备份（Incremental Backup）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Binlog-%E5%AE%9E%E6%97%B6%E5%A4%87%E4%BB%BD"><span class="toc-number">6.</span> <span class="toc-text">3. Binlog 实时备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%81%A2%E5%A4%8D%E5%85%A8%E9%87%8F%E5%A4%87%E4%BB%BD"><span class="toc-number">7.</span> <span class="toc-text">1. 恢复全量备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%BA%94%E7%94%A8%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD"><span class="toc-number">8.</span> <span class="toc-text">2. 应用增量备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E9%80%9A%E8%BF%87-Binlog-%E6%81%A2%E5%A4%8D%E8%87%B3%E6%9C%80%E6%96%B0%E7%8A%B6%E6%80%81"><span class="toc-number">9.</span> <span class="toc-text">3. 通过 Binlog 恢复至最新状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B%EF%BC%88mysql-backup-sh%EF%BC%89"><span class="toc-number">10.</span> <span class="toc-text">1. 备份脚本示例（mysql_backup.sh）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0"><span class="toc-number">11.</span> <span class="toc-text">命令参数</span></a></li></ol>
           </div>
         </div>
       </cosy-drag-box>

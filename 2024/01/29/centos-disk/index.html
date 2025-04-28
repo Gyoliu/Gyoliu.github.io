@@ -133,6 +133,13 @@
             <span>Linux</span>
           </div>
         </a>
+      </li><li class="">
+        <a href="/categories/Default/mysql/">
+          
+          <div class="ellipsis">
+            <span>mysql</span>
+          </div>
+        </a>
       </li></ul>
 </nav>
 
@@ -242,9 +249,9 @@
           <div class="last-updated">
             Last updated: 2024-01-29 13:10:53
             <span class="post-meta-item-text">Word count:</span>
-            <span class="post-count">56</span>
+            <span class="post-count">833</span>
             <span class="post-meta-item-text">Reading Time:</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
           </div>
           <!-- 文章 -->
           <h3 id="查看磁盘："><a href="#查看磁盘：" class="headerlink" title="查看磁盘："></a>查看磁盘：</h3><blockquote>
@@ -253,14 +260,104 @@
 <h3 id="格式化磁盘："><a href="#格式化磁盘：" class="headerlink" title="格式化磁盘："></a>格式化磁盘：</h3><blockquote>
 <p>fdisk &#x2F;dev&#x2F;sdb<br>n-&gt;p-&gt;1-&gt;回车-&gt;回车-&gt;w</p>
 </blockquote>
-<h3 id="创建磁盘："><a href="#创建磁盘：" class="headerlink" title="创建磁盘："></a>创建磁盘：</h3><pre><code class="shell">mkfs.xfs /dev/sdb1
-mkdir /app
-echo &quot;/dev/sdb1 /app xfs defaults 0 0&quot; &gt;&gt; /etc/fstab
-mount -a
-df -h
-```yml
-</code></pre>
+<h3 id="创建磁盘："><a href="#创建磁盘：" class="headerlink" title="创建磁盘："></a>创建磁盘：</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mkfs.xfs /dev/sdb1
+<span class="token function">mkdir</span> /app
+<span class="token builtin class-name">echo</span> <span class="token string">"/dev/sdb1 /app xfs defaults 0 0"</span> <span class="token operator">>></span> /etc/fstab
+<span class="token function">mount</span> <span class="token parameter variable">-a</span>
+<span class="token function">df</span> <span class="token parameter variable">-h</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="LVM-磁盘管理"><a href="#LVM-磁盘管理" class="headerlink" title="LVM 磁盘管理"></a>LVM 磁盘管理</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+<span class="token function">sudo</span> vgdisplay  <span class="token comment"># 查看卷组剩余空间</span>
+<span class="token function">sudo</span> lvdisplay  <span class="token comment"># 查看逻辑卷详情</span>
+
+方法一：直接扩展现有逻辑卷（推荐）
+<span class="token comment"># 扩展逻辑卷到最大可用空间（保留所有剩余空间）</span>
+<span class="token function">sudo</span> lvextend <span class="token parameter variable">-l</span> +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+<span class="token comment"># 调整文件系统大小（ext4 适用）</span>
+<span class="token function">sudo</span> resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+<span class="token comment"># 验证</span>
+<span class="token function">df</span> <span class="token parameter variable">-h</span> <span class="token operator">|</span> <span class="token function">grep</span> /dev/mapper/ubuntu--vg-ubuntu--lv
+
+
+方法二：创建新逻辑卷（如需独立挂载）‌
+
+<span class="token comment"># 创建新逻辑卷（命名为 new-lv，分配 100G）</span>
+<span class="token function">sudo</span> lvcreate <span class="token parameter variable">-n</span> new-lv <span class="token parameter variable">-L</span> 100G ubuntu-vg
+
+<span class="token comment"># 格式化</span>
+<span class="token function">sudo</span> mkfs.ext4 /dev/ubuntu-vg/new-lv
+
+<span class="token comment"># 挂载到目录（如 /mnt/data）</span>
+<span class="token function">sudo</span> <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /mnt/data
+<span class="token function">sudo</span> <span class="token function">mount</span> /dev/ubuntu-vg/new-lv /mnt/data
+
+<span class="token comment"># 开机自动挂载</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'/dev/ubuntu-vg/new-lv /mnt/data ext4 defaults 0 2'</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> <span class="token parameter variable">-a</span> /etc/fstab
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="LVM-收缩逻辑卷（缩小磁盘空间）"><a href="#LVM-收缩逻辑卷（缩小磁盘空间）" class="headerlink" title="LVM 收缩逻辑卷（缩小磁盘空间）"></a>LVM 收缩逻辑卷（缩小磁盘空间）</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">‌1. 前提条件‌
+‌文件系统支持收缩‌：仅 ext2/3/4 和 xfs（有限支持）可缩小，且需先缩小文件系统，再缩小逻辑卷‌
+‌数据备份‌：收缩操作可能导致数据丢失，‌必须提前备份重要数据‌‌68。
+‌剩余空间检查‌：确保目标容量足够存放现有数据。
+
+<span class="token function">sudo</span> <span class="token function">umount</span> /mnt/data  <span class="token comment"># 如果逻辑卷已挂载，需先卸载</span>
+<span class="token function">sudo</span> e2fsck <span class="token parameter variable">-f</span> /dev/vg_name/lv_name  <span class="token comment"># 强制检查 ext4 文件系统</span>
+<span class="token function">sudo</span> resize2fs /dev/vg_name/lv_name 50G  <span class="token comment"># 将文件系统缩小到 50G</span>
+<span class="token function">sudo</span> lvreduce <span class="token parameter variable">-L</span> 50G /dev/vg_name/lv_name  <span class="token comment"># 将逻辑卷缩小到 50G</span>
+<span class="token function">sudo</span> <span class="token function">mount</span> /dev/vg_name/lv_name /mnt/data <span class="token comment"># 重新挂载（如果之前卸载）</span>
+<span class="token comment"># 验证</span>
+<span class="token function">df</span> <span class="token parameter variable">-h</span> <span class="token operator">|</span> <span class="token function">grep</span> lv_name  <span class="token comment"># 检查文件系统大小</span>
+<span class="token function">sudo</span> lvdisplay /dev/vg_name/lv_name  <span class="token comment"># 检查逻辑卷大小</span>
+
+
+场景 <span class="token number">1</span>：缩小根分区（/）‌
+‌必须从 Live CD/USB 启动‌，因为根分区无法卸载‌
+<span class="token function">sudo</span> lvresize <span class="token parameter variable">--resizefs</span> <span class="token parameter variable">-L</span> 50G /dev/ubuntu-vg/ubuntu-lv  <span class="token comment"># 自动调整文件系统和逻辑卷</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="在已创建新逻辑卷后再次扩容的完整步骤"><a href="#在已创建新逻辑卷后再次扩容的完整步骤" class="headerlink" title="在已创建新逻辑卷后再次扩容的完整步骤"></a>在已创建新逻辑卷后再次扩容的完整步骤</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> vgdisplay ubuntu-vg  <span class="token comment"># 查看卷组剩余空间（Free PE / Size）</span>
+场景 <span class="token number">1</span>：卷组仍有剩余空间
+<span class="token comment"># 将 /dev/ubuntu-vg/data 扩容 20G（根据需求调整）</span>
+<span class="token function">sudo</span> lvextend <span class="token parameter variable">-L</span> +20G /dev/ubuntu-vg/data
+<span class="token comment"># 调整文件系统（ext4 示例）</span>
+<span class="token function">sudo</span> resize2fs /dev/ubuntu-vg/data
+
+
+场景 <span class="token number">2</span>：卷组无剩余空间（需先扩展物理卷）
+‌步骤 <span class="token number">1</span>：扩展物理卷（PV）
+<span class="token comment"># 查看物理卷路径（通常为 /dev/sda3）</span>
+<span class="token function">sudo</span> pvdisplay
+<span class="token comment"># 扩展物理卷边界（假设 /dev/sda3 是 PV）</span>
+<span class="token function">sudo</span> pvresize /dev/sda3
+‌步骤 <span class="token number">2</span>：确认卷组空间更新
+<span class="token function">sudo</span> vgdisplay ubuntu-vg  <span class="token comment"># 此时应显示新的 Free PE / Size</span>
+步骤 <span class="token number">3</span>：扩容逻辑卷
+<span class="token function">sudo</span> lvextend <span class="token parameter variable">-L</span> +30G /dev/ubuntu-vg/data  <span class="token comment"># 增加 30G</span>
+<span class="token function">sudo</span> resize2fs /dev/ubuntu-vg/data         <span class="token comment"># 调整文件系统</span>
+
+‌3. 高级操作：从磁盘新增物理卷‌
+若物理磁盘 /dev/sda 已无剩余空间，需添加新磁盘（如 /dev/sdb）：
+<span class="token comment"># 创建新分区并设为 LVM 类型（通过 fdisk/gdisk）</span>
+<span class="token function">sudo</span> <span class="token function">fdisk</span> /dev/sdb  <span class="token comment"># 创建新分区（如 /dev/sdb1），类型代码 8e（Linux LVM）</span>
+
+<span class="token comment"># 初始化物理卷</span>
+<span class="token function">sudo</span> pvcreate /dev/sdb1
+
+<span class="token comment"># 扩展卷组</span>
+<span class="token function">sudo</span> vgextend ubuntu-vg /dev/sdb1
+
+<span class="token comment"># 此时可继续扩展逻辑卷</span>
+<span class="token function">sudo</span> lvextend <span class="token parameter variable">-L</span> +50G /dev/ubuntu-vg/data
+<span class="token function">sudo</span> resize2fs /dev/ubuntu-vg/data
+<span class="token comment"># 验证</span>
+<span class="token comment"># 检查逻辑卷大小</span>
+<span class="token function">sudo</span> lvdisplay /dev/ubuntu-vg/data <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"LV Size"</span>
+<span class="token comment"># 检查文件系统大小</span>
+<span class="token function">df</span> <span class="token parameter variable">-h</span> /挂载点  <span class="token comment"># 如 /data</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
             <div class="post-tags">
               <!-- 文章tags -->
               
@@ -298,7 +395,7 @@ df -h
               </span>
             </cosy-tooltip>
             <!-- 文章toc -->
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">查看磁盘：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%A3%81%E7%9B%98%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">格式化磁盘：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%A3%81%E7%9B%98%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">创建磁盘：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">查看磁盘：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%A3%81%E7%9B%98%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">格式化磁盘：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%A3%81%E7%9B%98%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">创建磁盘：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LVM-%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">LVM 磁盘管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LVM-%E6%94%B6%E7%BC%A9%E9%80%BB%E8%BE%91%E5%8D%B7%EF%BC%88%E7%BC%A9%E5%B0%8F%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">LVM 收缩逻辑卷（缩小磁盘空间）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%B7%B2%E5%88%9B%E5%BB%BA%E6%96%B0%E9%80%BB%E8%BE%91%E5%8D%B7%E5%90%8E%E5%86%8D%E6%AC%A1%E6%89%A9%E5%AE%B9%E7%9A%84%E5%AE%8C%E6%95%B4%E6%AD%A5%E9%AA%A4"><span class="toc-number">6.</span> <span class="toc-text">在已创建新逻辑卷后再次扩容的完整步骤</span></a></li></ol>
           </div>
         </div>
       </cosy-drag-box>

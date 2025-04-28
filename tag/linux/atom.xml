@@ -13,11 +13,11 @@
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
+    <category term="openssl" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
-    <category term="openssl" />
-    <category term="Spring Cloud" />
-    <category term="spring" />
     <entry>
         <id>https://gyoliu.github.io/2024/01/29/centos-disk/</id>
         <title>centos 磁盘挂载</title>
@@ -28,14 +28,104 @@
 &lt;h3 id=&#34;格式化磁盘：&#34;&gt;&lt;a href=&#34;#格式化磁盘：&#34; class=&#34;headerlink&#34; title=&#34;格式化磁盘：&#34;&gt;&lt;/a&gt;格式化磁盘：&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;fdisk &amp;#x2F;dev&amp;#x2F;sdb&lt;br&gt;n-&amp;gt;p-&amp;gt;1-&amp;gt;回车-&amp;gt;回车-&amp;gt;w&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;创建磁盘：&#34;&gt;&lt;a href=&#34;#创建磁盘：&#34; class=&#34;headerlink&#34; title=&#34;创建磁盘：&#34;&gt;&lt;/a&gt;创建磁盘：&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;shell&#34;&gt;mkfs.xfs /dev/sdb1
-mkdir /app
-echo &amp;quot;/dev/sdb1 /app xfs defaults 0 0&amp;quot; &amp;gt;&amp;gt; /etc/fstab
-mount -a
-df -h
-```yml
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+&lt;h3 id=&#34;创建磁盘：&#34;&gt;&lt;a href=&#34;#创建磁盘：&#34; class=&#34;headerlink&#34; title=&#34;创建磁盘：&#34;&gt;&lt;/a&gt;创建磁盘：&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;mkfs.xfs /dev/sdb1
+&lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; /app
+&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/dev/sdb1 /app xfs defaults 0 0&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; /etc/fstab
+&lt;span class=&#34;token function&#34;&gt;mount&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;LVM-磁盘管理&#34;&gt;&lt;a href=&#34;#LVM-磁盘管理&#34; class=&#34;headerlink&#34; title=&#34;LVM 磁盘管理&#34;&gt;&lt;/a&gt;LVM 磁盘管理&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; vgdisplay  &lt;span class=&#34;token comment&#34;&gt;# 查看卷组剩余空间&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvdisplay  &lt;span class=&#34;token comment&#34;&gt;# 查看逻辑卷详情&lt;/span&gt;
+
+方法一：直接扩展现有逻辑卷（推荐）
+&lt;span class=&#34;token comment&#34;&gt;# 扩展逻辑卷到最大可用空间（保留所有剩余空间）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvextend &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+&lt;span class=&#34;token comment&#34;&gt;# 调整文件系统大小（ext4 适用）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+&lt;span class=&#34;token comment&#34;&gt;# 验证&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; /dev/mapper/ubuntu--vg-ubuntu--lv
+
+
+方法二：创建新逻辑卷（如需独立挂载）‌
+
+&lt;span class=&#34;token comment&#34;&gt;# 创建新逻辑卷（命名为 new-lv，分配 100G）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvcreate &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; new-lv &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; 100G ubuntu-vg
+
+&lt;span class=&#34;token comment&#34;&gt;# 格式化&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; mkfs.ext4 /dev/ubuntu-vg/new-lv
+
+&lt;span class=&#34;token comment&#34;&gt;# 挂载到目录（如 /mnt/data）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; /mnt/data
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;mount&lt;/span&gt; /dev/ubuntu-vg/new-lv /mnt/data
+
+&lt;span class=&#34;token comment&#34;&gt;# 开机自动挂载&lt;/span&gt;
+&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;/dev/ubuntu-vg/new-lv /mnt/data ext4 defaults 0 2&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;tee&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; /etc/fstab
+
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;LVM-收缩逻辑卷（缩小磁盘空间）&#34;&gt;&lt;a href=&#34;#LVM-收缩逻辑卷（缩小磁盘空间）&#34; class=&#34;headerlink&#34; title=&#34;LVM 收缩逻辑卷（缩小磁盘空间）&#34;&gt;&lt;/a&gt;LVM 收缩逻辑卷（缩小磁盘空间）&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;‌1. 前提条件‌
+‌文件系统支持收缩‌：仅 ext2/3/4 和 xfs（有限支持）可缩小，且需先缩小文件系统，再缩小逻辑卷‌
+‌数据备份‌：收缩操作可能导致数据丢失，‌必须提前备份重要数据‌‌68。
+‌剩余空间检查‌：确保目标容量足够存放现有数据。
+
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;umount&lt;/span&gt; /mnt/data  &lt;span class=&#34;token comment&#34;&gt;# 如果逻辑卷已挂载，需先卸载&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; e2fsck &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; /dev/vg_name/lv_name  &lt;span class=&#34;token comment&#34;&gt;# 强制检查 ext4 文件系统&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; resize2fs /dev/vg_name/lv_name 50G  &lt;span class=&#34;token comment&#34;&gt;# 将文件系统缩小到 50G&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvreduce &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; 50G /dev/vg_name/lv_name  &lt;span class=&#34;token comment&#34;&gt;# 将逻辑卷缩小到 50G&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;mount&lt;/span&gt; /dev/vg_name/lv_name /mnt/data &lt;span class=&#34;token comment&#34;&gt;# 重新挂载（如果之前卸载）&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 验证&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; lv_name  &lt;span class=&#34;token comment&#34;&gt;# 检查文件系统大小&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvdisplay /dev/vg_name/lv_name  &lt;span class=&#34;token comment&#34;&gt;# 检查逻辑卷大小&lt;/span&gt;
+
+
+场景 &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;：缩小根分区（/）‌
+‌必须从 Live CD/USB 启动‌，因为根分区无法卸载‌
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvresize &lt;span class=&#34;token parameter variable&#34;&gt;--resizefs&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; 50G /dev/ubuntu-vg/ubuntu-lv  &lt;span class=&#34;token comment&#34;&gt;# 自动调整文件系统和逻辑卷&lt;/span&gt;
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;在已创建新逻辑卷后再次扩容的完整步骤&#34;&gt;&lt;a href=&#34;#在已创建新逻辑卷后再次扩容的完整步骤&#34; class=&#34;headerlink&#34; title=&#34;在已创建新逻辑卷后再次扩容的完整步骤&#34;&gt;&lt;/a&gt;在已创建新逻辑卷后再次扩容的完整步骤&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; vgdisplay ubuntu-vg  &lt;span class=&#34;token comment&#34;&gt;# 查看卷组剩余空间（Free PE / Size）&lt;/span&gt;
+场景 &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;：卷组仍有剩余空间
+&lt;span class=&#34;token comment&#34;&gt;# 将 /dev/ubuntu-vg/data 扩容 20G（根据需求调整）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvextend &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; +20G /dev/ubuntu-vg/data
+&lt;span class=&#34;token comment&#34;&gt;# 调整文件系统（ext4 示例）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; resize2fs /dev/ubuntu-vg/data
+
+
+场景 &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;：卷组无剩余空间（需先扩展物理卷）
+‌步骤 &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;：扩展物理卷（PV）
+&lt;span class=&#34;token comment&#34;&gt;# 查看物理卷路径（通常为 /dev/sda3）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; pvdisplay
+&lt;span class=&#34;token comment&#34;&gt;# 扩展物理卷边界（假设 /dev/sda3 是 PV）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; pvresize /dev/sda3
+‌步骤 &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;：确认卷组空间更新
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; vgdisplay ubuntu-vg  &lt;span class=&#34;token comment&#34;&gt;# 此时应显示新的 Free PE / Size&lt;/span&gt;
+步骤 &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;：扩容逻辑卷
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvextend &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; +30G /dev/ubuntu-vg/data  &lt;span class=&#34;token comment&#34;&gt;# 增加 30G&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; resize2fs /dev/ubuntu-vg/data         &lt;span class=&#34;token comment&#34;&gt;# 调整文件系统&lt;/span&gt;
+
+‌3. 高级操作：从磁盘新增物理卷‌
+若物理磁盘 /dev/sda 已无剩余空间，需添加新磁盘（如 /dev/sdb）：
+&lt;span class=&#34;token comment&#34;&gt;# 创建新分区并设为 LVM 类型（通过 fdisk/gdisk）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;fdisk&lt;/span&gt; /dev/sdb  &lt;span class=&#34;token comment&#34;&gt;# 创建新分区（如 /dev/sdb1），类型代码 8e（Linux LVM）&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 初始化物理卷&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; pvcreate /dev/sdb1
+
+&lt;span class=&#34;token comment&#34;&gt;# 扩展卷组&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; vgextend ubuntu-vg /dev/sdb1
+
+&lt;span class=&#34;token comment&#34;&gt;# 此时可继续扩展逻辑卷&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvextend &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; +50G /dev/ubuntu-vg/data
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; resize2fs /dev/ubuntu-vg/data
+&lt;span class=&#34;token comment&#34;&gt;# 验证&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 检查逻辑卷大小&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; lvdisplay /dev/ubuntu-vg/data &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;LV Size&#34;&lt;/span&gt;
+&lt;span class=&#34;token comment&#34;&gt;# 检查文件系统大小&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; /挂载点  &lt;span class=&#34;token comment&#34;&gt;# 如 /data&lt;/span&gt;
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
         <category term="Linux" />
         <updated>2024-01-29T05:10:53.000Z</updated>
     </entry>

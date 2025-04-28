@@ -13,11 +13,11 @@
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
+    <category term="openssl" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
-    <category term="openssl" />
-    <category term="Spring Cloud" />
-    <category term="spring" />
     <entry>
         <id>https://gyoliu.github.io/2024/07/08/nginx-config-https/</id>
         <title>https 证书自动续期，永久免费</title>
