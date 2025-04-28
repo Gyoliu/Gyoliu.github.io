@@ -19,30 +19,107 @@ sudo apt install percona-xtrabackup-80
 sudo yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 sudo yum install percona-xtrabackup-80
 ```
+# 备份需要的权限
+```
+Xtrabackup 备份工具，备份时用户需要有以下权限。
+Reload：用于执行 FLUSH TABLES WITH REDO LOCK 和 FLUSH NO_WRITE_TO_BINLOG TABLES 是必需权限。
+Replication client：用于执行 SHOW MASTER STATUS 和 SHOW SLAVE STATUS 查看位点信息，是必需权限。
+BACKUP_ADMIN：用于执行 LOCK INSTANCE FOR BACKUP，是必需权限。
+Process：用于执行 SHOW ENGINE INNODB STATUS 和 SHOW PROCESSLIST 是必需权限。
+SYSTEM_VARIABLES_ADMIN：用于在增量备份时执行 SET GLOBAL mysqlbackup.backupid = xxx 操作，是非必需权限。
+SUPER：在指定 –kill-long-queries-timeout 需要杀掉慢查询，和从库备份指定 –safe-slave-backup 需要重启复制，需要用到该权限。
+SHOW VIEW：确认是否有非 INNODB 引擎表。
+如果使用 Page Tracking 进行增量备份，还需要 mysql.component 表的查询权限。
+如果指定 –history 还需要 performance_schema.xtraback_history 的 SELECT、INSERT、CREATE、ALTER 权限。
+以下是 MySQL 8.0 以上版本的完整授权示例：
+CREATE USER 'backuser'@'localhost'  IDENTIFIED WITH mysql_native_password BY 'BackUser@2025';
+GRANT BACKUP_ADMIN, PROCESS, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'backuser'@'localhost';
+GRANT SELECT ON performance_schema.log_status TO 'backuser'@'localhost';
+GRANT SELECT ON performance_schema.keyring_component_status TO backuser@'localhost';
+GRANT SELECT ON performance_schema.replication_group_members TO backuser@'localhost';
+FLUSH PRIVILEGES;
+以下是 MySQL 5.7 版本的完整授权示例：
+CREATE USER 'bkpuser'@'localhost' IDENTIFIED BY 's3cret';
+GRANT RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT ON *.* TO 'bkpuser'@'localhost';
+FLUSH PRIVILEGES;
+```
 # 2. 全量备份（Full Backup）
 ```shell
-# 创建备份目录
-mkdir -p /backup/mysql/full/$(date +%Y%m%d)
+# 创建全量备份目录
+BACKUP_DIR="/backup/mysql/full/$(date +%Y%m%d)"
+mkdir -p $BACKUP_DIR
 
-# 执行全量备份（无锁表）
-xtrabackup --backup --user=root --password=YourPassword --target-dir=/backup/mysql/full/$(date +%Y%m%d)
+# 执行备份（无锁表）
+xtrabackup --backup \
+  --user=backup_user --password=YourSecurePassword -H 127.0.0.1 -P3306 \
+  --databases="xxx" \
+  --exclude-tables="${TARGET_DATABASE}.${EXCLUDE_TABLE}" \
+  --target-dir=$BACKUP_DIR \
+  --compress \
+  --slave-info \
+  --compress-threads=4 | gzip - > xxx.tar.gz
 
-# 压缩并上传至云存储（示例使用 AWS S3）
-tar -czf /backup/mysql/full/$(date +%Y%m%d).tar.gz /backup/mysql/full/$(date +%Y%m%d)
-aws s3 cp /backup/mysql/full/$(date +%Y%m%d).tar.gz s3://your-bucket/mysql-backup/full/
+# 生成校验文件（可选）
+sha256sum $BACKUP_DIR/backup.xbstream | tee $BACKUP_DIR/checksum.sha256
+
+# 上传至云存储（AWS S3示例）
+aws s3 cp --sse AES256 $BACKUP_DIR s3://your-bucket/mysql/full/ --recursive
+
+关键参数介绍：
+–backup：发起全量备份。
+-u, -H, -P, -p：连接 mysql 实例，用户名、主机 IP、端口、密码。
+–slave-info：记录 slave 复制位点信息，一般备份从库需要指定该参数。
+–target-dir：备份文件的存放路径。
+–parallel：并发拷贝的线程数。
+2> /tmp/xtrabackup.log：将备份过程中的日志重定向到 /tmp/xtrabackup.log 文件中。
+
+备份出来的文件中，除了数据文件，还有以下额外的文件：
+backup-my.cnf：该文件不是 MySQL 参数文件的备份，只是记录了一些 Innodb 引擎的参数，会在 Prepare 阶段用到。
+xtrabackup_logfile：该文件用来保存拷贝的 redo log。
+xtrabackup_binlog_info：binlog 位点信息和 GTID 信息。使用该备份恢复后，需要从该 binlog 位点进行增量恢复。
+xtrabackup_slave_info：如果是对从库进行备份，指定 –slave-info 该文件会记录主节点的位点信息，取自 SHOW SLAVE STATUS 中的 Relay_Master_Log_File 和 Exec_Master_Log_Pos。如果是给主库备份，该文件为空。
+xtrabackup_checkpoints：该文件记录了备份类型和 LSN 信息。
+xtrabackup_info：该文件中，记录备份的详细信息。
+xtrabackup_tablespaces：记录备份集中表空间的信息。
+```
+# 全量流式备份
+```shell
+xtrabackup --backup --slave-info  -u root -H 127.0.0.1 -P3306 -p'YouPassword' \
+ --stream=xbstream --target-dir=/data/backup/bakup_`date +"%F_%H_%M_%S"` 2>/data/backup/xtrabackup.log  \
+ | ssh root@172.16.104.7 gzip -  > /data/backup/backup.gz
+
+ 远程恢复的时候，需要先使用 xbstream 命令进行解压：
+ xbstream -x --parallel=10 -C /data/backup/20231113 < ./backup.xbstream
+ xbstream 中的 -x 表示解压，–parallel 表示并行度，-C 指定解压的目录，最后一级目录必须存在。
 ```
 # 3. 增量备份（Incremental Backup）
 ```shell
 # 假设最后一次全量备份路径：/backup/mysql/full/20231001
+  # 获取上一次备份目录（全量或增量）
+LAST_BACKUP=$(ls -d /backup/mysql/*/* | sort | tail -1)
+
 # 创建增量备份目录
-mkdir -p /backup/mysql/inc/$(date +%Y%m%d)
+INC_DIR="/backup/mysql/inc/$(date +%Y%m%d)"
+mkdir -p $INC_DIR
 
-# 基于全量或上一次增量备份执行增量备份
+# 执行增量备份
 xtrabackup --backup \
-  --user=root --password=YourPassword \
-  --target-dir=/backup/mysql/inc/$(date +%Y%m%d) \
-  --incremental-basedir=/backup/mysql/full/20231001  # 或上一次增量目录
+  --user=backup_user --password=YourSecurePassword \
+  --target-dir=$INC_DIR \
+  --incremental-basedir=$LAST_BACKUP \
+  --compress \
+  --compress-threads=4
 
+# 上传至云存储
+aws s3 cp --sse AES256 $INC_DIR s3://your-bucket/mysql/inc/ --recursive
+
+```
+# 3. Binlog 实时备份
+```shell
+# 定时任务（每5分钟同步一次）
+*/5 * * * * rsync -avz /var/lib/mysql/mysql-bin.* /backup/mysql/binlog/
+# 每日归档并清理旧文件
+0 0 * * * find /backup/mysql/binlog/ -name "mysql-bin.*" -mtime +30 -exec rm {} \;
 ```
 
 # 1. 恢复全量备份
@@ -50,22 +127,25 @@ xtrabackup --backup \
 # 停止 MySQL 服务
 systemctl stop mysql
 
-# 清空数据目录（谨慎操作！）
+# 清空数据目录
 rm -rf /var/lib/mysql/*
 
-# 准备全量备份
+# 解压并准备备份
+xtrabackup --decompress --target-dir=/backup/mysql/full/20231001
 xtrabackup --prepare --apply-log-only --target-dir=/backup/mysql/full/20231001
 
-# 复制数据文件到 MySQL 目录
+# 复制数据文件
 xtrabackup --copy-back --target-dir=/backup/mysql/full/20231001
 
-# 修改权限并启动 MySQL
+# 修改权限并启动
 chown -R mysql:mysql /var/lib/mysql
 systemctl start mysql
 ```
 
 # 2. 应用增量备份
 ```shell
+# 解压数据
+xtrabackup --decompress --target-dir=/backup/mysql/full/20231001
 # 准备全量备份（必须步骤）
 xtrabackup --prepare --apply-log-only --target-dir=/backup/mysql/full/20231001
 
@@ -83,6 +163,12 @@ xtrabackup --prepare --apply-log-only \
 xtrabackup --prepare --target-dir=/backup/mysql/full/20231001
 
 # 复制数据并启动 MySQL（同上）
+# 复制数据文件
+xtrabackup --copy-back --target-dir=/backup/mysql/full/20231001
+
+# 修改权限并启动
+chown -R mysql:mysql /var/lib/mysql
+systemctl start mysql
 ```
 
 # 3. 通过 Binlog 恢复至最新状态
@@ -114,18 +200,31 @@ else
   aws s3 cp $BACKUP_DIR.tar.gz s3://your-bucket/mysql-backup/inc/
 fi
 
-# 清理旧备份（保留策略）
-find /backup/mysql/full/ -type d -mtime +30 -exec rm -rf {} \;
-find /backup/mysql/inc/ -type d -mtime +7 -exec rm -rf {} \;
 
+# 清理旧备份（每日 4:00 AM）
+0 4 * * * find /backup/mysql/full/ -mtime +30 -exec rm -rf {} \;
+0 4 * * * find /backup/mysql/inc/ -mtime +7 -exec rm -rf {} \;
 
+# 查看全部定时任务
+sudo crontab -l
 # 编辑 crontab
 crontab -e
+# 全量备份（每周日 2:00 AM）
+0 2 * * 7 /scripts/full_backup.sh
+# 增量备份（每日 3:00 AM）
+0 3 * * 1-6 /scripts/inc_backup.sh
 
-# 添加以下内容（每天凌晨3点执行）
-0 3 * * * /path/to/mysql_backup.sh
+0 23 * * * /home/syscook/xtrabackup_backup.sh full
+0 13 * * * /home/syscook/xtrabackup_backup.sh inc
 ```
 
+```
+[生产MySQL] → [XtraBackup 全量/增量] → [本地SSD] → [加密上传至S3]
+                          ↓
+                  [Binlog 实时同步] → [独立存储]
+                          ↓
+                   [监控告警] → [运维团队]
+```
 
 # 命令参数
 ```shell
