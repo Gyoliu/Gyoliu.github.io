@@ -105,6 +105,9 @@ MASTER_HOST='主库IP',
 MASTER_USER='repl',
 MASTER_PASSWORD='密码',
 MASTER_AUTO_POSITION=1;
+
+
+
 ```
 
 # sync_binlog innodb_flush_log_at_trx_commit 参数设置示例 下文通过几个典型的场景对上述两个参数的配置进行说明：
