@@ -3,21 +3,71 @@
     <id>https://gyoliu.github.io</id>
     <title>Gyo</title>
     <link href="https://gyoliu.github.io" />
-    <updated>2025-04-16T15:06:58.000Z</updated>
-    <category term="Cosy" />
-    <category term="Linux" />
+    <updated>2025-06-25T03:51:44.000Z</updated>
     <category term="Java" />
+    <category term="Linux" />
     <category term="Default" />
     <category term="PaddleSpeech" />
     <category term="elasticsearch" />
+    <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
-    <category term="openssl" />
-    <category term="spring" />
-    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
+    <category term="openssl" />
+    <category term="SELinux" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
+    <entry>
+        <id>https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</id>
+        <title>nginx-install-error-collect</title>
+        <link rel="alternate" href="https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/"/>
+        <content type="html">&lt;h2 id=&#34;1-无法读取-ssl-密钥&#34;&gt;&lt;a href=&#34;#1-无法读取-ssl-密钥&#34; class=&#34;headerlink&#34; title=&#34;1. 无法读取 ssl 密钥&#34;&gt;&lt;/a&gt;1. 无法读取 ssl 密钥&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;2025&amp;#x2F;06&amp;#x2F;25 11:41:21 [emerg] 8982#8982: cannot load certificate “&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem”: BIO_new_file() failed (SSL: error:0200100D:system library:fopen:Permission denied:fopen(‘&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem’,’r’) error:2006D002:BIO routines:BIO_new_file:system lib)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;解决方案&#34;&gt;&lt;a href=&#34;#解决方案&#34; class=&#34;headerlink&#34; title=&#34;解决方案&#34;&gt;&lt;/a&gt;解决方案&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;问题1：SELinux 阻止了正常操作
+
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;avc:.*denied&#34;&lt;/span&gt; /var/log/audit/audit.log
+
+解决方案：
+    查看状态： sestatus &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt;
+    首先确认是否是 SELinux 导致的问题：
+    &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;avc:&#34;&lt;/span&gt; /var/log/audit/audit.log
+    如果是，可以临时设置为 permissive 模式测试：
+    &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; setenforce &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;
+    永久解决方案是调整 SELinux 策略或修改文件上下文
+
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# ls -lrtZ /etc/nginx/ssl/&lt;/span&gt;
+-rwxrwxrwx. root root unconfined_u:object_r:user_home_t:s0 star_crclogistics_com.key
+-rwxrwxrwx. root root unconfined_u:object_r:user_home_t:s0 star_crclogistics_com.pem
+
+&lt;span class=&#34;token comment&#34;&gt;# 修复文件权限&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# restorecon -v -R /etc/nginx/ssl&lt;/span&gt;
+restorecon reset /etc/nginx/ssl context unconfined_u:object_r:user_home_t:s0-&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;unconfined_u:object_r:httpd_config_t:s0
+restorecon reset /etc/nginx/ssl/star_crclogistics_com.key context unconfined_u:object_r:user_home_t:s0-&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;unconfined_u:object_r:httpd_config_t:s0
+restorecon reset /etc/nginx/ssl/star_crclogistics_com.pem context unconfined_u:object_r:user_home_t:s0-&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;unconfined_u:object_r:httpd_config_t:s0
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# &lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# ls -lrtZ /etc/nginx/ssl/&lt;/span&gt;
+-rwxrwxrwx. root root unconfined_u:object_r:httpd_config_t:s0 star_crclogistics_com.key
+-rwxrwxrwx. root root unconfined_u:object_r:httpd_config_t:s0 star_crclogistics_com.pem
+
+
+&lt;span class=&#34;token comment&#34;&gt;#添加一个mysql数据目录&lt;/span&gt;
+semanage fcontext &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysqld_db_t “/disk1/data&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;/.*&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;?”
+&lt;span class=&#34;token comment&#34;&gt;# 加载这个目录 restorecon，这个命令的作用就是把文件的安全上下文恢复成默认的安全上下文&lt;/span&gt;
+restorecon &lt;span class=&#34;token parameter variable&#34;&gt;-Rv&lt;/span&gt; /data
+
+
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; semanage port &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; http_port_t &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; tcp &lt;span class=&#34;token number&#34;&gt;8400&lt;/span&gt;
+使用&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;semanage port &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysql_port_t &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; tcp &lt;span class=&#34;token number&#34;&gt;3306&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;命令添加MySQL默认端口到SELinux策略，同时确保数据目录正确标注，执行
+&lt;span class=&#34;token comment&#34;&gt;# 安全上下文的修改&lt;/span&gt;
+&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;chcon &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysqld_db_t /var/lib/mysql&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
+        <category term="Default" />
+        <category term="nginx" />
+        <category term="SELinux" />
+        <updated>2025-06-25T03:51:44.000Z</updated>
+    </entry>
     <entry>
         <id>https://gyoliu.github.io/2025/04/16/linux-performance-optimization/</id>
         <title>linux performance optimization</title>
@@ -170,7 +220,31 @@ $ perf report
         <id>https://gyoliu.github.io/2025/04/10/java17jvm-params/</id>
         <title>java17jvm-params</title>
         <link rel="alternate" href="https://gyoliu.github.io/2025/04/10/java17jvm-params/"/>
-        <content type="html">&lt;p&gt;–add-opens&amp;#x3D;java.base&amp;#x2F;java.lang&amp;#x3D;ALL-UNNAMED &lt;br&gt;    -Xms1500m -Xmx1500m &lt;br&gt;    -XX:ReservedCodeCacheSize&amp;#x3D;256m &lt;br&gt;    -XX:InitialCodeCacheSize&amp;#x3D;256m \&lt;br&gt;    -XX:+UnlockExperimentalVMOptions &lt;br&gt;    -XX:+UseZGC &lt;br&gt;    -XX:ConcGCThreads&amp;#x3D;1 -XX:ParallelGCThreads&amp;#x3D;2 &lt;br&gt;    -XX:ZCollectionInterval&amp;#x3D;30 -XX:ZAllocationSpikeTolerance&amp;#x3D;5 &lt;br&gt;    -XX:+UnlockDiagnosticVMOptions -XX:-ZProactive &lt;br&gt;    -Xlog:safepoint,classhisto*&amp;#x3D;trace,age*,gc*&amp;#x3D;info:file&amp;#x3D;&amp;#x2F;opt&amp;#x2F;gc-%t.log:time,tid,tags:filecount&amp;#x3D;5,filesize&amp;#x3D;50m &lt;br&gt;    -XX:+HeapDumpOnOutOfMemoryError &lt;br&gt;    -XX:HeapDumpPath&amp;#x3D;&amp;#x2F;opt&amp;#x2F;errorDump.hprof&lt;/p&gt;
+        <content type="html">&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;--add-opens&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;java.base/java.lang&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;ALL-UNNAMED &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-Xms1500m&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-Xmx1500m&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:ReservedCodeCacheSize&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;256m &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:InitialCodeCacheSize&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;256m &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt; 
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:+UnlockExperimentalVMOptions&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:+UseZGC&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:ConcGCThreads&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-XX:ParallelGCThreads&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:ZCollectionInterval&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-XX:ZAllocationSpikeTolerance&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:+UnlockDiagnosticVMOptions&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-XX:-ZProactive&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    -Xlog:safepoint,classhisto*&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;trace,age*,gc*&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;info:file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/opt/gc-%t.log:time,tid,tags:filecount&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;,filesize&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;50m &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:+HeapDumpOnOutOfMemoryError&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
+    &lt;span class=&#34;token parameter variable&#34;&gt;-XX:HeapDumpPath&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/opt/errorDump.hprof
+
+
+&lt;span class=&#34;token parameter variable&#34;&gt;-Xmx18g&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-Xms18g&lt;/span&gt; 堆大小
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:MaxDirectMemorySize&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;2G 直接内存
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:+HeapDumpOnOutOfMemoryError&lt;/span&gt; 当JVM发生OOM时，自动生成DUMP文件。
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:ReservedCodeCacheSize&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;256m &lt;span class=&#34;token parameter variable&#34;&gt;-XX:InitialCodeCacheSize&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;256m 设置codecache大小 默认128m
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:+UseZGC&lt;/span&gt; 使用ZGC
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:ZAllocationSpikeTolerance&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; ZGC触发自适应算法的修正系数，默认2，数值越大，越早的触发ZGC
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:ZCollectionInterval&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt; ZGC的周期。默认值为0，表示不需要触发垃圾回收。固定周期垃圾回收。ZGC发生的最小时间间隔，单位秒
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:ConcGCThreads&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt; 并发阶段的GC线程数，默认是总核数的12.5%
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:ZStatisticsInterval&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;10&lt;/span&gt; 控制统计信息输出的间隔，默认10s
+&lt;span class=&#34;token parameter variable&#34;&gt;-XX:ParallelGCThreads&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt; 并行工作线程数据，STW阶段使用线程数，默认是总核数的60%
+-Xlog:safepoint,classhisto&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;trace,age,gc*&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;info:file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/opt/logs/logs/gc-%t.log:time,tid,tags:filecount&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;,filesize&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;50m’ 设置GC日志中的内容、格式、位置以及每个日志的大小&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="Default" />
         <updated>2025-04-10T01:08:04.000Z</updated>
@@ -269,7 +343,10 @@ CHANGE MASTER TO
 &lt;span class=&#34;token assign-left variable&#34;&gt;MASTER_HOST&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;主库IP&#39;&lt;/span&gt;,
 &lt;span class=&#34;token assign-left variable&#34;&gt;MASTER_USER&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;repl&#39;&lt;/span&gt;,
 &lt;span class=&#34;token assign-left variable&#34;&gt;MASTER_PASSWORD&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;密码&#39;&lt;/span&gt;,
-&lt;span class=&#34;token assign-left variable&#34;&gt;MASTER_AUTO_POSITION&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&#34;token assign-left variable&#34;&gt;MASTER_AUTO_POSITION&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+
+
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;sync-binlog-innodb-flush-log-at-trx-commit-参数设置示例-下文通过几个典型的场景对上述两个参数的配置进行说明：&#34;&gt;&lt;a href=&#34;#sync-binlog-innodb-flush-log-at-trx-commit-参数设置示例-下文通过几个典型的场景对上述两个参数的配置进行说明：&#34; class=&#34;headerlink&#34; title=&#34;sync_binlog innodb_flush_log_at_trx_commit 参数设置示例 下文通过几个典型的场景对上述两个参数的配置进行说明：&#34;&gt;&lt;/a&gt;sync_binlog innodb_flush_log_at_trx_commit 参数设置示例 下文通过几个典型的场景对上述两个参数的配置进行说明：&lt;/h1&gt;&lt;h1 id=&#34;场景一：只读实例延迟&#34;&gt;&lt;a href=&#34;#场景一：只读实例延迟&#34; class=&#34;headerlink&#34; title=&#34;场景一：只读实例延迟&#34;&gt;&lt;/a&gt;场景一：只读实例延迟&lt;/h1&gt;&lt;p&gt;RDS MySQL提供只读实例功能，用于分担主实例的读压力。如果只读实例使用默认参数模板（sync_binlog&amp;#x3D;1，innodb_flush_log_at_trx_commit&amp;#x3D;1），在主实例写压力较大时，可能导致只读实例的Binlog应用延迟。&lt;br&gt;优化建议：&lt;br&gt;将只读实例的sync_binlog设置为1000，innodb_flush_log_at_trx_commit设置为2，提升Binlog应用效率。&lt;br&gt;注意：此配置不能完全消除延迟，需根据具体情况进行分析。&lt;/p&gt;
 &lt;h1 id=&#34;场景二：DTS数据迁移速度慢&#34;&gt;&lt;a href=&#34;#场景二：DTS数据迁移速度慢&#34; class=&#34;headerlink&#34; title=&#34;场景二：DTS数据迁移速度慢&#34;&gt;&lt;/a&gt;场景二：DTS数据迁移速度慢&lt;/h1&gt;&lt;p&gt;在使用 DTS 进行数据迁移时，目标实例可能因频繁的Binlog和Redo Log落盘操作导致写入性能瓶颈。&lt;br&gt;优化建议：&lt;br&gt;将目标实例的sync_binlog设置为1000，innodb_flush_log_at_trx_commit设置为 2，加速数据写入。&lt;br&gt;数据迁移完成后，可根据需求恢复默认配置。&lt;/p&gt;

@@ -4,20 +4,21 @@
     <title>Gyo • Posts by &#34;hexo&#34; category</title>
     <link href="https://gyoliu.github.io" />
     <updated>2024-12-23T16:38:11.000Z</updated>
-    <category term="Cosy" />
-    <category term="Linux" />
     <category term="Java" />
+    <category term="Linux" />
     <category term="Default" />
     <category term="PaddleSpeech" />
     <category term="elasticsearch" />
+    <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
-    <category term="openssl" />
-    <category term="spring" />
-    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
+    <category term="openssl" />
+    <category term="SELinux" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <entry>
         <id>https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/</id>
         <title>Cosy入门</title>

@@ -5,22 +5,72 @@
         <link>https://gyoliu.github.io</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Thu, 29 Aug 2024 13:23:54 +0800</pubDate>
-        <lastBuildDate>Thu, 29 Aug 2024 13:23:54 +0800</lastBuildDate>
-        <category>Cosy</category>
-        <category>Linux</category>
+        <pubDate>Wed, 25 Jun 2025 11:51:44 +0800</pubDate>
+        <lastBuildDate>Wed, 25 Jun 2025 11:51:44 +0800</lastBuildDate>
         <category>Java</category>
+        <category>Linux</category>
         <category>Default</category>
         <category>PaddleSpeech</category>
         <category>elasticsearch</category>
+        <category>Cosy</category>
         <category>hibernate</category>
         <category>JVM</category>
         <category>mysql</category>
-        <category>openssl</category>
-        <category>spring</category>
-        <category>Spring Cloud</category>
         <category>证书</category>
         <category>nginx</category>
+        <category>openssl</category>
+        <category>SELinux</category>
+        <category>spring</category>
+        <category>Spring Cloud</category>
+        <item>
+            <guid isPermalink="true">https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</guid>
+            <title>nginx-install-error-collect</title>
+            <link>https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</link>
+            <category>Default</category>
+            <category>nginx</category>
+            <category>SELinux</category>
+            <pubDate>Wed, 25 Jun 2025 11:51:44 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;1-无法读取-ssl-密钥&#34;&gt;&lt;a href=&#34;#1-无法读取-ssl-密钥&#34; class=&#34;headerlink&#34; title=&#34;1. 无法读取 ssl 密钥&#34;&gt;&lt;/a&gt;1. 无法读取 ssl 密钥&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;2025&amp;#x2F;06&amp;#x2F;25 11:41:21 [emerg] 8982#8982: cannot load certificate “&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem”: BIO_new_file() failed (SSL: error:0200100D:system library:fopen:Permission denied:fopen(‘&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem’,’r’) error:2006D002:BIO routines:BIO_new_file:system lib)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;解决方案&#34;&gt;&lt;a href=&#34;#解决方案&#34; class=&#34;headerlink&#34; title=&#34;解决方案&#34;&gt;&lt;/a&gt;解决方案&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;问题1：SELinux 阻止了正常操作
+
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;avc:.*denied&#34;&lt;/span&gt; /var/log/audit/audit.log
+
+解决方案：
+    查看状态： sestatus &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt;
+    首先确认是否是 SELinux 导致的问题：
+    &lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;avc:&#34;&lt;/span&gt; /var/log/audit/audit.log
+    如果是，可以临时设置为 permissive 模式测试：
+    &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; setenforce &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;
+    永久解决方案是调整 SELinux 策略或修改文件上下文
+
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# ls -lrtZ /etc/nginx/ssl/&lt;/span&gt;
+-rwxrwxrwx. root root unconfined_u:object_r:user_home_t:s0 star_crclogistics_com.key
+-rwxrwxrwx. root root unconfined_u:object_r:user_home_t:s0 star_crclogistics_com.pem
+
+&lt;span class=&#34;token comment&#34;&gt;# 修复文件权限&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# restorecon -v -R /etc/nginx/ssl&lt;/span&gt;
+restorecon reset /etc/nginx/ssl context unconfined_u:object_r:user_home_t:s0-&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;unconfined_u:object_r:httpd_config_t:s0
+restorecon reset /etc/nginx/ssl/star_crclogistics_com.key context unconfined_u:object_r:user_home_t:s0-&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;unconfined_u:object_r:httpd_config_t:s0
+restorecon reset /etc/nginx/ssl/star_crclogistics_com.pem context unconfined_u:object_r:user_home_t:s0-&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;unconfined_u:object_r:httpd_config_t:s0
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# &lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;root@scdp-ng-pro-01 nginx&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;# ls -lrtZ /etc/nginx/ssl/&lt;/span&gt;
+-rwxrwxrwx. root root unconfined_u:object_r:httpd_config_t:s0 star_crclogistics_com.key
+-rwxrwxrwx. root root unconfined_u:object_r:httpd_config_t:s0 star_crclogistics_com.pem
+
+
+&lt;span class=&#34;token comment&#34;&gt;#添加一个mysql数据目录&lt;/span&gt;
+semanage fcontext &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysqld_db_t “/disk1/data&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;/.*&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;?”
+&lt;span class=&#34;token comment&#34;&gt;# 加载这个目录 restorecon，这个命令的作用就是把文件的安全上下文恢复成默认的安全上下文&lt;/span&gt;
+restorecon &lt;span class=&#34;token parameter variable&#34;&gt;-Rv&lt;/span&gt; /data
+
+
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; semanage port &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; http_port_t &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; tcp &lt;span class=&#34;token number&#34;&gt;8400&lt;/span&gt;
+使用&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;semanage port &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysql_port_t &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; tcp &lt;span class=&#34;token number&#34;&gt;3306&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;命令添加MySQL默认端口到SELinux策略，同时确保数据目录正确标注，执行
+&lt;span class=&#34;token comment&#34;&gt;# 安全上下文的修改&lt;/span&gt;
+&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;chcon &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysqld_db_t /var/lib/mysql&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2024/08/29/nginx-proxy/</guid>
             <title>nginx 正向代理配置 https 支持</title>

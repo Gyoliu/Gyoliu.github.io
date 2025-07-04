@@ -4,20 +4,21 @@
     <title>Gyo • Posts by &#34;jvm&#34; tag</title>
     <link href="https://gyoliu.github.io" />
     <updated>2023-05-06T05:01:17.000Z</updated>
-    <category term="Cosy" />
-    <category term="Linux" />
     <category term="Java" />
+    <category term="Linux" />
     <category term="Default" />
     <category term="PaddleSpeech" />
     <category term="elasticsearch" />
+    <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
-    <category term="openssl" />
-    <category term="spring" />
-    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
+    <category term="openssl" />
+    <category term="SELinux" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <entry>
         <id>https://gyoliu.github.io/2023/05/06/jvm-params/</id>
         <title>JVM常用参数</title>

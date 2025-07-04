@@ -7,20 +7,21 @@
         <language>en</language>
         <pubDate>Fri, 23 Sep 2022 12:56:46 +0800</pubDate>
         <lastBuildDate>Fri, 23 Sep 2022 12:56:46 +0800</lastBuildDate>
-        <category>Cosy</category>
-        <category>Linux</category>
         <category>Java</category>
+        <category>Linux</category>
         <category>Default</category>
         <category>PaddleSpeech</category>
         <category>elasticsearch</category>
+        <category>Cosy</category>
         <category>hibernate</category>
         <category>JVM</category>
         <category>mysql</category>
-        <category>openssl</category>
-        <category>spring</category>
-        <category>Spring Cloud</category>
         <category>证书</category>
         <category>nginx</category>
+        <category>openssl</category>
+        <category>SELinux</category>
+        <category>spring</category>
+        <category>Spring Cloud</category>
         <item>
             <guid isPermalink="true">https://gyoliu.github.io/2022/09/23/hibernate-query-result/</guid>
             <title>hibernate原生查询，结果集映射源码阅读</title>

@@ -4,20 +4,21 @@
     <title>Gyo • Posts by &#34;java&#34; category</title>
     <link href="https://gyoliu.github.io" />
     <updated>2023-08-17T05:09:02.000Z</updated>
-    <category term="Cosy" />
-    <category term="Linux" />
     <category term="Java" />
+    <category term="Linux" />
     <category term="Default" />
     <category term="PaddleSpeech" />
     <category term="elasticsearch" />
+    <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="mysql" />
-    <category term="openssl" />
-    <category term="spring" />
-    <category term="Spring Cloud" />
     <category term="证书" />
     <category term="nginx" />
+    <category term="openssl" />
+    <category term="SELinux" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
     <entry>
         <id>https://gyoliu.github.io/2023/08/17/spring-cloud-properties/</id>
         <title>spring cloud 性能优化</title>
