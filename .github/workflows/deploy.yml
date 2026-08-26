@@ -1,0 +1,49 @@
+name: Deploy Blog
+
+on:
+  push:
+    branches:
+      - source
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-blog
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure production URL
+        run: |
+          sed -i 's|url: https://gyoliu.github.io|url: https://blog.genesisx.cn|' _config.yml
+
+      - name: Build site
+        run: |
+          npm run clean
+          npm run build
+
+      - name: Deploy to main branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: main
+          publish_dir: ./public
+          cname: blog.genesisx.cn
+          commit_message: "deploy: ${{ github.event.head_commit.message }}"
