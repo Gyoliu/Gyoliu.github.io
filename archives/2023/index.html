@@ -2,6 +2,31 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("cosy-theme:theme") || "dark";
+        document.documentElement.classList.add("cosy-theme-" + theme);
+      } catch (e) {
+        document.documentElement.classList.add("cosy-theme-dark");
+      }
+    })();
+  </script>
+  <style>
+    html.cosy-theme-dark,
+    html.cosy-theme-dark body {
+      background: #191a24;
+      color: #d2d3e0;
+      color-scheme: dark;
+    }
+
+    html.cosy-theme-light,
+    html.cosy-theme-light body {
+      background: #fff;
+      color: rgba(25, 27, 31, 0.9);
+      color-scheme: light;
+    }
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
@@ -239,7 +264,7 @@
           <a class="timeline-item" href="/2026/08/26/hexo/hello-world/">
             <div class="timeline-info">
               
-              <span>08-26 10:33:44</span>
+              <span>08-26 14:17:15</span>
             </div>
             <div class="timeline-marker"></div>
             <div class="timeline-content">
