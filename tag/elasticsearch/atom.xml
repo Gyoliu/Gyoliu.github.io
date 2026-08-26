@@ -6,15 +6,16 @@
     <updated>2022-06-29T12:47:35.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
-    <category term="Java" />
-    <category term="elasticsearch" />
+    <category term="Elasticsearch" />
     <category term="Cosy" />
+    <category term="Java" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
     <category term="mysql" />
     <category term="置顶" />
+    <category term="MySQL" />
     <category term="git" />
     <category term="Hacker" />
     <category term="Linux" />
@@ -140,8 +141,7 @@ RefreshPolicy#NONE:
 updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 每笔500ms以上，特别影响性能。尽量不要使用&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
-        <category term="Java" />
-        <category term="elasticsearch" />
+        <category term="Elasticsearch" />
         <updated>2022-06-29T12:47:35.000Z</updated>
     </entry>
     <entry>
@@ -232,8 +232,7 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 -XX:+UseSerialGC&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
 </content>
-        <category term="Java" />
-        <category term="elasticsearch" />
+        <category term="Elasticsearch" />
         <updated>2022-06-27T12:44:51.000Z</updated>
     </entry>
     <entry>
@@ -307,8 +306,7 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 &lt;h1 id=&#34;8-查询-ES-集群状态&#34;&gt;&lt;a href=&#34;#8-查询-ES-集群状态&#34; class=&#34;headerlink&#34; title=&#34;- 8. 查询 ES 集群状态&#34;&gt;&lt;/a&gt;- 8. 查询 ES 集群状态&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/aping-blog/p/16066928.html&#34;&gt;https://www.cnblogs.com/aping-blog/p/16066928.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;/archives/elasticsearch-zhong-yao-de-she-zhi&#34; title=&#34;elasticsearch重要的设置&#34;&gt;上一篇 &lt;/a&gt;&lt;a href=&#34;/archives/oauth2jwt&#34; title=&#34;oauth2 jwt&#34;&gt;下一篇&lt;/a&gt;&lt;/p&gt;
 </content>
-        <category term="Java" />
-        <category term="elasticsearch" />
+        <category term="Elasticsearch" />
         <updated>2022-05-18T12:41:39.000Z</updated>
     </entry>
 </feed>

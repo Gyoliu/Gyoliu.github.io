@@ -26,8 +26,6 @@
       
       <categories>
           
-          <category> Default </category>
-          
           <category> Linux </category>
           
       </categories>
@@ -35,7 +33,7 @@
       
         <tags>
             
-            <tag> Default </tag>
+            <tag> Linux </tag>
             
             <tag> nginx </tag>
             
@@ -107,18 +105,14 @@
       
       <categories>
           
-          <category> Default </category>
-          
-          <category> mysql </category>
+          <category> MySQL </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Default </tag>
-            
-            <tag> mysql </tag>
+            <tag> MySQL </tag>
             
         </tags>
       
@@ -960,7 +954,7 @@
       
       <categories>
           
-          <category> Java </category>
+          <category> MySQL </category>
           
       </categories>
       
@@ -1006,16 +1000,14 @@
       
       <categories>
           
-          <category> Java </category>
+          <category> Elasticsearch </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Java </tag>
-            
-            <tag> elasticsearch </tag>
+            <tag> Elasticsearch </tag>
             
         </tags>
       
@@ -1033,16 +1025,14 @@
       
       <categories>
           
-          <category> Java </category>
+          <category> Elasticsearch </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Java </tag>
-            
-            <tag> elasticsearch </tag>
+            <tag> Elasticsearch </tag>
             
         </tags>
       
@@ -1079,16 +1069,14 @@
       
       <categories>
           
-          <category> Java </category>
+          <category> Elasticsearch </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Java </tag>
-            
-            <tag> elasticsearch </tag>
+            <tag> Elasticsearch </tag>
             
         </tags>
       

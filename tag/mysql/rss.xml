@@ -3,21 +3,22 @@
     <channel>
         <title>Gyo • Posts by &#34;mysql&#34; tag</title>
         <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客</description>
+        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
         <language>en</language>
         <pubDate>Tue, 11 Mar 2025 09:16:40 +0000</pubDate>
         <lastBuildDate>Tue, 11 Mar 2025 09:16:40 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
-        <category>Java</category>
-        <category>elasticsearch</category>
+        <category>Elasticsearch</category>
         <category>Cosy</category>
+        <category>Java</category>
         <category>hibernate</category>
         <category>JVM</category>
         <category>spring</category>
         <category>Spring Cloud</category>
         <category>mysql</category>
         <category>置顶</category>
+        <category>MySQL</category>
         <category>git</category>
         <category>Hacker</category>
         <category>Linux</category>
@@ -29,8 +30,7 @@
             <guid isPermalink="true">https://blog.genesisx.cn/2025/03/11/mysql/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</guid>
             <title>mysql主从搭建</title>
             <link>https://blog.genesisx.cn/2025/03/11/mysql/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</link>
-            <category>Default</category>
-            <category>mysql</category>
+            <category>MySQL</category>
             <pubDate>Tue, 11 Mar 2025 09:16:40 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;主服务器配置&#34;&gt;&lt;a href=&#34;#主服务器配置&#34; class=&#34;headerlink&#34; title=&#34;主服务器配置&#34;&gt;&lt;/a&gt;主服务器配置&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;#服务器 id，随意，但要唯一&lt;/span&gt;
 server-id &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;  

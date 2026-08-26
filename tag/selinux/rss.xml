@@ -3,21 +3,22 @@
     <channel>
         <title>Gyo • Posts by &#34;selinux&#34; tag</title>
         <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客</description>
+        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
         <language>en</language>
         <pubDate>Wed, 25 Jun 2025 11:51:44 +0000</pubDate>
         <lastBuildDate>Wed, 25 Jun 2025 11:51:44 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
-        <category>Java</category>
-        <category>elasticsearch</category>
+        <category>Elasticsearch</category>
         <category>Cosy</category>
+        <category>Java</category>
         <category>hibernate</category>
         <category>JVM</category>
         <category>spring</category>
         <category>Spring Cloud</category>
         <category>mysql</category>
         <category>置顶</category>
+        <category>MySQL</category>
         <category>git</category>
         <category>Hacker</category>
         <category>Linux</category>
@@ -29,7 +30,7 @@
             <guid isPermalink="true">https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</guid>
             <title>nginx-install-error-collect</title>
             <link>https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</link>
-            <category>Default</category>
+            <category>Linux</category>
             <category>nginx</category>
             <category>SELinux</category>
             <pubDate>Wed, 25 Jun 2025 11:51:44 +0000</pubDate>

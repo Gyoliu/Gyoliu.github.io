@@ -6,15 +6,16 @@
     <updated>2025-03-11T09:16:40.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
-    <category term="Java" />
-    <category term="elasticsearch" />
+    <category term="Elasticsearch" />
     <category term="Cosy" />
+    <category term="Java" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
     <category term="mysql" />
     <category term="置顶" />
+    <category term="MySQL" />
     <category term="git" />
     <category term="Hacker" />
     <category term="Linux" />
@@ -220,8 +221,7 @@ enforce_gtid_consistency &amp;#x3D; ON&lt;span aria-hidden=&#34;true&#34; class=
 &lt;p&gt;mysql&amp;gt; show binary log status \G;&lt;br&gt;*************************** 1. row ***************************&lt;br&gt;             File: binlog.000008&lt;br&gt;         Position: 12543683&lt;br&gt;     Binlog_Do_DB: tai_hua&lt;br&gt; Binlog_Ignore_DB:&lt;br&gt;Executed_Gtid_Set: 2170bdc8-093b-11f0-b82d-005056b87daf:1-57547,&lt;br&gt;f6f51b80-d477-11ef-bc3e-005056b87daf:1-52662&lt;/p&gt;
 &lt;p&gt;CHANGE REPLICATION SOURCE TO&lt;br&gt;SOURCE_HOST&amp;#x3D;’主库IP’,&lt;br&gt;SOURCE_USER&amp;#x3D;’repl’,&lt;br&gt;SOURCE_PASSWORD&amp;#x3D;’password’,&lt;br&gt;SOURCE_PORT&amp;#x3D;3306,&lt;br&gt;SOURCE_AUTO_POSITION&amp;#x3D;1;&lt;/p&gt;
 </content>
-        <category term="Default" />
-        <category term="mysql" />
+        <category term="MySQL" />
         <updated>2025-03-11T09:16:40.000Z</updated>
     </entry>
     <entry>

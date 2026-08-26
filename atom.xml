@@ -3,18 +3,19 @@
     <id>https://blog.genesisx.cn</id>
     <title>Gyo</title>
     <link href="https://blog.genesisx.cn" />
-    <updated>2026-08-26T09:29:43.593Z</updated>
+    <updated>2026-08-26T10:33:44.620Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
-    <category term="Java" />
-    <category term="elasticsearch" />
+    <category term="Elasticsearch" />
     <category term="Cosy" />
+    <category term="Java" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
     <category term="mysql" />
     <category term="置顶" />
+    <category term="MySQL" />
     <category term="git" />
     <category term="Hacker" />
     <category term="Linux" />
@@ -40,7 +41,7 @@
 
 &lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
 </content>
-        <updated>2026-08-26T09:29:43.593Z</updated>
+        <updated>2026-08-26T10:33:44.620Z</updated>
     </entry>
     <entry>
         <id>https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</id>
@@ -86,7 +87,7 @@ restorecon &lt;span class=&#34;token parameter variable&#34;&gt;-Rv&lt;/span&gt;
 使用&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;semanage port &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysql_port_t &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; tcp &lt;span class=&#34;token number&#34;&gt;3306&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;命令添加MySQL默认端口到SELinux策略，同时确保数据目录正确标注，执行
 &lt;span class=&#34;token comment&#34;&gt;# 安全上下文的修改&lt;/span&gt;
 &lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;chcon &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysqld_db_t /var/lib/mysql&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
-        <category term="Default" />
+        <category term="Linux" />
         <category term="nginx" />
         <category term="SELinux" />
         <updated>2025-06-25T11:51:44.000Z</updated>
@@ -470,8 +471,7 @@ enforce_gtid_consistency &amp;#x3D; ON&lt;span aria-hidden=&#34;true&#34; class=
 &lt;p&gt;mysql&amp;gt; show binary log status \G;&lt;br&gt;*************************** 1. row ***************************&lt;br&gt;             File: binlog.000008&lt;br&gt;         Position: 12543683&lt;br&gt;     Binlog_Do_DB: tai_hua&lt;br&gt; Binlog_Ignore_DB:&lt;br&gt;Executed_Gtid_Set: 2170bdc8-093b-11f0-b82d-005056b87daf:1-57547,&lt;br&gt;f6f51b80-d477-11ef-bc3e-005056b87daf:1-52662&lt;/p&gt;
 &lt;p&gt;CHANGE REPLICATION SOURCE TO&lt;br&gt;SOURCE_HOST&amp;#x3D;’主库IP’,&lt;br&gt;SOURCE_USER&amp;#x3D;’repl’,&lt;br&gt;SOURCE_PASSWORD&amp;#x3D;’password’,&lt;br&gt;SOURCE_PORT&amp;#x3D;3306,&lt;br&gt;SOURCE_AUTO_POSITION&amp;#x3D;1;&lt;/p&gt;
 </content>
-        <category term="Default" />
-        <category term="mysql" />
+        <category term="MySQL" />
         <updated>2025-03-11T09:16:40.000Z</updated>
     </entry>
     <entry>
@@ -2617,8 +2617,7 @@ RefreshPolicy#NONE:
 updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 每笔500ms以上，特别影响性能。尽量不要使用&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
-        <category term="Java" />
-        <category term="elasticsearch" />
+        <category term="Elasticsearch" />
         <updated>2022-06-29T12:47:35.000Z</updated>
     </entry>
     <entry>
@@ -2709,8 +2708,7 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 -XX:+UseSerialGC&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
 </content>
-        <category term="Java" />
-        <category term="elasticsearch" />
+        <category term="Elasticsearch" />
         <updated>2022-06-27T12:44:51.000Z</updated>
     </entry>
     <entry>
@@ -2794,8 +2792,7 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 &lt;h1 id=&#34;8-查询-ES-集群状态&#34;&gt;&lt;a href=&#34;#8-查询-ES-集群状态&#34; class=&#34;headerlink&#34; title=&#34;- 8. 查询 ES 集群状态&#34;&gt;&lt;/a&gt;- 8. 查询 ES 集群状态&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/aping-blog/p/16066928.html&#34;&gt;https://www.cnblogs.com/aping-blog/p/16066928.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;/archives/elasticsearch-zhong-yao-de-she-zhi&#34; title=&#34;elasticsearch重要的设置&#34;&gt;上一篇 &lt;/a&gt;&lt;a href=&#34;/archives/oauth2jwt&#34; title=&#34;oauth2 jwt&#34;&gt;下一篇&lt;/a&gt;&lt;/p&gt;
 </content>
-        <category term="Java" />
-        <category term="elasticsearch" />
+        <category term="Elasticsearch" />
         <updated>2022-05-18T12:41:39.000Z</updated>
     </entry>
     <entry>

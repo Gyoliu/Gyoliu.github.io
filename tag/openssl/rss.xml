@@ -3,21 +3,22 @@
     <channel>
         <title>Gyo • Posts by &#34;openssl&#34; tag</title>
         <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客</description>
+        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
         <language>en</language>
         <pubDate>Tue, 20 Sep 2022 12:53:56 +0000</pubDate>
         <lastBuildDate>Tue, 20 Sep 2022 12:53:56 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
-        <category>Java</category>
-        <category>elasticsearch</category>
+        <category>Elasticsearch</category>
         <category>Cosy</category>
+        <category>Java</category>
         <category>hibernate</category>
         <category>JVM</category>
         <category>spring</category>
         <category>Spring Cloud</category>
         <category>mysql</category>
         <category>置顶</category>
+        <category>MySQL</category>
         <category>git</category>
         <category>Hacker</category>
         <category>Linux</category>

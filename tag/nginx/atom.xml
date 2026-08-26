@@ -6,15 +6,16 @@
     <updated>2025-06-25T11:51:44.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
-    <category term="Java" />
-    <category term="elasticsearch" />
+    <category term="Elasticsearch" />
     <category term="Cosy" />
+    <category term="Java" />
     <category term="hibernate" />
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
     <category term="mysql" />
     <category term="置顶" />
+    <category term="MySQL" />
     <category term="git" />
     <category term="Hacker" />
     <category term="Linux" />
@@ -66,7 +67,7 @@ restorecon &lt;span class=&#34;token parameter variable&#34;&gt;-Rv&lt;/span&gt;
 使用&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;semanage port &lt;span class=&#34;token parameter variable&#34;&gt;-a&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysql_port_t &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; tcp &lt;span class=&#34;token number&#34;&gt;3306&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;命令添加MySQL默认端口到SELinux策略，同时确保数据目录正确标注，执行
 &lt;span class=&#34;token comment&#34;&gt;# 安全上下文的修改&lt;/span&gt;
 &lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;chcon &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysqld_db_t /var/lib/mysql&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
-        <category term="Default" />
+        <category term="Linux" />
         <category term="nginx" />
         <category term="SELinux" />
         <updated>2025-06-25T11:51:44.000Z</updated>
