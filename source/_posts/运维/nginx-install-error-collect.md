@@ -1,10 +1,9 @@
 ---
 title: nginx-install-error-collect
 categories:
-  - Default
   - Linux
 tags:
-  - Default
+  - Linux
   - nginx
   - SELinux
 date: 2025-06-25 11:51:44

@@ -1,10 +1,9 @@
 ---
 title: elasticsearch 查询
 categories:
-  - Java
+  - Elasticsearch
 tags:
-  - Java
-  - elasticsearch
+  - Elasticsearch
 date: 2022-06-29 12:47:35
 updated: 2022-06-29 12:47:35
 ---

@@ -1,7 +1,7 @@
 ---
 title: mysql 遇到的一些错误
 categories:
-  - Java
+  - MySQL
 tags:
   - Java
   - mysql

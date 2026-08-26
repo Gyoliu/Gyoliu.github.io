@@ -1,10 +1,9 @@
 ---
 title: elasticsearch重要的设置
 categories:
-  - Java
+  - Elasticsearch
 tags:
-  - Java
-  - elasticsearch
+  - Elasticsearch
 date: 2022-06-27 12:44:51
 updated: 2022-06-27 12:44:51
 ---

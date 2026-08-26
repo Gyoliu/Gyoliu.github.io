@@ -1,10 +1,9 @@
 ---
 title: elasticsearch8.2集群安装部署
 categories:
-  - Java
+  - Elasticsearch
 tags:
-  - Java
-  - elasticsearch
+  - Elasticsearch
 date: 2022-05-18 12:41:39
 updated: 2022-05-18 12:41:39
 ---

@@ -1,11 +1,9 @@
 ---
 title: mysql主从搭建
 categories:
-  - Default
-  - mysql
+  - MySQL
 tags:
-  - Default
-  - mysql
+  - MySQL
 date: 2025-03-11 09:16:40
 updated: 2025-03-11 09:16:40
 ---
