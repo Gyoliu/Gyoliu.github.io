@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;elasticsearch&#34; tag</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2022-06-29T04:47:35.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2022-06-29T12:47:35.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2022/06/29/elasticsearch-query/</id>
+        <id>https://blog.genesisx.cn/2022/06/29/elasticsearch/elasticsearch-query/</id>
         <title>elasticsearch 查询</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/06/29/elasticsearch-query/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/06/29/elasticsearch/elasticsearch-query/"/>
         <content type="html">&lt;h1 id=&#34;分页&#34;&gt;&lt;a href=&#34;#分页&#34; class=&#34;headerlink&#34; title=&#34;分页&#34;&gt;&lt;/a&gt;分页&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;GET &amp;#x2F;_search
 &amp;#123;
     &amp;quot;from&amp;quot; : 0, &amp;quot;size&amp;quot; : 10,
@@ -139,12 +142,12 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-06-29T04:47:35.000Z</updated>
+        <updated>2022-06-29T12:47:35.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/06/27/elasticsearch-setting/</id>
+        <id>https://blog.genesisx.cn/2022/06/27/elasticsearch/elasticsearch-setting/</id>
         <title>elasticsearch重要的设置</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/06/27/elasticsearch-setting/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/06/27/elasticsearch/elasticsearch-setting/"/>
         <content type="html">&lt;h1 id=&#34;1-堆大小检查&#34;&gt;&lt;a href=&#34;#1-堆大小检查&#34; class=&#34;headerlink&#34; title=&#34;1. 堆大小检查&#34;&gt;&lt;/a&gt;1. 堆大小检查&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;如果 JVM 以不相等的初始堆大小和最大堆大小启动，则在系统使用期间调整 JVM 堆的大小时，它很容易出现暂停。为避免这些调整大小暂停，最好在初始堆大小等于最大堆大小的情况下启动 JVM。此外，如果 bootstrap.memory_lock启用，JVM 将在启动时锁定堆的初始大小。如果初始堆大小不等于最大堆大小，则在调整大小后，所有 JVM 堆都不会锁定在内存中。要通过堆大小检查，您必须配置堆大小。&lt;br&gt;-xms: 1g &amp;#x2F;&amp;#x2F; 最小堆内存&lt;br&gt;-xmx: 1g &amp;#x2F;&amp;#x2F; 最大堆内存&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -231,12 +234,12 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-06-27T04:44:51.000Z</updated>
+        <updated>2022-06-27T12:44:51.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/05/18/elasticsearch8-2-install/</id>
+        <id>https://blog.genesisx.cn/2022/05/18/elasticsearch/elasticsearch8-2-install/</id>
         <title>elasticsearch8.2集群安装部署</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/05/18/elasticsearch8-2-install/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/05/18/elasticsearch/elasticsearch8-2-install/"/>
         <content type="html">&lt;h1 id=&#34;1-下载&#34;&gt;&lt;a href=&#34;#1-下载&#34; class=&#34;headerlink&#34; title=&#34;- 1. 下载&#34;&gt;&lt;/a&gt;- 1. 下载&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;[elasticsearch下载地址](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;start)
 [elasticsearch下载地址](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;downloads&amp;#x2F;elasticsearch)
 [elasticsearch版本支持](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;support&amp;#x2F;matrix)
@@ -306,6 +309,6 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-05-18T04:41:39.000Z</updated>
+        <updated>2022-05-18T12:41:39.000Z</updated>
     </entry>
 </feed>

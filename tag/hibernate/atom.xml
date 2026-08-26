@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;hibernate&#34; tag</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2022-09-23T04:56:46.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2022-09-23T12:56:46.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2022/09/23/hibernate-query-result/</id>
+        <id>https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</id>
         <title>hibernate原生查询，结果集映射源码阅读</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/09/23/hibernate-query-result/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/"/>
         <content type="html">&lt;h1 id=&#34;1-hibernate-版本-5-4-21-Final&#34;&gt;&lt;a href=&#34;#1-hibernate-版本-5-4-21-Final&#34; class=&#34;headerlink&#34; title=&#34;1.hibernate 版本 5.4.21.Final&#34;&gt;&lt;/a&gt;1.hibernate 版本 5.4.21.Final&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt; nativeQuery &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; entityManager&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createNativeQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sql&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;unwrap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
 nativeQuery&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;BeanResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;cls&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
@@ -65,6 +68,6 @@ ResultTransformer resultTransformer 是在查询时指定的
 </content>
         <category term="Java" />
         <category term="hibernate" />
-        <updated>2022-09-23T04:56:46.000Z</updated>
+        <updated>2022-09-23T12:56:46.000Z</updated>
     </entry>
 </feed>

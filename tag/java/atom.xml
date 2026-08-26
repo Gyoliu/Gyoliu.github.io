@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;java&#34; tag</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2023-08-17T05:09:02.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2023-08-17T13:09:02.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2023/08/17/spring-cloud-properties/</id>
+        <id>https://blog.genesisx.cn/2023/08/17/java/spring-cloud-properties/</id>
         <title>spring cloud 性能优化</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2023/08/17/spring-cloud-properties/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/08/17/java/spring-cloud-properties/"/>
         <content type="html">&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# undertow 服务器优化&lt;/span&gt;
 server.undertow.threads.io=8
 server.undertow.threads.worker=256
@@ -43,12 +46,12 @@ feign.compression.response.useGzipDecoder=true&lt;span aria-hidden=&#34;true&#34
 </content>
         <category term="Java" />
         <category term="Spring Cloud" />
-        <updated>2023-08-17T05:09:02.000Z</updated>
+        <updated>2023-08-17T13:09:02.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/</id>
+        <id>https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/</id>
         <title>spring bean 扩展点记录</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/"/>
         <content type="html">&lt;p&gt;&lt;img src=&#34;/img/spring%20bean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B-mjrg.png&#34; alt=&#34;spring bean实例化流程-mjrg.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/springbean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png&#34; alt=&#34;springbean实例化流程图.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/spring%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3%E7%82%B9.png&#34; alt=&#34;spring扩展接口点.png&#34;&gt;&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;// spring 核心代码&lt;/span&gt;
 &lt;span class=&#34;token comment&#34;&gt;// BeanFactoryPostProcessor 接口 ，this.postProcessBeanFactory(beanFactory);&lt;/span&gt;
@@ -247,12 +250,12 @@ AspectJAutoProxyRegistrar&lt;span aria-hidden=&#34;true&#34; class=&#34;line-num
 </content>
         <category term="Java" />
         <category term="spring" />
-        <updated>2023-07-20T05:03:23.000Z</updated>
+        <updated>2023-07-20T13:03:23.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2023/05/06/jvm-params/</id>
+        <id>https://blog.genesisx.cn/2023/05/06/java/jvm-params/</id>
         <title>JVM常用参数</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2023/05/06/jvm-params/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/05/06/java/jvm-params/"/>
         <content type="html">&lt;p&gt;&lt;a href=&#34;https://help.aliyun.com/document_detail/148851.html?spm=a2c4g.383255.0.0.30855accl7pyIr&#34;&gt;阿里 Serverless JVM 最佳实践&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;# [阿里 Serverless JVM 最佳实践]
 https:&amp;#x2F;&amp;#x2F;help.aliyun.com&amp;#x2F;document_detail&amp;#x2F;148851.html?spm&amp;#x3D;a2c4g.383255.0.0.30855accl7pyIr
@@ -330,12 +333,12 @@ ENTRYPOINT [&amp;quot;sh&amp;quot;,&amp;quot;-c&amp;quot;, &amp;quot;java -jar $
 </content>
         <category term="Java" />
         <category term="JVM" />
-        <updated>2023-05-06T05:01:17.000Z</updated>
+        <updated>2023-05-06T13:01:17.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/09/23/hibernate-query-result/</id>
+        <id>https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</id>
         <title>hibernate原生查询，结果集映射源码阅读</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/09/23/hibernate-query-result/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/"/>
         <content type="html">&lt;h1 id=&#34;1-hibernate-版本-5-4-21-Final&#34;&gt;&lt;a href=&#34;#1-hibernate-版本-5-4-21-Final&#34; class=&#34;headerlink&#34; title=&#34;1.hibernate 版本 5.4.21.Final&#34;&gt;&lt;/a&gt;1.hibernate 版本 5.4.21.Final&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt; nativeQuery &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; entityManager&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createNativeQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sql&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;unwrap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
 nativeQuery&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;BeanResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;cls&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
@@ -378,12 +381,12 @@ ResultTransformer resultTransformer 是在查询时指定的
 </content>
         <category term="Java" />
         <category term="hibernate" />
-        <updated>2022-09-23T04:56:46.000Z</updated>
+        <updated>2022-09-23T12:56:46.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/09/16/mysql-error-collection/</id>
+        <id>https://blog.genesisx.cn/2022/09/16/mysql/mysql-error-collection/</id>
         <title>mysql 遇到的一些错误</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/09/16/mysql-error-collection/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/09/16/mysql/mysql-error-collection/"/>
         <content type="html">&lt;h2 id=&#34;1-3100-Error-on-observer-while-running-replication-hook-‘before-commit’&#34;&gt;&lt;a href=&#34;#1-3100-Error-on-observer-while-running-replication-hook-‘before-commit’&#34; class=&#34;headerlink&#34; title=&#34;1. 3100 - Error on observer while running replication hook ‘before_commit’.&#34;&gt;&lt;/a&gt;1. 3100 - Error on observer while running replication hook ‘before_commit’.&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-sql&#34; data-language=&#34;sql&#34;&gt;&lt;code class=&#34;language-sql&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;global&lt;/span&gt; variables &lt;span class=&#34;token operator&#34;&gt;like&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;%group_replication_transaction_size_limit%&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;token keyword&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;global&lt;/span&gt; group_replication_transaction_size_limit&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1500000000&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
@@ -566,12 +569,12 @@ ResultTransformer resultTransformer 是在查询时指定的
 </content>
         <category term="Java" />
         <category term="mysql" />
-        <updated>2022-09-16T04:50:56.000Z</updated>
+        <updated>2022-09-16T12:50:56.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/06/29/elasticsearch-query/</id>
+        <id>https://blog.genesisx.cn/2022/06/29/elasticsearch/elasticsearch-query/</id>
         <title>elasticsearch 查询</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/06/29/elasticsearch-query/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/06/29/elasticsearch/elasticsearch-query/"/>
         <content type="html">&lt;h1 id=&#34;分页&#34;&gt;&lt;a href=&#34;#分页&#34; class=&#34;headerlink&#34; title=&#34;分页&#34;&gt;&lt;/a&gt;分页&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;GET &amp;#x2F;_search
 &amp;#123;
     &amp;quot;from&amp;quot; : 0, &amp;quot;size&amp;quot; : 10,
@@ -688,12 +691,12 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-06-29T04:47:35.000Z</updated>
+        <updated>2022-06-29T12:47:35.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/06/27/elasticsearch-setting/</id>
+        <id>https://blog.genesisx.cn/2022/06/27/elasticsearch/elasticsearch-setting/</id>
         <title>elasticsearch重要的设置</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/06/27/elasticsearch-setting/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/06/27/elasticsearch/elasticsearch-setting/"/>
         <content type="html">&lt;h1 id=&#34;1-堆大小检查&#34;&gt;&lt;a href=&#34;#1-堆大小检查&#34; class=&#34;headerlink&#34; title=&#34;1. 堆大小检查&#34;&gt;&lt;/a&gt;1. 堆大小检查&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;如果 JVM 以不相等的初始堆大小和最大堆大小启动，则在系统使用期间调整 JVM 堆的大小时，它很容易出现暂停。为避免这些调整大小暂停，最好在初始堆大小等于最大堆大小的情况下启动 JVM。此外，如果 bootstrap.memory_lock启用，JVM 将在启动时锁定堆的初始大小。如果初始堆大小不等于最大堆大小，则在调整大小后，所有 JVM 堆都不会锁定在内存中。要通过堆大小检查，您必须配置堆大小。&lt;br&gt;-xms: 1g &amp;#x2F;&amp;#x2F; 最小堆内存&lt;br&gt;-xmx: 1g &amp;#x2F;&amp;#x2F; 最大堆内存&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -780,12 +783,12 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-06-27T04:44:51.000Z</updated>
+        <updated>2022-06-27T12:44:51.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/05/18/elasticsearch8-2-install/</id>
+        <id>https://blog.genesisx.cn/2022/05/18/elasticsearch/elasticsearch8-2-install/</id>
         <title>elasticsearch8.2集群安装部署</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/05/18/elasticsearch8-2-install/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/05/18/elasticsearch/elasticsearch8-2-install/"/>
         <content type="html">&lt;h1 id=&#34;1-下载&#34;&gt;&lt;a href=&#34;#1-下载&#34; class=&#34;headerlink&#34; title=&#34;- 1. 下载&#34;&gt;&lt;/a&gt;- 1. 下载&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;[elasticsearch下载地址](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;start)
 [elasticsearch下载地址](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;downloads&amp;#x2F;elasticsearch)
 [elasticsearch版本支持](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;support&amp;#x2F;matrix)
@@ -855,12 +858,12 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-05-18T04:41:39.000Z</updated>
+        <updated>2022-05-18T12:41:39.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/03/04/quartz-workflow/</id>
+        <id>https://blog.genesisx.cn/2022/03/04/java/quartz-workflow/</id>
         <title>quartz启动执行流程</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/03/04/quartz-workflow/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/03/04/java/quartz-workflow/"/>
         <content type="html">&lt;p&gt;spring 整合 quartz 初始化执行流程, 写的不是一般乱&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;SchedulerFactoryBean.afterPropertiesSet()&lt;br&gt;-&amp;gt; prepareSchedulerFactory()&lt;br&gt;-&amp;gt; initSchedulerFactory() 初始化StdSchedulerFactory&lt;br&gt;-&amp;gt; prepareScheduler(SchedulerFactory schedulerFactory)&lt;br&gt;-&amp;gt; createScheduler() 创建调度器&lt;br&gt;-&amp;gt; StdSchedulerFactory.getScheduler()&lt;br&gt;-&amp;gt; instantiate()&lt;/p&gt;
@@ -882,21 +885,21 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 &lt;/blockquote&gt;
 </content>
         <category term="Java" />
-        <updated>2022-03-04T04:38:04.000Z</updated>
+        <updated>2022-03-04T12:38:04.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/02/24/xxljob-workflow/</id>
+        <id>https://blog.genesisx.cn/2022/02/24/java/xxljob-workflow/</id>
         <title>xxl-job执行流程和原理</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/02/24/xxljob-workflow/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/02/24/java/xxljob-workflow/"/>
         <content type="html">&lt;h2 id=&#34;xxl-job项目地址-👈&#34;&gt;&lt;a href=&#34;#xxl-job项目地址-👈&#34; class=&#34;headerlink&#34; title=&#34;xxl-job项目地址 👈&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://github.com/xuxueli/xxl-job&#34;&gt;xxl-job项目地址 👈&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/img/xxljob%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86.png&#34; alt=&#34;xxljob执行流程和原理.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/xxljob%E6%9E%B6%E6%9E%84%E5%9B%BE.png&#34; alt=&#34;xxljob架构图.png&#34;&gt;&lt;/p&gt;
 </content>
         <category term="Java" />
-        <updated>2022-02-24T04:31:56.000Z</updated>
+        <updated>2022-02-24T12:31:56.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/09/29/spring-redis-cache-lock/</id>
+        <id>https://blog.genesisx.cn/2021/09/29/java/spring-redis-cache-lock/</id>
         <title>springboot redis 死锁问题</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/09/29/spring-redis-cache-lock/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/09/29/java/spring-redis-cache-lock/"/>
         <content type="html">&lt;h1 id=&#34;现象&#34;&gt;&lt;a href=&#34;#现象&#34; class=&#34;headerlink&#34; title=&#34;现象&#34;&gt;&lt;/a&gt;现象&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;调用某个使用了 @Cacheable 的接口，一直没有响应，但是业务代码都执行完成。 如果使用的是 lockingRedisCacheWriter 实例化的缓存，那么在开发阶段不断重启应用强制杀掉进程，会导致锁没有释放问题。&lt;/li&gt;
 &lt;/ul&gt;
@@ -970,12 +973,12 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 &lt;p&gt;在实例化缓存管理组件时指定无锁缓存，可以避免获取缓存加锁问题。&lt;/p&gt;
 </content>
         <category term="Java" />
-        <updated>2021-09-29T03:53:21.000Z</updated>
+        <updated>2021-09-29T11:53:21.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/07/02/jdk-tools/</id>
+        <id>https://blog.genesisx.cn/2021/07/02/java/jdk-tools/</id>
         <title>jdk tools jvm jmap jstat jstack</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/07/02/jdk-tools/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/07/02/java/jdk-tools/"/>
         <content type="html">&lt;h3 id=&#34;jmap输出内存快照&#34;&gt;&lt;a href=&#34;#jmap输出内存快照&#34; class=&#34;headerlink&#34; title=&#34;jmap输出内存快照&#34;&gt;&lt;/a&gt;jmap输出内存快照&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;jmap &lt;span class=&#34;token parameter variable&#34;&gt;-dump:format&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;b,file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/data/jmap.hprof PID
 
 增加GC日志
@@ -1008,12 +1011,12 @@ sz xxx_1a*
 &lt;span class=&#34;token comment&#34;&gt;# windows 文件合并&lt;/span&gt;
 copy /b ＜filename1＞+＜filename2＞+…+＜filenameN＞ ＜新filename＞&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
         <category term="Java" />
-        <updated>2021-07-02T03:43:31.000Z</updated>
+        <updated>2021-07-02T11:43:31.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/05/26/webservice-call/</id>
+        <id>https://blog.genesisx.cn/2021/05/26/%E7%BD%91%E7%BB%9C/webservice-call/</id>
         <title>webservice 的两种调用方式</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/05/26/webservice-call/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/05/26/%E7%BD%91%E7%BB%9C/webservice-call/"/>
         <content type="html">&lt;h3 id=&#34;CXF&#34;&gt;&lt;a href=&#34;#CXF&#34; class=&#34;headerlink&#34; title=&#34;CXF&#34;&gt;&lt;/a&gt;CXF&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;WebserviceConfiguration&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
     &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; targetEndpointAddress&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
     &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; targetNameSpace&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
@@ -1262,12 +1265,12 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
  &lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt; returnData &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;invoke&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;paramValues&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;toArray&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="Java" />
-        <updated>2021-05-26T03:04:29.000Z</updated>
+        <updated>2021-05-26T11:04:29.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/02/23/Spring-AOP/</id>
+        <id>https://blog.genesisx.cn/2021/02/23/java/Spring-AOP/</id>
         <title>Spring AOP</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/02/23/Spring-AOP/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/02/23/java/Spring-AOP/"/>
         <content type="html">&lt;h3 id=&#34;AOP-概念&#34;&gt;&lt;a href=&#34;#AOP-概念&#34; class=&#34;headerlink&#34; title=&#34;AOP 概念&#34;&gt;&lt;/a&gt;AOP 概念&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Aspect：&lt;ul&gt;
 &lt;li&gt;Aspect 声明类似于 Java 中的类声明，在 Aspect 中会包含着一些 Pointcut 以及相应的 Advice。&lt;/li&gt;
@@ -1329,12 +1332,12 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
 &lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="Java" />
-        <updated>2021-02-23T02:06:35.000Z</updated>
+        <updated>2021-02-23T10:06:35.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2020/12/18/hibernate-cache-error/</id>
+        <id>https://blog.genesisx.cn/2020/12/18/java/hibernate-cache-error/</id>
         <title>记一个hibernate和redis缓存引起的错误</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2020/12/18/hibernate-cache-error/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/12/18/java/hibernate-cache-error/"/>
         <content type="html">&lt;h3 id=&#34;错误现象&#34;&gt;&lt;a href=&#34;#错误现象&#34; class=&#34;headerlink&#34; title=&#34;错误现象&#34;&gt;&lt;/a&gt;错误现象&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;Caused&lt;/span&gt; by&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;LazyInitializationException&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; failed &lt;span class=&#34;token keyword&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;token namespace&#34;&gt;lazily&lt;/span&gt; initialize a collection&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; could not initialize proxy &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; no &lt;span class=&#34;token class-name&#34;&gt;Session&lt;/span&gt;
 	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;collection&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;internal&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;throwLazyInitializationException&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;587&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
 	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;collection&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;internal&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;withTemporarySessionIfNeeded&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;204&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
@@ -1354,12 +1357,12 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
 &lt;/blockquote&gt;
 </content>
         <category term="Java" />
-        <updated>2020-12-17T16:50:55.000Z</updated>
+        <updated>2020-12-18T00:50:55.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2020/12/07/Feign-Different-Bean-Question/</id>
+        <id>https://blog.genesisx.cn/2020/12/07/java/Feign-Different-Bean-Question/</id>
         <title>Feign不同服务的bean 如何不重复</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2020/12/07/Feign-Different-Bean-Question/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/12/07/java/Feign-Different-Bean-Question/"/>
         <content type="html">&lt;h3 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;项目中使用了 Feign 组件，指定 Fallback 时需要这个类是在spring bean ,使用 @Component 标记，类名为 ATest.class ，使用 @Component 注解生成的bean name 是类名第一个字母小写的，也就是 aTest。这时同事使用了 @Bean 注解 标注下面的方法生成bean , public xxx aTest(){}。@Bean 生成 bean 的规则是使用的方法名称，也是 aTest 。&lt;/p&gt;
 &lt;h3 id=&#34;问题&#34;&gt;&lt;a href=&#34;#问题&#34; class=&#34;headerlink&#34; title=&#34;问题&#34;&gt;&lt;/a&gt;问题&lt;/h3&gt;&lt;p&gt;有趣的问题就来了，这时生成的都是 aTest ，spring是怎么处理的？在同一个项目中，bean name 是不允许重复的，启动会报错。但是使用的 Feign 组件，涉及到各个微服务的相互调用，Feign 是怎么隔离不同服务之间的 bean 的呢？不同微服务 bean name 相同会导致什么问题？&lt;/p&gt;
 &lt;h3 id=&#34;方案&#34;&gt;&lt;a href=&#34;#方案&#34; class=&#34;headerlink&#34; title=&#34;方案&#34;&gt;&lt;/a&gt;方案&lt;/h3&gt;&lt;p&gt;Feign 其中有 FeignContext extends NamedContextFactory ，其中使用了 map 结构来存储不同的 applicationContext ，每个服务都有一个子容器，首先通过服务名获取子容器，再根据Class获取到这个容器内的bean&lt;/p&gt;
@@ -1393,12 +1396,12 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
     &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="Java" />
-        <updated>2020-12-06T16:43:54.000Z</updated>
+        <updated>2020-12-07T00:43:54.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2020/11/10/NullPointerException-notifyAttributeAssigned/</id>
+        <id>https://blog.genesisx.cn/2020/11/10/java/NullPointerException-notifyAttributeAssigned/</id>
         <title>在 Web 程序中使用多线程处理任务，RequestContextHolder notifyAttributeAssigned NullPointerException 异常</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2020/11/10/NullPointerException-notifyAttributeAssigned/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/11/10/java/NullPointerException-notifyAttributeAssigned/"/>
         <content type="html">&lt;h2 id=&#34;起因&#34;&gt;&lt;a href=&#34;#起因&#34; class=&#34;headerlink&#34; title=&#34;起因&#34;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;在 web 程序中使用多线程处理任务报如下错误&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;Caused&lt;/span&gt; by&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;NullPointerException&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;
 	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;apache&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;catalina&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;connector&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;Request&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;notifyAttributeAssigned&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Request&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1528&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
@@ -1530,6 +1533,6 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
 &lt;/ol&gt;
 </content>
         <category term="Java" />
-        <updated>2020-11-10T09:10:26.000Z</updated>
+        <updated>2020-11-10T17:10:26.000Z</updated>
     </entry>
 </feed>

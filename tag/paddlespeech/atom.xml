@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;paddlespeech&#34; tag</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2024-07-29T05:20:51.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2024-07-29T13:20:51.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2024/07/29/PaddleSpeech/</id>
+        <id>https://blog.genesisx.cn/2024/07/29/AI/PaddleSpeech/</id>
         <title>基于百度飞浆平台语音识别PaddleSpeech</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2024/07/29/PaddleSpeech/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2024/07/29/AI/PaddleSpeech/"/>
         <content type="html">&lt;h1 id=&#34;PaddleSpeech-是基于飞桨-PaddlePaddle-的语音方向的开源模型库&#34;&gt;&lt;a href=&#34;#PaddleSpeech-是基于飞桨-PaddlePaddle-的语音方向的开源模型库&#34; class=&#34;headerlink&#34; title=&#34;PaddleSpeech 是基于飞桨 PaddlePaddle 的语音方向的开源模型库&#34;&gt;&lt;/a&gt;&lt;strong&gt;PaddleSpeech&lt;/strong&gt; 是基于飞桨 &lt;a href=&#34;https://gitee.com/link?target=https://github.com/PaddlePaddle/Paddle&#34;&gt;PaddlePaddle&lt;/a&gt; 的语音方向的开源模型库&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSpeech&#34;&gt;https://github.com/PaddlePaddle/PaddleSpeech&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;文本介绍-Docker-部署方式&#34;&gt;&lt;a href=&#34;#文本介绍-Docker-部署方式&#34; class=&#34;headerlink&#34; title=&#34;文本介绍 Docker 部署方式&#34;&gt;&lt;/a&gt;文本介绍 Docker 部署方式&lt;/h2&gt;&lt;p&gt;依赖环境介绍,docker 环境就不用担心这些：&lt;/p&gt;
 &lt;ul&gt;
@@ -83,6 +86,6 @@ or
 </content>
         <category term="Default" />
         <category term="PaddleSpeech" />
-        <updated>2024-07-29T05:20:51.000Z</updated>
+        <updated>2024-07-29T13:20:51.000Z</updated>
     </entry>
 </feed>

@@ -1,0 +1,16 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Gyo • All posts by \"工具\" category",
+    "description": "Gyo的博客",
+    "home_page_url": "https://blog.genesisx.cn",
+    "items": [
+        {
+            "id": "https://blog.genesisx.cn/2021/11/29/%E5%B7%A5%E5%85%B7/2021-11-29--git%E5%85%8B%E9%9A%86%E5%A4%A7%E4%BB%93%E5%BA%93%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95--161/",
+            "url": "https://blog.genesisx.cn/2021/11/29/%E5%B7%A5%E5%85%B7/2021-11-29--git%E5%85%8B%E9%9A%86%E5%A4%A7%E4%BB%93%E5%BA%93%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95--161/",
+            "title": "git克隆大仓库的问题记录",
+            "date_published": "2021-11-29T18:56:27.000Z",
+            "content_html": "<p>网上大多数都是教你：</p>\n<ol>\n<li>克隆最新一次 commit：git clone <a href=\"https://xxxxxx.git/\">https://xxxxxx.git</a> –depth 1</li>\n<li>下载所有历史：git fetch –unshallow</li>\n<li>设置分支：git remote set-branches origin ‘*’</li>\n<li>git fetch -v</li>\n</ol>\n<p>但是 git fetch –unshallow 还是很大怎么办呢？ 百度到此就 GG 了</p>\n<ol>\n<li>克隆最新一次 commit：git clone <a href=\"https://xxxxxx.git/\">https://xxxxxx.git</a> –depth 1</li>\n<li>设置分支：git remote set-branches origin *</li>\n<li>拉取你想要的分支：git fetch –depth 1 origin xxx 或者使用 git pull –depth&#x3D;1</li>\n<li>git branch -a</li>\n</ol>\n<p>就这么简单，想要那个就拉取哪里分支的最新一次提交</p>\n",
+            "tags": []
+        }
+    ]
+}

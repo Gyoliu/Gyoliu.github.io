@@ -2,34 +2,37 @@
 <rss version="2.0">
     <channel>
         <title>Gyo • Posts by &#34;selinux&#34; tag</title>
-        <link>https://gyoliu.github.io</link>
+        <link>https://blog.genesisx.cn</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Wed, 25 Jun 2025 11:51:44 +0800</pubDate>
-        <lastBuildDate>Wed, 25 Jun 2025 11:51:44 +0800</lastBuildDate>
-        <category>Java</category>
-        <category>Linux</category>
+        <pubDate>Wed, 25 Jun 2025 11:51:44 +0000</pubDate>
+        <lastBuildDate>Wed, 25 Jun 2025 11:51:44 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
+        <category>Java</category>
         <category>elasticsearch</category>
         <category>Cosy</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>mysql</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>openssl</category>
-        <category>SELinux</category>
         <category>spring</category>
         <category>Spring Cloud</category>
+        <category>mysql</category>
+        <category>置顶</category>
+        <category>git</category>
+        <category>Hacker</category>
+        <category>Linux</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>SELinux</category>
+        <category>openssl</category>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</guid>
             <title>nginx-install-error-collect</title>
-            <link>https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</link>
+            <link>https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</link>
             <category>Default</category>
             <category>nginx</category>
             <category>SELinux</category>
-            <pubDate>Wed, 25 Jun 2025 11:51:44 +0800</pubDate>
+            <pubDate>Wed, 25 Jun 2025 11:51:44 +0000</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;1-无法读取-ssl-密钥&#34;&gt;&lt;a href=&#34;#1-无法读取-ssl-密钥&#34; class=&#34;headerlink&#34; title=&#34;1. 无法读取 ssl 密钥&#34;&gt;&lt;/a&gt;1. 无法读取 ssl 密钥&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;2025&amp;#x2F;06&amp;#x2F;25 11:41:21 [emerg] 8982#8982: cannot load certificate “&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem”: BIO_new_file() failed (SSL: error:0200100D:system library:fopen:Permission denied:fopen(‘&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem’,’r’) error:2006D002:BIO routines:BIO_new_file:system lib)&lt;/p&gt;
 &lt;/blockquote&gt;

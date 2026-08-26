@@ -2,33 +2,36 @@
 <rss version="2.0">
     <channel>
         <title>Gyo • Posts by &#34;jvm&#34; tag</title>
-        <link>https://gyoliu.github.io</link>
+        <link>https://blog.genesisx.cn</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Sat, 06 May 2023 13:01:17 +0800</pubDate>
-        <lastBuildDate>Sat, 06 May 2023 13:01:17 +0800</lastBuildDate>
-        <category>Java</category>
-        <category>Linux</category>
+        <pubDate>Sat, 06 May 2023 13:01:17 +0000</pubDate>
+        <lastBuildDate>Sat, 06 May 2023 13:01:17 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
+        <category>Java</category>
         <category>elasticsearch</category>
         <category>Cosy</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>mysql</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>openssl</category>
-        <category>SELinux</category>
         <category>spring</category>
         <category>Spring Cloud</category>
+        <category>mysql</category>
+        <category>置顶</category>
+        <category>git</category>
+        <category>Hacker</category>
+        <category>Linux</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>SELinux</category>
+        <category>openssl</category>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2023/05/06/jvm-params/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2023/05/06/java/jvm-params/</guid>
             <title>JVM常用参数</title>
-            <link>https://gyoliu.github.io/2023/05/06/jvm-params/</link>
+            <link>https://blog.genesisx.cn/2023/05/06/java/jvm-params/</link>
             <category>Java</category>
             <category>JVM</category>
-            <pubDate>Sat, 06 May 2023 13:01:17 +0800</pubDate>
+            <pubDate>Sat, 06 May 2023 13:01:17 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;a href=&#34;https://help.aliyun.com/document_detail/148851.html?spm=a2c4g.383255.0.0.30855accl7pyIr&#34;&gt;阿里 Serverless JVM 最佳实践&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;# [阿里 Serverless JVM 最佳实践]
 https:&amp;#x2F;&amp;#x2F;help.aliyun.com&amp;#x2F;document_detail&amp;#x2F;148851.html?spm&amp;#x3D;a2c4g.383255.0.0.30855accl7pyIr

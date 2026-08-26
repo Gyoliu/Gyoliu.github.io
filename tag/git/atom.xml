@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.genesisx.cn</id>
+    <title>Gyo • Posts by &#34;git&#34; tag</title>
+    <link href="https://blog.genesisx.cn" />
+    <updated>2022-10-27T09:44:00.000Z</updated>
+    <category term="Default" />
+    <category term="PaddleSpeech" />
+    <category term="Java" />
+    <category term="elasticsearch" />
+    <category term="Cosy" />
+    <category term="hibernate" />
+    <category term="JVM" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
+    <entry>
+        <id>https://blog.genesisx.cn/2022/10/27/%E5%85%B6%E4%BB%96/2022-10-27--260--260/</id>
+        <title>开源git收录</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/10/27/%E5%85%B6%E4%BB%96/2022-10-27--260--260/"/>
+        <content type="html">&lt;h1 id=&#34;JavaGuide&#34;&gt;&lt;a href=&#34;#JavaGuide&#34; class=&#34;headerlink&#34; title=&#34;JavaGuide&#34;&gt;&lt;/a&gt;JavaGuide&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/Snailclimb/JavaGuide&#34;&gt;https://github.com/Snailclimb/JavaGuide&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;安卓同声传译APP&#34;&gt;&lt;a href=&#34;#安卓同声传译APP&#34; class=&#34;headerlink&#34; title=&#34;安卓同声传译APP&#34;&gt;&lt;/a&gt;安卓同声传译APP&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-javascript&#34; data-language=&#34;javascript&#34;&gt;&lt;code class=&#34;language-javascript&#34;&gt;&lt;span class=&#34;token literal-property property&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;github&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;niedev&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;RTranslator&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+        <category term="git" />
+        <updated>2022-10-27T09:44:00.000Z</updated>
+    </entry>
+</feed>

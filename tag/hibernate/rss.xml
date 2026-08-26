@@ -2,33 +2,36 @@
 <rss version="2.0">
     <channel>
         <title>Gyo • Posts by &#34;hibernate&#34; tag</title>
-        <link>https://gyoliu.github.io</link>
+        <link>https://blog.genesisx.cn</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Fri, 23 Sep 2022 12:56:46 +0800</pubDate>
-        <lastBuildDate>Fri, 23 Sep 2022 12:56:46 +0800</lastBuildDate>
-        <category>Java</category>
-        <category>Linux</category>
+        <pubDate>Fri, 23 Sep 2022 12:56:46 +0000</pubDate>
+        <lastBuildDate>Fri, 23 Sep 2022 12:56:46 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
+        <category>Java</category>
         <category>elasticsearch</category>
         <category>Cosy</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>mysql</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>openssl</category>
-        <category>SELinux</category>
         <category>spring</category>
         <category>Spring Cloud</category>
+        <category>mysql</category>
+        <category>置顶</category>
+        <category>git</category>
+        <category>Hacker</category>
+        <category>Linux</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>SELinux</category>
+        <category>openssl</category>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2022/09/23/hibernate-query-result/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</guid>
             <title>hibernate原生查询，结果集映射源码阅读</title>
-            <link>https://gyoliu.github.io/2022/09/23/hibernate-query-result/</link>
+            <link>https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</link>
             <category>Java</category>
             <category>hibernate</category>
-            <pubDate>Fri, 23 Sep 2022 12:56:46 +0800</pubDate>
+            <pubDate>Fri, 23 Sep 2022 12:56:46 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;1-hibernate-版本-5-4-21-Final&#34;&gt;&lt;a href=&#34;#1-hibernate-版本-5-4-21-Final&#34; class=&#34;headerlink&#34; title=&#34;1.hibernate 版本 5.4.21.Final&#34;&gt;&lt;/a&gt;1.hibernate 版本 5.4.21.Final&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt; nativeQuery &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; entityManager&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createNativeQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sql&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;unwrap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
 nativeQuery&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;BeanResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;cls&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 

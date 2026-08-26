@@ -2,17 +2,25 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "Gyo • All posts by \"hexo\" category",
     "description": "Gyo的博客",
-    "home_page_url": "https://gyoliu.github.io",
+    "home_page_url": "https://blog.genesisx.cn",
     "items": [
         {
-            "id": "https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/",
-            "url": "https://gyoliu.github.io/2024/12/24/Cosy%E5%85%A5%E9%97%A8/",
+            "id": "https://blog.genesisx.cn/2024/12/24/hexo/Cosy%E5%85%A5%E9%97%A8/",
+            "url": "https://blog.genesisx.cn/2024/12/24/hexo/Cosy%E5%85%A5%E9%97%A8/",
             "title": "Cosy入门",
-            "date_published": "2024-12-23T16:38:11.000Z",
+            "date_published": "2024-12-24T00:38:11.000Z",
             "content_html": "<h3 id=\"纯粹的折腾-💡\"><a href=\"#纯粹的折腾-💡\" class=\"headerlink\" title=\"纯粹的折腾 💡\"></a>纯粹的折腾 💡</h3><p><a href=\"https://hexo.maxshader.com/posts/59577/\">Cosy 主题入门配置💡</a></p>\n<blockquote>\n<p>以这个开源 Theme 为基础增加了以下</p>\n</blockquote>\n<h3 id=\"增加-footer-配置-🦢\"><a href=\"#增加-footer-配置-🦢\" class=\"headerlink\" title=\"增加 footer 配置 🦢\"></a>增加 footer 配置 🦢</h3><pre class=\"line-numbers language-yaml\" data-language=\"yaml\"><code class=\"language-yaml\"><span class=\"token comment\"># Footer info</span>\n<span class=\"token key atrule\">footer</span><span class=\"token punctuation\">:</span>\n    <span class=\"token key atrule\">enable</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>\n    <span class=\"token key atrule\">since</span><span class=\"token punctuation\">:</span> <span class=\"token number\">2024</span>\n    <span class=\"token comment\"># Customize the server domain name ICP</span>\n    <span class=\"token key atrule\">ICP</span><span class=\"token punctuation\">:</span>\n        <span class=\"token key atrule\">enable</span><span class=\"token punctuation\">:</span> <span class=\"token boolean important\">true</span>\n        <span class=\"token key atrule\">code</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"粤ICP备18155512号-1\"</span>\n        <span class=\"token key atrule\">link</span><span class=\"token punctuation\">:</span> <span class=\"token string\">\"https://beian.miit.gov.cn/\"</span><span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>\n\n<h3 id=\"增加中间动态欢迎语-👋\"><a href=\"#增加中间动态欢迎语-👋\" class=\"headerlink\" title=\"增加中间动态欢迎语 👋\"></a>增加中间动态欢迎语 👋</h3><p><a href=\"https://gyoliu.github.io/\" title=\"效果博客👋\">效果博客</a><br><img src=\"/img/home.png\"></p>\n<h3 id=\"INFO-Error-has-occurred-during-indexing-posts-object-Object\"><a href=\"#INFO-Error-has-occurred-during-indexing-posts-object-Object\" class=\"headerlink\" title=\"INFO  Error has occurred during indexing posts : [object Object]\"></a>INFO  Error has occurred during indexing posts : [object Object]</h3><p><a href=\"https://yfzhu.cn/posts/1011/\">解决方案</a></p>\n<pre class=\"line-numbers language-yaml\" data-language=\"yaml\"><code class=\"language-yaml\"><span class=\"token comment\">#algolia Configuration</span>\n<span class=\"token key atrule\">algolia</span><span class=\"token punctuation\">:</span>\n  <span class=\"token punctuation\">...</span><span class=\"token punctuation\">...</span>\n  <span class=\"token key atrule\">chunkSize</span><span class=\"token punctuation\">:</span> <span class=\"token number\">5000</span>\n  <span class=\"token punctuation\">...</span><span class=\"token punctuation\">...</span>\n  <span class=\"token key atrule\">fields</span><span class=\"token punctuation\">:</span>\n    <span class=\"token punctuation\">-</span> content<span class=\"token punctuation\">:</span>strip<span class=\"token punctuation\">:</span>truncate<span class=\"token punctuation\">,</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span><span class=\"token number\">5000</span><span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>\n\n\n\n",
             "tags": [
                 "Cosy"
             ]
+        },
+        {
+            "id": "https://blog.genesisx.cn/2020/09/08/hexo/2020-09-08--hello-halo--1/",
+            "url": "https://blog.genesisx.cn/2020/09/08/hexo/2020-09-08--hello-halo--1/",
+            "title": "Hello Halo",
+            "date_published": "2020-09-08T12:31:50.000Z",
+            "content_html": "<h2 id=\"Hello-Halo\"><a href=\"#Hello-Halo\" class=\"headerlink\" title=\"Hello Halo\"></a>Hello Halo</h2><p>如果你看到了这一篇文章，那么证明你已经安装成功了，感谢使用 <a href=\"https://halo.run/\">Halo</a> 进行创作，希望能够使用愉快。</p>\n<h2 id=\"相关链接\"><a href=\"#相关链接\" class=\"headerlink\" title=\"相关链接\"></a>相关链接</h2><ul>\n<li>官网：<a href=\"https://halo.run/\">https://halo.run</a></li>\n<li>社区：<a href=\"https://bbs.halo.run/\">https://bbs.halo.run</a></li>\n<li>主题仓库：<a href=\"https://halo.run/s/themes\">https://halo.run/s/themes</a></li>\n<li>开源地址：<a href=\"https://github.com/halo-dev/halo\">https://github.com/halo-dev/halo</a></li>\n</ul>\n<p>在使用过程中，有任何问题都可以通过以上链接找寻答案，或者联系我们。</p>\n<blockquote>\n<p>这是一篇自动生成的文章，请删除这篇文章之后开始你的创作吧！</p>\n</blockquote>\n",
+            "tags": []
         }
     ]
 }

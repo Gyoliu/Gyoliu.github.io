@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;java&#34; category</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2023-08-17T05:09:02.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2023-08-17T13:09:02.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2023/08/17/spring-cloud-properties/</id>
+        <id>https://blog.genesisx.cn/2023/08/17/java/spring-cloud-properties/</id>
         <title>spring cloud 性能优化</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2023/08/17/spring-cloud-properties/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/08/17/java/spring-cloud-properties/"/>
         <content type="html">&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# undertow 服务器优化&lt;/span&gt;
 server.undertow.threads.io=8
 server.undertow.threads.worker=256
@@ -43,12 +46,246 @@ feign.compression.response.useGzipDecoder=true&lt;span aria-hidden=&#34;true&#34
 </content>
         <category term="Java" />
         <category term="Spring Cloud" />
-        <updated>2023-08-17T05:09:02.000Z</updated>
+        <updated>2023-08-17T13:09:02.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/</id>
+        <id>https://blog.genesisx.cn/2023/08/01/java/2023-07-31--1690819019225--fdf91166-f579-4e27-b41d-f8f01ce83ab2/</id>
+        <title>easy excel 源码解析</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/08/01/java/2023-07-31--1690819019225--fdf91166-f579-4e27-b41d-f8f01ce83ab2/"/>
+        <content type="html">&lt;h1 id=&#34;alibaba-easyexcel-原理，源码解析&#34;&gt;&lt;a href=&#34;#alibaba-easyexcel-原理，源码解析&#34; class=&#34;headerlink&#34; title=&#34;alibaba easyexcel 原理，源码解析&#34;&gt;&lt;/a&gt;alibaba easyexcel 原理，源码解析&lt;/h1&gt;&lt;h2 id=&#34;1-文件解析器&#34;&gt;&lt;a href=&#34;#1-文件解析器&#34; class=&#34;headerlink&#34; title=&#34;1.文件解析器&#34;&gt;&lt;/a&gt;1.文件解析器&lt;/h2&gt;&lt;h2 id=&#34;2-SAX-XML解析标签处理Handler&#34;&gt;&lt;a href=&#34;#2-SAX-XML解析标签处理Handler&#34; class=&#34;headerlink&#34; title=&#34;2. SAX XML解析标签处理Handler&#34;&gt;&lt;/a&gt;&lt;img src=&#34;/upload/image-wgum.png&#34;&gt;2. SAX XML解析标签处理Handler&lt;/h2&gt;&lt;h2 id=&#34;3-使用缓存-SAX-事件机制，避免大数据量-OOM&#34;&gt;&lt;a href=&#34;#3-使用缓存-SAX-事件机制，避免大数据量-OOM&#34; class=&#34;headerlink&#34; title=&#34;3. 使用缓存 + SAX 事件机制，避免大数据量 OOM&#34;&gt;&lt;/a&gt;&lt;img src=&#34;/upload/image-vufo.png&#34;&gt;3. 使用缓存 + SAX 事件机制，避免大数据量 OOM&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/upload/image-zbay.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-核心类-ExcelAnalyserImpl&#34;&gt;&lt;a href=&#34;#4-核心类-ExcelAnalyserImpl&#34; class=&#34;headerlink&#34; title=&#34;4.核心类 ExcelAnalyserImpl&#34;&gt;&lt;/a&gt;4.核心类 ExcelAnalyserImpl&lt;/h2&gt;&lt;p&gt;构造函数代码中，根据文件类型选择处理类源码&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;choiceExcelExecutor&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ReadWorkbook&lt;/span&gt; readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;throws&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Exception&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;ExcelTypeEnum&lt;/span&gt; excelType &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ExcelTypeEnum&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;valueOf&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;DefaultXlsxReadContext&lt;/span&gt; xlsxReadContext&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;switch&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;excelType&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;XLS&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;POIFSFileSystem&lt;/span&gt; poifsFileSystem&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getFile&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+poifsFileSystem &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;POIFSFileSystem&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getFile&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+poifsFileSystem &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;POIFSFileSystem&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getInputStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;poifsFileSystem&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getRoot&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;hasEntry&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;EncryptedPackage&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;InputStream&lt;/span&gt; decryptedStream &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+decryptedStream &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;DocumentFactoryHelper&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getDecryptedStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;poifsFileSystem&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getRoot&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getFileSystem&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getPassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+xlsxReadContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;DefaultXlsxReadContext&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ExcelTypeEnum&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XLSX&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;analysisContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; xlsxReadContext&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;excelReadExecutor &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;XlsxSaxAnalyser&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;xlsxReadContext&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; decryptedStream&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;finally&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;IOUtils&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;closeQuietly&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;decryptedStream&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+poifsFileSystem&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getPassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;Biff8EncryptionKey&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setCurrentUserPassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getPassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token class-name&#34;&gt;XlsReadContext&lt;/span&gt; xlsReadContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;DefaultXlsReadContext&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ExcelTypeEnum&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XLS&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+xlsReadContext&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;xlsReadWorkbookHolder&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setPoifsFileSystem&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;poifsFileSystem&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;analysisContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; xlsReadContext&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;excelReadExecutor &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;XlsSaxAnalyser&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;xlsReadContext&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;XLSX&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;
+xlsxReadContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;DefaultXlsxReadContext&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ExcelTypeEnum&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XLSX&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;analysisContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; xlsxReadContext&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;excelReadExecutor &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;XlsxSaxAnalyser&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;xlsxReadContext&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;InputStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;CSV&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;CsvReadContext&lt;/span&gt; csvReadContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;DefaultCsvReadContext&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ExcelTypeEnum&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;CSV&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;analysisContext &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; csvReadContext&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;excelReadExecutor &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CsvExcelReadExecutor&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;csvReadContext&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;analysis&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ReadSheet&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt; readSheetList&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Boolean&lt;/span&gt; readAll&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;readAll &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CollectionUtils&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;isEmpty&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readSheetList&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;IllegalArgumentException&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Specify at least one read sheet.&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;analysisContext&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;readWorkbookHolder&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setParameterSheetDataList&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readSheetList&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;analysisContext&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;readWorkbookHolder&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setReadAll&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readAll&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;excelReadExecutor&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ExcelAnalysisStopException&lt;/span&gt; var4&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;LOGGER&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;isDebugEnabled&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token constant&#34;&gt;LOGGER&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;debug&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Custom stop!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;RuntimeException&lt;/span&gt; var5&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;finish&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;throw&lt;/span&gt; var5&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Throwable&lt;/span&gt; var6&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;finish&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ExcelAnalysisException&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;var6&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;5-核心类-AnalysisContext-实现类-AnalysisContextImpl&#34;&gt;&lt;a href=&#34;#5-核心类-AnalysisContext-实现类-AnalysisContextImpl&#34; class=&#34;headerlink&#34; title=&#34;5. 核心类 AnalysisContext 实现类 AnalysisContextImpl&#34;&gt;&lt;/a&gt;5. 核心类 AnalysisContext 实现类 AnalysisContextImpl&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;AnalysisContextImpl&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ReadWorkbook&lt;/span&gt; readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ExcelTypeEnum&lt;/span&gt; actualExcelType&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;IllegalArgumentException&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Workbook argument cannot be null&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;switch&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;actualExcelType&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;XLS&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;readWorkbookHolder &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;XlsReadWorkbookHolder&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;XLSX&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;readWorkbookHolder &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;XlsxReadWorkbookHolder&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;CSV&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;readWorkbookHolder &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;CsvReadWorkbookHolder&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;readWorkbook&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;currentReadHolder &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;readWorkbookHolder&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;analysisEventProcessor &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;DefaultAnalysisEventProcessor&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;log&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;isDebugEnabled&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
+log&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;debug&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Initialization &#39;AnalysisContextImpl&#39; complete&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;6-缓存文件&#34;&gt;&lt;a href=&#34;#6-缓存文件&#34; class=&#34;headerlink&#34; title=&#34;6.缓存文件&#34;&gt;&lt;/a&gt;6.缓存文件&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;&amp;#x2F;&amp;#x2F; https:&amp;#x2F;&amp;#x2F;learn.microsoft.com&amp;#x2F;zh-cn&amp;#x2F;office&amp;#x2F;open-xml&amp;#x2F;working-with-the-shared-string-table
+&amp;#x2F;&amp;#x2F; 使用共享字符串表
+private OPCPackage readOpcPackage(XlsxReadWorkbookHolder xlsxReadWorkbookHolder, InputStream decryptedStream) throws Exception &amp;#123;
+if (decryptedStream &amp;#x3D;&amp;#x3D; null &amp;amp;&amp;amp; xlsxReadWorkbookHolder.getFile() !&amp;#x3D; null) &amp;#123;
+return OPCPackage.open(xlsxReadWorkbookHolder.getFile());
+&amp;#125; else if (xlsxReadWorkbookHolder.getMandatoryUseInputStream()) &amp;#123;
+return decryptedStream !&amp;#x3D; null ? OPCPackage.open(decryptedStream) : OPCPackage.open(xlsxReadWorkbookHolder.getInputStream());
+&amp;#125; else &amp;#123;
+File readTempFile &amp;#x3D; FileUtils.createCacheTmpFile();
+xlsxReadWorkbookHolder.setTempFile(readTempFile);
+File tempFile &amp;#x3D; new File(readTempFile.getPath(), UUID.randomUUID().toString() + &amp;quot;.xlsx&amp;quot;);
+if (decryptedStream !&amp;#x3D; null) &amp;#123;
+FileUtils.writeToFile(tempFile, decryptedStream, false);
+&amp;#125; else &amp;#123;
+FileUtils.writeToFile(tempFile, xlsxReadWorkbookHolder.getInputStream(), xlsxReadWorkbookHolder.getAutoCloseStream());
+&amp;#125;
+
+return OPCPackage.open(tempFile, PackageAccess.READ);
+&amp;#125;
+&amp;#125;
+&amp;#x2F;&amp;#x2F; 缓存的临时文件
+&amp;#x2F;&amp;#x2F; tempFilePrefix &amp;#x3D; System.getProperty(&amp;quot;java.io.tmpdir&amp;quot;) + File.separator + UUID.randomUUID().toString() + File.separator;
+&amp;#x2F;&amp;#x2F; poiFilesPath &amp;#x3D; tempFilePrefix + &amp;quot;poifiles&amp;quot; + File.separator;
+&amp;#x2F;&amp;#x2F; cachePath &amp;#x3D; tempFilePrefix + &amp;quot;excache&amp;quot; + File.separator;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;调用 read（）方法时最终会调用 ExcelReadExecutor#execute(), 在实例化 ExcelReadExecutor 之前会先将文件保存起来，以 xlsx 为例代码如上所示。&lt;/p&gt;
+&lt;h2 id=&#34;7-解析excel类核心源码&#34;&gt;&lt;a href=&#34;#7-解析excel类核心源码&#34; class=&#34;headerlink&#34; title=&#34;7.解析excel类核心源码&#34;&gt;&lt;/a&gt;7.解析excel类核心源码&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;private void parseXmlSource(InputStream inputStream, ContentHandler handler) &amp;#123;
+InputSource inputSource &amp;#x3D; new InputSource(inputStream);
+
+try &amp;#123;
+String xlsxSAXParserFactoryName &amp;#x3D; this.xlsxReadContext.xlsxReadWorkbookHolder().getSaxParserFactoryName();
+SAXParserFactory saxFactory;
+if (StringUtils.isEmpty(xlsxSAXParserFactoryName)) &amp;#123;
+saxFactory &amp;#x3D; SAXParserFactory.newInstance();
+&amp;#125; else &amp;#123;
+saxFactory &amp;#x3D; SAXParserFactory.newInstance(xlsxSAXParserFactoryName, (ClassLoader)null);
+&amp;#125;
+
+try &amp;#123;
+saxFactory.setFeature(&amp;quot;http:&amp;#x2F;&amp;#x2F;apache.org&amp;#x2F;xml&amp;#x2F;features&amp;#x2F;disallow-doctype-decl&amp;quot;, true);
+&amp;#125; catch (Throwable var20) &amp;#123;
+&amp;#125;
+
+try &amp;#123;
+saxFactory.setFeature(&amp;quot;http:&amp;#x2F;&amp;#x2F;xml.org&amp;#x2F;sax&amp;#x2F;features&amp;#x2F;external-general-entities&amp;quot;, false);
+&amp;#125; catch (Throwable var19) &amp;#123;
+&amp;#125;
+
+try &amp;#123;
+saxFactory.setFeature(&amp;quot;http:&amp;#x2F;&amp;#x2F;xml.org&amp;#x2F;sax&amp;#x2F;features&amp;#x2F;external-parameter-entities&amp;quot;, false);
+&amp;#125; catch (Throwable var18) &amp;#123;
+&amp;#125;
+
+SAXParser saxParser &amp;#x3D; saxFactory.newSAXParser();
+XMLReader xmlReader &amp;#x3D; saxParser.getXMLReader();
+xmlReader.setContentHandler(handler);
+xmlReader.parse(inputSource);
+inputStream.close();
+&amp;#125; catch (ParserConfigurationException | SAXException | IOException var21) &amp;#123;
+throw new ExcelAnalysisException(var21);
+&amp;#125; finally &amp;#123;
+if (inputStream !&amp;#x3D; null) &amp;#123;
+try &amp;#123;
+inputStream.close();
+&amp;#125; catch (IOException var17) &amp;#123;
+throw new ExcelAnalysisException(&amp;quot;Can not close &amp;#39;inputStream&amp;#39;!&amp;quot;);
+&amp;#125;
+&amp;#125;
+
+&amp;#125;
+
+&amp;#125;
+
+public void execute() &amp;#123;
+Iterator var1 &amp;#x3D; this.sheetList.iterator();
+
+while(var1.hasNext()) &amp;#123;
+ReadSheet readSheet &amp;#x3D; (ReadSheet)var1.next();
+readSheet &amp;#x3D; SheetUtils.match(readSheet, this.xlsxReadContext);
+if (readSheet !&amp;#x3D; null) &amp;#123;
+this.xlsxReadContext.currentSheet(readSheet);
+this.parseXmlSource((InputStream)this.sheetMap.get(readSheet.getSheetNo()), new XlsxRowHandler(this.xlsxReadContext));
+this.readComments(readSheet);
+this.xlsxReadContext.analysisEventProcessor().endSheet(this.xlsxReadContext);
+&amp;#125;
+&amp;#125;
+
+&amp;#125;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最终会调用 DefaultAnalysisEventProcessor:endRow() -&amp;gt; this.dealData(analysisContext), 里面会调用 ReadListener#invoke() 处理每一行数据。 @ExcelProperty 解析类 参照 ExcelHeadProperty , 处理数据转换为实体类源码是在 ModelBuildEventListener 中进行的&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;private void dealData(AnalysisContext analysisContext) &amp;#123;
+ReadRowHolder readRowHolder &amp;#x3D; analysisContext.readRowHolder();
+Map&amp;lt;Integer, ReadCellData&amp;lt;?&amp;gt;&amp;gt; cellDataMap &amp;#x3D; readRowHolder.getCellMap();
+readRowHolder.setCurrentRowAnalysisResult(cellDataMap);
+int rowIndex &amp;#x3D; readRowHolder.getRowIndex();
+int currentHeadRowNumber &amp;#x3D; analysisContext.readSheetHolder().getHeadRowNumber();
+boolean isData &amp;#x3D; rowIndex &amp;gt;&amp;#x3D; currentHeadRowNumber;
+if (!isData &amp;amp;&amp;amp; currentHeadRowNumber &amp;#x3D;&amp;#x3D; rowIndex + 1) &amp;#123;
+this.buildHead(analysisContext, cellDataMap);
+&amp;#125;
+
+Iterator var7 &amp;#x3D; analysisContext.currentReadHolder().readListenerList().iterator();
+
+while(var7.hasNext()) &amp;#123;
+ReadListener readListener &amp;#x3D; (ReadListener)var7.next();
+
+try &amp;#123;
+if (isData) &amp;#123;
+readListener.invoke(readRowHolder.getCurrentRowAnalysisResult(), analysisContext);
+&amp;#125; else &amp;#123;
+readListener.invokeHead(cellDataMap, analysisContext);
+&amp;#125;
+&amp;#125; catch (Exception var10) &amp;#123;
+this.onException(analysisContext, var10);
+break;
+&amp;#125;
+
+if (!readListener.hasNext(analysisContext)) &amp;#123;
+throw new ExcelAnalysisStopException();
+&amp;#125;
+&amp;#125;
+
+&amp;#125;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;8-常见问题&#34;&gt;&lt;a href=&#34;#8-常见问题&#34; class=&#34;headerlink&#34; title=&#34;8. 常见问题&#34;&gt;&lt;/a&gt;8. 常见问题&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://easyexcel.opensource.alibaba.com/qa/read&#34;&gt;参考官方文档： https://easyexcel.opensource.alibaba.com/qa/read&lt;/a&gt;&lt;/p&gt;
+</content>
+        <updated>2023-08-01T00:33:32.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/</id>
         <title>spring bean 扩展点记录</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/"/>
         <content type="html">&lt;p&gt;&lt;img src=&#34;/img/spring%20bean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B-mjrg.png&#34; alt=&#34;spring bean实例化流程-mjrg.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/springbean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png&#34; alt=&#34;springbean实例化流程图.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/spring%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3%E7%82%B9.png&#34; alt=&#34;spring扩展接口点.png&#34;&gt;&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;// spring 核心代码&lt;/span&gt;
 &lt;span class=&#34;token comment&#34;&gt;// BeanFactoryPostProcessor 接口 ，this.postProcessBeanFactory(beanFactory);&lt;/span&gt;
@@ -247,12 +484,12 @@ AspectJAutoProxyRegistrar&lt;span aria-hidden=&#34;true&#34; class=&#34;line-num
 </content>
         <category term="Java" />
         <category term="spring" />
-        <updated>2023-07-20T05:03:23.000Z</updated>
+        <updated>2023-07-20T13:03:23.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2023/05/06/jvm-params/</id>
+        <id>https://blog.genesisx.cn/2023/05/06/java/jvm-params/</id>
         <title>JVM常用参数</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2023/05/06/jvm-params/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/05/06/java/jvm-params/"/>
         <content type="html">&lt;p&gt;&lt;a href=&#34;https://help.aliyun.com/document_detail/148851.html?spm=a2c4g.383255.0.0.30855accl7pyIr&#34;&gt;阿里 Serverless JVM 最佳实践&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;# [阿里 Serverless JVM 最佳实践]
 https:&amp;#x2F;&amp;#x2F;help.aliyun.com&amp;#x2F;document_detail&amp;#x2F;148851.html?spm&amp;#x3D;a2c4g.383255.0.0.30855accl7pyIr
@@ -330,12 +567,22 @@ ENTRYPOINT [&amp;quot;sh&amp;quot;,&amp;quot;-c&amp;quot;, &amp;quot;java -jar $
 </content>
         <category term="Java" />
         <category term="JVM" />
-        <updated>2023-05-06T05:01:17.000Z</updated>
+        <updated>2023-05-06T13:01:17.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/09/23/hibernate-query-result/</id>
+        <id>https://blog.genesisx.cn/2022/10/27/%E5%85%B6%E4%BB%96/2022-10-27--260--260/</id>
+        <title>开源git收录</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/10/27/%E5%85%B6%E4%BB%96/2022-10-27--260--260/"/>
+        <content type="html">&lt;h1 id=&#34;JavaGuide&#34;&gt;&lt;a href=&#34;#JavaGuide&#34; class=&#34;headerlink&#34; title=&#34;JavaGuide&#34;&gt;&lt;/a&gt;JavaGuide&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/Snailclimb/JavaGuide&#34;&gt;https://github.com/Snailclimb/JavaGuide&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;安卓同声传译APP&#34;&gt;&lt;a href=&#34;#安卓同声传译APP&#34; class=&#34;headerlink&#34; title=&#34;安卓同声传译APP&#34;&gt;&lt;/a&gt;安卓同声传译APP&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-javascript&#34; data-language=&#34;javascript&#34;&gt;&lt;code class=&#34;language-javascript&#34;&gt;&lt;span class=&#34;token literal-property property&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;github&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;niedev&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;RTranslator&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+        <category term="git" />
+        <updated>2022-10-27T09:44:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</id>
         <title>hibernate原生查询，结果集映射源码阅读</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/09/23/hibernate-query-result/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/"/>
         <content type="html">&lt;h1 id=&#34;1-hibernate-版本-5-4-21-Final&#34;&gt;&lt;a href=&#34;#1-hibernate-版本-5-4-21-Final&#34; class=&#34;headerlink&#34; title=&#34;1.hibernate 版本 5.4.21.Final&#34;&gt;&lt;/a&gt;1.hibernate 版本 5.4.21.Final&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt; nativeQuery &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; entityManager&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createNativeQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sql&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;unwrap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
 nativeQuery&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;BeanResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;cls&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
@@ -378,12 +625,12 @@ ResultTransformer resultTransformer 是在查询时指定的
 </content>
         <category term="Java" />
         <category term="hibernate" />
-        <updated>2022-09-23T04:56:46.000Z</updated>
+        <updated>2022-09-23T12:56:46.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/09/16/mysql-error-collection/</id>
+        <id>https://blog.genesisx.cn/2022/09/16/mysql/mysql-error-collection/</id>
         <title>mysql 遇到的一些错误</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/09/16/mysql-error-collection/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/09/16/mysql/mysql-error-collection/"/>
         <content type="html">&lt;h2 id=&#34;1-3100-Error-on-observer-while-running-replication-hook-‘before-commit’&#34;&gt;&lt;a href=&#34;#1-3100-Error-on-observer-while-running-replication-hook-‘before-commit’&#34; class=&#34;headerlink&#34; title=&#34;1. 3100 - Error on observer while running replication hook ‘before_commit’.&#34;&gt;&lt;/a&gt;1. 3100 - Error on observer while running replication hook ‘before_commit’.&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-sql&#34; data-language=&#34;sql&#34;&gt;&lt;code class=&#34;language-sql&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;global&lt;/span&gt; variables &lt;span class=&#34;token operator&#34;&gt;like&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;%group_replication_transaction_size_limit%&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;token keyword&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;global&lt;/span&gt; group_replication_transaction_size_limit&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1500000000&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
@@ -566,12 +813,12 @@ ResultTransformer resultTransformer 是在查询时指定的
 </content>
         <category term="Java" />
         <category term="mysql" />
-        <updated>2022-09-16T04:50:56.000Z</updated>
+        <updated>2022-09-16T12:50:56.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/06/29/elasticsearch-query/</id>
+        <id>https://blog.genesisx.cn/2022/06/29/elasticsearch/elasticsearch-query/</id>
         <title>elasticsearch 查询</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/06/29/elasticsearch-query/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/06/29/elasticsearch/elasticsearch-query/"/>
         <content type="html">&lt;h1 id=&#34;分页&#34;&gt;&lt;a href=&#34;#分页&#34; class=&#34;headerlink&#34; title=&#34;分页&#34;&gt;&lt;/a&gt;分页&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;GET &amp;#x2F;_search
 &amp;#123;
     &amp;quot;from&amp;quot; : 0, &amp;quot;size&amp;quot; : 10,
@@ -688,12 +935,12 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-06-29T04:47:35.000Z</updated>
+        <updated>2022-06-29T12:47:35.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/06/27/elasticsearch-setting/</id>
+        <id>https://blog.genesisx.cn/2022/06/27/elasticsearch/elasticsearch-setting/</id>
         <title>elasticsearch重要的设置</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/06/27/elasticsearch-setting/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/06/27/elasticsearch/elasticsearch-setting/"/>
         <content type="html">&lt;h1 id=&#34;1-堆大小检查&#34;&gt;&lt;a href=&#34;#1-堆大小检查&#34; class=&#34;headerlink&#34; title=&#34;1. 堆大小检查&#34;&gt;&lt;/a&gt;1. 堆大小检查&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;如果 JVM 以不相等的初始堆大小和最大堆大小启动，则在系统使用期间调整 JVM 堆的大小时，它很容易出现暂停。为避免这些调整大小暂停，最好在初始堆大小等于最大堆大小的情况下启动 JVM。此外，如果 bootstrap.memory_lock启用，JVM 将在启动时锁定堆的初始大小。如果初始堆大小不等于最大堆大小，则在调整大小后，所有 JVM 堆都不会锁定在内存中。要通过堆大小检查，您必须配置堆大小。&lt;br&gt;-xms: 1g &amp;#x2F;&amp;#x2F; 最小堆内存&lt;br&gt;-xmx: 1g &amp;#x2F;&amp;#x2F; 最大堆内存&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -780,12 +1027,12 @@ updateRequest.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-06-27T04:44:51.000Z</updated>
+        <updated>2022-06-27T12:44:51.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/05/18/elasticsearch8-2-install/</id>
+        <id>https://blog.genesisx.cn/2022/05/18/elasticsearch/elasticsearch8-2-install/</id>
         <title>elasticsearch8.2集群安装部署</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/05/18/elasticsearch8-2-install/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/05/18/elasticsearch/elasticsearch8-2-install/"/>
         <content type="html">&lt;h1 id=&#34;1-下载&#34;&gt;&lt;a href=&#34;#1-下载&#34; class=&#34;headerlink&#34; title=&#34;- 1. 下载&#34;&gt;&lt;/a&gt;- 1. 下载&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;[elasticsearch下载地址](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;start)
 [elasticsearch下载地址](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;downloads&amp;#x2F;elasticsearch)
 [elasticsearch版本支持](https:&amp;#x2F;&amp;#x2F;www.elastic.co&amp;#x2F;support&amp;#x2F;matrix)
@@ -855,12 +1102,88 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 </content>
         <category term="Java" />
         <category term="elasticsearch" />
-        <updated>2022-05-18T04:41:39.000Z</updated>
+        <updated>2022-05-18T12:41:39.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/03/04/quartz-workflow/</id>
+        <id>https://blog.genesisx.cn/2022/04/13/java/2022-04-13--oauth2jwt--166/</id>
+        <title>oauth2 jwt</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/04/13/java/2022-04-13--oauth2jwt--166/"/>
+        <content type="html">&lt;h1 id=&#34;1-基于密码认证的两种调用方式&#34;&gt;&lt;a href=&#34;#1-基于密码认证的两种调用方式&#34; class=&#34;headerlink&#34; title=&#34;1. 基于密码认证的两种调用方式&#34;&gt;&lt;/a&gt;1. 基于密码认证的两种调用方式&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-language&#34; data-language=&#34;language&#34;&gt;&lt;code class=&#34;language-language&#34;&gt;POST http:&amp;#x2F;&amp;#x2F;localhost:8081&amp;#x2F;isung-oauth-server&amp;#x2F;oauth&amp;#x2F;token
+headers: 
+	Content-Type: multipart&amp;#x2F;form-data;
+params:&amp;#123;
+&amp;quot;username&amp;quot;:&amp;quot;xxx&amp;quot;
+,&amp;quot;password&amp;quot;:&amp;quot;xxx&amp;quot;
+,&amp;quot;client_id&amp;quot;:&amp;quot;&amp;quot;
+,&amp;quot;client_secret&amp;quot;:&amp;quot;&amp;quot;
+,&amp;quot;grant_type&amp;quot;
+&amp;#125;
+
+http:&amp;#x2F;&amp;#x2F;localhost:8081&amp;#x2F;isung-oauth-server&amp;#x2F;oauth&amp;#x2F;token?grant_type&amp;#x3D;password&amp;amp;username&amp;#x3D;admin&amp;amp;password&amp;#x3D;123456&amp;amp;client_id&amp;#x3D;isung&amp;amp;client_secret&amp;#x3D;123456
+
+返回值：
+&amp;#123;
+    &amp;quot;access_token&amp;quot;: &amp;quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6ImFkbWluIiwidXNlcl9uYW1lIjoiYWRtaW4iLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjQ5ODE1Mzk0LCJhdXRob3JpdGllcyI6WyJOT05FIl0sImp0aSI6Ijg0NDVjMGNiLTRiZGUtNDJhNC05M2FlLTQ1N2UwYTljYmIxNSIsImNsaWVudF9pZCI6ImlzdW5nIn0.BILkb9Zl17bA-LEcF-KfwLhOV6tfMzyPJ4X6ML5neOA&amp;quot;,
+    &amp;quot;token_type&amp;quot;: &amp;quot;bearer&amp;quot;,
+    &amp;quot;refresh_token&amp;quot;: &amp;quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6ImFkbWluIiwidXNlcl9uYW1lIjoiYWRtaW4iLCJzY29wZSI6WyJhbGwiXSwiYXRpIjoiODQ0NWMwY2ItNGJkZS00MmE0LTkzYWUtNDU3ZTBhOWNiYjE1IiwiZXhwIjoxNjQ5ODMxNTk0LCJhdXRob3JpdGllcyI6WyJOT05FIl0sImp0aSI6IjEwYjE1ZTdhLTMxZjAtNDIxZC1hZmU1LWJiZDc2YmY4YWFhMyIsImNsaWVudF9pZCI6ImlzdW5nIn0.fQgiXxWeIM2rPG7DOq97O9uUIxciT0MI-aKBDV4uDUs&amp;quot;,
+    &amp;quot;expires_in&amp;quot;: 1799,
+    &amp;quot;scope&amp;quot;: &amp;quot;all&amp;quot;,
+    &amp;quot;userInfo&amp;quot;: &amp;quot;admin&amp;quot;,
+    &amp;quot;jti&amp;quot;: &amp;quot;8445c0cb-4bde-42a4-93ae-457e0a9cbb15&amp;quot;
+&amp;#125;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;2-基于一次性认证码认证&#34;&gt;&lt;a href=&#34;#2-基于一次性认证码认证&#34; class=&#34;headerlink&#34; title=&#34;2. 基于一次性认证码认证&#34;&gt;&lt;/a&gt;2. 基于一次性认证码认证&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-language&#34; data-language=&#34;language&#34;&gt;&lt;code class=&#34;language-language&#34;&gt;http:&amp;#x2F;&amp;#x2F;localhost:8081&amp;#x2F;isung-oauth-server&amp;#x2F;oauth&amp;#x2F;authorize?response_type&amp;#x3D;code&amp;amp;client_id&amp;#x3D;isung&amp;amp;scope&amp;#x3D;all&amp;amp;redirect_uri&amp;#x3D;http:&amp;#x2F;&amp;#x2F;www.baidu.com
+
+GET http:&amp;#x2F;&amp;#x2F;localhost:8081&amp;#x2F;isung-oauth-server&amp;#x2F;oauth&amp;#x2F;token?grant_type&amp;#x3D;authorization_code&amp;amp;code&amp;#x3D;0vtGYN&amp;amp;client_id&amp;#x3D;isung&amp;amp;client_secret&amp;#x3D;isung2022&amp;amp;redirect_uri&amp;#x3D;http:&amp;#x2F;&amp;#x2F;www.baidu.com&amp;amp;scope&amp;#x3D;all
+
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;3-校验-token&#34;&gt;&lt;a href=&#34;#3-校验-token&#34; class=&#34;headerlink&#34; title=&#34;3. 校验 token&#34;&gt;&lt;/a&gt;3. 校验 token&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-language&#34; data-language=&#34;language&#34;&gt;&lt;code class=&#34;language-language&#34;&gt;需要配置 AuthorizationServerSecurityConfigurer
+.tokenKeyAccess(&amp;quot;permitAll()&amp;quot;)
+.checkTokenAccess(&amp;quot;permitAll()&amp;quot;)
+.allowFormAuthenticationForClients();
+
+permitAll(): 表示不需要认证客户端就可以调用
+
+http:&amp;#x2F;&amp;#x2F;localhost:8080&amp;#x2F;isung-order-api&amp;#x2F;oauth&amp;#x2F;check_token?token&amp;#x3D;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6ImFkbWluIiwidXNlcl9uYW1lIjoiYWRtaW4iLCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjQ5ODM0MDE4LCJhdXRob3JpdGllcyI6WyJOT05FIl0sImp0aSI6IjQ3M2UyMjZkLTdjYjMtNDEwZS1iMzNkLTQyN2VlNjlmNjBkNiIsImNsaWVudF9pZCI6ImlzdW5nIn0.S-1ro6houoPnM_cg9gF951X73Nr0A_bdjZZ0qY7pQHs
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;3-核心配置类AuthorizationServerEndpointsConfiguration-FilterChainProxy&#34;&gt;&lt;a href=&#34;#3-核心配置类AuthorizationServerEndpointsConfiguration-FilterChainProxy&#34; class=&#34;headerlink&#34; title=&#34;3. 核心配置类AuthorizationServerEndpointsConfiguration | FilterChainProxy&#34;&gt;&lt;/a&gt;3. 核心配置类AuthorizationServerEndpointsConfiguration | FilterChainProxy&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;/img/springsecurity-filter-71379406f5d2422f86a8738f92845678.png&#34; alt=&#34;springsecurityfilter.png&#34;&gt;&lt;/p&gt;
+</content>
+        <updated>2022-04-13T09:40:19.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.genesisx.cn/2022/03/08/java/2022-03-08--jsonxml%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2--165/</id>
+        <title>json xml 相互转换</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/03/08/java/2022-03-08--jsonxml%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2--165/"/>
+        <content type="html">&lt;h3 id=&#34;使用的相关包&#34;&gt;&lt;a href=&#34;#使用的相关包&#34; class=&#34;headerlink&#34; title=&#34;使用的相关包&#34;&gt;&lt;/a&gt;使用的相关包&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-markup&#34; data-language=&#34;markup&#34;&gt;&lt;code class=&#34;language-markup&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;&amp;lt;!-- https://mvnrepository.com/artifact/org.json/json --&gt;&lt;/span&gt;
+        &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+            &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;org.json&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+            &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;json&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+            &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;20211205&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;遇到的问题-NoSuchMethodError&#34;&gt;&lt;a href=&#34;#遇到的问题-NoSuchMethodError&#34; class=&#34;headerlink&#34; title=&#34;遇到的问题 NoSuchMethodError&#34;&gt;&lt;/a&gt;遇到的问题 NoSuchMethodError&lt;/h3&gt;&lt;p&gt;解决方案： &lt;a href=&#34;https://stackoverflow.com/questions/52371365/nosuchmethod-error-when-using-org-json-to-convert-xml-to-json&#34;&gt;https://stackoverflow.com/questions/52371365/nosuchmethod-error-when-using-org-json-to-convert-xml-to-json&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;Exception&lt;/span&gt; in thread &lt;span class=&#34;token string&#34;&gt;&#34;main&#34;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;NoSuchMethodError&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;json&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;JSONTokener&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;init&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Ljava&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;io&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Reader&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;V&lt;/span&gt;
+	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;json&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;XMLTokener&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;init&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;XMLTokener&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;57&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+	at org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;json&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XML&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;toJSONObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XML&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;675&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+	at org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;json&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XML&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;toJSONObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XML&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;733&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+	at org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;json&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XML&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;toJSONObject&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;XML&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;602&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;com&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;example&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;demo&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;TestXml&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;test2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;TestXml&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;21&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;com&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;example&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;demo&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;TestXml&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;TestXml&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;17&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;案例&#34;&gt;&lt;a href=&#34;#案例&#34; class=&#34;headerlink&#34; title=&#34;案例&#34;&gt;&lt;/a&gt;案例&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;// xml 转换为 json&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;XMLSerializer&lt;/span&gt; xmlSerializer &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;XMLSerializer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;JSON&lt;/span&gt; read &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; xmlSerializer&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;xml&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;out&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;read&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;toString&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;// json 转换为 xml&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; write &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; xmlSerializer&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;write&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;read&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;token class-name&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;out&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;write&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+        <updated>2022-03-08T16:29:36.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.genesisx.cn/2022/03/04/java/quartz-workflow/</id>
         <title>quartz启动执行流程</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/03/04/quartz-workflow/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/03/04/java/quartz-workflow/"/>
         <content type="html">&lt;p&gt;spring 整合 quartz 初始化执行流程, 写的不是一般乱&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;SchedulerFactoryBean.afterPropertiesSet()&lt;br&gt;-&amp;gt; prepareSchedulerFactory()&lt;br&gt;-&amp;gt; initSchedulerFactory() 初始化StdSchedulerFactory&lt;br&gt;-&amp;gt; prepareScheduler(SchedulerFactory schedulerFactory)&lt;br&gt;-&amp;gt; createScheduler() 创建调度器&lt;br&gt;-&amp;gt; StdSchedulerFactory.getScheduler()&lt;br&gt;-&amp;gt; instantiate()&lt;/p&gt;
@@ -882,21 +1205,21 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 &lt;/blockquote&gt;
 </content>
         <category term="Java" />
-        <updated>2022-03-04T04:38:04.000Z</updated>
+        <updated>2022-03-04T12:38:04.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/02/24/xxljob-workflow/</id>
+        <id>https://blog.genesisx.cn/2022/02/24/java/xxljob-workflow/</id>
         <title>xxl-job执行流程和原理</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/02/24/xxljob-workflow/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/02/24/java/xxljob-workflow/"/>
         <content type="html">&lt;h2 id=&#34;xxl-job项目地址-👈&#34;&gt;&lt;a href=&#34;#xxl-job项目地址-👈&#34; class=&#34;headerlink&#34; title=&#34;xxl-job项目地址 👈&#34;&gt;&lt;/a&gt;&lt;a href=&#34;https://github.com/xuxueli/xxl-job&#34;&gt;xxl-job项目地址 👈&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/img/xxljob%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86.png&#34; alt=&#34;xxljob执行流程和原理.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/xxljob%E6%9E%B6%E6%9E%84%E5%9B%BE.png&#34; alt=&#34;xxljob架构图.png&#34;&gt;&lt;/p&gt;
 </content>
         <category term="Java" />
-        <updated>2022-02-24T04:31:56.000Z</updated>
+        <updated>2022-02-24T12:31:56.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/09/29/spring-redis-cache-lock/</id>
+        <id>https://blog.genesisx.cn/2021/09/29/java/spring-redis-cache-lock/</id>
         <title>springboot redis 死锁问题</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/09/29/spring-redis-cache-lock/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/09/29/java/spring-redis-cache-lock/"/>
         <content type="html">&lt;h1 id=&#34;现象&#34;&gt;&lt;a href=&#34;#现象&#34; class=&#34;headerlink&#34; title=&#34;现象&#34;&gt;&lt;/a&gt;现象&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;调用某个使用了 @Cacheable 的接口，一直没有响应，但是业务代码都执行完成。 如果使用的是 lockingRedisCacheWriter 实例化的缓存，那么在开发阶段不断重启应用强制杀掉进程，会导致锁没有释放问题。&lt;/li&gt;
 &lt;/ul&gt;
@@ -970,12 +1293,12 @@ bootstrap.system_call_filter: false&lt;span aria-hidden=&#34;true&#34; class=&#3
 &lt;p&gt;在实例化缓存管理组件时指定无锁缓存，可以避免获取缓存加锁问题。&lt;/p&gt;
 </content>
         <category term="Java" />
-        <updated>2021-09-29T03:53:21.000Z</updated>
+        <updated>2021-09-29T11:53:21.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/07/02/jdk-tools/</id>
+        <id>https://blog.genesisx.cn/2021/07/02/java/jdk-tools/</id>
         <title>jdk tools jvm jmap jstat jstack</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/07/02/jdk-tools/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/07/02/java/jdk-tools/"/>
         <content type="html">&lt;h3 id=&#34;jmap输出内存快照&#34;&gt;&lt;a href=&#34;#jmap输出内存快照&#34; class=&#34;headerlink&#34; title=&#34;jmap输出内存快照&#34;&gt;&lt;/a&gt;jmap输出内存快照&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;jmap &lt;span class=&#34;token parameter variable&#34;&gt;-dump:format&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;b,file&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/data/jmap.hprof PID
 
 增加GC日志
@@ -1008,12 +1331,12 @@ sz xxx_1a*
 &lt;span class=&#34;token comment&#34;&gt;# windows 文件合并&lt;/span&gt;
 copy /b ＜filename1＞+＜filename2＞+…+＜filenameN＞ ＜新filename＞&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
         <category term="Java" />
-        <updated>2021-07-02T03:43:31.000Z</updated>
+        <updated>2021-07-02T11:43:31.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/05/26/webservice-call/</id>
+        <id>https://blog.genesisx.cn/2021/05/26/%E7%BD%91%E7%BB%9C/webservice-call/</id>
         <title>webservice 的两种调用方式</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/05/26/webservice-call/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/05/26/%E7%BD%91%E7%BB%9C/webservice-call/"/>
         <content type="html">&lt;h3 id=&#34;CXF&#34;&gt;&lt;a href=&#34;#CXF&#34; class=&#34;headerlink&#34; title=&#34;CXF&#34;&gt;&lt;/a&gt;CXF&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;WebserviceConfiguration&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
     &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; targetEndpointAddress&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
     &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; targetNameSpace&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
@@ -1262,12 +1585,29 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
  &lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt; returnData &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;invoke&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;paramValues&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;toArray&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="Java" />
-        <updated>2021-05-26T03:04:29.000Z</updated>
+        <updated>2021-05-26T11:04:29.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/02/23/Spring-AOP/</id>
+        <id>https://blog.genesisx.cn/2021/03/18/%E5%85%B6%E4%BB%96/2021-03-18--bo-zhu-shou-cang--97/</id>
+        <title>博主收藏</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/03/18/%E5%85%B6%E4%BB%96/2021-03-18--bo-zhu-shou-cang--97/"/>
+        <content type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://icyfenix.cn/&#34;&gt;周志明 - 凤凰架构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ruanyifeng.com/&#34;&gt;阮一峰&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://microservices.io/&#34;&gt;Chris Richardson&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.xuxueli.com/page/projects.html&#34;&gt;开源社区：许雪里&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tech.meituan.com/&#34;&gt;美团技术团队&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tobebetterjavaer.com/home.html&#34;&gt;沉默王二&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://opensource.alibaba.com/document&#34;&gt;阿里开源&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="置顶" />
+        <updated>2021-03-18T17:28:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.genesisx.cn/2021/02/23/java/Spring-AOP/</id>
         <title>Spring AOP</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/02/23/Spring-AOP/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/02/23/java/Spring-AOP/"/>
         <content type="html">&lt;h3 id=&#34;AOP-概念&#34;&gt;&lt;a href=&#34;#AOP-概念&#34; class=&#34;headerlink&#34; title=&#34;AOP 概念&#34;&gt;&lt;/a&gt;AOP 概念&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Aspect：&lt;ul&gt;
 &lt;li&gt;Aspect 声明类似于 Java 中的类声明，在 Aspect 中会包含着一些 Pointcut 以及相应的 Advice。&lt;/li&gt;
@@ -1329,12 +1669,12 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
 &lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="Java" />
-        <updated>2021-02-23T02:06:35.000Z</updated>
+        <updated>2021-02-23T10:06:35.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2020/12/18/hibernate-cache-error/</id>
+        <id>https://blog.genesisx.cn/2020/12/18/java/hibernate-cache-error/</id>
         <title>记一个hibernate和redis缓存引起的错误</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2020/12/18/hibernate-cache-error/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/12/18/java/hibernate-cache-error/"/>
         <content type="html">&lt;h3 id=&#34;错误现象&#34;&gt;&lt;a href=&#34;#错误现象&#34; class=&#34;headerlink&#34; title=&#34;错误现象&#34;&gt;&lt;/a&gt;错误现象&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;Caused&lt;/span&gt; by&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;LazyInitializationException&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; failed &lt;span class=&#34;token keyword&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;token namespace&#34;&gt;lazily&lt;/span&gt; initialize a collection&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; could not initialize proxy &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; no &lt;span class=&#34;token class-name&#34;&gt;Session&lt;/span&gt;
 	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;collection&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;internal&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;throwLazyInitializationException&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;587&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
 	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;collection&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;internal&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;withTemporarySessionIfNeeded&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;AbstractPersistentCollection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;204&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
@@ -1354,12 +1694,12 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
 &lt;/blockquote&gt;
 </content>
         <category term="Java" />
-        <updated>2020-12-17T16:50:55.000Z</updated>
+        <updated>2020-12-18T00:50:55.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2020/12/07/Feign-Different-Bean-Question/</id>
+        <id>https://blog.genesisx.cn/2020/12/07/java/Feign-Different-Bean-Question/</id>
         <title>Feign不同服务的bean 如何不重复</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2020/12/07/Feign-Different-Bean-Question/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/12/07/java/Feign-Different-Bean-Question/"/>
         <content type="html">&lt;h3 id=&#34;背景&#34;&gt;&lt;a href=&#34;#背景&#34; class=&#34;headerlink&#34; title=&#34;背景&#34;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;项目中使用了 Feign 组件，指定 Fallback 时需要这个类是在spring bean ,使用 @Component 标记，类名为 ATest.class ，使用 @Component 注解生成的bean name 是类名第一个字母小写的，也就是 aTest。这时同事使用了 @Bean 注解 标注下面的方法生成bean , public xxx aTest(){}。@Bean 生成 bean 的规则是使用的方法名称，也是 aTest 。&lt;/p&gt;
 &lt;h3 id=&#34;问题&#34;&gt;&lt;a href=&#34;#问题&#34; class=&#34;headerlink&#34; title=&#34;问题&#34;&gt;&lt;/a&gt;问题&lt;/h3&gt;&lt;p&gt;有趣的问题就来了，这时生成的都是 aTest ，spring是怎么处理的？在同一个项目中，bean name 是不允许重复的，启动会报错。但是使用的 Feign 组件，涉及到各个微服务的相互调用，Feign 是怎么隔离不同服务之间的 bean 的呢？不同微服务 bean name 相同会导致什么问题？&lt;/p&gt;
 &lt;h3 id=&#34;方案&#34;&gt;&lt;a href=&#34;#方案&#34; class=&#34;headerlink&#34; title=&#34;方案&#34;&gt;&lt;/a&gt;方案&lt;/h3&gt;&lt;p&gt;Feign 其中有 FeignContext extends NamedContextFactory ，其中使用了 map 结构来存储不同的 applicationContext ，每个服务都有一个子容器，首先通过服务名获取子容器，再根据Class获取到这个容器内的bean&lt;/p&gt;
@@ -1393,12 +1733,12 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
     &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="Java" />
-        <updated>2020-12-06T16:43:54.000Z</updated>
+        <updated>2020-12-07T00:43:54.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2020/11/10/NullPointerException-notifyAttributeAssigned/</id>
+        <id>https://blog.genesisx.cn/2020/11/10/java/NullPointerException-notifyAttributeAssigned/</id>
         <title>在 Web 程序中使用多线程处理任务，RequestContextHolder notifyAttributeAssigned NullPointerException 异常</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2020/11/10/NullPointerException-notifyAttributeAssigned/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/11/10/java/NullPointerException-notifyAttributeAssigned/"/>
         <content type="html">&lt;h2 id=&#34;起因&#34;&gt;&lt;a href=&#34;#起因&#34; class=&#34;headerlink&#34; title=&#34;起因&#34;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;在 web 程序中使用多线程处理任务报如下错误&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;Caused&lt;/span&gt; by&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;NullPointerException&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;
 	at &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;apache&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;catalina&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;connector&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;Request&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;notifyAttributeAssigned&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Request&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;java&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1528&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
@@ -1530,6 +1870,6 @@ call&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&
 &lt;/ol&gt;
 </content>
         <category term="Java" />
-        <updated>2020-11-10T09:10:26.000Z</updated>
+        <updated>2020-11-10T17:10:26.000Z</updated>
     </entry>
 </feed>

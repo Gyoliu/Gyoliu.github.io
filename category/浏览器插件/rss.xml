@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Gyo • Posts by &#34;浏览器插件&#34; category</title>
+        <link>https://blog.genesisx.cn</link>
+        <description>Gyo的博客</description>
+        <language>en</language>
+        <pubDate>Mon, 30 Aug 2021 14:01:35 +0000</pubDate>
+        <lastBuildDate>Mon, 30 Aug 2021 14:01:35 +0000</lastBuildDate>
+        <category>Default</category>
+        <category>PaddleSpeech</category>
+        <category>Java</category>
+        <category>elasticsearch</category>
+        <category>Cosy</category>
+        <category>hibernate</category>
+        <category>JVM</category>
+        <category>spring</category>
+        <category>Spring Cloud</category>
+        <category>mysql</category>
+        <category>置顶</category>
+        <category>git</category>
+        <category>Hacker</category>
+        <category>Linux</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>SELinux</category>
+        <category>openssl</category>
+        <item>
+            <guid isPermalink="true">https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/</guid>
+            <title>chrome extensions message</title>
+            <link>https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/</link>
+            <pubDate>Mon, 30 Aug 2021 14:01:35 +0000</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;浏览器插件-通讯&#34;&gt;&lt;a href=&#34;#浏览器插件-通讯&#34; class=&#34;headerlink&#34; title=&#34;浏览器插件 通讯&#34;&gt;&lt;/a&gt;浏览器插件 通讯&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;/img/image-a4b4a3069983422eae1bf2c21fcaab0d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.haoji.me/chrome-plugin-develop.html?from=xa&#34;&gt;http://blog.haoji.me/chrome-plugin-develop.html?from=xa&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

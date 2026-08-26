@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.genesisx.cn</id>
+    <title>Gyo • Posts by &#34;运维&#34; category</title>
+    <link href="https://blog.genesisx.cn" />
+    <updated>2023-05-06T17:05:06.000Z</updated>
+    <category term="Default" />
+    <category term="PaddleSpeech" />
+    <category term="Java" />
+    <category term="elasticsearch" />
+    <category term="Cosy" />
+    <category term="hibernate" />
+    <category term="JVM" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
+    <entry>
+        <id>https://blog.genesisx.cn/2023/05/06/%E8%BF%90%E7%BB%B4/2023-05-06--nginx--290/</id>
+        <title>nginx</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/05/06/%E8%BF%90%E7%BB%B4/2023-05-06--nginx--290/"/>
+        <content type="html">&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt;
+#user  nobody;
+user root;
+worker_processes  1;
+
+#error_log  logs&amp;#x2F;error.log;
+#error_log  logs&amp;#x2F;error.log  notice;
+#error_log  logs&amp;#x2F;error.log  info;
+
+#pid        logs&amp;#x2F;nginx.pid;
+
+
+events &amp;#123;
+    worker_connections  1024;
+&amp;#125;
+
+
+http &amp;#123;
+    include       mime.types;
+    default_type  application&amp;#x2F;octet-stream;
+    underscores_in_headers on;
+    client_max_body_size 50M;
+    server_tokens off;
+
+    #log_format  main  &amp;#39;$remote_addr - $remote_user [$time_local] &amp;quot;$request&amp;quot; &amp;#39;
+    #                  &amp;#39;$status $body_bytes_sent &amp;quot;$http_referer&amp;quot; &amp;#39;
+    #                  &amp;#39;&amp;quot;$http_user_agent&amp;quot; &amp;quot;$http_x_forwarded_for&amp;quot;&amp;#39;;
+
+    log_format main  &amp;#39;$remote_addr - $remote_user [$time_local] [$msec] [$request_time] [$http_host] &amp;quot;$request&amp;quot; &amp;#39;
+                          &amp;#39;$status $body_bytes_sent &amp;quot;$request_body&amp;quot; &amp;quot;$http_referer&amp;quot; &amp;#39;
+                          &amp;#39;&amp;quot;$http_user_agent&amp;quot; $http_x_forwarded_for&amp;#39;;
+
+    #access_log  logs&amp;#x2F;access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    gzip on;
+    gzip_disable &amp;quot;msie6&amp;quot;;
+    
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_http_version 1.1;
+    gzip_min_length 256;
+    gzip_types text&amp;#x2F;plain text&amp;#x2F;css application&amp;#x2F;json application&amp;#x2F;x-javascript text&amp;#x2F;xml application&amp;#x2F;xml application&amp;#x2F;xml+rss text&amp;#x2F;javascript application&amp;#x2F;vnd.ms-fontobject application&amp;#x2F;x-font-ttf font&amp;#x2F;opentype font&amp;#x2F;x-woff image&amp;#x2F;svg+xml image&amp;#x2F;x-icon image&amp;#x2F;jpeg image&amp;#x2F;gif image&amp;#x2F;png;
+
+    fastcgi_connect_timeout 300;
+    fastcgi_send_timeout 300;
+    fastcgi_read_timeout 300;
+    fastcgi_buffer_size 64k;
+    fastcgi_buffers 4 64k;
+    fastcgi_busy_buffers_size 128k;
+    fastcgi_temp_file_write_size 128k;
+    
+
+   upstream webservice&amp;#123;
+       server localhost:8080  weight&amp;#x3D;1   max_fails&amp;#x3D;10 fail_timeout&amp;#x3D;40s;
+       keepalive 512;
+    &amp;#125;
+    #定义一个名为allips的limit_req_zone用来存储session，大小是10M内存，
+    ##以$binary_remote_addr 为key,限制平均每秒的请求为20个，
+    ##1M能存储16000个状态，rete的值必须为整数，
+    ##如果限制两秒钟一个请求，可以设置成30r&amp;#x2F;m
+    limit_req_zone $binary_remote_addr zone&amp;#x3D;allips:1m rate&amp;#x3D;30r&amp;#x2F;s;
+    #定义一个名为one的limit_zone,大小10M内存来存储session，
+    ##以$binary_remote_addr 为key
+    ##nginx 1.18以后用limit_conn_zone替换了limit_conn
+    ##且只能放在http作用域
+    limit_conn_zone $binary_remote_addr zone&amp;#x3D;one:1m;
+
+    server &amp;#123;
+        
+	listen       80;
+        server_name  localhost,genesisx.cn,www.genesisx.cn;
+
+        rewrite ^(.*)$ https:&amp;#x2F;&amp;#x2F;$host$1 permanent;
+        break;
+        #charset koi8-r;
+
+        #access_log  logs&amp;#x2F;host.access.log  main;
+
+        #location &amp;#x2F; &amp;#123;
+        #    root   &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;html;
+        #    index  index.html index.htm;
+        #&amp;#125;
+#        location ^~ &amp;#x2F; &amp;#123;
+#            alias   &amp;#x2F;home&amp;#x2F;admin&amp;#x2F;xing&amp;#x2F;dist&amp;#x2F;;
+#            index  index.html index.htm;
+#	    try_files $uri $uri&amp;#x2F; &amp;#x2F;index.html;
+#        &amp;#125;
+
+#	location &amp;#x2F;api &amp;#123;
+#	    proxy_pass   http:&amp;#x2F;&amp;#x2F;localhost:8080;
+#	    rewrite ^&amp;#x2F;api&amp;#x2F;(.*)$  &amp;#x2F;$1 break;
+#	&amp;#125;
+
+    location &amp;#x2F; &amp;#123;
+	#限制每ip每秒不超过20个请求，漏桶数burst为5
+	##brust的意思就是，如果第1秒、2,3,4秒请求为19个，
+	##第5秒的请求为25个是被允许的。
+	##但是如果你第1秒就25个请求，第2秒超过20的请求返回503错误。
+	##nodelay，如果不设置该选项，严格使用平均速率限制请求数，
+	##第1秒25个请求时，5个请求放到第2秒执行，
+	##设置nodelay，25个请求将在第1秒执行。
+	#
+	limit_req zone&amp;#x3D;allips burst&amp;#x3D;5 nodelay;
+	limit_conn one 10;          #连接数限制
+	limit_conn_log_level error;
+	#带宽限制,对单个连接限数，如果一个ip两个连接，就是500x2k
+	limit_rate 6144k;
+        
+	proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        proxy_pass              http:&amp;#x2F;&amp;#x2F;localhost:8090&amp;#x2F;;
+        proxy_read_timeout      360;
+    &amp;#125;
+
+
+	#location &amp;#x2F;login &amp;#123;
+        #    rewrite &amp;#x2F;login&amp;#x2F; &amp;#x2F; break;
+        #&amp;#125;
+        #error_page  404              &amp;#x2F;404.html;
+
+        # redirect server error pages to the static page &amp;#x2F;50x.html
+        #
+        error_page   500 502 503 504  &amp;#x2F;50x.html;
+        location &amp;#x3D; &amp;#x2F;50x.html &amp;#123;
+            root   html;
+        &amp;#125;
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ &amp;#123;
+        #    proxy_pass   http:&amp;#x2F;&amp;#x2F;127.0.0.1;
+        #&amp;#125;
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ &amp;#123;
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  &amp;#x2F;scripts$fastcgi_script_name;
+        #    include        fastcgi_params;
+        #&amp;#125;
+
+        # deny access to .htaccess files, if Apache&amp;#39;s document root
+        # concurs with nginx&amp;#39;s one
+        #
+        #location ~ &amp;#x2F;\.ht &amp;#123;
+        #    deny  all;
+        #&amp;#125;
+    &amp;#125;
+
+
+#server &amp;#123;
+#    listen       80;
+#    server_name  blog.genesisx.cn;
+#    location &amp;#x2F; &amp;#123;
+#        proxy_set_header        Host $host;
+#        proxy_set_header        X-Real-IP $remote_addr;
+#        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+#        proxy_set_header        X-Forwarded-Proto $scheme;
+#        proxy_pass              http:&amp;#x2F;&amp;#x2F;localhost:8090;
+#        proxy_read_timeout      360;
+#    &amp;#125;
+#&amp;#125;
+
+    # another virtual host using mix of IP-, name-, and port-based configuration
+    #
+    #server &amp;#123;
+    #    listen       8000;
+    #    listen       somename:8080;
+    #    server_name  somename  alias  another.alias;
+
+    #    location &amp;#x2F; &amp;#123;
+    #        root   html;
+    #        index  index.html index.htm;
+    #    &amp;#125;
+    #&amp;#125;
+
+
+    # HTTPS server
+    #
+    server &amp;#123;
+        listen       443 ssl http2;
+        server_name localhost,www.genesisx.cn;
+
+        ssl_certificate      &amp;#x2F;root&amp;#x2F;https&amp;#x2F;9743717_www.genesisx.cn.pem;
+        ssl_certificate_key  &amp;#x2F;root&amp;#x2F;https&amp;#x2F;9743717_www.genesisx.cn.key;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  50m;
+
+        #ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;
+        ssl_prefer_server_ciphers  on;
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_buffer_size 4k;
+
+        ssl_stapling on;
+        ssl_stapling_verify on;
+        ssl_trusted_certificate &amp;#x2F;root&amp;#x2F;https&amp;#x2F;9743717_www.genesisx.cn.pem;
+
+        #location &amp;#x2F; &amp;#123;
+        #    root   html;
+        #    index  index.html index.htm;
+        #&amp;#125;
+        location &amp;#x2F; &amp;#123;
+          proxy_set_header        Host $host;
+          proxy_set_header        X-Real-IP $remote_addr;
+          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header        X-Forwarded-Proto $scheme;
+          proxy_pass              http:&amp;#x2F;&amp;#x2F;localhost:8090&amp;#x2F;;
+          proxy_read_timeout      360;
+        &amp;#125;
+    &amp;#125;
+
+&amp;#125;
+&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+        <updated>2023-05-06T17:05:06.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.genesisx.cn/2021/07/21/java/2021-07-21--%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98nestedexceptionisjavalangoutofmemoryerrorcompressedclassspace--132/</id>
+        <title>线上问题nested exception is java.lang.OutOfMemoryError: Compressed class space</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/07/21/java/2021-07-21--%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98nestedexceptionisjavalangoutofmemoryerrorcompressedclassspace--132/"/>
+        <content type="html">&lt;pre class=&#34;line-numbers language-language&#34; data-language=&#34;language&#34;&gt;&lt;code class=&#34;language-language&#34;&gt;org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.OutOfMemoryError: Compressed class space
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:982)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.OutOfMemoryError: Compressed class space
+
+
+
+
+这两个东西快占用了 1G 了，又回收不了。
+导致的原因是使用了 cxf 调用 webservice 在成功后序列化返回值导致的。
+cxf 会获取 webservice xml 上的对象信息生成对应的代理类。类信息使用的是 UrlClassLoader 加载的，每次请求都是不一样的，在使用 fastjson 序列化对象时，fastjson 使用的是类作为 key 缓存，导致每次都是不一样的，之后一直递增，最后溢出。 com.alibaba.fastjson.util.IdentityHashMap&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/image-c45ac725e9b44a52a6f0e271f0f9cc55.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/image-e937fcea36374e4c8cb23d38fad953c1.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+</content>
+        <updated>2021-07-21T16:07:37.000Z</updated>
+    </entry>
+</feed>

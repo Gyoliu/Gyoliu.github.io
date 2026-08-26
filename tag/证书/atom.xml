@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;证书&#34; tag</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2024-07-08T05:15:44.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2024-07-08T13:15:44.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2024/07/08/nginx-config-https/</id>
+        <id>https://blog.genesisx.cn/2024/07/08/%E8%BF%90%E7%BB%B4/nginx-config-https/</id>
         <title>https 证书自动续期，永久免费</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2024/07/08/nginx-config-https/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2024/07/08/%E8%BF%90%E7%BB%B4/nginx-config-https/"/>
         <content type="html">&lt;h1 id=&#34;https-证书自动续期，永久免费&#34;&gt;&lt;a href=&#34;#https-证书自动续期，永久免费&#34; class=&#34;headerlink&#34; title=&#34;https 证书自动续期，永久免费&#34;&gt;&lt;/a&gt;https 证书自动续期，永久免费&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;开源组织的免费证书：&lt;a href=&#34;https://letsencrypt.org/zh-cn/&#34;&gt;https://letsencrypt.org/zh-cn/&lt;/a&gt;&lt;br&gt;Let’s Encrypt 和 &lt;a href=&#34;https://tools.ietf.org/html/rfc8555&#34;&gt;ACME 协议&lt;/a&gt;的目标是实现可信数字证书的自动获取，从而简化 HTTPS 服务器部署中的人工操作。 这一目标是由 Web 服务器上的证书管理软件完成的。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -109,6 +112,6 @@ certbot renew &lt;span class=&#34;token parameter variable&#34;&gt;--manual&lt;/
         <category term="Default" />
         <category term="证书" />
         <category term="nginx" />
-        <updated>2024-07-08T05:15:44.000Z</updated>
+        <updated>2024-07-08T13:15:44.000Z</updated>
     </entry>
 </feed>

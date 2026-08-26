@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Gyo • All posts by \"hacker\" tag",
+    "description": "Gyo的博客",
+    "home_page_url": "https://blog.genesisx.cn",
+    "items": [
+        {
+            "id": "https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/",
+            "url": "https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/",
+            "title": "黑客资源收录",
+            "date_published": "2024-07-11T17:48:12.000Z",
+            "content_html": "<h1 id=\"黑客资源收录\"><a href=\"#黑客资源收录\" class=\"headerlink\" title=\"黑客资源收录\"></a>黑客资源收录</h1><ol>\n<li>BeEF 浏览器渗透测试框架</li>\n<li><a href=\"https://github.com/Z4nzu/hackingtool\">https://github.com/Z4nzu/hackingtool</a></li>\n<li><a href=\"https://github.com/ashishb/android-security-awesome\">https://github.com/ashishb/android-security-awesome</a></li>\n<li><a href=\"https://github.com/tylerha97/awesome-reversing\">https://github.com/tylerha97/awesome-reversing</a></li>\n<li><a href=\"https://github.com/jivoi/awesome-osint\">https://github.com/jivoi/awesome-osint</a></li>\n</ol>\n",
+            "tags": [
+                "Hacker"
+            ]
+        }
+    ]
+}

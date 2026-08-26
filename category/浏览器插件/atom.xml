@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.genesisx.cn</id>
+    <title>Gyo • Posts by &#34;浏览器插件&#34; category</title>
+    <link href="https://blog.genesisx.cn" />
+    <updated>2021-08-30T14:01:35.000Z</updated>
+    <category term="Default" />
+    <category term="PaddleSpeech" />
+    <category term="Java" />
+    <category term="elasticsearch" />
+    <category term="Cosy" />
+    <category term="hibernate" />
+    <category term="JVM" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
+    <entry>
+        <id>https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/</id>
+        <title>chrome extensions message</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/"/>
+        <content type="html">&lt;h1 id=&#34;浏览器插件-通讯&#34;&gt;&lt;a href=&#34;#浏览器插件-通讯&#34; class=&#34;headerlink&#34; title=&#34;浏览器插件 通讯&#34;&gt;&lt;/a&gt;浏览器插件 通讯&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;/img/image-a4b4a3069983422eae1bf2c21fcaab0d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.haoji.me/chrome-plugin-develop.html?from=xa&#34;&gt;http://blog.haoji.me/chrome-plugin-develop.html?from=xa&lt;/a&gt;&lt;/p&gt;
+</content>
+        <updated>2021-08-30T14:01:35.000Z</updated>
+    </entry>
+</feed>

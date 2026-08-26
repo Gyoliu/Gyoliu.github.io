@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;mysql&#34; category</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2025-03-11T01:16:40.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2025-03-11T09:16:40.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2025/03/11/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</id>
+        <id>https://blog.genesisx.cn/2025/03/11/mysql/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</id>
         <title>mysql主从搭建</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2025/03/11/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2025/03/11/mysql/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/"/>
         <content type="html">&lt;h1 id=&#34;主服务器配置&#34;&gt;&lt;a href=&#34;#主服务器配置&#34; class=&#34;headerlink&#34; title=&#34;主服务器配置&#34;&gt;&lt;/a&gt;主服务器配置&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;#服务器 id，随意，但要唯一&lt;/span&gt;
 server-id &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;  
 &lt;span class=&#34;token comment&#34;&gt;#二进制文件存放路径&lt;/span&gt;
@@ -219,6 +222,6 @@ enforce_gtid_consistency &amp;#x3D; ON&lt;span aria-hidden=&#34;true&#34; class=
 </content>
         <category term="Default" />
         <category term="mysql" />
-        <updated>2025-03-11T01:16:40.000Z</updated>
+        <updated>2025-03-11T09:16:40.000Z</updated>
     </entry>
 </feed>

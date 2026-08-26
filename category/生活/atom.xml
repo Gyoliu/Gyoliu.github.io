@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.genesisx.cn</id>
+    <title>Gyo • Posts by &#34;生活&#34; category</title>
+    <link href="https://blog.genesisx.cn" />
+    <updated>2020-11-25T09:19:55.000Z</updated>
+    <category term="Default" />
+    <category term="PaddleSpeech" />
+    <category term="Java" />
+    <category term="elasticsearch" />
+    <category term="Cosy" />
+    <category term="hibernate" />
+    <category term="JVM" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
+    <entry>
+        <id>https://blog.genesisx.cn/2020/11/25/%E7%94%9F%E6%B4%BB/2020-11-25--%E7%A7%AF%E7%B4%AF--35/</id>
+        <title>积累</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/11/25/%E7%94%9F%E6%B4%BB/2020-11-25--%E7%A7%AF%E7%B4%AF--35/"/>
+        <content type="html">&lt;h3 id=&#34;故不积硅步，无以至千里；不积小流，无以成江海。&#34;&gt;&lt;a href=&#34;#故不积硅步，无以至千里；不积小流，无以成江海。&#34; class=&#34;headerlink&#34; title=&#34;故不积硅步，无以至千里；不积小流，无以成江海。&#34;&gt;&lt;/a&gt;故不积硅步，无以至千里；不积小流，无以成江海。&lt;/h3&gt;</content>
+        <updated>2020-11-25T09:19:55.000Z</updated>
+    </entry>
+</feed>

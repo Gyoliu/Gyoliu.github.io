@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Gyo • Posts by &#34;工具&#34; category</title>
+        <link>https://blog.genesisx.cn</link>
+        <description>Gyo的博客</description>
+        <language>en</language>
+        <pubDate>Mon, 29 Nov 2021 18:56:27 +0000</pubDate>
+        <lastBuildDate>Mon, 29 Nov 2021 18:56:27 +0000</lastBuildDate>
+        <category>Default</category>
+        <category>PaddleSpeech</category>
+        <category>Java</category>
+        <category>elasticsearch</category>
+        <category>Cosy</category>
+        <category>hibernate</category>
+        <category>JVM</category>
+        <category>spring</category>
+        <category>Spring Cloud</category>
+        <category>mysql</category>
+        <category>置顶</category>
+        <category>git</category>
+        <category>Hacker</category>
+        <category>Linux</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>SELinux</category>
+        <category>openssl</category>
+        <item>
+            <guid isPermalink="true">https://blog.genesisx.cn/2021/11/29/%E5%B7%A5%E5%85%B7/2021-11-29--git%E5%85%8B%E9%9A%86%E5%A4%A7%E4%BB%93%E5%BA%93%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95--161/</guid>
+            <title>git克隆大仓库的问题记录</title>
+            <link>https://blog.genesisx.cn/2021/11/29/%E5%B7%A5%E5%85%B7/2021-11-29--git%E5%85%8B%E9%9A%86%E5%A4%A7%E4%BB%93%E5%BA%93%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95--161/</link>
+            <pubDate>Mon, 29 Nov 2021 18:56:27 +0000</pubDate>
+            <description><![CDATA[ &lt;p&gt;网上大多数都是教你：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;克隆最新一次 commit：git clone &lt;a href=&#34;https://xxxxxx.git/&#34;&gt;https://xxxxxx.git&lt;/a&gt; –depth 1&lt;/li&gt;
+&lt;li&gt;下载所有历史：git fetch –unshallow&lt;/li&gt;
+&lt;li&gt;设置分支：git remote set-branches origin ‘*’&lt;/li&gt;
+&lt;li&gt;git fetch -v&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但是 git fetch –unshallow 还是很大怎么办呢？ 百度到此就 GG 了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;克隆最新一次 commit：git clone &lt;a href=&#34;https://xxxxxx.git/&#34;&gt;https://xxxxxx.git&lt;/a&gt; –depth 1&lt;/li&gt;
+&lt;li&gt;设置分支：git remote set-branches origin *&lt;/li&gt;
+&lt;li&gt;拉取你想要的分支：git fetch –depth 1 origin xxx 或者使用 git pull –depth&amp;#x3D;1&lt;/li&gt;
+&lt;li&gt;git branch -a&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;就这么简单，想要那个就拉取哪里分支的最新一次提交&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

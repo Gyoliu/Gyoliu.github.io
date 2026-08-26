@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;spring&#34; tag</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2023-07-20T05:03:23.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2023-07-20T13:03:23.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/</id>
+        <id>https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/</id>
         <title>spring bean 扩展点记录</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/"/>
         <content type="html">&lt;p&gt;&lt;img src=&#34;/img/spring%20bean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B-mjrg.png&#34; alt=&#34;spring bean实例化流程-mjrg.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/springbean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png&#34; alt=&#34;springbean实例化流程图.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/spring%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3%E7%82%B9.png&#34; alt=&#34;spring扩展接口点.png&#34;&gt;&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;// spring 核心代码&lt;/span&gt;
 &lt;span class=&#34;token comment&#34;&gt;// BeanFactoryPostProcessor 接口 ，this.postProcessBeanFactory(beanFactory);&lt;/span&gt;
@@ -221,6 +224,6 @@ AspectJAutoProxyRegistrar&lt;span aria-hidden=&#34;true&#34; class=&#34;line-num
 </content>
         <category term="Java" />
         <category term="spring" />
-        <updated>2023-07-20T05:03:23.000Z</updated>
+        <updated>2023-07-20T13:03:23.000Z</updated>
     </entry>
 </feed>

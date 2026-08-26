@@ -2,33 +2,36 @@
 <rss version="2.0">
     <channel>
         <title>Gyo • Posts by &#34;spring&#34; tag</title>
-        <link>https://gyoliu.github.io</link>
+        <link>https://blog.genesisx.cn</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Thu, 20 Jul 2023 13:03:23 +0800</pubDate>
-        <lastBuildDate>Thu, 20 Jul 2023 13:03:23 +0800</lastBuildDate>
-        <category>Java</category>
-        <category>Linux</category>
+        <pubDate>Thu, 20 Jul 2023 13:03:23 +0000</pubDate>
+        <lastBuildDate>Thu, 20 Jul 2023 13:03:23 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
+        <category>Java</category>
         <category>elasticsearch</category>
         <category>Cosy</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>mysql</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>openssl</category>
-        <category>SELinux</category>
         <category>spring</category>
         <category>Spring Cloud</category>
+        <category>mysql</category>
+        <category>置顶</category>
+        <category>git</category>
+        <category>Hacker</category>
+        <category>Linux</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>SELinux</category>
+        <category>openssl</category>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/</guid>
             <title>spring bean 扩展点记录</title>
-            <link>https://gyoliu.github.io/2023/07/20/spring-bean-extension-point/</link>
+            <link>https://blog.genesisx.cn/2023/07/20/java/spring-bean-extension-point/</link>
             <category>Java</category>
             <category>spring</category>
-            <pubDate>Thu, 20 Jul 2023 13:03:23 +0800</pubDate>
+            <pubDate>Thu, 20 Jul 2023 13:03:23 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img src=&#34;/img/spring%20bean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B-mjrg.png&#34; alt=&#34;spring bean实例化流程-mjrg.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/springbean%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png&#34; alt=&#34;springbean实例化流程图.png&#34;&gt;&lt;br&gt;&lt;img src=&#34;/img/spring%E6%89%A9%E5%B1%95%E6%8E%A5%E5%8F%A3%E7%82%B9.png&#34; alt=&#34;spring扩展接口点.png&#34;&gt;&lt;/p&gt;
 &lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;// spring 核心代码&lt;/span&gt;
 &lt;span class=&#34;token comment&#34;&gt;// BeanFactoryPostProcessor 接口 ，this.postProcessBeanFactory(beanFactory);&lt;/span&gt;

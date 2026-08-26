@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.genesisx.cn</id>
+    <title>Gyo • Posts by &#34;hacker&#34; tag</title>
+    <link href="https://blog.genesisx.cn" />
+    <updated>2024-07-11T17:48:12.000Z</updated>
+    <category term="Default" />
+    <category term="PaddleSpeech" />
+    <category term="Java" />
+    <category term="elasticsearch" />
+    <category term="Cosy" />
+    <category term="hibernate" />
+    <category term="JVM" />
+    <category term="spring" />
+    <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
+    <entry>
+        <id>https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/</id>
+        <title>黑客资源收录</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/"/>
+        <content type="html">&lt;h1 id=&#34;黑客资源收录&#34;&gt;&lt;a href=&#34;#黑客资源收录&#34; class=&#34;headerlink&#34; title=&#34;黑客资源收录&#34;&gt;&lt;/a&gt;黑客资源收录&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;BeEF 浏览器渗透测试框架&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Z4nzu/hackingtool&#34;&gt;https://github.com/Z4nzu/hackingtool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ashishb/android-security-awesome&#34;&gt;https://github.com/ashishb/android-security-awesome&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/tylerha97/awesome-reversing&#34;&gt;https://github.com/tylerha97/awesome-reversing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jivoi/awesome-osint&#34;&gt;https://github.com/jivoi/awesome-osint&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="Hacker" />
+        <updated>2024-07-11T17:48:12.000Z</updated>
+    </entry>
+</feed>

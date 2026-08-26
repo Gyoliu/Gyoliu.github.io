@@ -2,34 +2,37 @@
 <rss version="2.0">
     <channel>
         <title>Gyo • Posts by &#34;default&#34; category</title>
-        <link>https://gyoliu.github.io</link>
+        <link>https://blog.genesisx.cn</link>
         <description>Gyo的博客</description>
         <language>en</language>
-        <pubDate>Wed, 25 Jun 2025 11:51:44 +0800</pubDate>
-        <lastBuildDate>Wed, 25 Jun 2025 11:51:44 +0800</lastBuildDate>
-        <category>Java</category>
-        <category>Linux</category>
+        <pubDate>Wed, 25 Jun 2025 11:51:44 +0000</pubDate>
+        <lastBuildDate>Wed, 25 Jun 2025 11:51:44 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
+        <category>Java</category>
         <category>elasticsearch</category>
         <category>Cosy</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>mysql</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>openssl</category>
-        <category>SELinux</category>
         <category>spring</category>
         <category>Spring Cloud</category>
+        <category>mysql</category>
+        <category>置顶</category>
+        <category>git</category>
+        <category>Hacker</category>
+        <category>Linux</category>
+        <category>证书</category>
+        <category>nginx</category>
+        <category>SELinux</category>
+        <category>openssl</category>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</guid>
             <title>nginx-install-error-collect</title>
-            <link>https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</link>
+            <link>https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</link>
             <category>Default</category>
             <category>nginx</category>
             <category>SELinux</category>
-            <pubDate>Wed, 25 Jun 2025 11:51:44 +0800</pubDate>
+            <pubDate>Wed, 25 Jun 2025 11:51:44 +0000</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;1-无法读取-ssl-密钥&#34;&gt;&lt;a href=&#34;#1-无法读取-ssl-密钥&#34; class=&#34;headerlink&#34; title=&#34;1. 无法读取 ssl 密钥&#34;&gt;&lt;/a&gt;1. 无法读取 ssl 密钥&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;2025&amp;#x2F;06&amp;#x2F;25 11:41:21 [emerg] 8982#8982: cannot load certificate “&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem”: BIO_new_file() failed (SSL: error:0200100D:system library:fopen:Permission denied:fopen(‘&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem’,’r’) error:2006D002:BIO routines:BIO_new_file:system lib)&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -72,11 +75,11 @@ restorecon &lt;span class=&#34;token parameter variable&#34;&gt;-Rv&lt;/span&gt;
 &lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;chcon &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; mysqld_db_t /var/lib/mysql&lt;span class=&#34;token variable&#34;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2025/04/16/linux-performance-optimization/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2025/04/16/%E8%BF%90%E7%BB%B4/linux-performance-optimization/</guid>
             <title>linux performance optimization</title>
-            <link>https://gyoliu.github.io/2025/04/16/linux-performance-optimization/</link>
+            <link>https://blog.genesisx.cn/2025/04/16/%E8%BF%90%E7%BB%B4/linux-performance-optimization/</link>
             <category>Default</category>
-            <pubDate>Wed, 16 Apr 2025 23:06:58 +0800</pubDate>
+            <pubDate>Wed, 16 Apr 2025 23:06:58 +0000</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;模拟一个-CPU-使用率-100-的场景：&#34;&gt;&lt;a href=&#34;#模拟一个-CPU-使用率-100-的场景：&#34; class=&#34;headerlink&#34; title=&#34;模拟一个 CPU 使用率 100% 的场景：&#34;&gt;&lt;/a&gt;模拟一个 CPU 使用率 100% 的场景：&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;stress &lt;span class=&#34;token parameter variable&#34;&gt;--cpu&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--timeout&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;600&lt;/span&gt;
 &lt;span class=&#34;token comment&#34;&gt;# 间隔 5 秒后输出一组数据&lt;/span&gt;
 pidstat &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -220,11 +223,11 @@ $ perf report
 &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2025/04/10/java17jvm-params/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2025/04/10/java/java17jvm-params/</guid>
             <title>java17jvm-params</title>
-            <link>https://gyoliu.github.io/2025/04/10/java17jvm-params/</link>
+            <link>https://blog.genesisx.cn/2025/04/10/java/java17jvm-params/</link>
             <category>Default</category>
-            <pubDate>Thu, 10 Apr 2025 09:08:04 +0800</pubDate>
+            <pubDate>Thu, 10 Apr 2025 09:08:04 +0000</pubDate>
             <description><![CDATA[ &lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;--add-opens&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;java.base/java.lang&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;ALL-UNNAMED &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
     &lt;span class=&#34;token parameter variable&#34;&gt;-Xms1500m&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-Xmx1500m&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
     &lt;span class=&#34;token parameter variable&#34;&gt;-XX:ReservedCodeCacheSize&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;256m &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;
@@ -253,12 +256,12 @@ $ perf report
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2025/03/11/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2025/03/11/mysql/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</guid>
             <title>mysql主从搭建</title>
-            <link>https://gyoliu.github.io/2025/03/11/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</link>
+            <link>https://blog.genesisx.cn/2025/03/11/mysql/mysql%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA/</link>
             <category>Default</category>
             <category>mysql</category>
-            <pubDate>Tue, 11 Mar 2025 09:16:40 +0800</pubDate>
+            <pubDate>Tue, 11 Mar 2025 09:16:40 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;主服务器配置&#34;&gt;&lt;a href=&#34;#主服务器配置&#34; class=&#34;headerlink&#34; title=&#34;主服务器配置&#34;&gt;&lt;/a&gt;主服务器配置&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;#服务器 id，随意，但要唯一&lt;/span&gt;
 server-id &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;  
 &lt;span class=&#34;token comment&#34;&gt;#二进制文件存放路径&lt;/span&gt;
@@ -455,11 +458,11 @@ enforce_gtid_consistency &amp;#x3D; ON&lt;span aria-hidden=&#34;true&#34; class=
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2025/03/06/XtraBackup-mysql-backup/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2025/03/06/mysql/XtraBackup-mysql-backup/</guid>
             <title>XtraBackup mysql backup</title>
-            <link>https://gyoliu.github.io/2025/03/06/XtraBackup-mysql-backup/</link>
+            <link>https://blog.genesisx.cn/2025/03/06/mysql/XtraBackup-mysql-backup/</link>
             <category>Default</category>
-            <pubDate>Thu, 06 Mar 2025 16:29:54 +0800</pubDate>
+            <pubDate>Thu, 06 Mar 2025 16:29:54 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;1-安装-Percona-XtraBackup&#34;&gt;&lt;a href=&#34;#1-安装-Percona-XtraBackup&#34; class=&#34;headerlink&#34; title=&#34;1. 安装 Percona XtraBackup&#34;&gt;&lt;/a&gt;1. 安装 Percona XtraBackup&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;# Ubuntu/Debian&lt;/span&gt;
 &lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; https://repo.percona.com/apt/percona-release_latest.&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;lsb_release &lt;span class=&#34;token parameter variable&#34;&gt;-sc&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;_all.deb
 &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; dpkg &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; percona-release_latest.&lt;span class=&#34;token variable&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$(&lt;/span&gt;lsb_release &lt;span class=&#34;token parameter variable&#34;&gt;-sc&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;)&lt;/span&gt;&lt;/span&gt;_all.deb
@@ -788,23 +791,23 @@ innobackupex遗留参数
 –ssl-fips-mode&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;name SL FIPS mode to use, permitted values are: OFF, ON,STRICT&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2024/12/26/follow/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2024/12/26/%E7%94%9F%E6%B4%BB/follow/</guid>
             <title>follow</title>
-            <link>https://gyoliu.github.io/2024/12/26/follow/</link>
+            <link>https://blog.genesisx.cn/2024/12/26/%E7%94%9F%E6%B4%BB/follow/</link>
             <category>Default</category>
-            <pubDate>Thu, 26 Dec 2024 14:41:29 +0800</pubDate>
+            <pubDate>Thu, 26 Dec 2024 14:41:29 +0000</pubDate>
             <description><![CDATA[ &lt;blockquote&gt;
 &lt;p&gt;This message is used to verify that this feed (feedId:94993712362846208) belongs to me (userId:569moaUVDrYGrgssS2Lwv). Join me in enjoying the next generation information browser &lt;a href=&#34;https://follow.is/&#34;&gt;https://follow.is&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2024/08/29/nginx-proxy/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2024/08/29/%E8%BF%90%E7%BB%B4/nginx-proxy/</guid>
             <title>nginx 正向代理配置 https 支持</title>
-            <link>https://gyoliu.github.io/2024/08/29/nginx-proxy/</link>
+            <link>https://blog.genesisx.cn/2024/08/29/%E8%BF%90%E7%BB%B4/nginx-proxy/</link>
             <category>Default</category>
             <category>nginx</category>
-            <pubDate>Thu, 29 Aug 2024 13:23:54 +0800</pubDate>
+            <pubDate>Thu, 29 Aug 2024 13:23:54 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;nginx-正向代理配置-https-支持&#34;&gt;&lt;a href=&#34;#nginx-正向代理配置-https-支持&#34; class=&#34;headerlink&#34; title=&#34;nginx 正向代理配置 https 支持&#34;&gt;&lt;/a&gt;nginx 正向代理配置 https 支持&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt; -- 遇到很多需要的包安装下来就好
 
 yum &lt;span class=&#34;token parameter variable&#34;&gt;-y&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; perl perl-ExtUtils-Embed gperftools geoip-devel
@@ -881,12 +884,12 @@ server &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2024/07/29/PaddleSpeech/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2024/07/29/AI/PaddleSpeech/</guid>
             <title>基于百度飞浆平台语音识别PaddleSpeech</title>
-            <link>https://gyoliu.github.io/2024/07/29/PaddleSpeech/</link>
+            <link>https://blog.genesisx.cn/2024/07/29/AI/PaddleSpeech/</link>
             <category>Default</category>
             <category>PaddleSpeech</category>
-            <pubDate>Mon, 29 Jul 2024 13:20:51 +0800</pubDate>
+            <pubDate>Mon, 29 Jul 2024 13:20:51 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;PaddleSpeech-是基于飞桨-PaddlePaddle-的语音方向的开源模型库&#34;&gt;&lt;a href=&#34;#PaddleSpeech-是基于飞桨-PaddlePaddle-的语音方向的开源模型库&#34; class=&#34;headerlink&#34; title=&#34;PaddleSpeech 是基于飞桨 PaddlePaddle 的语音方向的开源模型库&#34;&gt;&lt;/a&gt;&lt;strong&gt;PaddleSpeech&lt;/strong&gt; 是基于飞桨 &lt;a href=&#34;https://gitee.com/link?target=https://github.com/PaddlePaddle/Paddle&#34;&gt;PaddlePaddle&lt;/a&gt; 的语音方向的开源模型库&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSpeech&#34;&gt;https://github.com/PaddlePaddle/PaddleSpeech&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;文本介绍-Docker-部署方式&#34;&gt;&lt;a href=&#34;#文本介绍-Docker-部署方式&#34; class=&#34;headerlink&#34; title=&#34;文本介绍 Docker 部署方式&#34;&gt;&lt;/a&gt;文本介绍 Docker 部署方式&lt;/h2&gt;&lt;p&gt;依赖环境介绍,docker 环境就不用担心这些：&lt;/p&gt;
 &lt;ul&gt;
@@ -947,13 +950,13 @@ or
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2024/07/08/nginx-config-https/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2024/07/08/%E8%BF%90%E7%BB%B4/nginx-config-https/</guid>
             <title>https 证书自动续期，永久免费</title>
-            <link>https://gyoliu.github.io/2024/07/08/nginx-config-https/</link>
+            <link>https://blog.genesisx.cn/2024/07/08/%E8%BF%90%E7%BB%B4/nginx-config-https/</link>
             <category>Default</category>
             <category>证书</category>
             <category>nginx</category>
-            <pubDate>Mon, 08 Jul 2024 13:15:44 +0800</pubDate>
+            <pubDate>Mon, 08 Jul 2024 13:15:44 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;https-证书自动续期，永久免费&#34;&gt;&lt;a href=&#34;#https-证书自动续期，永久免费&#34; class=&#34;headerlink&#34; title=&#34;https 证书自动续期，永久免费&#34;&gt;&lt;/a&gt;https 证书自动续期，永久免费&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;开源组织的免费证书：&lt;a href=&#34;https://letsencrypt.org/zh-cn/&#34;&gt;https://letsencrypt.org/zh-cn/&lt;/a&gt;&lt;br&gt;Let’s Encrypt 和 &lt;a href=&#34;https://tools.ietf.org/html/rfc8555&#34;&gt;ACME 协议&lt;/a&gt;的目标是实现可信数字证书的自动获取，从而简化 HTTPS 服务器部署中的人工操作。 这一目标是由 Web 服务器上的证书管理软件完成的。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1039,11 +1042,11 @@ certbot renew &lt;span class=&#34;token parameter variable&#34;&gt;--manual&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2022/03/02/idea-plugin/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2022/03/02/%E5%B7%A5%E5%85%B7/idea-plugin/</guid>
             <title>idea常用插件</title>
-            <link>https://gyoliu.github.io/2022/03/02/idea-plugin/</link>
+            <link>https://blog.genesisx.cn/2022/03/02/%E5%B7%A5%E5%85%B7/idea-plugin/</link>
             <category>Default</category>
-            <pubDate>Wed, 02 Mar 2022 12:36:04 +0800</pubDate>
+            <pubDate>Wed, 02 Mar 2022 12:36:04 +0000</pubDate>
             <description><![CDATA[ &lt;ul&gt;
 &lt;li&gt;alibaba java coding guidelines 代码规范&lt;/li&gt;
 &lt;li&gt;git commit template git提交模板&lt;/li&gt;
@@ -1059,11 +1062,11 @@ certbot renew &lt;span class=&#34;token parameter variable&#34;&gt;--manual&lt;/
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://gyoliu.github.io/2020/09/08/browser-cookies-SameSite-attribute/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2020/09/08/%E5%89%8D%E7%AB%AF/browser-cookies-SameSite-attribute/</guid>
             <title>浏览器 SameSite 属性设置</title>
-            <link>https://gyoliu.github.io/2020/09/08/browser-cookies-SameSite-attribute/</link>
+            <link>https://blog.genesisx.cn/2020/09/08/%E5%89%8D%E7%AB%AF/browser-cookies-SameSite-attribute/</link>
             <category>Default</category>
-            <pubDate>Tue, 08 Sep 2020 16:58:59 +0800</pubDate>
+            <pubDate>Tue, 08 Sep 2020 16:58:59 +0000</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;1-起因&#34;&gt;&lt;a href=&#34;#1-起因&#34; class=&#34;headerlink&#34; title=&#34;1. 起因&#34;&gt;&lt;/a&gt;1. 起因&lt;/h3&gt;&lt;p&gt;Chrome 51 开始，浏览器的 Cookie 新增加了一个SameSite属性，用来防止 CSRF 攻击和用户追踪。&lt;br&gt;Chrome 浏览器版本从 80 版后 默认是将 Cookie 设置成 Lax&lt;/p&gt;
 &lt;h3 id=&#34;2-SameSite-属性值&#34;&gt;&lt;a href=&#34;#2-SameSite-属性值&#34; class=&#34;headerlink&#34; title=&#34;2. SameSite 属性值&#34;&gt;&lt;/a&gt;2. SameSite 属性值&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Strict&lt;/li&gt;

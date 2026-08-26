@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://gyoliu.github.io</id>
+    <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;linux&#34; category</title>
-    <link href="https://gyoliu.github.io" />
-    <updated>2025-06-25T03:51:44.000Z</updated>
-    <category term="Java" />
-    <category term="Linux" />
+    <link href="https://blog.genesisx.cn" />
+    <updated>2025-06-25T11:51:44.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
+    <category term="Java" />
     <category term="elasticsearch" />
     <category term="Cosy" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="mysql" />
-    <category term="证书" />
-    <category term="nginx" />
-    <category term="openssl" />
-    <category term="SELinux" />
     <category term="spring" />
     <category term="Spring Cloud" />
+    <category term="mysql" />
+    <category term="置顶" />
+    <category term="git" />
+    <category term="Hacker" />
+    <category term="Linux" />
+    <category term="证书" />
+    <category term="nginx" />
+    <category term="SELinux" />
+    <category term="openssl" />
     <entry>
-        <id>https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/</id>
+        <id>https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/</id>
         <title>nginx-install-error-collect</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2025/06/25/nginx-install-error-collect/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2025/06/25/%E8%BF%90%E7%BB%B4/nginx-install-error-collect/"/>
         <content type="html">&lt;h2 id=&#34;1-无法读取-ssl-密钥&#34;&gt;&lt;a href=&#34;#1-无法读取-ssl-密钥&#34; class=&#34;headerlink&#34; title=&#34;1. 无法读取 ssl 密钥&#34;&gt;&lt;/a&gt;1. 无法读取 ssl 密钥&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;2025&amp;#x2F;06&amp;#x2F;25 11:41:21 [emerg] 8982#8982: cannot load certificate “&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem”: BIO_new_file() failed (SSL: error:0200100D:system library:fopen:Permission denied:fopen(‘&amp;#x2F;etc&amp;#x2F;nginx&amp;#x2F;ssl&amp;#x2F;star_crclogistics_com.pem’,’r’) error:2006D002:BIO routines:BIO_new_file:system lib)&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -66,12 +69,12 @@ restorecon &lt;span class=&#34;token parameter variable&#34;&gt;-Rv&lt;/span&gt;
         <category term="Default" />
         <category term="nginx" />
         <category term="SELinux" />
-        <updated>2025-06-25T03:51:44.000Z</updated>
+        <updated>2025-06-25T11:51:44.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2024/01/29/centos-disk/</id>
+        <id>https://blog.genesisx.cn/2024/01/29/%E8%BF%90%E7%BB%B4/centos-disk/</id>
         <title>centos 磁盘挂载</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2024/01/29/centos-disk/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2024/01/29/%E8%BF%90%E7%BB%B4/centos-disk/"/>
         <content type="html">&lt;h3 id=&#34;查看磁盘：&#34;&gt;&lt;a href=&#34;#查看磁盘：&#34; class=&#34;headerlink&#34; title=&#34;查看磁盘：&#34;&gt;&lt;/a&gt;查看磁盘：&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;lsblk&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -177,12 +180,12 @@ restorecon &lt;span class=&#34;token parameter variable&#34;&gt;-Rv&lt;/span&gt;
 &lt;span class=&#34;token function&#34;&gt;df&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; /挂载点  &lt;span class=&#34;token comment&#34;&gt;# 如 /data&lt;/span&gt;
 &lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
         <category term="Linux" />
-        <updated>2024-01-29T05:10:53.000Z</updated>
+        <updated>2024-01-29T13:10:53.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2022/09/20/openssl-install/</id>
+        <id>https://blog.genesisx.cn/2022/09/20/%E8%BF%90%E7%BB%B4/openssl-install/</id>
         <title>openssl 编译安装</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2022/09/20/openssl-install/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2022/09/20/%E8%BF%90%E7%BB%B4/openssl-install/"/>
         <content type="html">&lt;h2 id=&#34;1-官方下载地址&#34;&gt;&lt;a href=&#34;#1-官方下载地址&#34; class=&#34;headerlink&#34; title=&#34;1. 官方下载地址&#34;&gt;&lt;/a&gt;1. 官方下载地址&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.openssl.org/source/&#34;&gt;https://www.openssl.org/source/&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;2-依赖安装&#34;&gt;&lt;a href=&#34;#2-依赖安装&#34; class=&#34;headerlink&#34; title=&#34;2. 依赖安装&#34;&gt;&lt;/a&gt;2. 依赖安装&lt;/h2&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;yum &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; gcc libffi-devel zlib* openssl-devel&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
@@ -204,12 +207,12 @@ ldconfig &lt;span class=&#34;token parameter variable&#34;&gt;-v&lt;/span&gt;&lt
 </content>
         <category term="Linux" />
         <category term="openssl" />
-        <updated>2022-09-20T04:53:56.000Z</updated>
+        <updated>2022-09-20T12:53:56.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/02/18/Linux-process-disappears/</id>
+        <id>https://blog.genesisx.cn/2021/02/18/%E8%BF%90%E7%BB%B4/Linux-process-disappears/</id>
         <title>Linux服务器Java进程突然消失</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/02/18/Linux-process-disappears/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/02/18/%E8%BF%90%E7%BB%B4/Linux-process-disappears/"/>
         <content type="html">&lt;h3 id=&#34;检查应用日志是否有异常日志&#34;&gt;&lt;a href=&#34;#检查应用日志是否有异常日志&#34; class=&#34;headerlink&#34; title=&#34;检查应用日志是否有异常日志&#34;&gt;&lt;/a&gt;检查应用日志是否有异常日志&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-none&#34;&gt;&lt;code class=&#34;language-none&#34;&gt; -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath&amp;#x3D;$&amp;#123;目录&amp;#125;。
 参数说明：
 （1）-XX:+HeapDumpOnOutOfMemoryError参数表示当JVM发生OOM时，自动生成DUMP文件。
@@ -243,12 +246,12 @@ dmesg -T | grep &amp;#39;Out of memory&amp;#39;
 &lt;h3 id=&#34;开启-Swap&#34;&gt;&lt;a href=&#34;#开启-Swap&#34; class=&#34;headerlink&#34; title=&#34;开启 Swap&#34;&gt;&lt;/a&gt;开启 Swap&lt;/h3&gt;&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/ygm_linux/article/details/24532809&#34;&gt;https://blog.csdn.net/ygm_linux/article/details/24532809&lt;/a&gt;&lt;br&gt;&lt;a href=&#34;https://www.cnblogs.com/williamjie/p/10271347.html&#34;&gt;https://www.cnblogs.com/williamjie/p/10271347.html&lt;/a&gt;&lt;/p&gt;
 </content>
         <category term="Linux" />
-        <updated>2021-02-18T01:55:53.000Z</updated>
+        <updated>2021-02-18T09:55:53.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2021/01/28/linux-delete-big-file/</id>
+        <id>https://blog.genesisx.cn/2021/01/28/%E8%BF%90%E7%BB%B4/linux-delete-big-file/</id>
         <title>Linux 删除大文件内容</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2021/01/28/linux-delete-big-file/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2021/01/28/%E8%BF%90%E7%BB%B4/linux-delete-big-file/"/>
         <content type="html">&lt;h3 id=&#34;查看当前目录下一级子文件和子目录占用的磁盘容量&#34;&gt;&lt;a href=&#34;#查看当前目录下一级子文件和子目录占用的磁盘容量&#34; class=&#34;headerlink&#34; title=&#34;查看当前目录下一级子文件和子目录占用的磁盘容量&#34;&gt;&lt;/a&gt;查看当前目录下一级子文件和子目录占用的磁盘容量&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;du&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-lh&lt;/span&gt; --max-depth&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-nr&lt;/span&gt;
 &lt;span class=&#34;token function&#34;&gt;du&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-m&lt;/span&gt; –max-depth&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;sort&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-gr&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
@@ -267,12 +270,12 @@ truncate &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &l
 
 根据lsof列出的进程号,kill这些进程后,空间就释放出来了&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;</content>
         <category term="Linux" />
-        <updated>2021-01-28T01:49:12.000Z</updated>
+        <updated>2021-01-28T09:49:12.000Z</updated>
     </entry>
     <entry>
-        <id>https://gyoliu.github.io/2020/11/20/linux-find-big-file/</id>
+        <id>https://blog.genesisx.cn/2020/11/20/%E8%BF%90%E7%BB%B4/linux-find-big-file/</id>
         <title>Linux 大文件查找</title>
-        <link rel="alternate" href="https://gyoliu.github.io/2020/11/20/linux-find-big-file/"/>
+        <link rel="alternate" href="https://blog.genesisx.cn/2020/11/20/%E8%BF%90%E7%BB%B4/linux-find-big-file/"/>
         <content type="html">&lt;h3 id=&#34;du-命令用于显示目录或文件的大小&#34;&gt;&lt;a href=&#34;#du-命令用于显示目录或文件的大小&#34; class=&#34;headerlink&#34; title=&#34;du 命令用于显示目录或文件的大小&#34;&gt;&lt;/a&gt;du 命令用于显示目录或文件的大小&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;-b 显示目录或文件大小时，以byte为单位。&lt;/li&gt;
 &lt;li&gt;-h 以K，M，G为单位，提高信息的可读性。 &lt;strong&gt;使用这个会导致排序问题&lt;/strong&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token comment&#34;&gt;##返回前十的大目录&lt;/span&gt;
@@ -283,6 +286,6 @@ truncate &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &l
 &lt;/ul&gt;
 </content>
         <category term="Linux" />
-        <updated>2020-11-19T16:34:14.000Z</updated>
+        <updated>2020-11-20T00:34:14.000Z</updated>
     </entry>
 </feed>

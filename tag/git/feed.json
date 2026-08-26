@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Gyo • All posts by \"git\" tag",
+    "description": "Gyo的博客",
+    "home_page_url": "https://blog.genesisx.cn",
+    "items": [
+        {
+            "id": "https://blog.genesisx.cn/2022/10/27/%E5%85%B6%E4%BB%96/2022-10-27--260--260/",
+            "url": "https://blog.genesisx.cn/2022/10/27/%E5%85%B6%E4%BB%96/2022-10-27--260--260/",
+            "title": "开源git收录",
+            "date_published": "2022-10-27T09:44:00.000Z",
+            "content_html": "<h1 id=\"JavaGuide\"><a href=\"#JavaGuide\" class=\"headerlink\" title=\"JavaGuide\"></a>JavaGuide</h1><p><a href=\"https://github.com/Snailclimb/JavaGuide\">https://github.com/Snailclimb/JavaGuide</a></p>\n<h1 id=\"安卓同声传译APP\"><a href=\"#安卓同声传译APP\" class=\"headerlink\" title=\"安卓同声传译APP\"></a>安卓同声传译APP</h1><pre class=\"line-numbers language-javascript\" data-language=\"javascript\"><code class=\"language-javascript\"><span class=\"token literal-property property\">https</span><span class=\"token operator\">:</span><span class=\"token operator\">/</span><span class=\"token operator\">/</span>github<span class=\"token punctuation\">.</span>com<span class=\"token operator\">/</span>niedev<span class=\"token operator\">/</span>RTranslator<span aria-hidden=\"true\" class=\"line-numbers-rows\"><span></span></span></code></pre>\n",
+            "tags": [
+                "git"
+            ]
+        }
+    ]
+}
