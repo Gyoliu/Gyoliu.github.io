@@ -1,5 +1,7 @@
 <%- css("/css/21599f71.css")%>
 
+<% const roadmap = generate_roadmap(site.posts); %>
+
 <div class="roadmap">
   <div class="bar">
     <cosy-tooltip placement="left">
@@ -15,7 +17,7 @@
             <path d="M18 16.496V18l1 1"></path>
           </g>
         </svg>
-        <span slot="content"><%= page.initYear %></span>
+        <span slot="content"><%= roadmap.initYear %></span>
         <svg slot="suffix" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
           <path d="M6 9l6 6l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
@@ -40,8 +42,8 @@
 
 
 <script>
-  window.roadmapYears = JSON.parse('<%- road_to_json(page.years) %>')
-  window.initYear = '<%= page.initYear %>'
+  window.roadmapYears = JSON.parse('<%- road_to_json(roadmap.years) %>')
+  window.initYear = '<%= roadmap.initYear %>'
 </script>
 
 

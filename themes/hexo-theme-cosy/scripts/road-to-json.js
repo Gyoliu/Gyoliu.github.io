@@ -1,3 +1,5 @@
+const { buildRoadmap } = require("./lib/roadmap");
+
 hexo.extend.helper.register("road_to_json", (roadObj) => {
   return !roadObj
     ? "null"
@@ -5,4 +7,8 @@ hexo.extend.helper.register("road_to_json", (roadObj) => {
         .replace(/</g, "\\u003c")
         .replace(/>/g, "\\u003e")
         .replace(/&/g, "\\u0026");
+});
+
+hexo.extend.helper.register("generate_roadmap", (posts) => {
+  return buildRoadmap(posts);
 });

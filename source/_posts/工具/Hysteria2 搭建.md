@@ -6,18 +6,12 @@ categories:
   - Default
   - SSR
 tags:
-  - 
+  - Default
+  - SSR
 keywords:
-  - ssr
+  - SSR
   - Hysteria2
 description: ssr Hysteria2
-excerpt:
-cover:
-index_img:
-banner_img:
-thumbnail:
-abbrlink: 20260902182421
-permalink:
 comments: true
 toc: true
 top: 0
@@ -25,8 +19,6 @@ hide: false
 mathjax: false
 katex: false
 aplayer: false
-password:
-author:
 copyright: true
 layout: post
 mermaid: false
