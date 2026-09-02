@@ -3,7 +3,7 @@
     <id>https://blog.genesisx.cn</id>
     <title>Gyo • Posts by &#34;default&#34; tag</title>
     <link href="https://blog.genesisx.cn" />
-    <updated>2025-04-16T23:06:58.000Z</updated>
+    <updated>2026-09-02T18:24:21.000Z</updated>
     <category term="Default" />
     <category term="PaddleSpeech" />
     <category term="Elasticsearch" />
@@ -11,18 +11,85 @@
     <category term="Java" />
     <category term="hibernate" />
     <category term="JVM" />
-    <category term="Spring Cloud" />
     <category term="spring" />
+    <category term="Spring Cloud" />
     <category term="mysql" />
     <category term="MySQL" />
     <category term="置顶" />
-    <category term="Hacker" />
     <category term="git" />
+    <category term="Hacker" />
+    <category term="SSR" />
     <category term="Linux" />
     <category term="证书" />
     <category term="nginx" />
     <category term="SELinux" />
     <category term="openssl" />
+    <entry>
+        <id>https://blog.genesisx.cn/2026/09/02/%E5%B7%A5%E5%85%B7/Hysteria2%20%E6%90%AD%E5%BB%BA/</id>
+        <title>Hysteria2 搭建</title>
+        <link rel="alternate" href="https://blog.genesisx.cn/2026/09/02/%E5%B7%A5%E5%85%B7/Hysteria2%20%E6%90%AD%E5%BB%BA/"/>
+        <content type="html">&lt;h1 id=&#34;Oracle-Cloud-Ubantu-Hysteria2&#34;&gt;&lt;a href=&#34;#Oracle-Cloud-Ubantu-Hysteria2&#34; class=&#34;headerlink&#34; title=&#34;Oracle Cloud Ubantu Hysteria2&#34;&gt;&lt;/a&gt;Oracle Cloud Ubantu Hysteria2&lt;/h1&gt;&lt;p&gt;#1. 准备&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-javascript&#34; data-language=&#34;javascript&#34;&gt;&lt;code class=&#34;language-javascript&#34;&gt;&lt;span class=&#34;token number&#34;&gt;1.&lt;/span&gt;服务器准备 1c1g 即可
+&lt;span class=&#34;token number&#34;&gt;2.&lt;/span&gt;域名准备 cloudflare 解析到服务器的外网&lt;span class=&#34;token constant&#34;&gt;IP&lt;/span&gt;
+cloudflare 代理状态： 仅&lt;span class=&#34;token constant&#34;&gt;DNS&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;#2.安装&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;token function&#34;&gt;bash&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;curl&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-fsSL&lt;/span&gt; https://get.hy2.sh/&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl status hysteria-server
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl restart hysteria-server
+
+服务器开放防火墙：
+&lt;span class=&#34;token comment&#34;&gt;# 查看现有规则&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; iptables &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; INPUT &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; --line-numbers
+
+&lt;span class=&#34;token comment&#34;&gt;# 删除指定编号（例如删除第 5 条）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; iptables &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; INPUT &lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;
+
+&lt;span class=&#34;token comment&#34;&gt;# 插入到第 1 行（优先匹配）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; iptables &lt;span class=&#34;token parameter variable&#34;&gt;-I&lt;/span&gt; INPUT &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; udp &lt;span class=&#34;token parameter variable&#34;&gt;--dport&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;443&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-j&lt;/span&gt; ACCEPT
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; iptables &lt;span class=&#34;token parameter variable&#34;&gt;-I&lt;/span&gt; INPUT &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; tcp &lt;span class=&#34;token parameter variable&#34;&gt;--dport&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;443&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-j&lt;/span&gt; ACCEPT
+
+&lt;span class=&#34;token comment&#34;&gt;# 保存规则（防止重启丢失）&lt;/span&gt;
+&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; netfilter-persistent save
+
+&lt;span class=&#34;token comment&#34;&gt;#注意，必须检查 oracle cloud 是否开放了防火墙&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;#3.配置文件&lt;br&gt;sudo vim &amp;#x2F;etc&amp;#x2F;hysteria&amp;#x2F;config.yaml&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-yaml&#34; data-language=&#34;yaml&#34;&gt;&lt;code class=&#34;language-yaml&#34;&gt;&lt;span class=&#34;token key atrule&#34;&gt;listen&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;443&lt;/span&gt;
+
+&lt;span class=&#34;token key atrule&#34;&gt;acme&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;token key atrule&#34;&gt;domains&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt; hy2.example.com
+  &lt;span class=&#34;token key atrule&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; your&lt;span class=&#34;token punctuation&#34;&gt;-&lt;/span&gt;email@example.com
+  &lt;span class=&#34;token key atrule&#34;&gt;ca&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; letsencrypt
+  &lt;span class=&#34;token key atrule&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; http
+
+&lt;span class=&#34;token key atrule&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;token key atrule&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; password
+  &lt;span class=&#34;token key atrule&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;AUTH_PASSWORD&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token key atrule&#34;&gt;obfs&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;token key atrule&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; salamander
+  &lt;span class=&#34;token key atrule&#34;&gt;salamander&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;token key atrule&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;OBFS_PASSWORD&#34;&lt;/span&gt;
+
+&lt;span class=&#34;token key atrule&#34;&gt;disableUDP&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;false&lt;/span&gt;
+&lt;span class=&#34;token key atrule&#34;&gt;speedTest&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;false&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;#4.查看 Hysteria 日志&lt;/p&gt;
+&lt;pre class=&#34;line-numbers language-javascript&#34; data-language=&#34;javascript&#34;&gt;&lt;code class=&#34;language-javascript&#34;&gt;sudo journalctl &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;u hysteria&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;server&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;service &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;e &lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;no&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;pager
+
+实时查看：sudo journalctl &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;u hysteria&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;server&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;service &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;f&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;导入到shadowrocket&#34;&gt;&lt;a href=&#34;#导入到shadowrocket&#34; class=&#34;headerlink&#34; title=&#34;导入到shadowrocket&#34;&gt;&lt;/a&gt;导入到shadowrocket&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-javascript&#34; data-language=&#34;javascript&#34;&gt;&lt;code class=&#34;language-javascript&#34;&gt;&lt;span class=&#34;token literal-property property&#34;&gt;hysteria2&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;authpassword@域名&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;443&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;obfs&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;salamander&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;obfs&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;password&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;obfspassword#Oracle&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;HY2&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;本文使用 Obsidian 写作，发布于 Hexo。&lt;/strong&gt;&lt;/p&gt;
+</content>
+        <category term="Default" />
+        <category term="SSR" />
+        <updated>2026-09-02T18:24:21.000Z</updated>
+    </entry>
     <entry>
         <id>https://blog.genesisx.cn/2025/04/16/%E8%BF%90%E7%BB%B4/linux-performance-optimization/</id>
         <title>linux performance optimization</title>
