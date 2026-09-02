@@ -5,8 +5,8 @@
         <link>https://blog.genesisx.cn</link>
         <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
         <language>en</language>
-        <pubDate>Wed, 26 Aug 2026 14:17:15 +0000</pubDate>
-        <lastBuildDate>Wed, 26 Aug 2026 14:17:15 +0000</lastBuildDate>
+        <pubDate>Wed, 02 Sep 2026 10:44:24 +0000</pubDate>
+        <lastBuildDate>Wed, 02 Sep 2026 10:44:24 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
         <category>Elasticsearch</category>
@@ -14,23 +14,23 @@
         <category>Java</category>
         <category>hibernate</category>
         <category>JVM</category>
-        <category>spring</category>
         <category>Spring Cloud</category>
+        <category>spring</category>
         <category>mysql</category>
         <category>MySQL</category>
         <category>置顶</category>
-        <category>git</category>
         <category>Hacker</category>
+        <category>git</category>
         <category>Linux</category>
         <category>证书</category>
         <category>nginx</category>
         <category>SELinux</category>
         <category>openssl</category>
         <item>
-            <guid isPermalink="true">https://blog.genesisx.cn/2026/08/26/hexo/hello-world/</guid>
+            <guid isPermalink="true">https://blog.genesisx.cn/2026/09/02/hexo/hello-world/</guid>
             <title>Hello World</title>
-            <link>https://blog.genesisx.cn/2026/08/26/hexo/hello-world/</link>
-            <pubDate>Wed, 26 Aug 2026 14:17:15 +0000</pubDate>
+            <link>https://blog.genesisx.cn/2026/09/02/hexo/hello-world/</link>
+            <pubDate>Wed, 02 Sep 2026 10:44:24 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;Quick-Start&#34;&gt;&lt;a href=&#34;#Quick-Start&#34; class=&#34;headerlink&#34; title=&#34;Quick Start&#34;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&#34;Create-a-new-post&#34;&gt;&lt;a href=&#34;#Create-a-new-post&#34; class=&#34;headerlink&#34; title=&#34;Create a new post&#34;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;pre class=&#34;line-numbers language-bash&#34; data-language=&#34;bash&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
