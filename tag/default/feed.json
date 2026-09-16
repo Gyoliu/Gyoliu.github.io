@@ -5,6 +5,16 @@
     "home_page_url": "https://blog.genesisx.cn",
     "items": [
         {
+            "id": "https://blog.genesisx.cn/2026/09/15/moments/%E8%AE%B0%E5%BD%95%E7%89%87/",
+            "url": "https://blog.genesisx.cn/2026/09/15/moments/%E8%AE%B0%E5%BD%95%E7%89%87/",
+            "title": "记录片",
+            "date_published": "2026-09-15T16:41:31.000Z",
+            "content_html": "<h1 id=\"网站\"><a href=\"#网站\" class=\"headerlink\" title=\"网站\"></a>网站</h1><ul>\n<li><strong>央视</strong>： <a href=\"https://jishi.cctv.cn/\">https://jishi.cctv.cn/</a></li>\n<li><strong>中国纪录片网</strong>： <a href=\"http://www.docuchina.cn/\">http://www.docuchina.cn/</a></li>\n<li><strong>美国国家地理杂志</strong>： <a href=\"https://www.nationalgeographic.com/\">https://www.nationalgeographic.com/</a></li>\n<li><a href=\"https://docu-lib.com/\">https://docu-lib.com/</a></li>\n<li><strong>BBC纪录片</strong>： <a href=\"https://www.bbcearth.com/\">https://www.bbcearth.com/</a></li>\n<li><a href=\"https://documentarystorm.com/\">https://documentarystorm.com/</a></li>\n</ul>\n<hr>\n",
+            "tags": [
+                "Default"
+            ]
+        },
+        {
             "id": "https://blog.genesisx.cn/2026/09/02/%E5%B7%A5%E5%85%B7/Hysteria2%20%E6%90%AD%E5%BB%BA/",
             "url": "https://blog.genesisx.cn/2026/09/02/%E5%B7%A5%E5%85%B7/Hysteria2%20%E6%90%AD%E5%BB%BA/",
             "title": "Hysteria2 搭建",

@@ -5,8 +5,8 @@
         <link>https://blog.genesisx.cn</link>
         <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
         <language>en</language>
-        <pubDate>Wed, 02 Sep 2026 18:24:21 +0000</pubDate>
-        <lastBuildDate>Wed, 02 Sep 2026 18:24:21 +0000</lastBuildDate>
+        <pubDate>Tue, 15 Sep 2026 16:41:31 +0000</pubDate>
+        <lastBuildDate>Tue, 15 Sep 2026 16:41:31 +0000</lastBuildDate>
         <category>Default</category>
         <category>PaddleSpeech</category>
         <category>Elasticsearch</category>
@@ -16,8 +16,8 @@
         <category>JVM</category>
         <category>spring</category>
         <category>Spring Cloud</category>
-        <category>mysql</category>
         <category>MySQL</category>
+        <category>mysql</category>
         <category>置顶</category>
         <category>git</category>
         <category>Hacker</category>
@@ -27,6 +27,23 @@
         <category>nginx</category>
         <category>SELinux</category>
         <category>openssl</category>
+        <item>
+            <guid isPermalink="true">https://blog.genesisx.cn/2026/09/15/moments/%E8%AE%B0%E5%BD%95%E7%89%87/</guid>
+            <title>记录片</title>
+            <link>https://blog.genesisx.cn/2026/09/15/moments/%E8%AE%B0%E5%BD%95%E7%89%87/</link>
+            <category>Default</category>
+            <pubDate>Tue, 15 Sep 2026 16:41:31 +0000</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;网站&#34;&gt;&lt;a href=&#34;#网站&#34; class=&#34;headerlink&#34; title=&#34;网站&#34;&gt;&lt;/a&gt;网站&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;央视&lt;/strong&gt;： &lt;a href=&#34;https://jishi.cctv.cn/&#34;&gt;https://jishi.cctv.cn/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中国纪录片网&lt;/strong&gt;： &lt;a href=&#34;http://www.docuchina.cn/&#34;&gt;http://www.docuchina.cn/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;美国国家地理杂志&lt;/strong&gt;： &lt;a href=&#34;https://www.nationalgeographic.com/&#34;&gt;https://www.nationalgeographic.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docu-lib.com/&#34;&gt;https://docu-lib.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BBC纪录片&lt;/strong&gt;： &lt;a href=&#34;https://www.bbcearth.com/&#34;&gt;https://www.bbcearth.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://documentarystorm.com/&#34;&gt;https://documentarystorm.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://blog.genesisx.cn/2026/09/02/%E5%B7%A5%E5%85%B7/Hysteria2%20%E6%90%AD%E5%BB%BA/</guid>
             <title>Hysteria2 搭建</title>
