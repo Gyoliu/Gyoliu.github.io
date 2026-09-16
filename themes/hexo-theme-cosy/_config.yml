@@ -22,6 +22,9 @@ footer:
 # 是否启用左侧栏搜索input
 # Is the left column search input enabled
 search: true
+search:
+  enable: true
+  type: algolia
 
 # 左侧栏 - 自定义导航页图标
 # Left column - Custom navigation page icon

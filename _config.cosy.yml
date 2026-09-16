@@ -1,8 +1,12 @@
+search:
+  enable: true
+  type: algolia
 # algolia 搜索
 algolia:
-  appId: MHFSDMJY4N
+  appId: QAG9U7ZTE8
   apiKey: 810bea122960ed1f081aa4ac54d2b321
-  adminApiKey: 3457954bbacbae81545ad5e124779730
+  adminApiKey: 
+  # adminApiKey（写权限）不要提交到仓库，通过 GitHub Secret ALGOLIA_ADMIN_API_KEY 注入
   SearchOnlyAPIKey: 810bea122960ed1f081aa4ac54d2b321
   chunkSize: 5000
   indexName: hexo
