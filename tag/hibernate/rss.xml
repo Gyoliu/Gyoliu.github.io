@@ -1,79 +1,121 @@
-<?xml version="1.0"?>
-<rss version="2.0">
-    <channel>
-        <title>Gyo • Posts by &#34;hibernate&#34; tag</title>
-        <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
-        <language>en</language>
-        <pubDate>Fri, 23 Sep 2022 12:56:46 +0000</pubDate>
-        <lastBuildDate>Fri, 23 Sep 2022 12:56:46 +0000</lastBuildDate>
-        <category>Default</category>
-        <category>PaddleSpeech</category>
-        <category>Elasticsearch</category>
-        <category>Cosy</category>
-        <category>Java</category>
-        <category>hibernate</category>
-        <category>JVM</category>
-        <category>spring</category>
-        <category>Spring Cloud</category>
-        <category>MySQL</category>
-        <category>置顶</category>
-        <category>mysql</category>
-        <category>Hacker</category>
-        <category>git</category>
-        <category>SSR</category>
-        <category>Linux</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>SELinux</category>
-        <category>openssl</category>
-        <item>
-            <guid isPermalink="true">https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</guid>
-            <title>hibernate原生查询，结果集映射源码阅读</title>
-            <link>https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</link>
-            <category>Java</category>
-            <category>hibernate</category>
-            <pubDate>Fri, 23 Sep 2022 12:56:46 +0000</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;1-hibernate-版本-5-4-21-Final&#34;&gt;&lt;a href=&#34;#1-hibernate-版本-5-4-21-Final&#34; class=&#34;headerlink&#34; title=&#34;1.hibernate 版本 5.4.21.Final&#34;&gt;&lt;/a&gt;1.hibernate 版本 5.4.21.Final&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt; nativeQuery &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; entityManager&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createNativeQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sql&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;unwrap&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;SQLQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-nativeQuery&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;BeanResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;cls&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gyo • Posts by &#34;hibernate&#34; tag</title>
+    <link>https://blog.genesisx.cn</link>
+    <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
+    <language>en</language>
+    <pubDate>Fri, 23 Sep 2022 12:56:46 +0000</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2022 12:56:46 +0000</lastBuildDate>
+    <category>Default</category>
+    <category>PaddleSpeech</category>
+    <category>Elasticsearch</category>
+    <category>Cosy</category>
+    <category>Java</category>
+    <category>hibernate</category>
+    <category>JVM</category>
+    <category>spring</category>
+    <category>Spring Cloud</category>
+    <category>mysql</category>
+    <category>置顶</category>
+    <category>MySQL</category>
+    <category>git</category>
+    <category>Hacker</category>
+    <category>SSR</category>
+    <category>Linux</category>
+    <category>证书</category>
+    <category>nginx</category>
+    <category>SELinux</category>
+    <category>openssl</category>
+    <item>
+      <guid isPermalink="true">https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</guid>
+      <title>hibernate原生查询，结果集映射源码阅读</title>
+      <link>https://blog.genesisx.cn/2022/09/23/java/hibernate-query-result/</link>
+      <category>Java</category>
+      <category>hibernate</category>
+      <pubDate>Fri, 23 Sep 2022 12:56:46 +0000</pubDate>
+      <!-- description 仅作为不支持完整正文的阅读器所使用的纯文本回退。 -->
+      <description><![CDATA[1.hibernate 版本 5.4.21.FinalSQLQuery nativeQuery = entityManager.createNativeQuery(sql).unwrap(SQLQuery.class);
+nativeQuery.setResultTransformer(new BeanResultTransformer(cls));
 
-&lt;h1 id=&#34;2-代码执行栈&#34;&gt;&lt;a href=&#34;#2-代码执行栈&#34; class=&#34;headerlink&#34; title=&#34;2.代码执行栈&#34;&gt;&lt;/a&gt;2.代码执行栈&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;/img/hibernate-query-result.png&#34; alt=&#34;hibernate-query-result.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;3-org-hibernate-loader-Loader&#34;&gt;&lt;a href=&#34;#3-org-hibernate-loader-Loader&#34; class=&#34;headerlink&#34; title=&#34;3.org.hibernate.loader.Loader&#34;&gt;&lt;/a&gt;3.org.hibernate.loader.Loader&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;List&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;listIgnoreQueryCache&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;SharedSessionContractImplementor&lt;/span&gt; session&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;QueryParameters&lt;/span&gt; queryParameters&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
-        &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getResultList&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;doList&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;session&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; queryParameters&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; queryParameters&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
-# 其中 &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt; 指向的是 &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hql&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;internal&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;classic&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;QueryTranslatorImpl&lt;/span&gt;
+2.代码执行栈
+3.org.hibernate.loader.Loaderprivate List listIgnoreQueryCache(SharedSessionContractImplementor session, QueryParameters queryParameters) &#123;
+        return this.getResultList(this.doList(session, queryParameters), queryParameters.getResultTransformer());
+    &#125;
+# 其中 this 指向的是 org.hibernate.hql.internal.classic.QueryTranslatorImpl
 
-&lt;span class=&#34;token comment&#34;&gt;/**
+/**
 ResultTransformer resultTransformer 是在查询时指定的
 核心：Object result = holderInstantiator.instantiate(row);
-*/&lt;/span&gt;
-&lt;span class=&#34;token keyword&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;List&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;getResultList&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;List&lt;/span&gt; results&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ResultTransformer&lt;/span&gt; resultTransformer&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;throws&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;QueryException&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
-        &lt;span class=&#34;token class-name&#34;&gt;HolderInstantiator&lt;/span&gt; holderInstantiator &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;HolderInstantiator&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getHolderInstantiator&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ResultTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; resultTransformer&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getReturnAliasesForTransformer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;holderInstantiator&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;isRequired&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
-            &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; results&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
-            &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; results&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
-                &lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; row &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;results&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-                &lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt; result &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; holderInstantiator&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;instantiate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;row&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-                results&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; result&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
+*/
+protected List getResultList(List results, ResultTransformer resultTransformer) throws QueryException &#123;
+        HolderInstantiator holderInstantiator = HolderInstantiator.getHolderInstantiator((ResultTransformer)null, resultTransformer, this.getReturnAliasesForTransformer());
+        if (!holderInstantiator.isRequired()) &#123;
+            return results;
+        &#125; else &#123;
+            for(int i = 0; i &lt; results.size(); ++i) &#123;
+                Object[] row = (Object[])((Object[])results.get(i));
+                Object result = holderInstantiator.instantiate(row);
+                results.set(i, result);
+            &#125;
 
-            &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; resultTransformer&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;transformList&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;results&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;
-    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+            return resultTransformer.transformList(results);
+        &#125;
+    &#125;
 
-&lt;h1 id=&#34;4-调用指定的-ResultTransformer&#34;&gt;&lt;a href=&#34;#4-调用指定的-ResultTransformer&#34; class=&#34;headerlink&#34; title=&#34;4.调用指定的 ResultTransformer&#34;&gt;&lt;/a&gt;4.调用指定的 ResultTransformer&lt;/h1&gt;&lt;pre class=&#34;line-numbers language-java&#34; data-language=&#34;java&#34;&gt;&lt;code class=&#34;language-java&#34;&gt;&lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hibernate&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hql&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;internal&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;HolderInstantiator&lt;/span&gt;
+4.调用指定的 ResultTransformerorg.hibernate.hql.internal.HolderInstantiator
 
-&lt;span class=&#34;token comment&#34;&gt;// 调用 ResultTransformer 的 transformTuple方法&lt;/span&gt;
-&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;instantiate&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; row&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;
-    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;transformer &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt; row &lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;transformer&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;transformTuple&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;row&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getQueryReturnAliases&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+// 调用 ResultTransformer 的 transformTuple方法
+public Object instantiate(Object[] row) &#123;
+    return this.transformer == null ? row : this.transformer.transformTuple(row, this.getQueryReturnAliases());
+&#125;
 
-&lt;h1 id=&#34;5-最后&#34;&gt;&lt;a href=&#34;#5-最后&#34; class=&#34;headerlink&#34; title=&#34;5.最后&#34;&gt;&lt;/a&gt;5.最后&lt;/h1&gt;&lt;p&gt;除了可以自定义 ResultTransformer 外，还有个小技巧&lt;br&gt;设置数据库方言：&lt;br&gt;spring.jpa.properties.hibernate.dialect&amp;#x3D;xxx.MySQL8027Dialect&lt;br&gt;自定义方言时指定数据类型映射：&lt;br&gt;&amp;#x2F;&amp;#x2F; 将 bitint 映射成 long&lt;br&gt;registerColumnType(Types.BIGINT, StandardBasicTypes.LONG.getName());&lt;br&gt;registerHibernateType(Types.BIGINT,StandardBasicTypes.LONG.getName());&lt;/p&gt;
-&lt;h1 id=&#34;hibernate-配置项&#34;&gt;&lt;a href=&#34;#hibernate-配置项&#34; class=&#34;headerlink&#34; title=&#34;hibernate 配置项&#34;&gt;&lt;/a&gt;hibernate 配置项&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;org.hibernate.jpa.AvailableSettings&lt;br&gt;org.hibernate.cfg.AvailableSettings&lt;br&gt;org.hibernate.cfg.Environment&lt;/p&gt;
-&lt;/blockquote&gt;
- ]]></description>
-        </item>
-    </channel>
+5.最后除了可以自定义 ResultTransformer 外，还有个小技巧设置数据库方言：spring.jpa.properties.hibernate.dialect&#x3D;xxx.MySQL8027Dialect自定义方言时指定数据类型映射：&#x2F;&#x2F; 将 bitint 映射成 longregisterColumnType(Types.BIGINT, StandardBasicTypes.LONG.getName());registerHibernateType(Types.BIGINT,StandardBasicTypes.LONG.getName());
+hibernate 配置项
+org.hibernate.jpa.AvailableSettingsorg.hibernate.cfg.AvailableSettingsorg.hibernate.cfg.Environment
+
+]]></description>
+      <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
+      <content:encoded><![CDATA[<h1 id="1-hibernate-版本-5-4-21-Final"><a href="#1-hibernate-版本-5-4-21-Final" class="headerlink" title="1.hibernate 版本 5.4.21.Final"></a>1.hibernate 版本 5.4.21.Final</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">SQLQuery</span> nativeQuery <span class="token operator">=</span> entityManager<span class="token punctuation">.</span><span class="token function">createNativeQuery</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token class-name">SQLQuery</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+nativeQuery<span class="token punctuation">.</span><span class="token function">setResultTransformer</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BeanResultTransformer</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="2-代码执行栈"><a href="#2-代码执行栈" class="headerlink" title="2.代码执行栈"></a>2.代码执行栈</h1><p><img src="/img/hibernate-query-result.png" alt="hibernate-query-result.png"></p>
+<h1 id="3-org-hibernate-loader-Loader"><a href="#3-org-hibernate-loader-Loader" class="headerlink" title="3.org.hibernate.loader.Loader"></a>3.org.hibernate.loader.Loader</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">List</span> <span class="token function">listIgnoreQueryCache</span><span class="token punctuation">(</span><span class="token class-name">SharedSessionContractImplementor</span> session<span class="token punctuation">,</span> <span class="token class-name">QueryParameters</span> queryParameters<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getResultList</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">doList</span><span class="token punctuation">(</span>session<span class="token punctuation">,</span> queryParameters<span class="token punctuation">)</span><span class="token punctuation">,</span> queryParameters<span class="token punctuation">.</span><span class="token function">getResultTransformer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+# 其中 <span class="token keyword">this</span> 指向的是 <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>hibernate<span class="token punctuation">.</span>hql<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>classic<span class="token punctuation">.</span></span>QueryTranslatorImpl</span>
+
+<span class="token comment">/**
+ResultTransformer resultTransformer 是在查询时指定的
+核心：Object result = holderInstantiator.instantiate(row);
+*/</span>
+<span class="token keyword">protected</span> <span class="token class-name">List</span> <span class="token function">getResultList</span><span class="token punctuation">(</span><span class="token class-name">List</span> results<span class="token punctuation">,</span> <span class="token class-name">ResultTransformer</span> resultTransformer<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">QueryException</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">HolderInstantiator</span> holderInstantiator <span class="token operator">=</span> <span class="token class-name">HolderInstantiator</span><span class="token punctuation">.</span><span class="token function">getHolderInstantiator</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ResultTransformer</span><span class="token punctuation">)</span><span class="token keyword">null</span><span class="token punctuation">,</span> resultTransformer<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getReturnAliasesForTransformer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>holderInstantiator<span class="token punctuation">.</span><span class="token function">isRequired</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> results<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> results<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> row <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>results<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Object</span> result <span class="token operator">=</span> holderInstantiator<span class="token punctuation">.</span><span class="token function">instantiate</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                results<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token keyword">return</span> resultTransformer<span class="token punctuation">.</span><span class="token function">transformList</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="4-调用指定的-ResultTransformer"><a href="#4-调用指定的-ResultTransformer" class="headerlink" title="4.调用指定的 ResultTransformer"></a>4.调用指定的 ResultTransformer</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>hibernate<span class="token punctuation">.</span>hql<span class="token punctuation">.</span>internal<span class="token punctuation">.</span></span>HolderInstantiator</span>
+
+<span class="token comment">// 调用 ResultTransformer 的 transformTuple方法</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">instantiate</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> row<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>transformer <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">?</span> row <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>transformer<span class="token punctuation">.</span><span class="token function">transformTuple</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getQueryReturnAliases</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="5-最后"><a href="#5-最后" class="headerlink" title="5.最后"></a>5.最后</h1><p>除了可以自定义 ResultTransformer 外，还有个小技巧<br>设置数据库方言：<br>spring.jpa.properties.hibernate.dialect&#x3D;xxx.MySQL8027Dialect<br>自定义方言时指定数据类型映射：<br>&#x2F;&#x2F; 将 bitint 映射成 long<br>registerColumnType(Types.BIGINT, StandardBasicTypes.LONG.getName());<br>registerHibernateType(Types.BIGINT,StandardBasicTypes.LONG.getName());</p>
+<h1 id="hibernate-配置项"><a href="#hibernate-配置项" class="headerlink" title="hibernate 配置项"></a>hibernate 配置项</h1><blockquote>
+<p>org.hibernate.jpa.AvailableSettings<br>org.hibernate.cfg.AvailableSettings<br>org.hibernate.cfg.Environment</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+  </channel>
 </rss>

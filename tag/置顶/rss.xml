@@ -1,48 +1,60 @@
-<?xml version="1.0"?>
-<rss version="2.0">
-    <channel>
-        <title>Gyo • Posts by &#34;置顶&#34; tag</title>
-        <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
-        <language>en</language>
-        <pubDate>Thu, 18 Mar 2021 17:28:00 +0000</pubDate>
-        <lastBuildDate>Thu, 18 Mar 2021 17:28:00 +0000</lastBuildDate>
-        <category>Default</category>
-        <category>PaddleSpeech</category>
-        <category>Elasticsearch</category>
-        <category>Cosy</category>
-        <category>Java</category>
-        <category>hibernate</category>
-        <category>JVM</category>
-        <category>spring</category>
-        <category>Spring Cloud</category>
-        <category>MySQL</category>
-        <category>置顶</category>
-        <category>mysql</category>
-        <category>Hacker</category>
-        <category>git</category>
-        <category>SSR</category>
-        <category>Linux</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>SELinux</category>
-        <category>openssl</category>
-        <item>
-            <guid isPermalink="true">https://blog.genesisx.cn/2021/03/18/%E5%85%B6%E4%BB%96/2021-03-18--bo-zhu-shou-cang--97/</guid>
-            <title>博主收藏</title>
-            <link>https://blog.genesisx.cn/2021/03/18/%E5%85%B6%E4%BB%96/2021-03-18--bo-zhu-shou-cang--97/</link>
-            <category>置顶</category>
-            <pubDate>Thu, 18 Mar 2021 17:28:00 +0000</pubDate>
-            <description><![CDATA[ &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://icyfenix.cn/&#34;&gt;周志明 - 凤凰架构&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ruanyifeng.com/&#34;&gt;阮一峰&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://microservices.io/&#34;&gt;Chris Richardson&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.xuxueli.com/page/projects.html&#34;&gt;开源社区：许雪里&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tech.meituan.com/&#34;&gt;美团技术团队&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tobebetterjavaer.com/home.html&#34;&gt;沉默王二&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://opensource.alibaba.com/document&#34;&gt;阿里开源&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
- ]]></description>
-        </item>
-    </channel>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gyo • Posts by &#34;置顶&#34; tag</title>
+    <link>https://blog.genesisx.cn</link>
+    <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
+    <language>en</language>
+    <pubDate>Thu, 18 Mar 2021 17:28:00 +0000</pubDate>
+    <lastBuildDate>Thu, 18 Mar 2021 17:28:00 +0000</lastBuildDate>
+    <category>Default</category>
+    <category>PaddleSpeech</category>
+    <category>Elasticsearch</category>
+    <category>Cosy</category>
+    <category>Java</category>
+    <category>hibernate</category>
+    <category>JVM</category>
+    <category>spring</category>
+    <category>Spring Cloud</category>
+    <category>mysql</category>
+    <category>置顶</category>
+    <category>MySQL</category>
+    <category>git</category>
+    <category>Hacker</category>
+    <category>SSR</category>
+    <category>Linux</category>
+    <category>证书</category>
+    <category>nginx</category>
+    <category>SELinux</category>
+    <category>openssl</category>
+    <item>
+      <guid isPermalink="true">https://blog.genesisx.cn/2021/03/18/%E5%85%B6%E4%BB%96/2021-03-18--bo-zhu-shou-cang--97/</guid>
+      <title>博主收藏</title>
+      <link>https://blog.genesisx.cn/2021/03/18/%E5%85%B6%E4%BB%96/2021-03-18--bo-zhu-shou-cang--97/</link>
+      <category>置顶</category>
+      <pubDate>Thu, 18 Mar 2021 17:28:00 +0000</pubDate>
+      <!-- description 仅作为不支持完整正文的阅读器所使用的纯文本回退。 -->
+      <description><![CDATA[
+周志明 - 凤凰架构
+阮一峰
+Chris Richardson
+开源社区：许雪里
+美团技术团队
+沉默王二
+阿里开源
+
+]]></description>
+      <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
+      <content:encoded><![CDATA[<ul>
+<li><a href="http://icyfenix.cn/">周志明 - 凤凰架构</a></li>
+<li><a href="https://www.ruanyifeng.com/">阮一峰</a></li>
+<li><a href="https://microservices.io/">Chris Richardson</a></li>
+<li><a href="https://www.xuxueli.com/page/projects.html">开源社区：许雪里</a></li>
+<li><a href="https://tech.meituan.com/">美团技术团队</a></li>
+<li><a href="https://tobebetterjavaer.com/home.html">沉默王二</a></li>
+<li><a href="https://opensource.alibaba.com/document">阿里开源</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+  </channel>
 </rss>

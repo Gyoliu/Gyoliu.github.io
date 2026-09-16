@@ -1,38 +1,41 @@
-<?xml version="1.0"?>
-<rss version="2.0">
-    <channel>
-        <title>Gyo • Posts by &#34;生活&#34; category</title>
-        <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
-        <language>en</language>
-        <pubDate>Wed, 25 Nov 2020 09:19:55 +0000</pubDate>
-        <lastBuildDate>Wed, 25 Nov 2020 09:19:55 +0000</lastBuildDate>
-        <category>Default</category>
-        <category>PaddleSpeech</category>
-        <category>Elasticsearch</category>
-        <category>Cosy</category>
-        <category>Java</category>
-        <category>hibernate</category>
-        <category>JVM</category>
-        <category>spring</category>
-        <category>Spring Cloud</category>
-        <category>MySQL</category>
-        <category>置顶</category>
-        <category>mysql</category>
-        <category>Hacker</category>
-        <category>git</category>
-        <category>SSR</category>
-        <category>Linux</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>SELinux</category>
-        <category>openssl</category>
-        <item>
-            <guid isPermalink="true">https://blog.genesisx.cn/2020/11/25/%E7%94%9F%E6%B4%BB/2020-11-25--%E7%A7%AF%E7%B4%AF--35/</guid>
-            <title>积累</title>
-            <link>https://blog.genesisx.cn/2020/11/25/%E7%94%9F%E6%B4%BB/2020-11-25--%E7%A7%AF%E7%B4%AF--35/</link>
-            <pubDate>Wed, 25 Nov 2020 09:19:55 +0000</pubDate>
-            <description><![CDATA[ &lt;h3 id=&#34;故不积硅步，无以至千里；不积小流，无以成江海。&#34;&gt;&lt;a href=&#34;#故不积硅步，无以至千里；不积小流，无以成江海。&#34; class=&#34;headerlink&#34; title=&#34;故不积硅步，无以至千里；不积小流，无以成江海。&#34;&gt;&lt;/a&gt;故不积硅步，无以至千里；不积小流，无以成江海。&lt;/h3&gt; ]]></description>
-        </item>
-    </channel>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gyo • Posts by &#34;生活&#34; category</title>
+    <link>https://blog.genesisx.cn</link>
+    <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
+    <language>en</language>
+    <pubDate>Wed, 25 Nov 2020 09:19:55 +0000</pubDate>
+    <lastBuildDate>Wed, 25 Nov 2020 09:19:55 +0000</lastBuildDate>
+    <category>Default</category>
+    <category>PaddleSpeech</category>
+    <category>Elasticsearch</category>
+    <category>Cosy</category>
+    <category>Java</category>
+    <category>hibernate</category>
+    <category>JVM</category>
+    <category>spring</category>
+    <category>Spring Cloud</category>
+    <category>mysql</category>
+    <category>置顶</category>
+    <category>MySQL</category>
+    <category>git</category>
+    <category>Hacker</category>
+    <category>SSR</category>
+    <category>Linux</category>
+    <category>证书</category>
+    <category>nginx</category>
+    <category>SELinux</category>
+    <category>openssl</category>
+    <item>
+      <guid isPermalink="true">https://blog.genesisx.cn/2020/11/25/%E7%94%9F%E6%B4%BB/2020-11-25--%E7%A7%AF%E7%B4%AF--35/</guid>
+      <title>积累</title>
+      <link>https://blog.genesisx.cn/2020/11/25/%E7%94%9F%E6%B4%BB/2020-11-25--%E7%A7%AF%E7%B4%AF--35/</link>
+      <pubDate>Wed, 25 Nov 2020 09:19:55 +0000</pubDate>
+      <!-- description 仅作为不支持完整正文的阅读器所使用的纯文本回退。 -->
+      <description><![CDATA[故不积硅步，无以至千里；不积小流，无以成江海。]]></description>
+      <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
+      <content:encoded><![CDATA[<h3 id="故不积硅步，无以至千里；不积小流，无以成江海。"><a href="#故不积硅步，无以至千里；不积小流，无以成江海。" class="headerlink" title="故不积硅步，无以至千里；不积小流，无以成江海。"></a>故不积硅步，无以至千里；不积小流，无以成江海。</h3>]]></content:encoded>
+    </item>
+  </channel>
 </rss>

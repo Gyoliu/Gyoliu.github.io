@@ -1,40 +1,45 @@
-<?xml version="1.0"?>
-<rss version="2.0">
-    <channel>
-        <title>Gyo • Posts by &#34;浏览器插件&#34; category</title>
-        <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
-        <language>en</language>
-        <pubDate>Mon, 30 Aug 2021 14:01:35 +0000</pubDate>
-        <lastBuildDate>Mon, 30 Aug 2021 14:01:35 +0000</lastBuildDate>
-        <category>Default</category>
-        <category>PaddleSpeech</category>
-        <category>Elasticsearch</category>
-        <category>Cosy</category>
-        <category>Java</category>
-        <category>hibernate</category>
-        <category>JVM</category>
-        <category>spring</category>
-        <category>Spring Cloud</category>
-        <category>MySQL</category>
-        <category>置顶</category>
-        <category>mysql</category>
-        <category>Hacker</category>
-        <category>git</category>
-        <category>SSR</category>
-        <category>Linux</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>SELinux</category>
-        <category>openssl</category>
-        <item>
-            <guid isPermalink="true">https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/</guid>
-            <title>chrome extensions message</title>
-            <link>https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/</link>
-            <pubDate>Mon, 30 Aug 2021 14:01:35 +0000</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;浏览器插件-通讯&#34;&gt;&lt;a href=&#34;#浏览器插件-通讯&#34; class=&#34;headerlink&#34; title=&#34;浏览器插件 通讯&#34;&gt;&lt;/a&gt;浏览器插件 通讯&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;/img/image-a4b4a3069983422eae1bf2c21fcaab0d.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://blog.haoji.me/chrome-plugin-develop.html?from=xa&#34;&gt;http://blog.haoji.me/chrome-plugin-develop.html?from=xa&lt;/a&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-    </channel>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gyo • Posts by &#34;浏览器插件&#34; category</title>
+    <link>https://blog.genesisx.cn</link>
+    <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
+    <language>en</language>
+    <pubDate>Mon, 30 Aug 2021 14:01:35 +0000</pubDate>
+    <lastBuildDate>Mon, 30 Aug 2021 14:01:35 +0000</lastBuildDate>
+    <category>Default</category>
+    <category>PaddleSpeech</category>
+    <category>Elasticsearch</category>
+    <category>Cosy</category>
+    <category>Java</category>
+    <category>hibernate</category>
+    <category>JVM</category>
+    <category>spring</category>
+    <category>Spring Cloud</category>
+    <category>mysql</category>
+    <category>置顶</category>
+    <category>MySQL</category>
+    <category>git</category>
+    <category>Hacker</category>
+    <category>SSR</category>
+    <category>Linux</category>
+    <category>证书</category>
+    <category>nginx</category>
+    <category>SELinux</category>
+    <category>openssl</category>
+    <item>
+      <guid isPermalink="true">https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/</guid>
+      <title>chrome extensions message</title>
+      <link>https://blog.genesisx.cn/2021/08/30/%E5%89%8D%E7%AB%AF/2021-08-30--chromeextensions--133/</link>
+      <pubDate>Mon, 30 Aug 2021 14:01:35 +0000</pubDate>
+      <!-- description 仅作为不支持完整正文的阅读器所使用的纯文本回退。 -->
+      <description><![CDATA[浏览器插件 通讯
+http://blog.haoji.me/chrome-plugin-develop.html?from=xa
+]]></description>
+      <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
+      <content:encoded><![CDATA[<h1 id="浏览器插件-通讯"><a href="#浏览器插件-通讯" class="headerlink" title="浏览器插件 通讯"></a>浏览器插件 通讯</h1><p><img src="/img/image-a4b4a3069983422eae1bf2c21fcaab0d.png" alt="image.png"></p>
+<p><a href="http://blog.haoji.me/chrome-plugin-develop.html?from=xa">http://blog.haoji.me/chrome-plugin-develop.html?from=xa</a></p>
+]]></content:encoded>
+    </item>
+  </channel>
 </rss>

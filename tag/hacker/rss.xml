@@ -1,46 +1,56 @@
-<?xml version="1.0"?>
-<rss version="2.0">
-    <channel>
-        <title>Gyo • Posts by &#34;hacker&#34; tag</title>
-        <link>https://blog.genesisx.cn</link>
-        <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
-        <language>en</language>
-        <pubDate>Thu, 11 Jul 2024 17:48:12 +0000</pubDate>
-        <lastBuildDate>Thu, 11 Jul 2024 17:48:12 +0000</lastBuildDate>
-        <category>Default</category>
-        <category>PaddleSpeech</category>
-        <category>Elasticsearch</category>
-        <category>Cosy</category>
-        <category>Java</category>
-        <category>hibernate</category>
-        <category>JVM</category>
-        <category>spring</category>
-        <category>Spring Cloud</category>
-        <category>MySQL</category>
-        <category>置顶</category>
-        <category>mysql</category>
-        <category>Hacker</category>
-        <category>git</category>
-        <category>SSR</category>
-        <category>Linux</category>
-        <category>证书</category>
-        <category>nginx</category>
-        <category>SELinux</category>
-        <category>openssl</category>
-        <item>
-            <guid isPermalink="true">https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/</guid>
-            <title>黑客资源收录</title>
-            <link>https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/</link>
-            <category>Hacker</category>
-            <pubDate>Thu, 11 Jul 2024 17:48:12 +0000</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;黑客资源收录&#34;&gt;&lt;a href=&#34;#黑客资源收录&#34; class=&#34;headerlink&#34; title=&#34;黑客资源收录&#34;&gt;&lt;/a&gt;黑客资源收录&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;BeEF 浏览器渗透测试框架&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Z4nzu/hackingtool&#34;&gt;https://github.com/Z4nzu/hackingtool&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ashishb/android-security-awesome&#34;&gt;https://github.com/ashishb/android-security-awesome&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/tylerha97/awesome-reversing&#34;&gt;https://github.com/tylerha97/awesome-reversing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jivoi/awesome-osint&#34;&gt;https://github.com/jivoi/awesome-osint&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
- ]]></description>
-        </item>
-    </channel>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gyo • Posts by &#34;hacker&#34; tag</title>
+    <link>https://blog.genesisx.cn</link>
+    <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
+    <language>en</language>
+    <pubDate>Thu, 11 Jul 2024 17:48:12 +0000</pubDate>
+    <lastBuildDate>Thu, 11 Jul 2024 17:48:12 +0000</lastBuildDate>
+    <category>Default</category>
+    <category>PaddleSpeech</category>
+    <category>Elasticsearch</category>
+    <category>Cosy</category>
+    <category>Java</category>
+    <category>hibernate</category>
+    <category>JVM</category>
+    <category>spring</category>
+    <category>Spring Cloud</category>
+    <category>mysql</category>
+    <category>置顶</category>
+    <category>MySQL</category>
+    <category>git</category>
+    <category>Hacker</category>
+    <category>SSR</category>
+    <category>Linux</category>
+    <category>证书</category>
+    <category>nginx</category>
+    <category>SELinux</category>
+    <category>openssl</category>
+    <item>
+      <guid isPermalink="true">https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/</guid>
+      <title>黑客资源收录</title>
+      <link>https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/</link>
+      <category>Hacker</category>
+      <pubDate>Thu, 11 Jul 2024 17:48:12 +0000</pubDate>
+      <!-- description 仅作为不支持完整正文的阅读器所使用的纯文本回退。 -->
+      <description><![CDATA[黑客资源收录
+BeEF 浏览器渗透测试框架
+https://github.com/Z4nzu/hackingtool
+https://github.com/ashishb/android-security-awesome
+https://github.com/tylerha97/awesome-reversing
+https://github.com/jivoi/awesome-osint
+
+]]></description>
+      <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
+      <content:encoded><![CDATA[<h1 id="黑客资源收录"><a href="#黑客资源收录" class="headerlink" title="黑客资源收录"></a>黑客资源收录</h1><ol>
+<li>BeEF 浏览器渗透测试框架</li>
+<li><a href="https://github.com/Z4nzu/hackingtool">https://github.com/Z4nzu/hackingtool</a></li>
+<li><a href="https://github.com/ashishb/android-security-awesome">https://github.com/ashishb/android-security-awesome</a></li>
+<li><a href="https://github.com/tylerha97/awesome-reversing">https://github.com/tylerha97/awesome-reversing</a></li>
+<li><a href="https://github.com/jivoi/awesome-osint">https://github.com/jivoi/awesome-osint</a></li>
+</ol>
+]]></content:encoded>
+    </item>
+  </channel>
 </rss>
