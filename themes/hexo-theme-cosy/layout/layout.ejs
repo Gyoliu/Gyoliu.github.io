@@ -36,6 +36,8 @@
   <meta name="keywords" content="<%= page.keywords || config.keywords %>">
   <meta name="author" content="<%= config.author %>">
   <link rel="canonical" href="<%= page.permalink || config.url %>">
+  <!-- RSS 自动发现：Folo 通过站点地址订阅时可以定位到完整正文 Feed。 -->
+  <link rel="alternate" type="application/rss+xml" title="<%= config.title %>" href="<%= full_url_for('/rss.xml') %>">
   <% if(theme.favicon !==undefined){ %>
   <% if(theme.favicon.startsWith('<svg')){ %>
   <link rel="icon" type="image/svg" href='data:image/svg+xml,<%- theme.favicon %>'>

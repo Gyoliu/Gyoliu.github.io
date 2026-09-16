@@ -1,0 +1,32 @@
+<%
+// RSS 的 CDATA 不能直接包含 "]]>",需要拆分为两个连续的 CDATA 区段。
+const toCdata = (value) => String(value || '').replace(/]]>/g, ']]]]><![CDATA[>');
+%><?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title><%= config.title %><%= tag ? ` • Posts by "${tag}" tag` : '' %><%= category ? ` • Posts by "${category}" category` : '' %></title>
+    <link><%= config.url %></link>
+    <description><%= config.description %></description>
+    <language><%= config.language %></language>
+    <pubDate><%= moment(lastBuildDate).locale('en').format('ddd, DD MMM YYYY HH:mm:ss ZZ') %></pubDate>
+    <lastBuildDate><%= moment(lastBuildDate).locale('en').format('ddd, DD MMM YYYY HH:mm:ss ZZ') %></lastBuildDate>
+    <%_ for (const { name } of (tags || [])) { _%>
+    <category><%= name %></category>
+    <%_ } _%>
+    <%_ for (const post of posts) { _%>
+    <item>
+      <guid isPermalink="true"><%= post.permalink %></guid>
+      <title><%= post.title %></title>
+      <link><%= post.permalink %></link>
+      <%_ for (const postTag of (post.tags ? post.tags.toArray() : [])) { _%>
+      <category><%= postTag.name %></category>
+      <%_ } _%>
+      <pubDate><%= moment(post.date).locale('en').format('ddd, DD MMM YYYY HH:mm:ss ZZ') %></pubDate>
+      <!-- description 仅作为不支持完整正文的阅读器所使用的纯文本回退。 -->
+      <description><![CDATA[<%- toCdata(strip_html(post.excerpt || post.content || '')) %>]]></description>
+      <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
+      <content:encoded><![CDATA[<%- toCdata(post.content) %>]]></content:encoded>
+    </item>
+    <%_ } _%>
+  </channel>
+</rss>

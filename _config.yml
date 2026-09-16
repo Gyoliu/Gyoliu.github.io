@@ -160,7 +160,8 @@ feed:
     category_dir: "category"
     rss:
         enable: true
-        #template: "themes/theme/layout/_alternate/rss.ejs"
+        # 使用包含 content:encoded 的模板，避免 Folo 将转义后的 HTML 当作普通文本展示。
+        template: "themes/hexo-theme-cosy/layout/_alternate/rss.ejs"
         output: "rss.xml"
     atom:
         enable: true
