@@ -1,6 +1,3 @@
-search:
-  enable: true
-  type: algolia
 # algolia 搜索
 algolia:
   appId: QAG9U7ZTE8
