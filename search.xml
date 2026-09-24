@@ -13,14 +13,22 @@
       
       <categories>
           
-          <category> Default </category>
-          
           <category> 运维 </category>
-          
-          <category> Linux </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 运维 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 监控 </tag>
+            
+        </tags>
       
     </entry>
     

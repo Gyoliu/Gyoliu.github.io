@@ -16,8 +16,8 @@
     <category>JVM</category>
     <category>spring</category>
     <category>Spring Cloud</category>
-    <category>MySQL</category>
     <category>mysql</category>
+    <category>MySQL</category>
     <category>置顶</category>
     <category>git</category>
     <category>Hacker</category>
@@ -27,6 +27,9 @@
     <category>nginx</category>
     <category>SELinux</category>
     <category>openssl</category>
+    <category>运维</category>
+    <category>服务器</category>
+    <category>监控</category>
     <item>
       <guid isPermalink="true">https://blog.genesisx.cn/2026/09/02/%E5%B7%A5%E5%85%B7/Hysteria2%20%E6%90%AD%E5%BB%BA/</guid>
       <title>Hysteria2 搭建</title>

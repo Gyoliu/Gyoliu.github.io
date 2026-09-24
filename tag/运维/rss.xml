@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gyo • Posts by &#34;运维&#34; tag</title>
+    <link>https://blog.genesisx.cn</link>
+    <description>Gyo的博客，记录学习、生活、工作中的点滴</description>
+    <language>en</language>
+    <pubDate>Thu, 24 Sep 2026 15:38:39 +0000</pubDate>
+    <lastBuildDate>Thu, 24 Sep 2026 15:38:39 +0000</lastBuildDate>
+    <category>Default</category>
+    <category>PaddleSpeech</category>
+    <category>Elasticsearch</category>
+    <category>Cosy</category>
+    <category>Java</category>
+    <category>hibernate</category>
+    <category>JVM</category>
+    <category>spring</category>
+    <category>Spring Cloud</category>
+    <category>mysql</category>
+    <category>MySQL</category>
+    <category>置顶</category>
+    <category>git</category>
+    <category>Hacker</category>
+    <category>SSR</category>
+    <category>Linux</category>
+    <category>证书</category>
+    <category>nginx</category>
+    <category>SELinux</category>
+    <category>openssl</category>
+    <category>运维</category>
+    <category>服务器</category>
+    <category>监控</category>
+    <item>
+      <guid isPermalink="true">https://blog.genesisx.cn/2026/09/24/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%91%E6%8E%A7%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E9%80%89%E5%9E%8B/</guid>
+      <title>服务器监控开源项目选型</title>
+      <link>https://blog.genesisx.cn/2026/09/24/%E8%BF%90%E7%BB%B4/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%91%E6%8E%A7%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E9%80%89%E5%9E%8B/</link>
+      <category>Linux</category>
+      <category>运维</category>
+      <category>服务器</category>
+      <category>监控</category>
+      <pubDate>Thu, 24 Sep 2026 15:38:39 +0000</pubDate>
+      <!-- description 仅作为不支持完整正文的阅读器所使用的纯文本回退。 -->
+      <description><![CDATA[项目需求对比
+
+
+需求
+Beszel
+Netdata
+
+
+
+CPU &#x2F; 内存 &#x2F; Load
+✅
+✅
+
+
+磁盘容量
+✅
+✅
+
+
+磁盘 I&#x2F;O
+✅
+✅ 更细
+
+
+网络流量
+✅
+✅ 更细
+
+
+Docker 容器
+✅
+✅
+
+
+基础告警
+✅
+✅
+
+
+历史趋势
+✅
+✅
+
+
+多服务器集中
+✅
+✅ Parent
+
+
+MySQL 深度指标
+❌
+✅
+
+
+Redis 深度指标
+❌
+✅
+
+
+Nginx QPS&#x2F;连接数
+❌
+✅
+
+
+Elasticsearch
+❌
+✅
+
+
+JVM &#x2F; Tomcat
+❌
+✅
+
+
+Kafka &#x2F; RabbitMQ
+❌
+✅
+
+
+进程级诊断
+基础
+强
+
+
+秒级排障
+一般
+强
+
+
+运维复杂度
+低
+中高
+
+
+Agent 权限&#x2F;攻击面
+较小
+更大
+
+
+资源消耗
+低
+更高
+
+
+场景对比
+
+
+推荐等级
+项目
+核心定位
+最适合场景
+优点
+缺点 &#x2F; 注意点
+许可证
+
+
+
+首选
+Prometheus + Grafana
+现代指标监控 + 可视化黄金组合
+云原生、Kubernetes、容器、微服务、动态环境
+生态最强（Exporter 海量）、PromQL 强大、可扩展性极好、社区活跃
+需自己组装（Prometheus 采集 + Grafana 展示 + Alertmanager 告警），初期配置有学习成本
+Apache 2.0 &#x2F; AGPL
+
+
+企业级一体机
+Zabbix
+全功能企业级监控平台
+传统服务器 + 网络设备 + 混合环境、大规模主机
+开箱即用（Agent&#x2F;Agentless&#x2F;SNMP&#x2F;IPMI&#x2F;JMX）、模板丰富、自动发现、告警完善、可扩展到万级主机
+对 K8s&#x2F;微服务支持相对较弱，UI 相对传统
+AGPL&#x2F;GPL
+
+
+实时轻量
+Netdata
+零配置实时性能监控
+单机或小规模服务器、故障排查、实时查看
+安装极快（分钟级）、秒级粒度、自动发现服务、内置漂亮 UI、资源占用可控
+大规模集中监控需配合其他工具，默认更侧重单机深度
+GPL-3.0
+
+
+轻量新星
+Beszel
+超轻量服务器监控
+1–20 台服务器、家用&#x2F;小型环境
+资源占用极低（Agent 约 10–15 MB）、部署简单、界面清爽
+功能相对聚焦，不如 Prometheus&#x2F;Zabbix 全面
+MIT
+
+
+可用性&#x2F;状态页
+Uptime Kuma
+服务可用性 + 状态页
+监控网站&#x2F;API 是否存活、对外状态页
+单容器部署、支持多种协议、通知渠道极多、界面友好
+主要做可用性，不做深度系统指标
+MIT
+
+
+Beszel 0.20.0部署
+Beszel       0.20.0Kubernetes   v1.21.14Replica      1Database     PocketBase &#x2F; SQLite
+
+
+数据存储 01-storage.yaml ，使用 Local File SQLiteapiVersion: v1
+kind: Namespace
+metadata:
+  name: beszel
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: beszel-local
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: beszel-local-pv
+spec:
+  capacity:
+    storage: 30Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: beszel-local
+  local:
+  // 数据存储目录
+    path: /data/beszel
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+              // 指定了k8s服务器
+                - centos-k8s-server2
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: beszel-data
+  namespace: beszel
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: beszel-local
+  resources:
+    requests:
+      storage: 30Gi
+
+服务端部署 02-beszel.yamlapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beszel
+  namespace: beszel
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: beszel
+  template:
+    metadata:
+      labels:
+        app: beszel
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: beszel
+          image: henrygd/beszel:0.20.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: APP_URL
+              value: "https://monitor.com"
+            - name: CHECK_UPDATES
+              value: "false"
+            - name: SHARE_ALL_SYSTEMS
+              value: "false"
+            - name: USER_CREATION
+              value: "false"
+            - name: MFA_OTP
+              value: "true"
+          ports:
+            - name: http
+              // 将端口暴露到宿主机器上
+              hostPort: 8090
+              containerPort: 8090
+              protocol: TCP
+          volumeMounts:
+            - name: beszel-data
+              mountPath: /beszel_data
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          readinessProbe:
+            exec:
+              command:
+                - /beszel
+                - health
+                - --url
+                - http://127.0.0.1:8090
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            exec:
+              command:
+                - /beszel
+                - health
+                - --url
+                - http://127.0.0.1:8090
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 5
+            failureThreshold: 3
+      volumes:
+        - name: beszel-data
+          persistentVolumeClaim:
+            claimName: beszel-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: beszel
+  namespace: beszel
+spec:
+  type: ClusterIP
+  selector:
+    app: beszel
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8090
+      targetPort: 8090
+
+Nginx 代理访问server &#123;
+    listen 443 ssl http2;
+    server_name monitor.com;
+
+    ssl_certificate     /etc/nginx/ssl/monitor/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/monitor/privkey.pem;
+
+    location / &#123;
+        proxy_pass http://&lt;BESZEL_NODE_IP>:8090;
+
+        proxy_http_version 1.1;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        proxy_connect_timeout 10s;
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+    &#125;
+&#125;
+
+服务器Agent安装# 固定版本 -v '0.20.0'
+# 禁用更新 --auto-update false
+curl -sL https://get.beszel.dev -o /tmp/install-agent.sh \
+&amp;&amp; chmod +x /tmp/install-agent.sh \
+&amp;&amp; /tmp/install-agent.sh \
+  -p 45876 \
+  -k "YOUR_KEY" \
+  -t "YOUR_TOKEN" \
+  -url "https://monitor.com" \
+  -v '0.20.0' \
+  --china-mirrors \
+  --auto-update false
+  
+# 额外磁盘
+1.修改ENV  
+sudo vi /etc/systemd/system/beszel-agent.service
+2.增加
+> Environment="EXTRA_FILESYSTEMS=/data,/opt/elasticsearch"
+
+sudo systemctl daemon-reload
+sudo systemctl status beszel-agent
+sudo systemctl restart beszel-agent
+journalctl -u beszel-agent -n 100 --no-pager
+
+效果展示![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]创建于 2026-09-24 15:38:39
+]]></description>
+      <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
+      <content:encoded><![CDATA[<h1 id="项目需求对比"><a href="#项目需求对比" class="headerlink" title="项目需求对比"></a>项目需求对比</h1><table>
+<thead>
+<tr>
+<th>需求</th>
+<th align="right">Beszel</th>
+<th align="right">Netdata</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CPU &#x2F; 内存 &#x2F; Load</td>
+<td align="right">✅</td>
+<td align="right">✅</td>
+</tr>
+<tr>
+<td>磁盘容量</td>
+<td align="right">✅</td>
+<td align="right">✅</td>
+</tr>
+<tr>
+<td>磁盘 I&#x2F;O</td>
+<td align="right">✅</td>
+<td align="right">✅ 更细</td>
+</tr>
+<tr>
+<td>网络流量</td>
+<td align="right">✅</td>
+<td align="right">✅ 更细</td>
+</tr>
+<tr>
+<td>Docker 容器</td>
+<td align="right">✅</td>
+<td align="right">✅</td>
+</tr>
+<tr>
+<td>基础告警</td>
+<td align="right">✅</td>
+<td align="right">✅</td>
+</tr>
+<tr>
+<td>历史趋势</td>
+<td align="right">✅</td>
+<td align="right">✅</td>
+</tr>
+<tr>
+<td>多服务器集中</td>
+<td align="right">✅</td>
+<td align="right">✅ Parent</td>
+</tr>
+<tr>
+<td>MySQL 深度指标</td>
+<td align="right">❌</td>
+<td align="right"><strong>✅</strong></td>
+</tr>
+<tr>
+<td>Redis 深度指标</td>
+<td align="right">❌</td>
+<td align="right"><strong>✅</strong></td>
+</tr>
+<tr>
+<td>Nginx QPS&#x2F;连接数</td>
+<td align="right">❌</td>
+<td align="right"><strong>✅</strong></td>
+</tr>
+<tr>
+<td>Elasticsearch</td>
+<td align="right">❌</td>
+<td align="right"><strong>✅</strong></td>
+</tr>
+<tr>
+<td>JVM &#x2F; Tomcat</td>
+<td align="right">❌</td>
+<td align="right"><strong>✅</strong></td>
+</tr>
+<tr>
+<td>Kafka &#x2F; RabbitMQ</td>
+<td align="right">❌</td>
+<td align="right"><strong>✅</strong></td>
+</tr>
+<tr>
+<td>进程级诊断</td>
+<td align="right">基础</td>
+<td align="right"><strong>强</strong></td>
+</tr>
+<tr>
+<td>秒级排障</td>
+<td align="right">一般</td>
+<td align="right"><strong>强</strong></td>
+</tr>
+<tr>
+<td>运维复杂度</td>
+<td align="right"><strong>低</strong></td>
+<td align="right">中高</td>
+</tr>
+<tr>
+<td>Agent 权限&#x2F;攻击面</td>
+<td align="right"><strong>较小</strong></td>
+<td align="right">更大</td>
+</tr>
+<tr>
+<td>资源消耗</td>
+<td align="right"><strong>低</strong></td>
+<td align="right">更高</td>
+</tr>
+</tbody></table>
+<h1 id="场景对比"><a href="#场景对比" class="headerlink" title="场景对比"></a>场景对比</h1><table>
+<thead>
+<tr>
+<th>推荐等级</th>
+<th>项目</th>
+<th>核心定位</th>
+<th>最适合场景</th>
+<th>优点</th>
+<th>缺点 &#x2F; 注意点</th>
+<th>许可证</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>首选</strong></td>
+<td><strong>Prometheus + Grafana</strong></td>
+<td>现代指标监控 + 可视化黄金组合</td>
+<td>云原生、Kubernetes、容器、微服务、动态环境</td>
+<td>生态最强（Exporter 海量）、PromQL 强大、可扩展性极好、社区活跃</td>
+<td>需自己组装（Prometheus 采集 + Grafana 展示 + Alertmanager 告警），初期配置有学习成本</td>
+<td>Apache 2.0 &#x2F; AGPL</td>
+</tr>
+<tr>
+<td><strong>企业级一体机</strong></td>
+<td><strong>Zabbix</strong></td>
+<td>全功能企业级监控平台</td>
+<td>传统服务器 + 网络设备 + 混合环境、大规模主机</td>
+<td>开箱即用（Agent&#x2F;Agentless&#x2F;SNMP&#x2F;IPMI&#x2F;JMX）、模板丰富、自动发现、告警完善、可扩展到万级主机</td>
+<td>对 K8s&#x2F;微服务支持相对较弱，UI 相对传统</td>
+<td>AGPL&#x2F;GPL</td>
+</tr>
+<tr>
+<td><strong>实时轻量</strong></td>
+<td><strong>Netdata</strong></td>
+<td>零配置实时性能监控</td>
+<td>单机或小规模服务器、故障排查、实时查看</td>
+<td>安装极快（分钟级）、秒级粒度、自动发现服务、内置漂亮 UI、资源占用可控</td>
+<td>大规模集中监控需配合其他工具，默认更侧重单机深度</td>
+<td>GPL-3.0</td>
+</tr>
+<tr>
+<td><strong>轻量新星</strong></td>
+<td><strong>Beszel</strong></td>
+<td>超轻量服务器监控</td>
+<td>1–20 台服务器、家用&#x2F;小型环境</td>
+<td>资源占用极低（Agent 约 10–15 MB）、部署简单、界面清爽</td>
+<td>功能相对聚焦，不如 Prometheus&#x2F;Zabbix 全面</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><strong>可用性&#x2F;状态页</strong></td>
+<td><strong>Uptime Kuma</strong></td>
+<td>服务可用性 + 状态页</td>
+<td>监控网站&#x2F;API 是否存活、对外状态页</td>
+<td>单容器部署、支持多种协议、通知渠道极多、界面友好</td>
+<td>主要做可用性，不做深度系统指标</td>
+<td>MIT</td>
+</tr>
+</tbody></table>
+<h2 id="Beszel-0-20-0部署"><a href="#Beszel-0-20-0部署" class="headerlink" title="Beszel 0.20.0部署"></a>Beszel 0.20.0部署</h2><blockquote>
+<p>Beszel       0.20.0<br>Kubernetes   v1.21.14<br>Replica      1<br>Database     PocketBase &#x2F; SQLite</p>
+</blockquote>
+<hr>
+<h3 id="数据存储-01-storage-yaml-，使用-Local-File-SQLite"><a href="#数据存储-01-storage-yaml-，使用-Local-File-SQLite" class="headerlink" title="数据存储 01-storage.yaml ，使用 Local File SQLite"></a>数据存储 01-storage.yaml ，使用 Local File SQLite</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">apiVersion</span><span class="token operator">:</span> v1
+<span class="token literal-property property">kind</span><span class="token operator">:</span> Namespace
+<span class="token literal-property property">metadata</span><span class="token operator">:</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> beszel
+<span class="token operator">--</span><span class="token operator">-</span>
+<span class="token literal-property property">apiVersion</span><span class="token operator">:</span> storage<span class="token punctuation">.</span>k8s<span class="token punctuation">.</span>io<span class="token operator">/</span>v1
+<span class="token literal-property property">kind</span><span class="token operator">:</span> StorageClass
+<span class="token literal-property property">metadata</span><span class="token operator">:</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> beszel<span class="token operator">-</span>local
+<span class="token literal-property property">provisioner</span><span class="token operator">:</span> kubernetes<span class="token punctuation">.</span>io<span class="token operator">/</span>no<span class="token operator">-</span>provisioner
+<span class="token literal-property property">volumeBindingMode</span><span class="token operator">:</span> WaitForFirstConsumer
+<span class="token literal-property property">reclaimPolicy</span><span class="token operator">:</span> Retain
+<span class="token operator">--</span><span class="token operator">-</span>
+<span class="token literal-property property">apiVersion</span><span class="token operator">:</span> v1
+<span class="token literal-property property">kind</span><span class="token operator">:</span> PersistentVolume
+<span class="token literal-property property">metadata</span><span class="token operator">:</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> beszel<span class="token operator">-</span>local<span class="token operator">-</span>pv
+<span class="token literal-property property">spec</span><span class="token operator">:</span>
+  <span class="token literal-property property">capacity</span><span class="token operator">:</span>
+    <span class="token literal-property property">storage</span><span class="token operator">:</span> 30Gi
+  <span class="token literal-property property">volumeMode</span><span class="token operator">:</span> Filesystem
+  <span class="token literal-property property">accessModes</span><span class="token operator">:</span>
+    <span class="token operator">-</span> ReadWriteOnce
+  <span class="token literal-property property">persistentVolumeReclaimPolicy</span><span class="token operator">:</span> Retain
+  <span class="token literal-property property">storageClassName</span><span class="token operator">:</span> beszel<span class="token operator">-</span>local
+  <span class="token literal-property property">local</span><span class="token operator">:</span>
+  <span class="token comment">// 数据存储目录</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token operator">/</span>data<span class="token operator">/</span>beszel
+  <span class="token literal-property property">nodeAffinity</span><span class="token operator">:</span>
+    <span class="token literal-property property">required</span><span class="token operator">:</span>
+      <span class="token literal-property property">nodeSelectorTerms</span><span class="token operator">:</span>
+        <span class="token operator">-</span> matchExpressions<span class="token operator">:</span>
+            <span class="token operator">-</span> key<span class="token operator">:</span> kubernetes<span class="token punctuation">.</span>io<span class="token operator">/</span>hostname
+              <span class="token literal-property property">operator</span><span class="token operator">:</span> In
+              <span class="token literal-property property">values</span><span class="token operator">:</span>
+              <span class="token comment">// 指定了k8s服务器</span>
+                <span class="token operator">-</span> centos<span class="token operator">-</span>k8s<span class="token operator">-</span>server2
+<span class="token operator">--</span><span class="token operator">-</span>
+<span class="token literal-property property">apiVersion</span><span class="token operator">:</span> v1
+<span class="token literal-property property">kind</span><span class="token operator">:</span> PersistentVolumeClaim
+<span class="token literal-property property">metadata</span><span class="token operator">:</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> beszel<span class="token operator">-</span>data
+  <span class="token literal-property property">namespace</span><span class="token operator">:</span> beszel
+<span class="token literal-property property">spec</span><span class="token operator">:</span>
+  <span class="token literal-property property">accessModes</span><span class="token operator">:</span>
+    <span class="token operator">-</span> ReadWriteOnce
+  <span class="token literal-property property">storageClassName</span><span class="token operator">:</span> beszel<span class="token operator">-</span>local
+  <span class="token literal-property property">resources</span><span class="token operator">:</span>
+    <span class="token literal-property property">requests</span><span class="token operator">:</span>
+      <span class="token literal-property property">storage</span><span class="token operator">:</span> 30Gi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="服务端部署-02-beszel-yaml"><a href="#服务端部署-02-beszel-yaml" class="headerlink" title="服务端部署 02-beszel.yaml"></a>服务端部署 02-beszel.yaml</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">apiVersion</span><span class="token operator">:</span> apps<span class="token operator">/</span>v1
+<span class="token literal-property property">kind</span><span class="token operator">:</span> Deployment
+<span class="token literal-property property">metadata</span><span class="token operator">:</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> beszel
+  <span class="token literal-property property">namespace</span><span class="token operator">:</span> beszel
+<span class="token literal-property property">spec</span><span class="token operator">:</span>
+  <span class="token literal-property property">replicas</span><span class="token operator">:</span> <span class="token number">1</span>
+  <span class="token literal-property property">strategy</span><span class="token operator">:</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> Recreate
+  <span class="token literal-property property">selector</span><span class="token operator">:</span>
+    <span class="token literal-property property">matchLabels</span><span class="token operator">:</span>
+      <span class="token literal-property property">app</span><span class="token operator">:</span> beszel
+  <span class="token literal-property property">template</span><span class="token operator">:</span>
+    <span class="token literal-property property">metadata</span><span class="token operator">:</span>
+      <span class="token literal-property property">labels</span><span class="token operator">:</span>
+        <span class="token literal-property property">app</span><span class="token operator">:</span> beszel
+    <span class="token literal-property property">spec</span><span class="token operator">:</span>
+      <span class="token literal-property property">terminationGracePeriodSeconds</span><span class="token operator">:</span> <span class="token number">30</span>
+      <span class="token literal-property property">containers</span><span class="token operator">:</span>
+        <span class="token operator">-</span> name<span class="token operator">:</span> beszel
+          <span class="token literal-property property">image</span><span class="token operator">:</span> henrygd<span class="token operator">/</span>beszel<span class="token operator">:</span><span class="token number">0.20</span><span class="token number">.0</span>
+          <span class="token literal-property property">imagePullPolicy</span><span class="token operator">:</span> IfNotPresent
+          <span class="token literal-property property">env</span><span class="token operator">:</span>
+            <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token constant">APP_URL</span>
+              <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"https://monitor.com"</span>
+            <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token constant">CHECK_UPDATES</span>
+              <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"false"</span>
+            <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token constant">SHARE_ALL_SYSTEMS</span>
+              <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"false"</span>
+            <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token constant">USER_CREATION</span>
+              <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"false"</span>
+            <span class="token operator">-</span> name<span class="token operator">:</span> <span class="token constant">MFA_OTP</span>
+              <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"true"</span>
+          <span class="token literal-property property">ports</span><span class="token operator">:</span>
+            <span class="token operator">-</span> name<span class="token operator">:</span> http
+              <span class="token comment">// 将端口暴露到宿主机器上</span>
+              <span class="token literal-property property">hostPort</span><span class="token operator">:</span> <span class="token number">8090</span>
+              <span class="token literal-property property">containerPort</span><span class="token operator">:</span> <span class="token number">8090</span>
+              <span class="token literal-property property">protocol</span><span class="token operator">:</span> <span class="token constant">TCP</span>
+          <span class="token literal-property property">volumeMounts</span><span class="token operator">:</span>
+            <span class="token operator">-</span> name<span class="token operator">:</span> beszel<span class="token operator">-</span>data
+              <span class="token literal-property property">mountPath</span><span class="token operator">:</span> <span class="token operator">/</span>beszel_data
+          <span class="token literal-property property">resources</span><span class="token operator">:</span>
+            <span class="token literal-property property">requests</span><span class="token operator">:</span>
+              <span class="token literal-property property">cpu</span><span class="token operator">:</span> 50m
+              <span class="token literal-property property">memory</span><span class="token operator">:</span> 128Mi
+            <span class="token literal-property property">limits</span><span class="token operator">:</span>
+              <span class="token literal-property property">cpu</span><span class="token operator">:</span> <span class="token string">"1"</span>
+              <span class="token literal-property property">memory</span><span class="token operator">:</span> 512Mi
+          <span class="token literal-property property">readinessProbe</span><span class="token operator">:</span>
+            <span class="token literal-property property">exec</span><span class="token operator">:</span>
+              <span class="token literal-property property">command</span><span class="token operator">:</span>
+                <span class="token operator">-</span> <span class="token operator">/</span>beszel
+                <span class="token operator">-</span> health
+                <span class="token operator">-</span> <span class="token operator">--</span>url
+                <span class="token operator">-</span> http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token operator">:</span><span class="token number">8090</span>
+            <span class="token literal-property property">initialDelaySeconds</span><span class="token operator">:</span> <span class="token number">10</span>
+            <span class="token literal-property property">periodSeconds</span><span class="token operator">:</span> <span class="token number">20</span>
+            <span class="token literal-property property">timeoutSeconds</span><span class="token operator">:</span> <span class="token number">5</span>
+            <span class="token literal-property property">failureThreshold</span><span class="token operator">:</span> <span class="token number">3</span>
+          <span class="token literal-property property">livenessProbe</span><span class="token operator">:</span>
+            <span class="token literal-property property">exec</span><span class="token operator">:</span>
+              <span class="token literal-property property">command</span><span class="token operator">:</span>
+                <span class="token operator">-</span> <span class="token operator">/</span>beszel
+                <span class="token operator">-</span> health
+                <span class="token operator">-</span> <span class="token operator">--</span>url
+                <span class="token operator">-</span> http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token operator">:</span><span class="token number">8090</span>
+            <span class="token literal-property property">initialDelaySeconds</span><span class="token operator">:</span> <span class="token number">30</span>
+            <span class="token literal-property property">periodSeconds</span><span class="token operator">:</span> <span class="token number">60</span>
+            <span class="token literal-property property">timeoutSeconds</span><span class="token operator">:</span> <span class="token number">5</span>
+            <span class="token literal-property property">failureThreshold</span><span class="token operator">:</span> <span class="token number">3</span>
+      <span class="token literal-property property">volumes</span><span class="token operator">:</span>
+        <span class="token operator">-</span> name<span class="token operator">:</span> beszel<span class="token operator">-</span>data
+          <span class="token literal-property property">persistentVolumeClaim</span><span class="token operator">:</span>
+            <span class="token literal-property property">claimName</span><span class="token operator">:</span> beszel<span class="token operator">-</span>data
+<span class="token operator">--</span><span class="token operator">-</span>
+<span class="token literal-property property">apiVersion</span><span class="token operator">:</span> v1
+<span class="token literal-property property">kind</span><span class="token operator">:</span> Service
+<span class="token literal-property property">metadata</span><span class="token operator">:</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> beszel
+  <span class="token literal-property property">namespace</span><span class="token operator">:</span> beszel
+<span class="token literal-property property">spec</span><span class="token operator">:</span>
+  <span class="token literal-property property">type</span><span class="token operator">:</span> ClusterIP
+  <span class="token literal-property property">selector</span><span class="token operator">:</span>
+    <span class="token literal-property property">app</span><span class="token operator">:</span> beszel
+  <span class="token literal-property property">ports</span><span class="token operator">:</span>
+    <span class="token operator">-</span> name<span class="token operator">:</span> http
+      <span class="token literal-property property">protocol</span><span class="token operator">:</span> <span class="token constant">TCP</span>
+      <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">8090</span>
+      <span class="token literal-property property">targetPort</span><span class="token operator">:</span> <span class="token number">8090</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Nginx-代理访问"><a href="#Nginx-代理访问" class="headerlink" title="Nginx 代理访问"></a>Nginx 代理访问</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">server <span class="token punctuation">&#123;</span>
+    listen <span class="token number">443</span> ssl http2<span class="token punctuation">;</span>
+    server_name monitor<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+
+    ssl_certificate     <span class="token operator">/</span>etc<span class="token operator">/</span>nginx<span class="token operator">/</span>ssl<span class="token operator">/</span>monitor<span class="token operator">/</span>fullchain<span class="token punctuation">.</span>pem<span class="token punctuation">;</span>
+    ssl_certificate_key <span class="token operator">/</span>etc<span class="token operator">/</span>nginx<span class="token operator">/</span>ssl<span class="token operator">/</span>monitor<span class="token operator">/</span>privkey<span class="token punctuation">.</span>pem<span class="token punctuation">;</span>
+
+    location <span class="token operator">/</span> <span class="token punctuation">&#123;</span>
+        proxy_pass http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token constant">BESZEL_NODE_IP</span><span class="token operator">></span><span class="token operator">:</span><span class="token number">8090</span><span class="token punctuation">;</span>
+
+        proxy_http_version <span class="token number">1.1</span><span class="token punctuation">;</span>
+
+        proxy_set_header Host $host<span class="token punctuation">;</span>
+        proxy_set_header <span class="token constant">X</span><span class="token operator">-</span>Real<span class="token operator">-</span><span class="token constant">IP</span> $remote_addr<span class="token punctuation">;</span>
+        proxy_set_header <span class="token constant">X</span><span class="token operator">-</span>Forwarded<span class="token operator">-</span>For $proxy_add_x_forwarded_for<span class="token punctuation">;</span>
+        proxy_set_header <span class="token constant">X</span><span class="token operator">-</span>Forwarded<span class="token operator">-</span>Proto https<span class="token punctuation">;</span>
+
+        proxy_set_header Upgrade $http_upgrade<span class="token punctuation">;</span>
+        proxy_set_header Connection <span class="token string">"upgrade"</span><span class="token punctuation">;</span>
+
+        proxy_connect_timeout 10s<span class="token punctuation">;</span>
+        proxy_read_timeout 3600s<span class="token punctuation">;</span>
+        proxy_send_timeout 3600s<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="服务器Agent安装"><a href="#服务器Agent安装" class="headerlink" title="服务器Agent安装"></a>服务器Agent安装</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 固定版本 -v '0.20.0'</span>
+<span class="token comment"># 禁用更新 --auto-update false</span>
+<span class="token function">curl</span> <span class="token parameter variable">-sL</span> https://get.beszel.dev <span class="token parameter variable">-o</span> /tmp/install-agent.sh <span class="token punctuation">\</span>
+<span class="token operator">&amp;&amp;</span> <span class="token function">chmod</span> +x /tmp/install-agent.sh <span class="token punctuation">\</span>
+<span class="token operator">&amp;&amp;</span> /tmp/install-agent.sh <span class="token punctuation">\</span>
+  <span class="token parameter variable">-p</span> <span class="token number">45876</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-k</span> <span class="token string">"YOUR_KEY"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-t</span> <span class="token string">"YOUR_TOKEN"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-url</span> <span class="token string">"https://monitor.com"</span> <span class="token punctuation">\</span>
+  <span class="token parameter variable">-v</span> <span class="token string">'0.20.0'</span> <span class="token punctuation">\</span>
+  --china-mirrors <span class="token punctuation">\</span>
+  --auto-update <span class="token boolean">false</span>
+  
+<span class="token comment"># 额外磁盘</span>
+<span class="token number">1</span>.修改ENV  
+<span class="token function">sudo</span> <span class="token function">vi</span> /etc/systemd/system/beszel-agent.service
+<span class="token number">2</span>.增加
+<span class="token operator">></span> <span class="token assign-left variable">Environment</span><span class="token operator">=</span><span class="token string">"EXTRA_FILESYSTEMS=/data,/opt/elasticsearch"</span>
+
+<span class="token function">sudo</span> systemctl daemon-reload
+<span class="token function">sudo</span> systemctl status beszel-agent
+<span class="token function">sudo</span> systemctl restart beszel-agent
+journalctl <span class="token parameter variable">-u</span> beszel-agent <span class="token parameter variable">-n</span> <span class="token number">100</span> --no-pager<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><h2 id="CleanShot-2026-09-24-at-16-06-09-2x-1-png"><a href="#CleanShot-2026-09-24-at-16-06-09-2x-1-png" class="headerlink" title="![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]"></a>![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]</h2><p><em>创建于 2026-09-24 15:38:39</em></p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

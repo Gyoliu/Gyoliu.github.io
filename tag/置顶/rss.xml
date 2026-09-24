@@ -16,8 +16,8 @@
     <category>JVM</category>
     <category>spring</category>
     <category>Spring Cloud</category>
-    <category>MySQL</category>
     <category>mysql</category>
+    <category>MySQL</category>
     <category>置顶</category>
     <category>git</category>
     <category>Hacker</category>
@@ -27,6 +27,9 @@
     <category>nginx</category>
     <category>SELinux</category>
     <category>openssl</category>
+    <category>运维</category>
+    <category>服务器</category>
+    <category>监控</category>
     <item>
       <guid isPermalink="true">https://blog.genesisx.cn/2021/03/18/%E5%85%B6%E4%BB%96/2021-03-18--bo-zhu-shou-cang--97/</guid>
       <title>博主收藏</title>

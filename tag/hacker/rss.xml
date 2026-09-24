@@ -16,8 +16,8 @@
     <category>JVM</category>
     <category>spring</category>
     <category>Spring Cloud</category>
-    <category>MySQL</category>
     <category>mysql</category>
+    <category>MySQL</category>
     <category>置顶</category>
     <category>git</category>
     <category>Hacker</category>
@@ -27,6 +27,9 @@
     <category>nginx</category>
     <category>SELinux</category>
     <category>openssl</category>
+    <category>运维</category>
+    <category>服务器</category>
+    <category>监控</category>
     <item>
       <guid isPermalink="true">https://blog.genesisx.cn/2024/07/11/%E5%85%B6%E4%BB%96/2024-07-11--1720691226449--8383fb3b-7f2f-4d76-9a3f-aa14e1c16712/</guid>
       <title>黑客资源收录</title>

@@ -16,8 +16,8 @@
     <category>JVM</category>
     <category>spring</category>
     <category>Spring Cloud</category>
-    <category>MySQL</category>
     <category>mysql</category>
+    <category>MySQL</category>
     <category>置顶</category>
     <category>git</category>
     <category>Hacker</category>
@@ -27,6 +27,9 @@
     <category>nginx</category>
     <category>SELinux</category>
     <category>openssl</category>
+    <category>运维</category>
+    <category>服务器</category>
+    <category>监控</category>
     <item>
       <guid isPermalink="true">https://blog.genesisx.cn/2020/11/25/%E7%94%9F%E6%B4%BB/2020-11-25--%E7%A7%AF%E7%B4%AF--35/</guid>
       <title>积累</title>

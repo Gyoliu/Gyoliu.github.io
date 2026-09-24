@@ -13,8 +13,8 @@
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
-    <category term="MySQL" />
     <category term="mysql" />
+    <category term="MySQL" />
     <category term="置顶" />
     <category term="git" />
     <category term="Hacker" />
@@ -24,6 +24,9 @@
     <category term="nginx" />
     <category term="SELinux" />
     <category term="openssl" />
+    <category term="运维" />
+    <category term="服务器" />
+    <category term="监控" />
     <entry>
         <id>https://blog.genesisx.cn/2021/11/29/%E5%B7%A5%E5%85%B7/2021-11-29--git%E5%85%8B%E9%9A%86%E5%A4%A7%E4%BB%93%E5%BA%93%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95--161/</id>
         <title>git克隆大仓库的问题记录</title>

@@ -13,8 +13,8 @@
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
-    <category term="MySQL" />
     <category term="mysql" />
+    <category term="MySQL" />
     <category term="置顶" />
     <category term="git" />
     <category term="Hacker" />
@@ -24,6 +24,9 @@
     <category term="nginx" />
     <category term="SELinux" />
     <category term="openssl" />
+    <category term="运维" />
+    <category term="服务器" />
+    <category term="监控" />
     <entry>
         <id>https://blog.genesisx.cn/2023/05/06/java/jvm-params/</id>
         <title>JVM常用参数</title>

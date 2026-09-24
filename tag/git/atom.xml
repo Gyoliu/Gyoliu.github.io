@@ -13,8 +13,8 @@
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
-    <category term="MySQL" />
     <category term="mysql" />
+    <category term="MySQL" />
     <category term="置顶" />
     <category term="git" />
     <category term="Hacker" />
@@ -24,6 +24,9 @@
     <category term="nginx" />
     <category term="SELinux" />
     <category term="openssl" />
+    <category term="运维" />
+    <category term="服务器" />
+    <category term="监控" />
     <entry>
         <id>https://blog.genesisx.cn/2022/10/27/%E5%85%B6%E4%BB%96/2022-10-27--260--260/</id>
         <title>开源git收录</title>

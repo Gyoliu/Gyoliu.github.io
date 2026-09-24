@@ -13,8 +13,8 @@
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
-    <category term="MySQL" />
     <category term="mysql" />
+    <category term="MySQL" />
     <category term="置顶" />
     <category term="git" />
     <category term="Hacker" />
@@ -24,6 +24,9 @@
     <category term="nginx" />
     <category term="SELinux" />
     <category term="openssl" />
+    <category term="运维" />
+    <category term="服务器" />
+    <category term="监控" />
     <entry>
         <id>https://blog.genesisx.cn/2024/12/24/hexo/Cosy%E5%85%A5%E9%97%A8/</id>
         <title>Cosy入门</title>
