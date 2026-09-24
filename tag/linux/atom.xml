@@ -13,11 +13,11 @@
     <category term="JVM" />
     <category term="spring" />
     <category term="Spring Cloud" />
-    <category term="mysql" />
-    <category term="MySQL" />
     <category term="置顶" />
     <category term="git" />
     <category term="Hacker" />
+    <category term="mysql" />
+    <category term="MySQL" />
     <category term="SSR" />
     <category term="Linux" />
     <category term="证书" />
@@ -389,7 +389,9 @@
 &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl restart beszel-agent
 journalctl &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; beszel-agent &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt; --no-pager&lt;span aria-hidden=&#34;true&#34; class=&#34;line-numbers-rows&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;效果展示&#34;&gt;&lt;a href=&#34;#效果展示&#34; class=&#34;headerlink&#34; title=&#34;效果展示&#34;&gt;&lt;/a&gt;效果展示&lt;/h3&gt;&lt;h2 id=&#34;CleanShot-2026-09-24-at-16-06-09-2x-1-png&#34;&gt;&lt;a href=&#34;#CleanShot-2026-09-24-at-16-06-09-2x-1-png&#34; class=&#34;headerlink&#34; title=&#34;![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]&#34;&gt;&lt;/a&gt;![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]&lt;/h2&gt;&lt;p&gt;&lt;em&gt;创建于 2026-09-24 15:38:39&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;效果展示&#34;&gt;&lt;a href=&#34;#效果展示&#34; class=&#34;headerlink&#34; title=&#34;效果展示&#34;&gt;&lt;/a&gt;效果展示&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;/img/CleanShot2026-09-24at16.06.09-2x1.png&#34; alt=&#34;Beszel 监控效果&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;创建于 2026-09-24 15:38:39&lt;/em&gt;&lt;/p&gt;
 </content>
         <category term="Linux" />
         <category term="运维" />

@@ -16,11 +16,11 @@
     <category>JVM</category>
     <category>spring</category>
     <category>Spring Cloud</category>
-    <category>mysql</category>
-    <category>MySQL</category>
     <category>置顶</category>
     <category>git</category>
     <category>Hacker</category>
+    <category>mysql</category>
+    <category>MySQL</category>
     <category>SSR</category>
     <category>Linux</category>
     <category>证书</category>
@@ -398,7 +398,9 @@ sudo systemctl status beszel-agent
 sudo systemctl restart beszel-agent
 journalctl -u beszel-agent -n 100 --no-pager
 
-效果展示![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]创建于 2026-09-24 15:38:39
+效果展示
+
+创建于 2026-09-24 15:38:39
 ]]></description>
       <!-- Folo 优先读取 content:encoded；这里必须输出未被二次转义的完整 HTML。 -->
       <content:encoded><![CDATA[<h1 id="项目需求对比"><a href="#项目需求对比" class="headerlink" title="项目需求对比"></a>项目需求对比</h1><table>
@@ -759,7 +761,9 @@ journalctl -u beszel-agent -n 100 --no-pager
 <span class="token function">sudo</span> systemctl restart beszel-agent
 journalctl <span class="token parameter variable">-u</span> beszel-agent <span class="token parameter variable">-n</span> <span class="token number">100</span> --no-pager<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><h2 id="CleanShot-2026-09-24-at-16-06-09-2x-1-png"><a href="#CleanShot-2026-09-24-at-16-06-09-2x-1-png" class="headerlink" title="![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]"></a>![[CleanShot 2026-09-24 at 16.06.09@2x 1.png]]</h2><p><em>创建于 2026-09-24 15:38:39</em></p>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="/img/CleanShot2026-09-24at16.06.09-2x1.png" alt="Beszel 监控效果"></p>
+<hr>
+<p><em>创建于 2026-09-24 15:38:39</em></p>
 ]]></content:encoded>
     </item>
   </channel>
