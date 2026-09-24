@@ -36,7 +36,9 @@
   <meta name="keywords" content="<%= page.keywords || config.keywords %>">
   <meta name="author" content="<%= config.author %>">
   <link rel="canonical" href="<%= page.permalink || config.url %>">
-  <!-- RSS 自动发现：Folo 通过站点地址订阅时可以定位到完整正文 Feed。 -->
+  <!-- Folo 当前只选择第一个自动发现链接，优先使用原生支持 content_html 的 JSON Feed。 -->
+  <link rel="alternate" type="application/feed+json" title="<%= config.title %>" href="<%= full_url_for('/feed.json') %>">
+  <!-- 保留 RSS 自动发现，兼容仅支持 RSS 2.0 的阅读器。 -->
   <link rel="alternate" type="application/rss+xml" title="<%= config.title %>" href="<%= full_url_for('/rss.xml') %>">
   <% if(theme.favicon !==undefined){ %>
   <% if(theme.favicon.startsWith('<svg')){ %>
